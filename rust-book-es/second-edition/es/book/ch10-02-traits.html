@@ -1,0 +1,646 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Traits: Defining Shared Behavior - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html" class="active"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="traits-definición-de-comportamiento-compartido"><a class="header" href="#traits-definición-de-comportamiento-compartido">Traits: Definición de comportamiento compartido</a></h2>
+<p>Un <em>trait</em> le dice al compilador Rust acerca de la funcionalidad que un tipo
+en particular tiene y puede compartir con otros tipos. Podemos usar <em>trait</em>
+para definir el comportamiento compartido de una manera abstracta. Podemos
+usar límites de <em>trait</em> para especificar que un genérico puede ser de
+cualquier tipo que tenga cierto comportamiento.</p>
+<blockquote>
+<p>Nota: Los <em>trait</em> son similares a una característica a menudo llamada
+<em>interfaces</em> en otros lenguaje, aunque con algunas diferencias.</p>
+</blockquote>
+<h3 id="definiendo-un-trait"><a class="header" href="#definiendo-un-trait">Definiendo un Trait</a></h3>
+<p>El comportamiento de un tipo consiste en los métodos que podemos invocar en
+ese tipo. Los diferentes tipos comparten el mismo comportamiento si podemos
+llamar a los mismos métodos en todos esos tipos. Las definiciones de <em>trait</em>
+son una forma de agrupar las firmas de métodos para definir un conjunto de
+comportamientos necesarios para lograr algún propósito.</p>
+<p>Por ejemplo, supongamos que tenemos estructuras múltiples que contienen
+varios tipos y cantidades de texto: una estructura <code>NewsArticle</code> que contiene
+una historia de noticias presentada en una ubicación particular y un <code>Tweet</code>
+que puede tener como máximo 280 caracteres junto con metadatos que indican si
+fue un nuevo tweet, un retweet o una respuesta a otro tweet.</p>
+<p>Queremos crear una biblioteca de agregadores de medios que pueda mostrar
+resúmenes de datos que podrían almacenarse en una instancia de <code>NewsArticle</code>
+o <code>Tweet</code>. Para hacer esto, necesitamos un resumen de cada tipo, y
+necesitamos solicitar ese resumen llamando a un método <code>summarize</code> en una
+instancia. El listado 10-12 muestra la definición de un <em>trait</em> <code>Summary</code> que
+expresa este comportamiento.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Summary {
+    fn summarize(&amp;self) -&gt; String;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listing 10-12: Un <em>trait</em> <code>Resumen</code> que consiste en el comportamiento proporcionado por un método <code>summarize</code></span></p>
+<p>Aquí, declaramos un <em>trait</em> usando la palabra clave <code>trait</code> y luego el nombre
+del <em>trait</em>, que es <code>Summary</code>en este caso. Dentro de las llaves, declaramos
+las firmas de métodos que describen los comportamientos de los tipos que
+implementan este <em>trait</em>, que en este caso es
+<code>fn summarize(&amp; self) -&gt; String</code>.</p>
+<p>Después de la firma del método, en lugar de proporcionar una implementación
+entre llaves, usamos un punto y coma. Cada tipo que implementa este <em>trait</em>
+debe proporcionar su propio comportamiento personalizado para el cuerpo del
+método. El compilador hará cumplir que cualquier tipo que tenga el <em>trait</em>
+<code>Summary</code>tendrá el método <code>summarize</code> definido con esta firma exactamente.</p>
+<p>Un <em>trait</em> puede tener múltiples métodos en su cuerpo: las firmas del método
+se enumeran una por línea y cada línea termina en punto y coma.</p>
+<h3 id="implementando-un-rasgo-en-un-tipo"><a class="header" href="#implementando-un-rasgo-en-un-tipo">Implementando un rasgo en un tipo</a></h3>
+<p>Ahora que hemos definido el comportamiento deseado utilizando el <em>trait</em> <code>Summary</code>, podemos implementarlo en los tipos en nuestro agregador de medios.
+El listado 10-13 muestra una implementación del <em>trait</em> <code>Summary</code> en la
+estructura <code>NewsArticle</code> que usa el título, el autor y la ubicación para
+crear el valor de retorno de <code>summarize</code>. Para la estructura <code>Tweet</code>,
+definimos <code>summarize</code> como el nombre de usuario seguido por el texto completo
+del tweet, suponiendo que el contenido del tweet ya está limitado a 280
+caracteres.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">pub trait Summary {
+</span><span class="boring">    fn summarize(&amp;self) -&gt; String;
+</span><span class="boring">}
+</span><span class="boring">
+</span>pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+
+impl Summary for NewsArticle {
+    fn summarize(&amp;self) -&gt; String {
+        format!(&quot;{}, by {} ({})&quot;, self.headline, self.author, self.location)
+    }
+}
+
+pub struct Tweet {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+}
+
+impl Summary for Tweet {
+    fn summarize(&amp;self) -&gt; String {
+        format!(&quot;{}: {}&quot;, self.username, self.content)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 10-13: Implementando el <em>trait</em> <code>Summary</code> en los
+tipos <code>NewsArticle</code> y <code>Tweet</code></span></p>
+<p>La implementación de un <em>trait</em> en un tipo es similar a la implementación de
+métodos regulares. La diferencia es que después de <code>impl</code>, ponemos el nombre
+del <em>trait</em> que queremos implementar, luego usamos la palabra clave <code>for</code>, y
+luego especificamos el nombre del tipo para el cual queremos implementar el
+<em>trait</em>. Dentro del bloque <code>impl</code>, ponemos las firmas de método que ha
+definido la definición de <em>trait</em>. En lugar de agregar un punto y coma
+después de cada firma, usamos llaves y completamos el cuerpo del método
+con el comportamiento específico que queremos que tengan los métodos del
+<em>trait</em> para el tipo particular.</p>
+<p>Después de implementar el <em>trait</em>, podemos llamar a los métodos en instancias
+de <code>NewsArticle</code> y <code>Tweet</code> de la misma manera que llamamos a los métodos
+regulares, como este:</p>
+<pre><code class="language-rust ignore">let tweet = Tweet {
+    username: String::from(&quot;horse_ebooks&quot;),
+    content: String::from(&quot;of course, as you probably already know, people&quot;),
+    reply: false,
+    retweet: false,
+};
+
+println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
+</code></pre>
+<p>Este código imprime <code>1 new tweet: horse_ebooks: of course, as you probably already know, people</code>.</p>
+<p>Tenga en cuenta que porque definimos el <em>trait</em> <code>Summary</code> y el <code>NewsArticle</code>
+y tipos de <code>Tweet</code> en la misma <em>lib.rs</em> en el Listado 10-13, todos están en
+el mismo alcance. Digamos que esto <em>lib.rs</em> es para un <em>create</em> que hemos llamado <code>aggregator</code> y alguien más quiere usar la funcionalidad de nuestro
+<em>crate</em> para implementar el <code>Summary</code> <em>trait</em> en una estructura definida
+dentro del alcance de su biblioteca. Tendrían que importar el <em>trait</em> en su alcance primero. Lo harían especificando
+<code>use aggregator::Summary;</code>, que luego le permitiría implementar <code>Summary</code> para
+su tipo. El <em>trait</em> <code>Summary</code> también necesitaría ser un <em>trait</em> público para
+otra <em>create</em> para implementarlo, que es porque ponemos la palabra clave <code>pub</code>
+antes de <em>trait</em> en el Listado 10-12.</p>
+<p>Una restricción a tener en cuenta con las implementaciones de <em>traits</em> es que
+podemos implementar un <em>trait</em> en un tipo solo si el <em>trait</em> o el tipo es
+local para nuestro <em>crate</em>. Por ejemplo, podemos implementar <em>traits</em> de la biblioteca estándar como <code>Display</code> en un tipo personalizado como <code>Tweet</code> como
+parte de nuestra funcionalidad <code>aggregator</code>, porque el tipo <code>Tweet</code> es local
+a nuestro <em>crate</em> <code>aggregator</code>. También podemos implementar <code>Summary</code> en
+<code>Vec &lt;T&gt;</code> en nuestro <em>crate</em> <code>aggregator</code>, porque el <em>trait</em> <code>Summary</code> es
+local para nuestro <em>crate</em> <code>aggregator</code>.</p>
+<p>Pero no podemos implementar <em>traits</em> externos en tipos externos. Por ejemplo,
+no podemos implementar el <em>trait</em> <code>Display</code> en <code>Vec &lt;T&gt;</code> dentro de nuestro
+<em>crate</em> <code>aggregator</code>, porque <code>Display</code> y<code> Vec &lt;T&gt;</code> están definidos en la
+biblioteca estándar y no son local a nuestro <em>crate</em> <code>agregador</code> Esta
+restricción es parte de una propiedad de programas llamados <em>coherencia</em>, y
+más específicamente, la <em>regla huérfana</em>, llamada así porque el tipo
+principal no está presente. Esta regla asegura que el código de otras
+personas no puede romper su código y viceversa. Sin la regla, dos <em>crates</em>
+podrían implementar el mismo <em>trait</em> para el mismo tipo, y Rust no sabría qué
+implementación usar.</p>
+<h3 id="implementaciones-predeterminadas"><a class="header" href="#implementaciones-predeterminadas">Implementaciones predeterminadas</a></h3>
+<p>A veces es útil tener un comportamiento predeterminado para algunos o todos
+los métodos en un <em>trait</em> en lugar de requerir implementaciones para todos
+los métodos en cada tipo. Luego, a medida que implementamos el <em>trait</em> en un
+tipo particular, podemos mantener o anular el comportamiento predeterminado
+de cada método.</p>
+<p>El Listado 10-14 muestra cómo especificar un <em>string</em> predeterminada para el
+método <code>summarize</code> del <em>trait</em> <code>Summary</code> en lugar de solo definir la firma
+del método, como hicimos en el Listado 10-12.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Summary {
+    fn summarize(&amp;self) -&gt; String {
+        String::from(&quot;(Read more...)&quot;)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 10-14: Definición de un <em>trait</em> <code>Summary</code> con una implementación predeterminada del método <code>summarize</code></span></p>
+<p>Para usar una implementación predeterminada para resumir instancias de
+<code>NewsArticle</code> en lugar de definir una implementación personalizada,
+especificamos un bloque <code>impl</code> vacío con <code>impl Summary for NewsArticle {}</code>.</p>
+<p>Aunque ya no estamos definiendo el método <code>summarize</code> en <code>NewsArticle</code>
+directamente, hemos proporcionado una implementación predeterminada y
+especificamos que <code>NewsArticle</code> implementa el <em>trai</em> <code>Summary</code>. Como
+resultado, todavía podemos llamar al método <code>summarize</code> en una instancia de
+<code>NewsArticle</code>, así:</p>
+<pre><code class="language-rust ignore">let article = NewsArticle {
+    headline: String::from(&quot;Penguins win the Stanley Cup Championship!&quot;),
+    location: String::from(&quot;Pittsburgh, PA, USA&quot;),
+    author: String::from(&quot;Iceburgh&quot;),
+    content: String::from(&quot;The Pittsburgh Penguins once again are the best
+    hockey team in the NHL.&quot;),
+};
+
+println!(&quot;New article available! {}&quot;, article.summarize());
+</code></pre>
+<p>Este código imprime <code>New article available! (Read more...)</code>.</p>
+<p>Crear una implementación predeterminada para <code>summarize</code> no requiere que
+cambiemos nada sobre la implementación de <code>Summary</code> en <code>Tweet</code> en el Listado
+10-13. La razón es que la sintaxis para anular una implementación
+predeterminada es la misma que la sintaxis para implementar un método de
+<em>trait</em> que no tiene una implementación predeterminada.</p>
+<p>Las implementaciones predeterminadas pueden llamar a otros métodos en el
+mismo <em>trait</em>, incluso si esos otros métodos no tienen una implementación
+predeterminada. De esta forma, un <em>trait</em> puede proporcionar una gran
+cantidad de funcionalidades útiles y solo requiere que los implementadores
+especifiquen una pequeña parte de él. Por ejemplo, podríamos definir el
+<em>trait</em> <code>Summary</code> para tener un método <code>summarize_author</code> cuya implementación
+es necesaria, y luego definir un método <code>summarize</code> que tenga una
+implementación predeterminada que llame al método <code>summarize_author</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Summary {
+    fn summarize_author(&amp;self) -&gt; String;
+
+    fn summarize(&amp;self) -&gt; String {
+        format!(&quot;(Read more from {}...)&quot;, self.summarize_author())
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Para usar esta versión de <code>Summary</code>, solo necesitamos definir
+<code>summarize_author</code> cuando implementamos el <em>trait</em> en un tipo:</p>
+<pre><code class="language-rust ignore">impl Summary for Tweet {
+    fn summarize_author(&amp;self) -&gt; String {
+        format!(&quot;@{}&quot;, self.username)
+    }
+}
+</code></pre>
+<p>Después de definir <code>summarize_author</code>, podemos llamar <code>summarize</code> en las
+instancias de la estructura <code>Tweet</code>, y la implementación predeterminada de
+<code>summarize</code> llamará a la definición de <code>summarize_author</code> que hemos
+proporcionado. Debido a que hemos implementado <code>summarize_author</code>, el
+<em>trait</em> <code>Summary</code> nos ha dado el comportamiento del método <code>summarize</code> sin
+necesidad de escribir más código.</p>
+<pre><code class="language-rust ignore">let tweet = Tweet {
+    username: String::from(&quot;horse_ebooks&quot;),
+    content: String::from(&quot;of course, as you probably already know, people&quot;),
+    reply: false,
+    retweet: false,
+};
+
+println!(&quot;1 new tweet: {}&quot;, tweet.summarize());
+</code></pre>
+<p>Este código imprime <code>1 new tweet: (Read more from @horse_ebooks...)</code>.</p>
+<p>Tenga en cuenta que no es posible llamar a la implementación predeterminada
+desde una implementación principal de ese mismo método.</p>
+<h3 id="trait-bounds"><a class="header" href="#trait-bounds">Trait Bounds</a></h3>
+<p>Ahora que sabe cómo definir <em>trait</em> e implementar esos <em>traits</em> en los tipos,
+podemos explorar cómo usar los <em>traits</em> con los parámetros de tipo genérico.
+Podemos usar <em>trait bounds</em> para restringir los tipos genéricos para
+garantizar que el tipo se limitará a aquellos que implementan un <em>trait</em> y
+comportamiento particular.</p>
+<p>Por ejemplo, en el listado 10-13, implementamos el <em>trait</em> <code>Summary</code> en los
+tipos <code>NewsArticle</code> y <code>Tweet</code>. Podemos definir una función <code>notify</code> que llama
+al método <code>summarize</code> en su parámetro <code>item</code>, que es del tipo genérico <code>T</code>.
+Para poder llamar <code>summarize</code> on <code>item</code> sin recibir un error que nos diga que
+el tipo genérico <code>T</code> no implementa el método <code>summarize</code>, podemos usar
+límites de <em>traits</em> en <code>T</code> para especificar ese <code>item</code> debe ser de un tipo
+que implemente el <em>trait</em> <code>Summary</code>:</p>
+<pre><code class="language-rust ignore">pub fn notify&lt;T: Summary&gt;(item: T) {
+    println!(&quot;Breaking news! {}&quot;, item.summarize());
+}
+</code></pre>
+<p>Colocamos límites de <em>trait</em> con la declaración del parámetro de tipo
+genérico, después de dos puntos y dentro de corchetes angulares. Debido a la
+característica de límite en <code>T</code>, podemos llamar a <code>notify</code> y pasar cualquier
+instancia de <code>NewsArticle</code> o <code>Tweet</code>. El código que llama a la función con
+cualquier otro tipo, como un <code>String</code> o un <code>i32</code>, no compilará, porque esos
+tipos no implementan <code>Summary</code>.</p>
+<p>Podemos especificar múltiples límites de <em>trait</em> en un tipo genérico usando
+la sintaxis <code>+</code>. Por ejemplo, para usar el formato de visualización en el
+tipo <code>T</code> en una función así como en el método <code>summarize</code>, podemos usar
+<code>T: Summary + Display</code> para decir <code>T</code> puede ser cualquier tipo que implemente
+<code>Summary</code> y <code>Display</code>.</p>
+<p>Sin embargo, hay desventajas al uso de demasiados límites de <em>trait</em>. Cada
+genérico tiene sus propios límites de <em>trait</em>, por lo que las funciones con
+múltiples parámetros de tipo genérico pueden tener mucha información de
+límite de caracteres entre el nombre de una función y su lista de parámetros,
+lo que hace que la firma de la función sea difícil de leer. Por esta razón,
+Rust tiene una sintaxis alternativa para especificar límites de <em>trait</em>
+dentro de una cláusula <code>where</code> después de la firma de la función. Entonces,
+en lugar de escribir esto:</p>
+<pre><code class="language-rust ignore">fn some_function&lt;T: Display + Clone, U: Clone + Debug&gt;(t: T, u: U) -&gt; i32 {
+</code></pre>
+<p>podemos usar una cláusula <code>where</code>, como esta:</p>
+<pre><code class="language-rust ignore">fn some_function&lt;T, U&gt;(t: T, u: U) -&gt; i32
+    where T: Display + Clone,
+          U: Clone + Debug
+{
+</code></pre>
+<p>La firma de esta función es menos desordenada porque el nombre de la función,
+la lista de parámetros y el tipo de retorno están muy juntos, de forma
+similar a una función sin muchos límites de caracteres.</p>
+<h3 id="reparar-la-función-largest-con-límites-de-trait"><a class="header" href="#reparar-la-función-largest-con-límites-de-trait">Reparar la función <code>largest</code> con límites de <em>Trait</em></a></h3>
+<p>Ahora que sabe cómo especificar el comportamiento que desea usar utilizando
+los límites del parámetro de tipo genérico, regresemos al Listado 10-5 para
+corregir la definición de la función <code>largest</code> que usa un parámetro de
+tipo genérico. La última vez que intentamos ejecutar ese código, recibimos
+este error:</p>
+<pre><code class="language-text">error[E0369]: binary operation `&gt;` cannot be applied to type `T`
+ --&gt; src/main.rs:5:12
+  |
+5 |         if item &gt; largest {
+  |            ^^^^^^^^^^^^^^
+  |
+  = note: an implementation of `std::cmp::PartialOrd` might be missing for `T`
+</code></pre>
+<p>En el cuerpo de <code>largest</code> queríamos comparar dos valores de tipo <code>T</code> usando
+el operador mayor que (<code>&gt;</code>). Debido a que ese operador se define como un
+método predeterminado en el <em>trait</em> de la biblioteca estándar
+<code>std::cmp::PartialOrd</code>, necesitamos especificar <code>PartialOrd</code> en los límites
+de <em>trait</em> para <code>T</code>, de modo que la función <code>largest</code> puede funcionar en
+sectores de cualquier tipo que podamos comparar no necesitamos traer
+<code>PartialOrd</code> al alcance porque está en el preludio. Cambie la firma de
+<code>largest</code> para que se vea así:</p>
+<pre><code class="language-rust ignore">fn largest&lt;T: PartialOrd&gt;(list: &amp;[T]) -&gt; T {
+</code></pre>
+<p>Esta vez, cuando compilamos el código, obtenemos un conjunto diferente de errores:</p>
+<pre><code class="language-text">error[E0508]: cannot move out of type `[T]`, a non-copy slice
+ --&gt; src/main.rs:2:23
+  |
+2 |     let mut largest = list[0];
+  |                       ^^^^^^^
+  |                       |
+  |                       cannot move out of here
+  |                       help: consider using a reference instead: `&amp;list[0]`
+
+error[E0507]: cannot move out of borrowed content
+ --&gt; src/main.rs:4:9
+  |
+4 |     for &amp;item in list.iter() {
+  |         ^----
+  |         ||
+  |         |hint: to prevent move, use `ref item` or `ref mut item`
+  |         cannot move out of borrowed content
+</code></pre>
+<p>La línea clave en este error es
+<code>cannot move out of type [T], a non-copy slice</code>. Con nuestras versiones no
+genéricas de la función <code>largest</code>, solo intentábamos encontrar el <code>i32</code> o
+<code>char</code> más grande. Como se estudió en la sección “Datos apilados solo: copia”
+en el Capítulo 4, los tipos como <code>i32</code> y <code>char</code> que tienen un tamaño conocido
+se pueden almacenar en la pila (<em>stack</em>), por lo que implementan el <em>trait</em>
+<code>Copy</code>. Pero cuando hicimos genérica la función <code>largest</code>, se hizo posible
+que el parámetro <code>list</code> tuviera tipos que no implementan el <em>trait</em> <code>Copy</code>.
+En consecuencia, no podríamos mover el valor fuera de <code>list[0]</code> y dentro de
+la variable <code>largest</code>, lo que daría como resultado este error.</p>
+<p>Para llamar a este código solo con aquellos tipos que implementan el <em>trait</em>
+<code>Copy</code>, podemos agregar <code>Copy</code> a los límites de <em>trait</em> de <code>T</code>! El Listado
+10-15 muestra el código completo de una función genérica <code>largest</code> que se
+compilará siempre que los tipos de los valores en la porción que pasamos a la
+función implementen los <em>trait</em> <code>PartialOrd</code> <em>y</em> <code>Copy</code>, como <code>i32</code> y <code>char</code>
+hacen.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn largest&lt;T: PartialOrd + Copy&gt;(list: &amp;[T]) -&gt; T {
+    let mut largest = list[0];
+
+    for &amp;item in list.iter() {
+        if item &gt; largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let result = largest(&amp;number_list);
+    println!(&quot;The largest number is {}&quot;, result);
+
+    let char_list = vec!['y', 'm', 'a', 'q'];
+
+    let result = largest(&amp;char_list);
+    println!(&quot;The largest char is {}&quot;, result);
+}
+</code></pre></pre>
+<p><span class="caption">Listing 10-15: Una definición trabajando de la función <code>largest</code> que funciona en cualquier tipo genérico que implemente los <em>traits</em> <code>PartialOrd</code> y <code>Copy</code></span></p>
+<p>Si no queremos restringir la función <code>largest</code> a los tipos que implementan el
+<em>trait</em> <code>Copy</code>, podríamos especificar que <code>T</code> tenga <em>trait bound</em> <code>Clone</code> en
+lugar de <code>Copy</code>. Entonces podríamos clonar cada valor en el <em>slice</em> cuando
+queremos que la función <code>largest</code> tenga propiedad. Usar la función <code>clone</code>
+significa que potencialmente estamos haciendo más asignaciones de <em>heap</em> en
+el caso de tipos que poseen datos de montículo (<em>heap</em>) como <code>String</code>, y las
+asignaciones de <em>heap</em> pueden ser lentas si estamos trabajando con grandes
+cantidades de datos.</p>
+<p>Otra forma en que podríamos implementar <code>largest</code> es que la función devuelva
+una referencia a un valor <code>T</code> en el <em>slice</em>. Si cambiamos el tipo de retorno
+a <code>&amp; T</code> en lugar de <code>T</code>, cambiando así el cuerpo de la función para devolver
+una referencia, no necesitaríamos los límites <em>trait</em> (<em>trait bounds</em>)
+<code>Clone</code> o <code>Copy</code> y podríamos evitar las asignaciones de <em>heap</em>. ¡Intente implementar estas soluciones alternativas por su cuenta!</p>
+<h3 id="usar-límites-de-trait-trait-bounds-para-implementar-métodos-condicionalmente"><a class="header" href="#usar-límites-de-trait-trait-bounds-para-implementar-métodos-condicionalmente">Usar límites de <em>trait</em> (<em>Trait Bounds</em>) para implementar métodos condicionalmente</a></h3>
+<p>Al usar un <em>trait</em> vinculado con un bloque <code>impl</code> que usa parámetros de tipo
+genérico, podemos implementar métodos condicionalmente para tipos que
+implementan los <em>traits</em> especificados. Por ejemplo, el tipo <code>Pair &lt;T&gt;</code> en el
+Listado 10-16 siempre implementa la función <code>new</code>. Pero <code>Pair &lt;T&gt;</code> solo
+implementa el método <code>cmp_display</code> si su tipo interno <code>T</code> implementa el
+<em>trait</em> <code>PartialOrd</code> que permite la comparación <em>y</em> el <em>trait</em> <code>Display</code> que
+permite la impresión.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::fmt::Display;
+
+struct Pair&lt;T&gt; {
+    x: T,
+    y: T,
+}
+
+impl&lt;T&gt; Pair&lt;T&gt; {
+    fn new(x: T, y: T) -&gt; Self {
+        Self {
+            x,
+            y,
+        }
+    }
+}
+
+impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
+    fn cmp_display(&amp;self) {
+        if self.x &gt;= self.y {
+            println!(&quot;The largest member is x = {}&quot;, self.x);
+        } else {
+            println!(&quot;The largest member is y = {}&quot;, self.y);
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 10-16: Implementar métodos condicionalmente en
+un tipo genérico dependiendo de los <em>trait bounds</em></span></p>
+<p>También podemos implementar condicionalmente un <em>trait</em> para cualquier tipo
+que implemente otro <em>trait</em>. Las implementaciones de un <em>trait</em> en cualquier
+tipo que satisfaga los límites de <em>traits</em> se denominan
+<em>blanket implementations</em> (<em>implementaciones generales</em>) y se usan ampliamente en la biblioteca estándar de Rust. Por
+ejemplo, la biblioteca estándar implementa el <em>trait</em> <code>ToString</code> en cualquier
+tipo que implemente el <em>trait</em> <code>Display</code>. El bloque <code>impl</code> en la biblioteca
+estándar se ve similar a este código:</p>
+<pre><code class="language-rust ignore">impl&lt;T: Display&gt; ToString for T {
+    // --snip--
+}
+</code></pre>
+<p>Debido a que la biblioteca estándar tiene esta implementación general,
+podemos llamar al método <code>to_string</code> definido por el <em>trait</em> <code>ToString</code> en
+cualquier tipo que implemente el <em>trait</em> <code>Display</code>. Por ejemplo, podemos
+convertir enteros en sus correspondientes valores <code>String</code> como este porque
+los enteros implementan <code>Display</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s = 3.to_string();
+<span class="boring">}
+</span></code></pre></pre>
+<p>Las implementaciones generales aparecen en la documentación del <em>trait</em> en la sección “Implementadores”.</p>
+<p><em>Traits</em> and <em>trait bounds</em> nos permiten escribir código que usa parámetros
+de tipo genérico para reducir la duplicación pero también especifica al
+compilador que queremos que el tipo genérico tenga un comportamiento
+particular. El compilador puede usar la información de <em>trait bound</em> para
+verificar que todos los tipos concretos utilizados con nuestro código
+proporcionen el comportamiento correcto. En lenguajes tipados dinámicamente,
+obtendríamos un error en el tiempo de ejecución si llamamos a un método en un
+tipo que el tipo no implementó. Pero Rust mueve estos errores en tiempo de
+compilación, por lo que nos vemos obligados a solucionar los problemas antes
+de que nuestro código pueda ejecutarse. Además, no tenemos que escribir
+código que verifique el comportamiento en el tiempo de ejecución porque ya lo
+hemos comprobado en tiempo de compilación. Al hacerlo, mejora el rendimiento
+sin tener que renunciar a la flexibilidad de los genéricos.</p>
+<p>Otro tipo de genérico que ya hemos estado usando se llama <em>lifetimes</em>. En
+lugar de garantizar que un tipo tenga el comportamiento que queremos, los
+tiempos de vida (<em>lifetimes</em>) garantizan que las referencias sean válidas siempre que lo necesitemos. Veamos cómo <em>lifetimes</em> hacen eso.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch10-01-syntax.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch10-03-lifetime-syntax.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch10-01-syntax.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch10-03-lifetime-syntax.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

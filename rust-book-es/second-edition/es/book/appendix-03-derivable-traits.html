@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>C - Derivable Traits - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html" class="active"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="apéndice-c-trait-derivables"><a class="header" href="#apéndice-c-trait-derivables">Apéndice C: <em>Trait</em> derivables</a></h2>
+<p>En varios lugares del libro, hemos discutido el atributo <code>derive</code>, que
+puedes aplicar a una definición <em>struct</em> o <em>enum</em>. El atributo <code>derive</code> genera
+código que implementará un <em>trait</em> con su propia implementación en el tipo
+que ha anotado con la sintaxis <code>derive</code>.</p>
+<p>En este apéndice, proporcionamos una referencia de todos los <em>traits</em> en la
+biblioteca estándar que puede usar con <code>derivar</code>. Cada sección cubre:</p>
+<ul>
+<li>Qué operadores y métodos que derivan este <em>trait</em> permitirán</li>
+<li>Lo que hace la implementación del <em>trait</em> proporcionado por <code>derive</code></li>
+<li>Qué significa implementar el <em>trait</em> sobre el tipo</li>
+<li>Las condiciones en las que se le permite o no se le permite implementar el
+<em>trait</em></li>
+<li>Ejemplos de operaciones que requieren el <em>trait</em></li>
+</ul>
+<p>Si desea un comportamiento diferente al proporcionado por el atributo
+<code>derive</code>, consulte la documentación de la biblioteca estándar para cada
+<em>trait</em> para obtener detalles sobre cómo implementarlos manualmente.</p>
+<p>El resto de los <em>traits</em> definidos en la biblioteca estándar no se pueden
+implementar en tus tipos usando <code>derivar</code>. Estos <em>traits</em> no tienen un
+comportamiento predeterminado sensible, por lo tanto, depende de usted
+implementarlos de la manera que tenga sentido para lo que está tratando de
+lograr.</p>
+<p>Un ejemplo de un <em>trait</em> que no se puede derivar es <code>Display</code>, que maneja
+formateo para usuarios finales. Siempre debe considerar la forma adecuada de
+mostrar un tipo a un usuario final. ¿Qué partes del tipo debería permitir que
+un usuario final vea? ¿Qué partes encontrarían relevantes?. ¿Qué formato de
+los datos sería más relevante para ellos? El compilador Rust no tiene esta
+información, por lo que no puede proporcionar el comportamiento
+predeterminado adecuado para usted.</p>
+<p>La lista de <em>traits</em> derivables proporcionada en este apéndice no es
+exhaustiva:
+las bibliotecas pueden implementar <code>derivar</code> para sus propios <em>traits</em>,
+haciendo que la lista de <em>traits</em> que puede utilizar <code>derivar</code> con
+verdaderamente abiertos. Implementando <code>derivar</code> implica el uso de una macro
+de procedimiento, que se trata en el Apéndice D.</p>
+<h3 id="debug-para-la-salida-del-programador"><a class="header" href="#debug-para-la-salida-del-programador"><code>Debug</code> para la salida del programador</a></h3>
+<p>El <em>trait</em> <code>Debug</code> habilita el formateo de depuración en los <em>strings</em> de
+formato, que usted indica al agregar <code>:?</code> dentro de los placeholders con
+<code>{}</code>.</p>
+<p>El <em>trait</em> <code>Debug</code> le permite imprimir instancias de un tipo con fines de
+depuración, para que usted y otros programadores que usen su tipo puedan
+inspeccionar una instancia en un punto particular de la ejecución de un
+programa.</p>
+<p>El <em>trait</em> <code>Debug</code> es requerido, por ejemplo, en el uso de la macro
+<code>assert_eq!</code>. Esta macro imprime los valores de las instancias dadas como
+argumentos si falla la aserción de igualdad para que los programadores puedan
+ver por qué las dos instancias no fueron iguales.</p>
+<h3 id="partialeq-y-eq-para-comparaciones-de-igualdad"><a class="header" href="#partialeq-y-eq-para-comparaciones-de-igualdad"><code>PartialEq</code> y <code>Eq</code> para comparaciones de igualdad</a></h3>
+<p>El <em>trait</em> <code>PartialEq</code> le permite comparar instancias de un tipo para
+verificar la igualdad y permite el uso de los operadores <code>==</code> y <code>! = </code>.</p>
+<p>Derivar <code>PartialEq</code> implementa el método <code>eq</code>. Cuando <code>PartialEq</code> se deriva
+en structs, dos instancias son iguales solo si los campos <em>all</em> son iguales,
+y las instancias no son iguales si los campos no son iguales. Cuando se
+deriva en <em>enums</em>, cada variante es igual a sí misma y no igual a las otras
+variantes.</p>
+<p>El <em>trait</em> <code>PartialEq</code> es requerido, por ejemplo, con el uso de la macro
+<code>assert_eq!</code>, que necesita poder comparar dos instancias de un tipo para la
+igualdad.</p>
+<p>El <em>trait</em> <code>Eq</code> no tiene métodos. Su propósito es señalar que para cada valor
+del tipo anotado, el valor es igual a sí mismo. El <em>trait</em> <code>Eq</code> solo se puede
+aplicar a los tipos que también implementan <code>PartialEq</code>, aunque no todos los
+tipos que implementan <code>PartialEq</code> pueden implementar <code>Eq</code>. Un ejemplo de esto
+son los tipos de números de coma flotante: la implementación de números de
+coma flotante establece que dos instancias del valor <em>not-a-number</em> (<code>NaN</code>) no
+son iguales entre sí.</p>
+<p>Un ejemplo de cuando se requiere <code>Eq</code> es para las teclas en <code>HashMap&lt;K, V&gt;</code>,
+por lo que <code>HashMap&lt;K, V&gt;</code> puede indicar si dos teclas son iguales.</p>
+<h3 id="partialord-y-ord-para-hacer-comparaciones-de-pedidos"><a class="header" href="#partialord-y-ord-para-hacer-comparaciones-de-pedidos"><code>PartialOrd</code> y <code>Ord</code> para hacer comparaciones de pedidos</a></h3>
+<p>El <em>trait</em> <code>PartialOrd</code> le permite comparar instancias de un tipo para
+clasificar propósitos. Un tipo que implementa <code>PartialOrd</code> se puede usar con
+<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, y <code>&gt;=</code> operadores. Solo puede aplicar el <em>trait</em> <code>PartialOrd</code>
+a los tipos que también implementan <code>PartialEq</code>.</p>
+<p>Derivar <code>PartialOrd</code> implementa el método <code>partial_cmp</code>, que devuelve un
+<code>Option&lt;Ordering&gt;</code> que será <code>None</code> cuando los valores dados no producen un
+orden. Un ejemplo de un valor que no produce un orden, aunque la mayoría de
+los valores de ese tipo se pueden comparar, es el valor de punto flotante
+<em>not-a-number</em> (<code>NaN</code>). Llamar <code>partial_cmp</code> con cualquier número de punto
+flotante y el valor de punto flotante <code>NaN</code> devolverá <code>None</code>.</p>
+<p>Cuando se deriva en estructuras, <code>PartialOrd</code> compara dos instancias al
+comparar el valor en cada campo en el orden en que los campos aparecen en la
+estructura definición. Cuando se deriva en <em>enums</em>, variantes de la
+enumeración declarada anteriormente en la definición de <em>enum</em> se considera
+menor que las variantes enumeradas más adelante.</p>
+<p>El <em>trait</em> <code>PartialOrd</code> es obligatorio, por ejemplo, para el método
+<code>gen_range</code> desde el <em>crate</em> <code>rand</code> que genera un valor aleatorio en el rango
+especificado por un valor bajo y un valor alto .</p>
+<p>El <em>trait</em> <code>Ord</code> le permite saber que para cualquier dos valores del tipo
+anotado, existirá un pedido válido. El <em>trait</em> <code>Ord</code> implementa el método
+<code>cmp</code>, que devuelve <code>Ordering</code> en lugar de <code>Option&lt;Ordering&gt;</code> porque siempre
+será posible realizar un pedido válido. Solo puede aplicar el <em>trait</em> <code>Ord</code> a
+los tipos que también implementan <code>PartialOrd</code> y <code>Eq</code> (y <code>Eq</code> requiere
+<code>PartialEq</code>). Cuando se deriva en estructuras y <em>enums</em>, <code>cmp</code> se comporta de
+la misma manera que la implementación derivada para <code>partial_cmp</code> con
+<code>PartialOrd</code>.</p>
+<p>Un ejemplo de cuando se requiere <code>Ord</code> es cuando se almacenan valores en un
+<code>BTreeSet&lt;T&gt;</code>, una estructura de datos que almacena datos según el orden de
+clasificación de los valores.</p>
+<h3 id="clone-y-copy-para-duplicar-valores"><a class="header" href="#clone-y-copy-para-duplicar-valores"><code>Clone</code> y <code>Copy</code> para duplicar valores</a></h3>
+<p>El <em>trait</em> <code>Clonar</code> le permite crear explícitamente una copia profunda de un
+valor, y el proceso de duplicación puede implicar ejecutar código arbitrario
+y copiar montículo de datos. Consulte la sección “Ways Variables and Data
+Interact: Clone” en el Capítulo 4 para más información sobre <code>Clone</code>.</p>
+<p>Derivar <code>Clone</code> implementa el método <code>clon</code>, que cuando se implementa para el
+tipo completo, llama <code>clon</code> a cada una de las partes del tipo. Esto significa
+que todos los campos o valores en el tipo también deben implementar <code>Clone</code>
+para derivar <code>Clone</code>.</p>
+<p>Un ejemplo de cuando se requiere <code>Clone</code> es cuando se llama al método
+<code>to_vec</code> en un <em>slice</em>. El sector no posee las instancias de tipo que
+contiene, pero el vector devuelto desde <code>to_vec</code> necesitará poseer sus
+instancias, por lo que las llamadas <code>to_vec</code> <code>clon</code> en cada elemento. Por lo
+tanto, el tipo almacenado en la división debe implementar <code>Clone</code>.</p>
+<p>El <em>trait</em> <code>Copy</code> le permite duplicar un valor copiando solo los bits
+almacenados en la pila; no es necesario ningún código arbitrario. Consulte la
+sección “Stack-Only Data: Copy” en el Capítulo 4 para obtener más
+información sobre <code>Copy</code>.</p>
+<p>El <em>trait</em> <code>Copy</code> no define ningún método para evitar que los programadores
+sobrecarguen esos métodos y violando la suposición de que no se está
+ejecutando ningún código arbitrario. De esta forma, todos los programadores
+pueden asumir que copiar un valor será muy rápido.</p>
+<p>Puede derivar <code>Copy</code> en cualquier tipo cuyas partes implementen <code>Copy</code>. Solo
+puede aplicar el <em>trait</em> <code>Copy</code> a los tipos que también implementan <code>Clon</code>,
+porque un tipo que implementa <code>Copy</code> tiene una implementación trivial de
+<code>Clon</code> que realiza la misma tarea que <code>Copy</code>.</p>
+<p>El <em>trait</em> <code>Copy</code> rara vez se requiere; los tipos que implementan <code>Copy</code>
+tienen optimizaciones disponibles, lo que significa que no tiene que llamar
+<code>clone</code>, lo que hace que el código sea más conciso.</p>
+<p>Todo lo que se puede hacer con <code>Copy</code> también se puede lograr con <code>Clone</code>,
+pero el código puede ser más lento o tener que usar <code>clone</code> en algunos
+lugares.</p>
+<h3 id="hash-para-asignar-un-valor-a-un-valor-de-tamaño-fijo"><a class="header" href="#hash-para-asignar-un-valor-a-un-valor-de-tamaño-fijo"><code>Hash</code> para asignar un valor a un valor de tamaño fijo</a></h3>
+<p>El <em>trait</em> <code>Hash</code> le permite tomar una instancia de un tipo de tamaño
+arbitrario y asignar esa instancia a un valor de tamaño fijo usando una
+función hash. Derivar <code>Hash</code> implementa el método <code>hash</code>. La implementación
+derivada del método <code>hash</code> combina el resultado de invocar <code>hash</code> en cada una
+de las partes del tipo, lo que significa que todos los campos o valores
+también deben implementar <code>Hash</code> para derivar <code>Hash</code>.</p>
+<p>Un ejemplo de cuándo se requiere <code>Hash</code> es almacenar las claves en
+<code>HashMap&lt;K, V&gt;</code>para almacenar datos de manera eficiente.</p>
+<h3 id="default-para-valores-predeterminados"><a class="header" href="#default-para-valores-predeterminados"><code>Default</code> para valores predeterminados</a></h3>
+<p>El <em>trait</em> <code>Default</code> le permite crear un valor predeterminado para un tipo.
+Derivar <code>Default</code> implementa la función <code>default</code>. La implementación derivada
+de la función <code>default</code> llama a la función <code>default</code> en cada parte del tipo,
+lo que significa que todos los campos o valores del tipo también deben
+implementar <code>Default</code> para derivar <code>Default</code>.</p>
+<p>La función <code>Default::default</code> se usa comúnmente en combinación con la
+sintaxis de actualización struct discutida en la sección “Crear instancias de
+otras instancias con <em>Struct Update Syntax</em>” en el Capítulo 5. Puede
+personalizar algunos campos de una estructura y luego configurar y use un
+valor predeterminado para el resto de los campos usando
+<code>..Default::default()</code>.</p>
+<p>El <em>trait</em> <code>Default</code> es obligatorio cuando utiliza el método
+<code>unwrap_or_default</code> en instancias <code>Option&lt;T&gt;</code>, por ejemplo. Si la
+<code>Opción &lt;T&gt;</code> es <code>None</code>, el método <code>unwrap_or_default</code> devolverá el resultado
+de <code>Default::default</code> para el tipo <code>T</code> almacenado en <code>Option&lt;T&gt;</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="appendix-02-operators.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="appendix-04-macros.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="appendix-02-operators.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="appendix-04-macros.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

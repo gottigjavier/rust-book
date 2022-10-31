@@ -1,0 +1,1285 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Turning our Single Threaded Server into a Multithreaded Server - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html" class="active"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="convirtiendo-nuestro-servidor-de-un-single-threaded-en-un-servidor-multithreaded"><a class="header" href="#convirtiendo-nuestro-servidor-de-un-single-threaded-en-un-servidor-multithreaded">Convirtiendo nuestro servidor de un <em>Single-Threaded</em> en un servidor Multithreaded</a></h2>
+<p>En este momento, el servidor procesará cada solicitud por turno, lo que
+significa que no procesará una segunda conexión hasta que la primera termine
+de procesarse. Si el servidor recibió más y más solicitudes, esta ejecución
+en serie sería cada vez menos óptima. Si el servidor recibe una solicitud
+que tarda mucho tiempo en procesarse, las solicitudes posteriores deberán
+esperar hasta que finalice la solicitud larga, incluso si las nuevas
+solicitudes se pueden procesar rápidamente. Tendremos que arreglar esto,
+pero primero, veremos el problema en acción.</p>
+<h3 id="simular-una-solicitud-lenta-en-la-implementación-del-servidor-actual"><a class="header" href="#simular-una-solicitud-lenta-en-la-implementación-del-servidor-actual">Simular una solicitud lenta en la implementación del servidor actual</a></h3>
+<p>Veremos cómo una solicitud de procesamiento lento puede afectar otras
+solicitudes realizadas a nuestra implementación actual del servidor. El
+listado 20-10 implementa el manejo de una solicitud <em>/sleep</em> con una
+respuesta lenta simulada que hará que el servidor duerma durante 5 segundos
+antes de responder.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::thread;
+use std::time::Duration;
+<span class="boring">use std::io::prelude::*;
+</span><span class="boring">use std::net::TcpStream;
+</span><span class="boring">use std::fs::File;
+</span>// --snip--
+
+fn handle_connection(mut stream: TcpStream) {
+<span class="boring">    let mut buffer = [0; 512];
+</span><span class="boring">    stream.read(&amp;mut buffer).unwrap();
+</span>    // --snip--
+
+    let get = b&quot;GET / HTTP/1.1\r\n&quot;;
+    let sleep = b&quot;GET /sleep HTTP/1.1\r\n&quot;;
+
+    let (status_line, filename) = if buffer.starts_with(get) {
+        (&quot;HTTP/1.1 200 OK\r\n\r\n&quot;, &quot;hello.html&quot;)
+    } else if buffer.starts_with(sleep) {
+        thread::sleep(Duration::from_secs(5));
+        (&quot;HTTP/1.1 200 OK\r\n\r\n&quot;, &quot;hello.html&quot;)
+    } else {
+        (&quot;HTTP/1.1 404 NOT FOUND\r\n\r\n&quot;, &quot;404.html&quot;)
+    };
+
+    // --snip--
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 20-10: simulando una solicitud lenta
+reconociendo <em>/sleep</em> y durmiendo durante 5 segundos</span></p>
+<p>Este código es un poco complicado, pero es lo suficientemente bueno para
+fines de simulación. Creamos una segunda solicitud <code>sleep</code>, cuyos datos
+reconoce nuestro servidor. Añadimos un <code>else if</code> después del bloque <code>if</code>
+para verificar la solicitud a <em>/sleep</em>. Cuando se recibe esa solicitud, el
+servidor duerme durante 5 segundos antes de mostrar la página HTML correcta.</p>
+<p>Puedes ver cuán primitivo es nuestro servidor: ¡las bibliotecas reales
+manejarían el reconocimiento de múltiples solicitudes de una manera mucho
+menos detallada!</p>
+<p>Inicie el servidor usando <code>cargo run</code>. A continuación, abra dos ventanas del
+navegador: una para <em>http://127.0.0.1:7878/</em> y la otra para
+<em>http://127.0.0.1:7878/sleep</em>. Si ingresa el <em>/</em> URI varias veces, como
+antes, verá que responde rápidamente. Pero si ingresa <em>/sleep</em> y luego carga
+<em>/</em>, verá que <em>/</em> espera hasta que <code>sleep</code> haya dormido durante 5 segundos
+antes de cargar.</p>
+<p>Hay varias formas en que podemos cambiar la forma en que funciona nuestro
+servidor web para evitar tener más solicitudes de respaldo detrás de una
+solicitud lenta; el que implementaremos es un <em>thread pool</em>.</p>
+<h3 id="mejorar-el-rendimiento-con-un-thread-pool"><a class="header" href="#mejorar-el-rendimiento-con-un-thread-pool">mejorar el rendimiento con un <em>Thread Pool</em></a></h3>
+<p>Un <em>thread pool</em> es un <em>pool</em> de hilos generados que están esperando y listos
+para manejar una tarea. Cuando el programa recibe una nueva tarea, asigna
+uno de los hilos en el <em>pool</em> a la tarea, y ese hilo procesará la tarea. los
+los hilos restantes en el <em>pool</em> están disponibles para manejar cualquier
+otra tarea que se presente mientras el primer hilo está procesando. Cuando
+se termina el primer hilo procesando su tarea, se devuelve al <em>thread pool</em>
+inactivos, listo para manejar una nueva tarea. Un <em>thread pool</em> le permite
+procesar conexiones al mismo tiempo, aumentando el rendimiento de su
+servidor.</p>
+<p>Limitaremos el número de <em>threads</em> en el <em>pool</em> a un número pequeño para
+protegernos de ataques de denegación de servicio (DoS); si tuviéramos
+nuestro programa, cree un nuevo hilo para cada solicitud que entró, alguien
+haciendo 10 millones de solicitudes a nuestro servidor podría crear estragos
+al detener todos los recursos de nuestro servidor y detener el procesamiento
+de las solicitudes.</p>
+<p>En lugar de engendrar hilos ilimitados, tendremos un número fijo de hilos
+esperando en el <em>pool</em>. A medida que llegan las solicitudes, se enviarán al
+<em>pool</em> para procedimiento. El grupo mantendrá una cola de solicitudes
+entrantes. Cada una de las los <em>threads</em> del <em>pool</em> extraerán una solicitud
+de esta cola, manejarán la solicitud, y luego pedirle a la cola otra
+solicitud. Con este diseño, podemos procesar solicitudes <code>N</code>
+concurrentemente, donde <code>N</code> es la cantidad de hilos. Si cada <em>thread</em>
+responde a una solicitud de larga ejecución, las solicitudes posteriores aún
+pueden realizar una copia de seguridad en la cola, pero hemos aumentado la
+cantidad de solicitudes de larga ejecución que podemos manejar antes de
+llegar a ese punto.</p>
+<p>Esta técnica es solo una de las muchas formas de mejorar el rendimiento de
+un servidor web. Otras opciones que puede explorar son el modelo de
+<em>fork/join</em> y el modelo de E/S asíncronas de un solo hilo. Si le interes
+este tema, puede leer más sobre otras soluciones e intentar implementarlas
+en Rust; con un lenguaje de bajo nivel como Rust, todas estas opciones son
+posibles.</p>
+<p>Antes de comenzar a implementar un <em>thread pool</em>, hablemos sobre cómo
+debería ser el uso del <em>pool</em>. Cuando intenta diseñar código, escribir
+primero la interfaz del cliente puede ayudar a guiar su diseño. Escriba la
+API del código para que esté estructurado de la manera que desea llamarlo;
+luego implemente la funcionalidad dentro de esa estructura en lugar de
+implementar la funcionalidad y luego diseñar la API pública.</p>
+<p>De manera similar a como utilizamos el desarrollo basado en pruebas en el
+proyecto en el Capítulo 12, usaremos el <em>compiler-driven development</em> aquí.
+Escribiremos el código que llama a las funciones que queremos, y luego
+veremos los errores del compilador para determinar qué debemos cambiar luego
+para que el código funcione.</p>
+<h4 id="estructura-del-código-si-pudiéramos-spawn-un-hilo-para-cada-solicitud"><a class="header" href="#estructura-del-código-si-pudiéramos-spawn-un-hilo-para-cada-solicitud">Estructura del código si pudiéramos <em>Spawn</em> un hilo para cada solicitud</a></h4>
+<p>Primero, exploremos cómo podría verse nuestro código si creara un nuevo hilo
+para cada conexión. Como se mencionó anteriormente, este no es nuestro plan
+final debido a los problemas con el potencial de generar un número ilimitado
+de hilos, pero es un punto de partida. El listado 20-11 muestra los cambios
+que se realizarán en <code>main</code> para <em>spawning</em> un nuevo hilo para manejar cada
+flujo dentro del bucle <code>for</code>.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::thread;
+</span><span class="boring">use std::io::prelude::*;
+</span><span class="boring">use std::net::TcpListener;
+</span><span class="boring">use std::net::TcpStream;
+</span><span class="boring">
+</span>fn main() {
+    let listener = TcpListener::bind(&quot;127.0.0.1:7878&quot;).unwrap();
+
+    for stream in listener.incoming() {
+        let stream = stream.unwrap();
+
+        thread::spawn(|| {
+            handle_connection(stream);
+        });
+    }
+}
+<span class="boring">fn handle_connection(mut stream: TcpStream) {}
+</span></code></pre></pre>
+<p><span class="caption">Listado 20-11: Generando un nuevo hilo para cada
+flujo</span></p>
+<p>Como aprendió en el Capítulo 16, <code>thread::spawn</code> creará un nuevo hilo y
+luego ejecutará el código en el <em>closure</em> del nuevo hilo. Si ejecuta este
+código y carga <em>/sleep</em> en su navegador, entonces <em>/</em> en dos pestañas más
+del navegador, verá que las solicitudes a <em>/</em> no tienen que esperar
+<em>/sleep</em> para finalizar. Pero como mencionamos, esto eventualmente abrumará
+al sistema porque estarías creando nuevos hilos sin límite.</p>
+<h4 id="crear-una-interfaz-similar-para-un-número-finito-de-hilos"><a class="header" href="#crear-una-interfaz-similar-para-un-número-finito-de-hilos">Crear una interfaz similar para un número finito de hilos</a></h4>
+<p>Queremos que nuestro <em>thread pool</em> funcione de forma similar y familiar, por
+lo que cambiar de <em>thread</em> a un <em>thread pool</em> no requiere grandes cambios en
+el código que usa nuestra API. El listado 20-12 muestra la interfaz
+hipotética para una estructura <code>ThreadPool</code> que queremos usar en lugar de
+<code>thread::spawn</code>.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::thread;
+</span><span class="boring">use std::io::prelude::*;
+</span><span class="boring">use std::net::TcpListener;
+</span><span class="boring">use std::net::TcpStream;
+</span><span class="boring">struct ThreadPool;
+</span><span class="boring">impl ThreadPool {
+</span><span class="boring">   fn new(size: u32) -&gt; ThreadPool { ThreadPool }
+</span><span class="boring">   fn execute&lt;F&gt;(&amp;self, f: F)
+</span><span class="boring">       where F: FnOnce() + Send + 'static {}
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn main() {
+    let listener = TcpListener::bind(&quot;127.0.0.1:7878&quot;).unwrap();
+    let pool = ThreadPool::new(4);
+
+    for stream in listener.incoming() {
+        let stream = stream.unwrap();
+
+        pool.execute(|| {
+            handle_connection(stream);
+        });
+    }
+}
+<span class="boring">fn handle_connection(mut stream: TcpStream) {}
+</span></code></pre></pre>
+<p><span class="caption">Listado 20-12: nuestra interfaz ideal
+<code>ThreadPool</code></span></p>
+<p>Usamos <code>ThreadPool::new</code> para crear un nuevo <em>thread pool</em> con un número
+configurable de <em>threads</em>, en este cuatro caso. Luego, en el bucle <code>for</code>,
+<code>pool.execute</code> tiene una interfaz similar a <code>thread::spawn</code>, ya que requiere
+un <em>closure</em> para que el pool se ejecute para cada stream. Necesitamos
+implementar <code>pool.execute</code> para que se lleve a cabo el <em>closure</em> y se lo
+entregue a un hilo en el <em>pool</em> para que se ejecute. Este código aún no se
+compilará, pero lo intentaremos para que el compilador pueda guiarnos en
+cómo solucionarlo.</p>
+<h4 id="construyendo-la-estructura-threadpool-usando-compiler-driven-development"><a class="header" href="#construyendo-la-estructura-threadpool-usando-compiler-driven-development">Construyendo la estructura <code>ThreadPool</code> usando <em>Compiler Driven Development</em></a></h4>
+<p>Realice los cambios en el listado 20-12 a <em>src/main.rs</em>, y luego usemos los
+errores del compilador de <code>cargo check</code> para impulsar nuestro desarrollo.
+Este es el primer error que obtenemos:</p>
+<pre><code class="language-text">$ cargo check
+   Compiling hello v0.1.0 (file:///projects/hello)
+error[E0433]: failed to resolve. Use of undeclared type or module `ThreadPool`
+  --&gt; src\main.rs:10:16
+   |
+10 |     let pool = ThreadPool::new(4);
+   |                ^^^^^^^^^^^^^^^ Use of undeclared type or module
+   `ThreadPool`
+
+error: aborting due to previous error
+</code></pre>
+<p>¡Estupendo! Este error nos dice que necesitamos un tipo o módulo
+<code>ThreadPool</code>, así que crearemos uno ahora. Nuestra implementación
+<code>ThreadPool</code> será independiente del tipo de trabajo que nuestro servidor web
+está haciendo. Entonces, cambiemos el <em>crate</em> <code>hello</code> de un <em>binary crate</em> a
+un <em>library crate</em> para mantener nuestra implementación <code>ThreadPool</code>.
+Después de cambiar a un <em>library crate</em>, también podríamos usar la
+biblioteca del <em>thread pool</em> por separado para cualquier trabajo que
+deseemos con un <em>thread pool</em>, no solo para servir solicitudes web.</p>
+<p>Cree un <em>src/lib.rs</em> que contenga lo siguiente, que es la definición más
+simple de una estructura <code>ThreadPool</code> que podemos tener por ahora:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct ThreadPool;
+<span class="boring">}
+</span></code></pre></pre>
+<p>A continuación, cree un nuevo directorio, <em>src/bin</em>, y mueva el <em>binary
+crate</em> enraizada en <em>src/main.rs</em> en <em>src/bin/main.rs</em>. Hacerlo hará que el
+<em>library crate</em> cargue el <em>crate</em> primario en el directorio <em>hello</em>; aún
+podemos ejecutar el binario en <em>src/bin/main.rs</em> usando <code>cargo run</code>. Después
+de mover el archivo <em>main.rs</em>, edítelo para que aparezca el <em>library crate</em>
+y coloque <code>ThreadPool</code> en el alcance agregando el siguiente código a la
+parte superior de <em>src/bin/main.rs</em>:</p>
+<p><span class="filename">Filename: src/bin/main.rs</span></p>
+<pre><code class="language-rust ignore">extern crate hello;
+use hello::ThreadPool;
+</code></pre>
+<p>Este código aún no funcionará, pero revisemoslo nuevamente para obtener el
+próximo error que necesitamos abordar:</p>
+<pre><code class="language-text">$ cargo check
+   Compiling hello v0.1.0 (file:///projects/hello)
+error[E0599]: no function or associated item named `new` found for type
+`hello::ThreadPool` in the current scope
+ --&gt; src/bin/main.rs:13:16
+   |
+13 |     let pool = ThreadPool::new(4);
+   |                ^^^^^^^^^^^^^^^ function or associated item not found in
+   `hello::ThreadPool`
+</code></pre>
+<p>Este error indica que a continuación debemos crear una función asociada
+denominada <code>new</code> para <code>ThreadPool</code>. También sabemos que <code>new</code> necesita tener
+un parámetro que pueda aceptar <code>4</code> como argumento y debe devolver una
+instancia <code>ThreadPool</code>. Implementemos la función <code>new</code> más simple que tendrá
+esas características:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct ThreadPool;
+
+impl ThreadPool {
+    pub fn new(size: usize) -&gt; ThreadPool {
+        ThreadPool
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Elegimos <code>usize</code> como el tipo del parámetro <code>size</code>, porque sabemos que un
+número negativo de hilos no tiene ningún sentido. También sabemos que
+usaremos este 4 como el número de elementos en una colección de hilos, que
+es para lo que el tipo <code>usize</code> es, como se discutió en la sección “Tipos de
+enteros” del Capítulo 3.</p>
+<p>Revisemos el código nuevamente:</p>
+<pre><code class="language-text">$ cargo check
+   Compiling hello v0.1.0 (file:///projects/hello)
+warning: unused variable: `size`
+ --&gt; src/lib.rs:4:16
+  |
+4 |     pub fn new(size: usize) -&gt; ThreadPool {
+  |                ^^^^
+  |
+  = note: #[warn(unused_variables)] on by default
+  = note: to avoid this warning, consider using `_size` instead
+
+error[E0599]: no method named `execute` found for type `hello::ThreadPool` in the current scope
+  --&gt; src/bin/main.rs:18:14
+   |
+18 |         pool.execute(|| {
+   |              ^^^^^^^
+</code></pre>
+<p>Ahora recibimos una advertencia y un error. Ignorando la advertencia por un
+momento, el error ocurre porque no tenemos un método <code>execute</code> en
+<code>ThreadPool</code>. Recuerde en la sección “Crear una interfaz similar para un
+número finito de <em>Threads</em>” que decidimos que nuestro <em>thread pool</em> debería
+tener una interfaz similar a <code>thread::spawn</code>. Además, implementaremos la
+función <code>execute</code> para que tome el <em>closure</em> que se le da y lo entregue a un
+hilo inactivo en el <em>pool</em> para ejecutar.</p>
+<p>Definiremos el método <code>execute</code> en <code>ThreadPool</code> para tomar un <em>closure</em> como
+parámetro. Recuerde en la sección “Almacenamiento de <em>closures</em> con
+parámetros genéricos y <em>traits</em> de Fn” en el Capítulo 13 que podemos tomar
+<em>closures</em> como parámetros con tres características diferentes: <code>Fn</code>,
+<code>FnMut</code> y <code>FnOnce</code>. Tenemos que decidir qué tipo de <em>closure</em> usar aquí.
+Sabemos que terminaremos haciendo algo similar a la implementación de la
+biblioteca estándar <code>thread::spawn</code>, para que podamos ver qué límites tiene
+la firma de <code>thread::spawn</code> en su parámetro. La documentación nos muestra lo
+siguiente:</p>
+<pre><code class="language-rust ignore">pub fn spawn&lt;F, T&gt;(f: F) -&gt; JoinHandle&lt;T&gt;
+    where
+        F: FnOnce() -&gt; T + Send + 'static,
+        T: Send + 'static
+</code></pre>
+<p>El parámetro de tipo <code>F</code> es el que nos interesa aquí; el parámetro de tipo
+<code>T</code> está relacionado con el valor de retorno, y no estamos preocupados por
+eso. Podemos ver que <code>spawn</code> usa <code>FnOnce</code> como el <em>trait bound</em> a <code>F</code>. Esto
+es probablemente lo que queremos también, porque eventualmente pasaremos el
+argumento que obtenemos en <code>execute</code> a <code>spawn</code>. Podemos estar más seguros de
+que <code>FnOnce</code> es el <em>trait</em> que queremos usar, ya que el hilo para ejecutar
+una solicitud solo ejecutará el <em>closure</em> de esa solicitud una vez, que
+coincide con <code>Once</code> en <code>FnOnce</code>.</p>
+<p>El parámetro de tipo <code>F</code> también tiene el <em>trait bound</em> <code>Send</code> y el
+<em>lifetime bound</em> <code>'static</code>, que son útiles en nuestra situación:
+necesitamos <code>Send</code> para transferir el <em>closure</em> de un hilo a otro y
+<code>'static</code> porque no sabemos cuánto tardará el hilo en ejecutarse. Vamos a
+crear un método <code>execute</code> en <code>ThreadPool</code> que tomará un parámetro genérico
+de tipo <code>F</code> con estos límites:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">pub struct ThreadPool;
+</span>impl ThreadPool {
+    // --snip--
+
+    pub fn execute&lt;F&gt;(&amp;self, f: F)
+        where
+            F: FnOnce() + Send + 'static
+    {
+
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Todavía usamos el <code>()</code> después de <code>FnOnce</code> porque este <code>FnOnce</code> representa
+un <em>closure</em> que no toma parámetros y no devuelve un valor. Al igual que las
+definiciones de función, el tipo de devolución puede omitirse de la firma,
+pero incluso si no tenemos parámetros, aún necesitamos los paréntesis.</p>
+<p>De nuevo, esta es la implementación más simple del método <code>execute</code>: no hace
+nada, pero solo intentamos compilar nuestro código. Veámoslo de nuevo:</p>
+<pre><code class="language-text">$ cargo check
+   Compiling hello v0.1.0 (file:///projects/hello)
+warning: unused variable: `size`
+ --&gt; src/lib.rs:4:16
+  |
+4 |     pub fn new(size: usize) -&gt; ThreadPool {
+  |                ^^^^
+  |
+  = note: #[warn(unused_variables)] on by default
+  = note: to avoid this warning, consider using `_size` instead
+
+warning: unused variable: `f`
+ --&gt; src/lib.rs:8:30
+  |
+8 |     pub fn execute&lt;F&gt;(&amp;self, f: F)
+  |                              ^
+  |
+  = note: to avoid this warning, consider using `_f` instead
+</code></pre>
+<p>Estamos recibiendo solo advertencias ahora, ¡lo que significa que compila!
+Pero tenga en cuenta que si prueba <code>cargo run</code> y realiza una solicitud en el
+navegador, verá los errores en el navegador que vimos al principio del
+capítulo. ¡Nuestra biblioteca no está llamando al <em>closure</em> pasado a <code>ejecutar</code> todavía!</p>
+<blockquote>
+<p>Nota: Un dicho que usted puede escuchar sobre los leenguajes con
+compiladores estrictos, como Haskell y Rust, es “si el código se compila,
+funciona”. Pero este dicho no es universalmente cierto. Nuestro proyecto se
+compila, ¡pero no hace absolutamente nada! Si estuviéramos construyendo un
+proyecto real y completo, este sería un buen momento para comenzar a
+escribir pruebas unitarias para verificar que el código compila <em>y</em> tenga
+el comportamiento que queremos.</p>
+</blockquote>
+<h4 id="validar-el-número-de-threads-en-new"><a class="header" href="#validar-el-número-de-threads-en-new">Validar el número de <em>Threads</em> en <code>new</code></a></h4>
+<p>Seguiremos recibiendo advertencias porque no estamos haciendo nada con los
+parámetros para <code>new</code> y <code>execute</code>. Implementemos los cuerpos de estas
+funciones con el comportamiento que queremos. Para empezar, pensemos en
+<code>new</code>. Anteriormente elegimos un tipo sin signo para el parámetro <code>size</code>,
+porque un <em>pool</em> con un número negativo de <em>threads</em> no tiene sentido. Sin
+embargo, un <em>pool</em> con cero <em>threads</em> tampoco tiene sentido, pero cero es un
+<code>usize</code> perfectamente válido. Agregaremos código para verificar que <code>size</code>
+sea mayor que cero antes de devolver una instancia <code>ThreadPool</code> y pánico al
+programa si recibe un cero usando la macro <code>assert!</code>, Como se muestra en el
+Listado 20-13.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">pub struct ThreadPool;
+</span>impl ThreadPool {
+    /// Create a new ThreadPool.
+    ///
+    /// The size is the number of threads in the pool.
+    ///
+    /// # Panics
+    ///
+    /// The `new` function will panic if the size is zero.
+    pub fn new(size: usize) -&gt; ThreadPool {
+        assert!(size &gt; 0);
+
+        ThreadPool
+    }
+
+    // --snip--
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 20-13: Implementando <code>ThreadPool::new</code> para
+entrar en pánico si <code>size</code> es cero</span></p>
+<p>Hemos agregado documentación para nuestro <code>ThreadPool</code> con comentarios de
+doc. Tenga en cuenta que seguimos buenas prácticas de documentación al
+agregar una sección que indica las situaciones en las que nuestra función
+puede entrar en pánico, como se discutió en el Capítulo 14. Pruebe ejecutar
+<code>cargo doc --open</code> y haga clic en la estructura <code>ThreadPool</code> para ver lo que
+generó documentos para <code>new</code>!</p>
+<p>En lugar de agregar la macro <code>assert!</code> como hemos hecho aquí, podríamos
+hacer que <code>new</code> devolviera un <code>Result</code> como lo hicimos con <code>Config::new</code> en
+el proyecto de E/S del Listado 12-9. Pero hemos decidido en este caso que
+intentar crear un <em>thread pool</em> sin ningún <em>threads</em> debería ser un error
+irrecuperable. Si te sientes ambicioso, intenta escribir una versión de
+<code>new</code> con la siguiente firma para comparar ambas versiones:</p>
+<pre><code class="language-rust ignore">pub fn new(size: usize) -&gt; Result&lt;ThreadPool, PoolCreationError&gt; {
+</code></pre>
+<h4 id="crear-espacio-para-almacenar-los-threads"><a class="header" href="#crear-espacio-para-almacenar-los-threads">Crear espacio para almacenar los <em>Threads</em></a></h4>
+<p>Ahora que tenemos una manera de saber que tenemos un número válido de hilos
+para almacenar en el <em>pool</em>, podemos crear esos hilos y almacenarlos en la
+estructura <code>ThreadPool</code> antes de devolverlos. Pero, ¿cómo “almacenamos” un
+hilo? Echemos otro vistazo a la firma <code>thread::spawn</code>:</p>
+<pre><code class="language-rust ignore">pub fn spawn&lt;F, T&gt;(f: F) -&gt; JoinHandle&lt;T&gt;
+    where
+        F: FnOnce() -&gt; T + Send + 'static,
+        T: Send + 'static
+</code></pre>
+<p>La función <code>spawn</code> devuelve <code>JoinHandle&lt;T&gt;</code>, donde <code>T</code> es el tipo que
+devuelve el <em>closure</em>. Tratemos de usar <code>JoinHandle</code> también y veamos qué
+pasa. En nuestro caso, los <em>closures</em> que estamos pasando al <em>thread pool</em>
+qur manejarán la conexión y no devolverán nada, por lo que <code>T</code> será el tipo
+de unidad <code>()</code>.</p>
+<p>El código en el listado 20-14 se compilará pero aún no crea <em>threads</em>. Hemos
+cambiado la definición de <code>ThreadPool</code> para contener un vector de
+instancias <code>thread::JoinHandle&lt;()&gt;</code>, inicializamos el vector con una
+capacidad de <code>size</code>, configuramos un bucle <code>for</code> que ejecutará algún código
+para crear los hilos, y devolvió una instancia <code>ThreadPool</code> que los contiene.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">use std::thread;
+
+pub struct ThreadPool {
+    threads: Vec&lt;thread::JoinHandle&lt;()&gt;&gt;,
+}
+
+impl ThreadPool {
+    // --snip--
+    pub fn new(size: usize) -&gt; ThreadPool {
+        assert!(size &gt; 0);
+
+        let mut threads = Vec::with_capacity(size);
+
+        for _ in 0..size {
+            // create some threads and store them in the vector
+        }
+
+        ThreadPool {
+            threads
+        }
+    }
+
+    // --snip--
+}
+</code></pre>
+<p><span class="caption">Listado 20-14: Creando un vector para <code>ThreadPool</code>
+para contener los hilos</span></p>
+<p>Hemos introducido <code>std::thread</code> en el alcance del <em>library crate</em>, porque
+estamos usando <code>thread::JoinHandle</code> como el tipo de elementos en el vector
+en <code>ThreadPool</code>.</p>
+<p>Una vez que se recibe un tamaño válido, nuestro <code>ThreadPool</code> crea un nuevo
+vector que puede contener elementos <code>size</code>. Todavía no hemos utilizado la
+función <code>with_capacity</code> en este libro, que realiza la misma tarea que
+<code>Vec::new</code> pero con una diferencia importante: asigna espacio previamente en
+el vector. Debido a que sabemos que necesitamos almacenar elementos <code>size</code>
+en el vector, hacer esta asignación por adelantado es ligeramente más
+eficiente que usar <code>Vec::new</code>, que se redimensiona a medida que se insertan
+los elementos.</p>
+<p>Cuando ejecute <code>cargo check</code> nuevamente, obtendrá algunas advertencias más,
+pero debería tener éxito.</p>
+<h4 id="una-worker-responsable-de-enviar-el-código-desde-threadpool-a-un-thread"><a class="header" href="#una-worker-responsable-de-enviar-el-código-desde-threadpool-a-un-thread">Una <code>Worker</code> responsable de Enviar el Código desde 'ThreadPool' a un <em>Thread</em></a></h4>
+<p>Dejamos un comentario en el bucle <code>for</code> en el Listado 20-14 con respecto a
+la creación de <em>threads</em>. Aquí, veremos cómo realmente creamos hilos. La
+biblioteca estándar proporciona <code>thread::spawn</code> como una forma de crear
+<em>thread</em>, y <code>thread::spawn</code> espera obtener algún código para que el
+<em>thread</em> se ejecute tan pronto como se cree el <em>thread</em>. Sin embargo, en
+nuestro caso, queremos crear los hilos y hacer que <em>esperen</em> el código que
+enviaremos más tarde. La implementación de hilos de la biblioteca estándar
+no incluye ninguna forma de hacerlo; tenemos que implementarlo manualmente.</p>
+<p>Implementaremos este comportamiento introduciendo una nueva estructura de
+datos entre <code>ThreadPool</code> y los hilos que administrarán este nuevo
+comportamiento. Llamaremos esta estructura de datos <code>Worker</code>, que es un
+término común en las implementaciones de <em>pooling</em>. Piensa en las personas
+que trabajan en la cocina de un restaurante: los trabajadores esperan hasta
+que los pedidos lleguen de los clientes, y luego son responsables por tomar
+esos pedidos y llenarlos.</p>
+<p>En lugar de almacenar un vector de instancias <code>JoinHandle&lt;()&gt;</code> en el <em>thread
+pool</em>, almacenaremos instancias de la estructura <code>Worker</code>. Cada
+<code>Worker</code> almacenará una sola instancia <code>JoinHandle&lt;()&gt;</code>. Luego
+implementaremos un método en <code>Worker</code> que tomar un <em>closure</em> de código para
+ejecutar y enviarlo al hilo que ya se ejecuta para ejecución. También le
+daremos a cada trabajador un <code>id</code> para que podamos distinguir entre
+los diferentes trabajadores en el <em>pool</em> al iniciar sesión o depurar.</p>
+<p>Hagamos los siguientes cambios a lo que sucede cuando creamos un
+<code>ThreadPool</code>. Implementaremos el código que envía el <em>closure</em> al hilo
+después de que tengamos <code>Worker</code> configurado de esta manera:</p>
+<ol>
+<li>Defina una estructura <code>Worker</code> que contenga un <code>id</code> y un <code>JoinHandle&lt;()&gt;</code>.</li>
+<li>Cambie <code>ThreadPool</code> para contener un vector de instancias <code>Worker</code>.</li>
+<li>Defina una función <code>Worker::new</code> que toma un número <code>id</code> y devuelve una
+instancia <code>Worker</code> que contiene el <code>id</code> y un hilo <em>spawned</em> con un
+<em>closure</em> vacío.</li>
+<li>En <code>ThreadPool::new</code>, use el contador de bucles <code>for</code> para generar un
+<code>id</code>, cree un nuevo <code>Worker</code> con ese <code>id</code>, y almacene el <code>Worker</code> en el
+vector.</li>
+</ol>
+<p>Si está preparado para un desafío, intente implementar estos cambios por su
+cuenta antes de mirar el código en el Listado 20-15.</p>
+<p>¿Listo?. Aquí está el Listado 20-15 con una forma de hacer las modificaciones
+precedentes.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::thread;
+
+pub struct ThreadPool {
+    workers: Vec&lt;Worker&gt;,
+}
+
+impl ThreadPool {
+    // --snip--
+    pub fn new(size: usize) -&gt; ThreadPool {
+        assert!(size &gt; 0);
+
+        let mut workers = Vec::with_capacity(size);
+
+        for id in 0..size {
+            workers.push(Worker::new(id));
+        }
+
+        ThreadPool {
+            workers
+        }
+    }
+    // --snip--
+}
+
+struct Worker {
+    id: usize,
+    thread: thread::JoinHandle&lt;()&gt;,
+}
+
+impl Worker {
+    fn new(id: usize) -&gt; Worker {
+        let thread = thread::spawn(|| {});
+
+        Worker {
+            id,
+            thread,
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 20-15: Modificación de <code>ThreadPool</code> para
+contener instancias <code>Worker</code> en lugar de contener hilos directamente</span></p>
+<p>Hemos cambiado el nombre del campo en <code>ThreadPool</code> de<code> threads</code> a <code>workers</code>
+porque ahora contiene instancias <code>Worker</code> en lugar de instancias
+<code>JoinHandle&lt;()&gt;</code>. Usamos el contador en el bucle <code>for</code> como argumento para
+<code>Worker::new</code>, y almacenamos cada <code>Worker</code> nuevo en el vector llamado
+<code>workers</code>.</p>
+<p>El código externo (como nuestro servidor en <em>src/bin/main.rs</em>) no necesita
+conocer los detalles de implementación con respecto al uso de una estructura
+<code>Worker</code> dentro de <code>ThreadPool</code>, por lo que hacemos la estructura <code>Worker</code> y
+su función privada <code>new</code>. La función <code>Worker::new</code> usa el <code>id</code> que le damos
+y almacena una instancia <code>JoinHandle&lt;()&gt;</code> que se crea al generar un nuevo
+hilo usando un <em>closure</em> vacío.</p>
+<p>Este código compilará y almacenará el número de instancias <code>Worker</code> que
+especificamos como argumento para <code>ThreadPool::new</code>. Pero <em>todavía</em> no
+estamos procesando el <em>closure</em> que obtenemos en <code>execute</code>. Veamos cómo
+hacer eso a continuación.</p>
+<h4 id="envío-de-solicitudes-a-hilos-por-canales"><a class="header" href="#envío-de-solicitudes-a-hilos-por-canales">Envío de solicitudes a hilos por canales</a></h4>
+<p>Ahora abordaremos el problema de que los <em>closures</em> dados a
+<code>thread::spawn</code> no hacen absolutamente nada. Actualmente, obtenemos el
+<em>closure</em> que queremos ejecutar en el método <code>execute</code>. Pero tenemos que
+darle a <code>thread::spawn</code> un <em>closure</em> para que se ejecute cuando creamos
+cada <code>Worker</code> durante la creación de <code>ThreadPool</code>.</p>
+<p>Queremos que las estructuras <code>Worker</code> que acabamos de crear busquen código
+para ejecutar desde una <em>cola</em> (<em>queue</em>) contenida en <code>ThreadPool</code> y envíen
+ese código a su hilo para que se ejecute.</p>
+<p>En el Capítulo 16, aprendió sobre <em>canales</em>, una forma sencilla de
+comunicarse entre dos hilos, que sería perfecto para este caso de uso.
+Usaremos un canal para funcionar como la cola de trabajos, y <code>execute</code>
+enviará un trabajo del <code>ThreadPool</code> a las instancias <code>Worker</code>, que enviará
+el trabajo a su hilo. Este es el plan:</p>
+<ol>
+<li>El <code>ThreadPool</code> creará un canal y se mantendrá en el lado de envío del
+canal.</li>
+<li>Cada <code>Worker</code> se mantendrá en el lado receptor del canal.</li>
+<li>Crearemos una nueva estructura <code>Job</code> que contendrá los <em>closures</em> que
+queremos enviar al canal.</li>
+<li>El método <code>execute</code> enviará el trabajo que quiere ejecutar por el lado de
+envío del canal.</li>
+<li>En su hilo, el <code>Worker</code> recorrerá su lado de recepción del canal y
+ejecutará los <em>closures</em> de cualquier trabajo que reciba.</li>
+</ol>
+<p>Comencemos creando un canal en <code>ThreadPool::new</code> y manteniendo el lado
+emisor en la instancia <code>ThreadPool</code>, como se muestra en el Listado 20-16. La
+estructura <code>Job</code> no contiene nada por ahora, pero será el tipo de elemento
+que estamos enviando por el canal.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use std::thread;
+</span>// --snip--
+use std::sync::mpsc;
+
+pub struct ThreadPool {
+    workers: Vec&lt;Worker&gt;,
+    sender: mpsc::Sender&lt;Job&gt;,
+}
+
+struct Job;
+
+impl ThreadPool {
+    // --snip--
+    pub fn new(size: usize) -&gt; ThreadPool {
+        assert!(size &gt; 0);
+
+        let (sender, receiver) = mpsc::channel();
+
+        let mut workers = Vec::with_capacity(size);
+
+        for id in 0..size {
+            workers.push(Worker::new(id));
+        }
+
+        ThreadPool {
+            workers,
+            sender,
+        }
+    }
+    // --snip--
+}
+<span class="boring">
+</span><span class="boring">struct Worker {
+</span><span class="boring">    id: usize,
+</span><span class="boring">    thread: thread::JoinHandle&lt;()&gt;,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Worker {
+</span><span class="boring">    fn new(id: usize) -&gt; Worker {
+</span><span class="boring">        let thread = thread::spawn(|| {});
+</span><span class="boring">
+</span><span class="boring">        Worker {
+</span><span class="boring">            id,
+</span><span class="boring">            thread,
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 20-16: Modificando <code>ThreadPool</code> para almacenar
+el final de envío de un canal que envía instancias <code>Job</code></span></p>
+<p>En <code>ThreadPool::new</code>, creamos nuestro nuevo canal y hacemos que el <em>pool</em>
+contenga el extremo que envía. Esto compilará con éxito, aún con
+advertencias.</p>
+<p>Intentemos pasar un extremo de recepción del canal a cada <em>worker</em> a medida
+que el <em>thread pool</em> crea el canal. Sabemos que queremos utilizar el extremo
+receptor en el hilo que crea los <em>workers</em>, por lo que haremos referencia al
+parámetro <code>receptor</code> en el <em>closure</em>. El código en el listado 20-17 aún no
+se compilará del todo.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">impl ThreadPool {
+    // --snip--
+    pub fn new(size: usize) -&gt; ThreadPool {
+        assert!(size &gt; 0);
+
+        let (sender, receiver) = mpsc::channel();
+
+        let mut workers = Vec::with_capacity(size);
+
+        for id in 0..size {
+            workers.push(Worker::new(id, receiver));
+        }
+
+        ThreadPool {
+            workers,
+            sender,
+        }
+    }
+    // --snip--
+}
+
+// --snip--
+
+impl Worker {
+    fn new(id: usize, receiver: mpsc::Receiver&lt;Job&gt;) -&gt; Worker {
+        let thread = thread::spawn(|| {
+            receiver;
+        });
+
+        Worker {
+            id,
+            thread,
+        }
+    }
+}
+</code></pre>
+<p><span class="caption">Listado 20-17: Pasar el extremo receptor del canal a
+los <em>workers</em></span></p>
+<p>Hemos realizado algunos cambios pequeños y directos: pasamos el extremo
+receptor del canal a <code>Worker::new</code>, y luego lo usamos dentro del <em>closure</em>.</p>
+<p>Cuando tratamos de verificar este código, obtenemos este error:</p>
+<pre><code class="language-text">$ cargo check
+   Compiling hello v0.1.0 (file:///projects/hello)
+error[E0382]: use of moved value: `receiver`
+  --&gt; src/lib.rs:27:42
+   |
+27 |             workers.push(Worker::new(id, receiver));
+   |                                          ^^^^^^^^ value moved here in
+   previous iteration of loop
+   |
+   = note: move occurs because `receiver` has type
+   `std::sync::mpsc::Receiver&lt;Job&gt;`, which does not implement the `Copy` trait
+</code></pre>
+<p>El código está tratando de pasar <code>receiver</code> a múltiples instancias
+<code>Worker</code>. Esto no funcionará, como recordará en el Capítulo 16: la
+implementación del canal que proporciona Rust es múltiple <em>productor</em>, único
+<em>consumidor</em>. Esto significa que no podemos simplemente clonar el extremo
+consumidor del canal para arreglar este código. Incluso si pudiéramos, esa
+no es la técnica que quisiéramos usar; en su lugar, queremos distribuir los
+<em>jobs</em> a través de los hilos al compartir el único <code>receiver</code> entre todos
+los <em>workers</em>.</p>
+<p>Además, quitar un <em>job</em> (<em>trabajo</em>) de la cola del canal implica mutar el
+<code>receiver</code>,
+por lo que los hilos necesitan una forma segura de compartir y modificar
+<code>receiver</code>; de lo contrario, podríamos obtener condiciones de carrera (como
+se describe en el Capítulo 16).</p>
+<p>Recuerde los <em>thread-safe smart pointers</em> analizados en el Capítulo 16: para
+compartir la propiedad entre varios <em>threads</em> y permitir que los <em>threads</em>
+muten el valor, necesitamos usar <code>Arc&lt;Mutex&lt;T&gt;&gt;</code>. El tipo <code>Arc</code> permitirá
+que varios <em>workers</em> posean el receptor, y <code>Mutex</code> garantizará que solo un
+<em>worker</em> obtenga un <em>trabajo</em> (<em>job</em>) del receptor a la vez. El listado
+20-18 muestra los cambios que debemos hacer.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use std::thread;
+</span><span class="boring">use std::sync::mpsc;
+</span>use std::sync::Arc;
+use std::sync::Mutex;
+// --snip--
+
+<span class="boring">pub struct ThreadPool {
+</span><span class="boring">    workers: Vec&lt;Worker&gt;,
+</span><span class="boring">    sender: mpsc::Sender&lt;Job&gt;,
+</span><span class="boring">}
+</span><span class="boring">struct Job;
+</span><span class="boring">
+</span>impl ThreadPool {
+    // --snip--
+    pub fn new(size: usize) -&gt; ThreadPool {
+        assert!(size &gt; 0);
+
+        let (sender, receiver) = mpsc::channel();
+
+        let receiver = Arc::new(Mutex::new(receiver));
+
+        let mut workers = Vec::with_capacity(size);
+
+        for id in 0..size {
+            workers.push(Worker::new(id, Arc::clone(&amp;receiver)));
+        }
+
+        ThreadPool {
+            workers,
+            sender,
+        }
+    }
+
+    // --snip--
+}
+
+<span class="boring">struct Worker {
+</span><span class="boring">    id: usize,
+</span><span class="boring">    thread: thread::JoinHandle&lt;()&gt;,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Worker {
+    fn new(id: usize, receiver: Arc&lt;Mutex&lt;mpsc::Receiver&lt;Job&gt;&gt;&gt;) -&gt; Worker {
+        // --snip--
+<span class="boring">        let thread = thread::spawn(|| {
+</span><span class="boring">           receiver;
+</span><span class="boring">        });
+</span><span class="boring">
+</span><span class="boring">        Worker {
+</span><span class="boring">            id,
+</span><span class="boring">            thread,
+</span><span class="boring">        }
+</span>    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 20-18: Compartir el extremo receptor del canal
+entre los <em>workers</em> que usan <code>Arc</code> y <code>Mutex</code></span></p>
+<p>En <code>ThreadPool::new</code>, ponemos el extremo receptor del canal en un <code>Arc</code> y un
+<code>Mutex</code>. Para cada nuevo <em>worker</em>, clonamos el <code>Arc</code> para aumentar el
+recuento de referencias para que los <em>workers</em> puedan compartir la propiedad
+del extremo receptor.</p>
+<p>Con estos cambios, ¡el código compila! ¡Estamos llegando!</p>
+<h4 id="implementando-el-método-execute"><a class="header" href="#implementando-el-método-execute">Implementando el método <code>execute</code></a></h4>
+<p>Implementemos finalmente el método <code>execute</code> en <code>ThreadPool</code>. También
+cambiaremos <code>Job</code> de una estructura a un alias de tipo para un <em>trait
+object</em> que contiene el tipo de <em>closure</em> que recibe <code>execute</code>. Como se
+explica en la sección “Creación de sinónimos de tipo con alias de tipo” en
+el Capítulo 19, los alias de tipo nos permiten acortar los largos. Mire el
+Listado 20-19.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// --snip--
+<span class="boring">pub struct ThreadPool {
+</span><span class="boring">    workers: Vec&lt;Worker&gt;,
+</span><span class="boring">    sender: mpsc::Sender&lt;Job&gt;,
+</span><span class="boring">}
+</span><span class="boring">use std::sync::mpsc;
+</span><span class="boring">struct Worker {}
+</span>
+type Job = Box&lt;FnOnce() + Send + 'static&gt;;
+
+impl ThreadPool {
+    // --snip--
+
+    pub fn execute&lt;F&gt;(&amp;self, f: F)
+        where
+            F: FnOnce() + Send + 'static
+    {
+        let job = Box::new(f);
+
+        self.sender.send(job).unwrap();
+    }
+}
+
+// --snip--
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 20-19: Creación de un alias de tipo <code>Job</code>
+para una <code>Box</code> que contiene cada <em>closure</em> y luego envía el <em>trabajo</em> (<em>job</em>
+al canal</span></p>
+<p>Después de crear una nueva instancia <code>Job</code> utilizando el <em>closure</em> que
+obtenemos en <code>execute</code>, enviamos ese trabajo al final del canal emisor.
+Estamos llamando <code>unwrap</code> on <code>send</code> para el caso de que el envío falle. Esto
+podría suceder si, por ejemplo, dejamos de ejecutar todos nuestros
+<em>threads</em>, lo que significa que el receptor ha dejado de recibir mensajes
+nuevos. Por el momento, no podemos detener la ejecución de nuestros
+<em>threads</em>: nuestros <em>threads</em> continúan ejecutándose mientras exista el
+<em>pool</em>. La razón por la que usamos <code>unwrap</code> es que sabemos que el caso de
+falla no ocurrirá, pero el compilador no lo sabe.</p>
+<p>¡Pero aún no hemos terminado! En el <em>worker</em>, nuestro <em>closure</em> pasó a
+<code>thread::spawn</code> todavía sólo <em>referencias</em> al extremo receptor del canal. En
+su lugar, necesitamos que el <em>closure</em> se repita para siempre, pidiendo al
+receptor del canal que realice un trabajo y ejecute el trabajo cuando lo
+obtenga. Hagamos el cambio que se muestra en el Listado 20-20 a
+<code>Worker::new</code>.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">// --snip--
+
+impl Worker {
+    fn new(id: usize, receiver: Arc&lt;Mutex&lt;mpsc::Receiver&lt;Job&gt;&gt;&gt;) -&gt; Worker {
+        let thread = thread::spawn(move || {
+            loop {
+                let job = receiver.lock().unwrap().recv().unwrap();
+
+                println!(&quot;Worker {} got a job; executing.&quot;, id);
+
+                (*job)();
+            }
+        });
+
+        Worker {
+            id,
+            thread,
+        }
+    }
+}
+</code></pre>
+<p><span class="caption">Listado 20-20: Recepción y ejecución de trabajos en el
+<em>worker’s thread</em></span></p>
+<p>Aquí, primero llamamos a <code>lock</code> en el <code>receiver</code> para adquirir el <em>mutex</em>, y
+luego llamamos <code>unwrap</code> al <em>panic</em> sobre cualquier error. La adquisición de
+un bloqueo puede fallar si el <em>mutex</em> está en un estado <em>envenenado</em>, lo que
+puede ocurrir si otro <em>thread</em> entra en <em>panic</em> mientras se mantiene el
+bloqueo en lugar de liberar el bloqueo. En esta situación, llamar a <code>unwrap</code>
+para que este <em>thread</em> entre en <em>panic</em> es la acción correcta a tomar.
+Siéntase libre de cambiar este <code>unwrap</code> a un <code>expect</code> con un mensaje de
+error que sea significativo para usted.</p>
+<p>Si obtenemos el bloqueo en el <em>mutex</em>, llamamos a <code>recv</code> para recibir un
+<code>Job</code> del canal. Un <code>unwrap</code> final también pasa aquí por los errores, lo que
+puede ocurrir si el hilo que contiene el lado emisor del canal se ha apagado
+similar a como el método <code>send</code> devuelve <code>Err</code> si el lado receptor se apaga.</p>
+<p>La llamada a los bloques <code>recv</code>, por lo que si aún no hay <em>trabajo</em> (<em>job</em>),
+el hilo actual esperará hasta que un <em>job</em> esté disponible. El <code>Mutex&lt;T&gt;</code>
+asegura que solo un hilo <code>Worker</code> a la vez está tratando de solicitar un
+<em>job</em>.</p>
+<p>Teóricamente, este código debería compilarse. Desafortunadamente, el
+compilador de Rust no es perfecto todavía, y obtenemos este error:</p>
+<pre><code class="language-text">error[E0161]: cannot move a value of type std::ops::FnOnce() +
+std::marker::Send: the size of std::ops::FnOnce() + std::marker::Send cannot be
+statically determined
+  --&gt; src/lib.rs:63:17
+   |
+63 |                 (*job)();
+   |                 ^^^^^^
+</code></pre>
+<p>Este error es bastante críptico porque el problema es bastante críptico.
+Para llamar a un <em>closure</em> <code>FnOnce</code> que está almacenado en <code>Box&lt;T&gt;</code>(que es
+lo que es nuestro alias de tipo <code>Job</code>), el <em>closure</em> tiene que moverse
+<em>fuera</em> del <code>Box&lt;T&gt;</code> porque el <em>closure</em> asume la propiedad del
+<code>self</code> cuando lo llamamos. En general, Rust no nos permite mover un valor de
+un <code>Box&lt;T&gt;</code> porque Rust no sabe cuán grande será el valor dentro de
+<code>Box&lt;T&gt;</code>: recordar en el Capítulo 15 que utilizamos <code>Box&lt;T&gt;</code> precisamente
+porque teníamos un tamaño desconocido que queríamos almacenar en un
+<code>Box&lt;T&gt;</code> para obtener un valor de un tamaño conocido.</p>
+<p>Como vimos en el listado 17-15, podemos escribir métodos que usan la
+sintaxis <code>self:Box&lt;Self&gt;</code>, que permite que el método tome posesión de un
+valor <code>Self</code> almacenado en <code>Box&lt;T&gt;</code>. Eso es exactamente lo que queremos
+hacer aquí, pero desafortunadamente Rust no nos lo permite: la parte de Rust
+que implementa el comportamiento cuando se llama a un <em>closure</em> no se
+implementa con <code>self:Box&lt;Self&gt;</code>. Así que Rust aún no comprende que podría
+usar <code>self:Box&lt;Self&gt;</code> en esta situación para apropiarse del <em>closure</em> y
+sacar el <em>closure</em> del <code>Box&lt;T&gt;</code>.</p>
+<p>Rust sigue siendo un trabajo en progreso con lugares donde el compilador
+podría mejorarse, pero en el futuro, el código en el listado 20-20 debería
+funcionar bien. ¡Personas como tú están trabajando para solucionar este y
+otros problemas!. Después de que hayas terminado este libro, nos encantaría
+que te unas.</p>
+<p>Pero, por ahora, vamos a solucionar este problema utilizando un truco útil.
+Podemos decirle a Rust explícitamente que en este caso podemos apropiarnos
+del valor dentro de <code>Box&lt;T&gt;</code> usando <code>self:Box&lt;Self&gt;</code>; luego, una vez que
+tenemos la propiedad del <em>closure</em>, podemos llamarlo. Esto implica definir
+un nuevo <em>trait</em> <code>FnBox</code> con el método <code>call_box</code> que usará
+<code>self:Box&lt;Self&gt;</code> en su firma, definiendo <code>FnBox</code> para cualquier tipo que
+implemente <code>FnOnce()</code>, cambiando nuestro alias de tipo a use el nuevo
+<em>trait</em> y cambie <code>Worker</code> para usar el método <code>call_box</code>. Estos cambios se
+muestran en el listado 20-21.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">trait FnBox {
+    fn call_box(self: Box&lt;Self&gt;);
+}
+
+impl&lt;F: FnOnce()&gt; FnBox for F {
+    fn call_box(self: Box&lt;F&gt;) {
+        (*self)()
+    }
+}
+
+type Job = Box&lt;FnBox + Send + 'static&gt;;
+
+// --snip--
+
+impl Worker {
+    fn new(id: usize, receiver: Arc&lt;Mutex&lt;mpsc::Receiver&lt;Job&gt;&gt;&gt;) -&gt; Worker {
+        let thread = thread::spawn(move || {
+            loop {
+                let job = receiver.lock().unwrap().recv().unwrap();
+
+                println!(&quot;Worker {} got a job; executing.&quot;, id);
+
+                job.call_box();
+            }
+        });
+
+        Worker {
+            id,
+            thread,
+        }
+    }
+}
+</code></pre>
+<p><span class="caption">Listado 20-21: Agregar un nuevo <em>trait</em> <code>FnBox</code> para
+evitar las limitaciones actuales de <code>Box&lt;FnOnce()&gt;</code></span></p>
+<p>Primero, creamos un nuevo <em>trait</em> llamado <code>FnBox</code>. Este <em>trait</em> tiene el
+método <code>call_box</code>, que es similar a los métodos <code>call</code> en los otros <em>traits</em>
+<code>Fn*</code> excepto que toma <code>self:Box&lt;Self&gt;</code> para tomar posesión de <code>self</code> y
+mover el valor fuera de <code>Box&lt;T&gt;</code>.</p>
+<p>A continuación, implementamos el <em>trait</em> <code>FnBox</code> para cualquier tipo <code>F</code> que
+implemente el <em>trait</em> <code>FnOnce()</code>. Efectivamente, esto significa que
+cualquier <em>closure</em> <code>FnOnce ()</code> puede usar nuestro método <code>call_box</code>. La
+implementación de <code>call_box</code> usa <code>(*self)()</code> para mover el <em>closure</em> fuera
+de <code>Box &lt;T&gt;</code> y llamar al <em>closure</em>.</p>
+<p>Ahora necesitamos que nuestro alias tipo <code>Job</code> sea un <code>Box</code> de cualquier
+cosa que implemente nuestro nuevo <em>trait</em> <code>FnBox</code>. Esto nos permitirá usar
+<code>call_box</code> en <code>Worker</code> cuando obtengamos un valor <code>Job</code> en lugar de invocar
+el <em>closure</em> directamente. Implementar el <em>trait</em> <code>FnBox</code> para cualquier
+<em>closure</em> <code>FnOnce()</code> significa que no tenemos que cambiar nada sobre los
+valores reales que estamos enviando al canal. Ahora Rust es capaz de
+reconocer que lo que queremos hacer está bien.</p>
+<p>Este truco es muy astuto y complicado. No te preocupes si no tiene perfecto
+sentido; algún día, será completamente innecesario.</p>
+<p>¡Con la implementación de este truco, nuestro <em>thread pool</em> está en buen
+estado! Dale un <code>cargo run</code> y haz algunas solicitudes:</p>
+<pre><code class="language-text">$ cargo run
+   Compiling hello v0.1.0 (file:///projects/hello)
+warning: field is never used: `workers`
+ --&gt; src/lib.rs:7:5
+  |
+7 |     workers: Vec&lt;Worker&gt;,
+  |     ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: #[warn(dead_code)] on by default
+
+warning: field is never used: `id`
+  --&gt; src/lib.rs:61:5
+   |
+61 |     id: usize,
+   |     ^^^^^^^^^
+   |
+   = note: #[warn(dead_code)] on by default
+
+warning: field is never used: `thread`
+  --&gt; src/lib.rs:62:5
+   |
+62 |     thread: thread::JoinHandle&lt;()&gt;,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: #[warn(dead_code)] on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.99 secs
+     Running `target/debug/hello`
+Worker 0 got a job; executing.
+Worker 2 got a job; executing.
+Worker 1 got a job; executing.
+Worker 3 got a job; executing.
+Worker 0 got a job; executing.
+Worker 2 got a job; executing.
+Worker 1 got a job; executing.
+Worker 3 got a job; executing.
+Worker 0 got a job; executing.
+Worker 2 got a job; executing.
+</code></pre>
+<p>¡Éxito! Ahora tenemos un <em>thread pool</em> que ejecuta las conexiones de forma
+asincrónica. Nunca se crean más de cuatro <em>threads</em>, por lo que nuestro
+sistema no se sobrecargará si el servidor recibe muchas solicitudes. Si
+hacemos una solicitud a <em>/sleep</em>, el servidor podrá atender otras
+solicitudes haciendo que otro hilo las ejecute.</p>
+<p>Después de aprender sobre el bucle <code>while let</code> en el Capítulo 18, tal vez se
+pregunte por qué no escribimos el código del hilo del <em>worker</em> como se
+muestra en el Listado 20-22.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">// --snip--
+
+impl Worker {
+    fn new(id: usize, receiver: Arc&lt;Mutex&lt;mpsc::Receiver&lt;Job&gt;&gt;&gt;) -&gt; Worker {
+        let thread = thread::spawn(move || {
+            while let Ok(job) = receiver.lock().unwrap().recv() {
+                println!(&quot;Worker {} got a job; executing.&quot;, id);
+
+                job.call_box();
+            }
+        });
+
+        Worker {
+            id,
+            thread,
+        }
+    }
+}
+</code></pre>
+<p><span class="caption">Listado 20-22: una implementación alternativa de
+<code>Worker::new</code> using <code>while let</code></span></p>
+<p>Este código se compila y ejecuta, pero no da como resultado el
+comportamiento de <em>threading</em> deseado: una solicitud lenta aún causará que
+otras solicitudes esperen a ser procesadas. La razón es algo sutil: la
+estructura <code>Mutex</code> no tiene un método público de <code>unlock</code> porque la
+propiedad del <em>lock</em> se basa en el <em>lifetime</em> de <code>MutexGuard&lt;T&gt;</code> dentro de
+<code>LockResult&lt;MutexGuard&lt;T&gt;&gt;</code>  que devuelve el método <code>lock</code>. En el momento de
+la compilación, el comprobador de préstamos puede entonces hacer cumplir la
+regla de que no se puede acceder a un recurso protegido por un <code>Mutex</code> a
+menos que tengamos el <em>lock</em>. Pero esta implementación también puede
+provocar que el <em>lock</em> se mantenga más tiempo de lo previsto si no pensamos
+detenidamente sobre la duración del <code>MutexGuard&lt;T&gt;</code>. Debido a que los
+valores en la expresión <code>while</code> permanecen en el alcance durante la duración
+del bloque, el <em>lock</em> permanece retenido durante la duración de la llamada
+a <code>job.call_box()</code>, lo que significa que otros <em>workers</em> no pueden recibir
+<em>jobs</em>.</p>
+<p>Al utilizar <code>loop</code> en su lugar y adquirir el <em>lock</em> y un <em>job</em> dentro del
+bloque en lugar de fuera de él, el <code>MutexGuard</code> devuelto por el método
+<code>lock</code> se elimina tan pronto como finaliza la instrucción <code>let job</code>. Esto
+garantiza que el bloqueo se mantenga durante la llamada a <code>recv</code>, pero se
+libera antes de la llamada a <code>job.call_box ()</code>, lo que permite atender
+varias solicitudes al mismo tiempo.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch20-01-single-threaded.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch20-03-graceful-shutdown-and-cleanup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch20-01-single-threaded.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch20-03-graceful-shutdown-and-cleanup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

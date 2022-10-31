@@ -1,0 +1,419 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>To panic! or Not To panic! - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html" class="active"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="to-panic-or-not-to-panic"><a class="header" href="#to-panic-or-not-to-panic">To <code>panic!</code> or Not to <code>panic!</code></a></h2>
+<p>Entonces, ¿cómo decides cuándo debes llamar <code>panic!</code> Y cuándo debes devolver
+el <code>Result</code>?. Cuando el código entra en pánico, no hay forma de recuperarlo.
+Puede llamar <code>panic!</code> por cualquier situación de error, ya sea que haya una
+forma posible de recuperación o no, pero luego está tomando la decisión en
+nombre del código llamando a su código de que una situación es irrecuperable. Cuando elige devolver un valor de <code>Result</code>, le da las opciones de código de
+llamada en lugar de tomar una decisión al respecto. El código de llamada
+podría optar por intentar la recuperación de una manera apropiada para su
+situación, o podría decidir que un valor <code>Err</code> en este caso es irrecuperable,
+por lo que puede llamar <code>¡pánico!</code> y convertir su error recuperable en uno
+irrecuperable. Por lo tanto, devolver <code>Result</code> es una buena opción
+predeterminada cuando se define una función que podría fallar.</p>
+<p>En situaciones excepcionales, es más apropiado escribir un código que entra
+en pánico en lugar de devolver un <code>Result</code>. Analicemos por qué es apropiado
+entrar en pánico en ejemplos, códigos de prototipos y pruebas. Luego
+discutiremos las situaciones en las que el compilador no puede decir que la
+falla es imposible, pero usted, como ser humano, puede hacerlo. El capítulo
+concluirá con algunas pautas generales sobre cómo decidir si entrar en pánico
+en el código de la biblioteca.</p>
+<h3 id="ejemplos-código-de-prototipo-y-pruebas"><a class="header" href="#ejemplos-código-de-prototipo-y-pruebas">Ejemplos, código de prototipo y pruebas</a></h3>
+<p>Cuando está escribiendo un ejemplo para ilustrar algún concepto, tener un
+código robusto de manejo de errores en el ejemplo también puede hacer que el
+ejemplo sea menos claro. En los ejemplos, se entiende que una llamada a un
+método como <code>unwrap</code> que podría entrar en pánico significa un marcador de
+posición para la forma en que desearía que su aplicación manejara los errores,que pueden diferir en función de lo que haga el resto del código.</p>
+<p>Del mismo modo, los métodos <code>unwrap</code> y <code>expect</code> son muy útiles al crear
+prototipos, antes de que esté listo para decidir cómo manejar los errores.
+Dejan marcas claras en su código para cuando esté listo para hacer que su
+programa sea más robusto.</p>
+<p>Si falla una llamada al método en una prueba, querría que fallara toda la
+prueba, incluso si ese método no es la funcionalidad bajo prueba. Debido a
+que <code>¡pánico!</code> Es la forma en que una prueba se marca como una falla, llamar
+<code>unwrap</code> o <code>expect</code> es exactamente lo que debería suceder.</p>
+<h3 id="casos-en-los-que-tiene-más-información-que-el-compilador"><a class="header" href="#casos-en-los-que-tiene-más-información-que-el-compilador">Casos en los que tiene más información que el compilador</a></h3>
+<p>También sería apropiado llamar a <code>unwrap</code> cuando tenga alguna otra lógica que
+asegure que <code>Result</code> tendrá un valor <code>Ok</code>, pero la lógica no es algo que el
+compilador entienda. Todavía tendrá un valor de <code>Result</code> que debe manejar:
+cualquier operación que llame todavía tiene la posibilidad de fallar en
+general, aunque sea lógicamente imposible en su situación particular. Si
+puede asegurarse al inspeccionar manualmente el código que nunca tendrá una
+variante <code>Err</code>, es perfectamente aceptable llamar a <code>unwrap</code>. Aquí hay un
+ejemplo:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::net::IpAddr;
+
+let home: IpAddr = &quot;127.0.0.1&quot;.parse().unwrap();
+<span class="boring">}
+</span></code></pre></pre>
+<p>Estamos creando una instancia <code>IpAddr</code> al analizar una cadena codificada.
+Podemos ver que <code>127.0.0.1</code> es una dirección IP válida, por lo que es
+aceptable usar <code>unwrap</code> aquí. Sin embargo, tener un string codificado y
+válido no cambia el tipo de retorno del método <code>parse</code>: todavía obtenemos un
+valor <code>Result</code>, y el compilador todavía nos hará manejar el <code>Result</code> como si
+fuera la variante <code>Err</code> es una posibilidad porque el compilador no es lo
+suficientemente inteligente como para ver que esta cadena siempre es una
+dirección IP válida. Si la cadena de dirección IP proviene de un usuario en
+lugar de estar codificada en el programa y, por lo tanto, <em>sí</em> tiene una
+posibilidad de falla, definitivamente queremos manejar el <code>Result</code> de una
+manera más robusta.</p>
+<h3 id="pautas-para-el-manejo-de-errores"><a class="header" href="#pautas-para-el-manejo-de-errores">Pautas para el manejo de errores</a></h3>
+<p>Es aconsejable que su código entre en pánico cuando es posible que su código
+termine en mal estado. En este contexto, un <em>mal estado</em> es cuando se han
+roto algunas suposiciones, garantías, contratos o invariantes, como cuando se
+pasan valores no válidos, valores contradictorios o valores perdidos a su
+código, más uno o más de los siguientes:</p>
+<ul>
+<li>El mal estado no es algo <em>esperado</em> que ocurra ocasionalmente.</li>
+<li>Su código después de este punto necesita confiar en no estar en este mal
+estado.</li>
+<li>No hay una buena manera de codificar esta información en los tipos que usa.</li>
+</ul>
+<p>Si alguien llama a su código y le envía valores que no tienen sentido, la
+mejor opción podría ser invocar <code>panic!</code> Y alertar a la persona que utiliza
+su biblioteca sobre el error en su código para que puedan solucionarlo
+durante el desarrollo. De manera similar, <code>panic!</code> Es a menudo apropiado si
+está llamando un código externo que está fuera de su control y devuelve un
+estado no válido que no tiene forma de solucionar.</p>
+<p>Cuando se alcanza un mal estado, pero se espera que suceda sin importar lo
+bien que escribe tu código, aún es más apropiado devolver un <code>Result</code> en
+lugar de hacer una llamada <code>pánico!</code> los ejemplos incluyen un analizador que
+recibe datos malformados o una solicitud HTTP que devuelve un estado que
+indica que ha alcanzado un límite de velocidad. En estos casos, debe indicar que la falla es una posibilidad esperada por devolver un <code>Result</code> para
+propagar estos estados incorrectos hacia arriba para que el código de llamada
+puede decidir cómo manejar el problema. ¡Llamar a <code>panic!</code>! No sería la mejor
+manera para manejar estos casos.</p>
+<p>Cuando su código realiza operaciones con valores, su código debe verificar que
+los valores son válidos primero y el pánico si los valores no son válidos.
+Esto es principalmente para razones de seguridad: intentar operar con datos
+no válidos puede exponer su código a vulnerabilidades Esta es la razón
+principal por la que la biblioteca estándar llamará <code>¡pánico!</code> si intenta
+acceder a la memoria fuera de límites: tratando de acceder a la memoria
+que no pertenece a la estructura de datos actual es un problema de seguridad
+común. Las funciones a menudo tienen <em>contratos</em>: su comportamiento solo está
+garantizado si las entradas cumplen requisitos particulares. Presa del pánico
+cuando se viola el contrato tiene sentido porque una violación del contrato
+siempre indica un error del lado de la persona que llama y no es un tipo de error que desea que el código de llamada tenga que explícitamente encargarse de. De hecho, no hay una forma razonable de invocar el código para recuperar;
+los <em>programadores</em> que llaman necesitan arreglar el código. Contratos para una función, especialmente cuando una violación causará pánico, debe explicarse en la API de documentación para la función.</p>
+<p>Sin embargo, tener muchos controles de errores en todas sus funciones sería
+verbose y molesto. Afortunadamente, puede usar el sistema de tipos de Rust
+(y, por lo tanto, el tipo de verificación que hace el compilador) para hacer
+muchos de los controles por usted. Si su función tiene un tipo particular
+como parámetro, puede continuar con la lógica de su código sabiendo que el
+compilador ya se ha asegurado de que tiene un valor válido. Por ejemplo, si
+tiene un tipo en lugar de una <code>Opción</code>, su programa espera tener <em>algo</em> en lugar de <em>nada</em>. Entonces, su código no tiene que manejar dos casos para las
+variantes <code>Some</code> y <code>None</code>: solo tendrá un caso para definitivamente tener un
+valor. El código que intenta no pasarle nada a tu función ni siquiera
+compilará, por lo que tu función no tiene que verificar ese caso en el tiempo
+de ejecución. Otro ejemplo es el uso de un tipo de entero sin signo como
+<code>u32</code>, que asegura que el parámetro nunca sea negativo.</p>
+<h3 id="crear-tipos-personalizados-para-validación"><a class="header" href="#crear-tipos-personalizados-para-validación">Crear tipos personalizados para validación</a></h3>
+<p>Tomemos la idea de usar el sistema de tipos de Rust para garantizar que
+tengamos un valor válido un paso más allá y busquemos la creación de un tipo
+personalizado para la validación. Recuerde el juego de adivinanzas en el
+Capítulo 2 en el cual nuestro código le pedía al usuario que adivinara un
+número entre 1 y 100. Nunca validamos que la conjetura del usuario estuviera
+entre esos números antes de verificarlo contra nuestro número secreto; solo
+validamos que la suposición fue positiva. En este caso, las consecuencias no
+fueron muy graves: nuestra salida de “Demasiado alto” o “Demasiado bajo”
+seguiría siendo correcta. Pero sería una mejora útil para guiar al usuario
+hacia conjeturas válidas y tener un comportamiento diferente cuando un
+usuario adivina un número que está fuera de rango frente a cuando un usuario
+escribe, por ejemplo, letras en su lugar.</p>
+<p>Una forma de hacer esto sería analizar la conjetura como un <code>i32</code> en lugar de
+solo un <code>u32</code> para permitir números potencialmente negativos, y luego agregar
+un <em>check</em> para que el número esté dentro del rango, así:</p>
+<pre><code class="language-rust ignore">loop {
+    // --snip--
+
+    let guess: i32 = match guess.trim().parse() {
+        Ok(num) =&gt; num,
+        Err(_) =&gt; continue,
+    };
+
+    if guess &lt; 1 || guess &gt; 100 {
+        println!(&quot;The secret number will be between 1 and 100.&quot;);
+        continue;
+    }
+
+    match guess.cmp(&amp;secret_number) {
+    // --snip--
+}
+</code></pre>
+<p>La expresión <code>if</code> verifica si nuestro valor está fuera de rango, le dice al
+usuario sobre el problema y llama a <code>continue</code> para comenzar la siguiente
+iteración del ciclo y pedir otra aproximación. Después de la expresión <code>if</code>, podemos proceder con las comparaciones entre <code>guess</code> y el número secreto
+sabiendo que <code>guess</code> está entre 1 y 100.</p>
+<p>Sin embargo, esta no es una solución ideal: si era absolutamente crítico que
+el programa solo operara con valores entre 1 y 100, y tenía muchas funciones
+con este requisito, tener un check como este en cada función sería tedioso
+(y podría afectar actuación).</p>
+<p>En cambio, podemos hacer un nuevo tipo y poner las validaciones en una
+función para crear una instancia del tipo en lugar de repetir las
+validaciones en todas partes. De esta forma, es seguro para las funciones
+usar el nuevo tipo en sus firmas y usar con confianza los valores que
+reciben. El Listado 9-9 muestra una forma de definir un tipo <code>Guess</code> que solo
+creará una instancia de <code>Guess</code> si la función <code>new</code> recibe un valor entre 1 y
+100.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Guess {
+    value: u32,
+}
+
+impl Guess {
+    pub fn new(value: u32) -&gt; Guess {
+        if value &lt; 1 || value &gt; 100 {
+            panic!(&quot;Guess value must be between 1 and 100, got {}.&quot;, value);
+        }
+
+        Guess {
+            value
+        }
+    }
+
+    pub fn value(&amp;self) -&gt; u32 {
+        self.value
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listing 9-9: Un tipo <code>Guess</code> que solo continuará con
+valores entre 1 y 100</span></p>
+<p>Primero, definimos una estructura llamada <code>Guess</code> que tiene un campo llamado
+<code>value</code> que contiene un <code>u32</code>. Aquí es donde se almacenará el número.</p>
+<p>Luego implementamos una función asociada llamada <code>new</code> en <code>Guess</code> que crea
+instancias de valores <code>Guess</code>. La función <code>new</code> se define para tener un
+parámetro llamado <code>value</code> de tipo <code>u32</code> y para devolver un <code>Guess</code>. El código
+en el cuerpo de la función <code>new</code> prueba <code>value</code> para asegurarse de que esté
+entre 1 y 100. Si <code>value</code> no pasa esta prueba, hacemos una llamada <code>panic!</code>,
+Que alertará al programador quién está escribiendo el código de llamada que
+tienen un error que necesitan corregir, porque la creación de un <code>Guess</code> con
+un <code>value</code> fuera de este rango violaría el contrato en el que <code>Guess::new</code>
+se basa. Las condiciones en las cuales <code>Guess::new</code> podría entrar en pánico
+deberían discutirse en su documentación pública de API; cubriremos las
+convenciones de documentación que indican la posibilidad de un <code>panic!</code> en la documentación de la API que usted crea en el Capítulo 14. Si <code>value</code> pasa la prueba, creamos un nuevo <code>Guess</code> con su campo <code>value</code> establecido en el parámetro <code>value</code> y devuelve el <code>Guess</code>.</p>
+<p>A continuación, implementamos un método llamado <code>value</code> que toma prestado
+<code>self</code>, no tiene ningún otro parámetro y devuelve un <code>u32</code>. Este tipo de
+método a veces se llama <em>getter</em>, porque su propósito es obtener algunos
+datos de sus campos y devolverlos. Este método público es necesario porque el
+campo <code>value</code> de la estructura <code>Guess</code> es privado. Es importante que el campo
+<code>value</code> sea privado para que el código que utiliza la estructura <code>Guess</code> no
+permita establecer <code>value</code> directamente: el código fuera del módulo <em>debe</em>
+usar la función <code>Guess::new</code> para crear una instancia de <code>Guess</code>, lo que
+garantiza que no haya forma de que <code>Guess</code> tenga un <code>value</code> que no haya sido
+verificado por las condiciones en la función <code>Guess::new</code>.</p>
+<p>Una función que tiene un parámetro o devuelve solo números entre 1 y 100
+podría entonces declarar en su firma que toma o devuelve un <code>Guess</code> en lugar
+de un <code>u32</code> y no necesitaría hacer ninguna comprobación adicional en su
+cuerpo.</p>
+<h2 id="resumen"><a class="header" href="#resumen">Resumen</a></h2>
+<p>Las funciones de manejo de errores de Rust están diseñadas para ayudarte a
+escribir códigos más sólidos. La macro <code>panic!</code> indica que su programa está
+en un estado que no puede manejar y le permite decirle al proceso que se
+detenga en lugar de tratar de proceder con valores inválidos o incorrectos.
+La enumeración <code>Result</code> usa el sistema de tipos de Rust para indicar que las
+operaciones pueden fallar de una manera que su código podría recuperarse.
+Puede usar <code>Result</code> para indicarle al código que llama a su código que
+necesita manejar el posible éxito o falla también. El uso de <code>panic!</code> Y
+<code>Result</code> en las situaciones apropiadas hará que su código sea más confiable
+frente a problemas inevitables.</p>
+<p>Ahora que ha visto formas útiles de que la biblioteca estándar use genéricos
+con las enumeraciones <code>Option</code> y <code>Result</code>, hablaremos sobre cómo funcionan
+los genéricos y cómo puede usarlos en su código.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch09-02-recoverable-errors-with-result.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch10-00-generics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch09-02-recoverable-errors-with-result.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch10-00-generics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

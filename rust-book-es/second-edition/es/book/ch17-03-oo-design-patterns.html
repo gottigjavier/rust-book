@@ -1,0 +1,886 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Implementing an Object-Oriented Design Pattern - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html" class="active"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="implementación-de-un-patrón-de-diseño-orientado-a-objetos"><a class="header" href="#implementación-de-un-patrón-de-diseño-orientado-a-objetos">Implementación de un patrón de diseño orientado a objetos</a></h2>
+<p>El <em>state pattern</em> es un patrón de diseño orientado a objetos. La clave del
+patrón es que un valor tiene un estado interno, que se representa mediante un
+conjunto de <em>state objects</em>, y el comportamiento del valor cambia en función
+del interno estado. Los objetos de estado comparten funcionalidad: en Rust,
+por supuesto, usamos estructuras y <em>traits</em> en lugar de objetos y herencia.
+Cada objeto de estado es responsable de su propio comportamiento y de
+gobernar cuando debería cambiar a otro Estado. El valor que contiene un
+<em>state object</em> (<em>objeto de estado</em>) no sabe nada sobre comportamiento
+diferente de los estados o cuándo hacer la transición entre estados.</p>
+<p>Usar el patrón de estado significa que cuando cambien los requisitos
+comerciales del programa, no necesitaremos cambiar el código del valor que
+contiene el estado o el código que usa el valor. Solo necesitaremos
+actualizar el código dentro de uno de los objetos de estado para cambiar sus
+reglas o quizás agregar más objetos de estado. Veamos un ejemplo del patrón
+de diseño del estado y cómo usarlo en Rust.</p>
+<p>Implementaremos un flujo de trabajo de publicación de blog de forma
+incremental. El final del blog la funcionalidad se verá así:</p>
+<ol>
+<li>Una publicación de blog comienza como un borrador en blanco.</li>
+<li>Cuando se finaliza el borrador, se solicita una revisión de la publicación.</li>
+<li>Cuando se aprueba la publicación, se publica.</li>
+<li>Solo las publicaciones de blog publicadas devuelven contenido para
+imprimir, por lo que las publicaciones no aprobadas no pueden
+accidentalmente ser publicadas.</li>
+</ol>
+<p>Cualquier otro cambio que se intente en una publicación no debería tener
+ningún efecto. Por ejemplo, si tratamos de aprobar un borrador de entrada de
+blog antes de solicitar una revisión, la publicación debe seguir siendo un
+borrador no publicado.</p>
+<p>El listado 17-11 muestra este flujo de trabajo en forma de código: este es un
+ejemplo de uso de la API que implementaremos en una caja de la biblioteca
+denominada <code>blog</code>. Esto aún no se compilará porque aún no hemos implementado
+el <em>crate</em> <code>blog</code>.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">extern crate blog;
+use blog::Post;
+
+fn main() {
+    let mut post = Post::new();
+
+    post.add_text(&quot;I ate a salad for lunch today&quot;);
+    assert_eq!(&quot;&quot;, post.content());
+
+    post.request_review();
+    assert_eq!(&quot;&quot;, post.content());
+
+    post.approve();
+    assert_eq!(&quot;I ate a salad for lunch today&quot;, post.content());
+}
+</code></pre>
+<p><span class="caption">Listado 17-11: Código que demuestra el comportamiento
+deseado que queremos que tenga nuestro <em>crate</em> <code>blog</code></span></p>
+<p>Queremos permitirle al usuario crear una nueva publicación borrador de blog
+con <code>Post::new</code>. Entonces, queremos permitir que el texto se agregue a la
+publicación del blog mientras está en el borrador estado. Si tratamos de
+obtener el contenido de la publicación inmediatamente, antes de su aprobación,
+no debería pasar nada porque la publicación sigue siendo un borrador. Hemos
+agregado <code>assert_eq!</code> en el código con fines de demostración. Una excelente
+prueba unitaria para esto sería afirmar que un borrador de una publicación de
+blog devuelve un <em>string</em> vacía del método <code>content</code>, pero no vamos a
+escribir pruebas para este ejemplo.</p>
+<p>A continuación, queremos habilitar una solicitud de revisión de la
+publicación, y queremos <code>content</code> para devolver un <em>string</em> vacía mientras
+espera la revisión. Cuando la publicación recibe la aprobación, debe
+publicarse, lo que significa que el texto de la publicación se devolverá
+cuando se llame a <code>content</code>.</p>
+<p>Tenga en cuenta que el único tipo con el que estamos interactuando desde el
+<em>crate</em> es el <code>Post</code> tipo. Este tipo usará el patrón de estado y mantendrá un
+valor que será uno de los tres objetos de estado que representan los diversos
+estados en los que se puede publicar una publicación en borrador, en espera
+de revisión o publicado. Cambiar de un estado a otro se gestionará
+internamente dentro del tipo <code>Post</code>. Los estados cambian en respuesta a los
+métodos llamados por los usuarios de nuestra biblioteca en la instancia
+<code>Post</code>, pero no tienen que administrar los cambios de estado directamente.
+Además, los usuarios no pueden cometer un error con los estados, como
+publicar una publicación antes de que se revise.</p>
+<h3 id="definición-de-post-y-creación-de-una-nueva-instancia-en-el-borrador-de-estado-draft-state"><a class="header" href="#definición-de-post-y-creación-de-una-nueva-instancia-en-el-borrador-de-estado-draft-state">Definición de <code>Post</code> y Creación de una nueva instancia en el <em>borrador de estado</em> (<em>Draft State</em>)</a></h3>
+<p>¡Comencemos con la implementación de la biblioteca! Sabemos que necesitamos
+una estructura pública de <code>Post</code> que contenga algo de contenido, así que
+comenzaremos con la definición de la estructura y una función pública
+asociada <code>new</code> para crear una instancia de <code>Post</code>, como se muestra en el
+Listado 17-12 . También haremos un <em>trait</em> privado de <code>State</code>. Entonces
+<code>Post</code> mantendrá un <em>trait object</em> de <code>Box&lt;State&gt;</code> dentro de un <code>Option</code> en
+un campo privado llamado <code>state</code>. Verás por qué el <code>Option</code> es necesario en
+un momento.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Post {
+    state: Option&lt;Box&lt;State&gt;&gt;,
+    content: String,
+}
+
+impl Post {
+    pub fn new() -&gt; Post {
+        Post {
+            state: Some(Box::new(Draft {})),
+            content: String::new(),
+        }
+    }
+}
+
+trait State {}
+
+struct Draft {}
+
+impl State for Draft {}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 17-12: Definición de una estructura <code>Post</code> y
+una función <code>new</code> que crea una nueva instancia <code>Post</code>, un <em>trait</em>
+<code>State</code> y una estructura <code>Draft</code></span></p>
+<p>El <em>trait</em> <code>State</code> define el comportamiento compartido por diferentes estados
+de publicación, y los estados <code>Draft</code>, <code>PendingReview</code>, y <code>Published</code>
+implementarán el atributo <code>State</code>. Por ahora, el <em>trait</em> no tiene ningún
+método, y comenzaremos definiendo solo el estado <code>Draft</code> porque ese es el
+estado en el que queremos que comience una publicación.</p>
+<p>Cuando creamos un nuevo <code>Post</code>, establecemos su campo <code>state</code> en un valor
+<code>Some</code> que contiene un <code>Box</code>. Este <code>Box</code> apunta a una nueva instancia de la
+estructura <code>Draft</code>. Esto garantiza que cada vez que creamos una nueva
+instancia de <code>Post</code>, comenzará como un borrador. Debido a que el campo
+<code>state</code> de <code>Post</code> es privado, ¡no hay forma de crear un <code>Post</code> en ningún otro
+estado! En la función <code>Post::new</code>, establecemos el campo <code>content</code> en un
+nuevo <code>String</code> vacío.</p>
+<h3 id="almacenar-el-texto-del-contenido-del-post"><a class="header" href="#almacenar-el-texto-del-contenido-del-post">Almacenar el texto del contenido del <em>Post</em></a></h3>
+<p>El listado 17-11 mostró que queremos poder llamar a un método llamado
+<code>add_text</code> y pasarle un <code>&amp;str</code> que luego se agrega al contenido de texto de
+la publicación del blog. Implementamos esto como un método en lugar de
+exponer el campo <code>content</code> como <code>pub</code>. Esto significa que podemos implementar
+un método más adelante que controlará cómo se leen los datos del campo
+<code>content</code>. El método <code>add_text</code> es bastante sencillo, así que agreguemos la
+implementación en el Listado 17-13 al bloque <code>impl Post</code>:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">pub struct Post {
+</span><span class="boring">    content: String,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Post {
+    // --snip--
+    pub fn add_text(&amp;mut self, text: &amp;str) {
+        self.content.push_str(text);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 17-13: Implementando el método <code>add_text</code> para
+agregar texto al <code>content</code> de una publicación</span></p>
+<p>El método <code>add_text</code> toma una referencia mutable a <code>self</code>, porque estamos
+cambiando la instancia <code>Post</code> a la que estamos llamando <code>add_text</code>. Luego
+llamamos a <code>push_str</code> en <code>String</code> en <code>content</code> y pasamos el argumento <code>text</code>
+para agregarlo al <code>content</code> guardado. Este comportamiento no depende del
+estado en que se encuentra la publicación, por lo que no forma parte del
+patrón de estado. El método <code>add_text</code> no interactúa con el campo <code>state</code>,
+pero es parte del comportamiento que queremos admitir.</p>
+<h3 id="asegurar-que-el-contenido-de-un-draft-post-borrador-de-publicación-esté-vacío"><a class="header" href="#asegurar-que-el-contenido-de-un-draft-post-borrador-de-publicación-esté-vacío">Asegurar que el contenido de un <em>Draft Post</em> (<em>borrador de publicación</em>) esté vacío</a></h3>
+<p>Incluso después de haber llamado <code>add_text</code> y agregado algo de contenido a
+nuestra publicación, aún queremos que el método <code>content</code> devuelva un
+<em>string slice</em> vacío porque la publicación aún está en el estado borrador,
+como se muestra en la línea 8 del Listado 17- 11. Por ahora, implementemos el
+método <code>content</code> con la cosa más simple que cumplirá este requisito: devolver
+siempre un <em>string slice</em> vacío. Cambiaremos esto más tarde una vez que
+implementemos la capacidad de cambiar el estado de una publicación para que
+se pueda publicar. Hasta ahora, las publicaciones solo pueden estar en el
+estado borrador, por lo que el contenido de la publicación siempre debe estar
+vacío. El listado 17-14 muestra esta implementación de marcador de posición:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">pub struct Post {
+</span><span class="boring">    content: String,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Post {
+    // --snip--
+    pub fn content(&amp;self) -&gt; &amp;str {
+        &quot;&quot;
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 17-14: Agregar una implementación de marcador
+de posición para el método <code>content</code> en <code>Post</code> que siempre devuelve un
+<em>string slice</em> vacío</span></p>
+<p>Con este método agregado de <code>content</code>, todo en el Listado 17-11 hasta la
+línea 8 funciona según lo previsto.</p>
+<h3 id="solicitar-una-revisión-del-estado-post-changes"><a class="header" href="#solicitar-una-revisión-del-estado-post-changes">Solicitar una revisión del estado <em>Post Changes</em></a></h3>
+<p>A continuación, debemos agregar funcionalidad para solicitar una revisión de
+una publicación, que debería cambiar su estado de <code>Draft</code> a <code>PendingReview</code>.
+El listado 17-15 muestra este código:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">pub struct Post {
+</span><span class="boring">    state: Option&lt;Box&lt;State&gt;&gt;,
+</span><span class="boring">    content: String,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Post {
+    // --snip--
+    pub fn request_review(&amp;mut self) {
+        if let Some(s) = self.state.take() {
+            self.state = Some(s.request_review())
+        }
+    }
+}
+
+trait State {
+    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt;;
+}
+
+struct Draft {}
+
+impl State for Draft {
+    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt; {
+        Box::new(PendingReview {})
+    }
+}
+
+struct PendingReview {}
+
+impl State for PendingReview {
+    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt; {
+        self
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 17-15: Implementando los métodos
+<code>request_review</code> en <code>Post</code> y el <em>trait</em> <code>State</code></span></p>
+<p>Le damos a <code>Post</code> un método público llamado <code>request_review</code> que tomará una
+referencia mutable a <code>self</code>. Luego llamamos a un método interno
+<code>request_review</code> en el estado actual de <code>Post</code>, y este segundo método
+<code>request_review</code> consume el estado actual y devuelve un nuevo estado.</p>
+<p>Agregamos el método <code>request_review</code> al <em>trait</em> <code>State</code>; todos los tipos que
+implementan el <em>trait</em> ahora necesitarán implementar el método
+<code>request_review</code>. Tenga en cuenta que en lugar de tener <code>self</code>,<code>&amp;self</code>, o
+<code>&amp;mut self</code> como el primer parámetro del método, tenemos <code>self:Box&lt;Self&gt;</code>.
+Esta sintaxis significa que el método solo es válido cuando se le llama a un
+<code>Box</code> que contiene el tipo. Esta sintaxis toma posesión de <code>Box&lt;Self&gt;</code>,
+invalidando el estado anterior para que el valor de estado del <code>Post</code> pueda
+transformarse en un nuevo estado.</p>
+<p>Para consumir el estado anterior, el método <code>request_review</code> necesita tomar
+posesión del valor del estado. Aquí es donde entra el <code>Option</code> en el campo
+<code>state</code> de <code>Post</code>: llamamos al método <code>take</code> para sacar el valor <code>Some</code> del
+campo <code>state</code> y dejar <code>None</code> en su lugar , porque Rust no nos permite tener
+campos despoblados en las estructuras. Esto nos permite mover el valor de
+<code>state</code> fuera de <code>Post</code> en lugar de tomarlo prestado. Luego estableceremos el
+valor de <code>state</code> de la publicación en el resultado de esta operación.</p>
+<p>Necesitamos establecer <code>state</code> en <code>None</code> temporalmente en lugar de
+establecerlo directamente con un código como
+<code>self.state = self.state.request_review();</code> para obtener la propiedad del
+valor <code>state</code>. Esto garantiza que <code>Post</code> no pueda usar el antiguo valor
+<code>state</code> una vez que lo hayamos transformado en un nuevo estado.</p>
+<p>El método <code>request_review</code> en <code>Draft</code> necesita devolver una nueva instancia
+encuadrada de una nueva estructura <code>PendingReview</code>, que representa el estado
+cuando una publicación está esperando una revisión. La estructura
+<code>PendingReview</code> también implementa el método <code>request_review</code>, pero no
+realiza transformaciones. Más bien, se devuelve a sí mismo, porque cuando
+solicitamos una revisión en una publicación que ya se encuentra en el estado
+<code>PendingReview</code>, debe permanecer en el estado <code>PendingReview</code>.</p>
+<p>Ahora podemos comenzar a ver las ventajas del patrón de estado: el método
+<code>request_review</code> en <code>Post</code> es el mismo sin importar su valor <code>state</code>. Cada
+estado es responsable de sus propias reglas.</p>
+<p>Dejaremos el método <code>content</code> en <code>Post</code> tal como está, devolviendo un
+<em>string slice</em> vacío. Ahora podemos tener un <code>Post</code> en el estado
+<code>PendingReview</code>, así como en el estado <code>Draft</code>, pero queremos el mismo
+comportamiento en el estado <code>PendingReview</code>. ¡El listado 17-11 ahora funciona
+hasta la línea 11!.</p>
+<h3 id="agregar-el-método-approve-que-cambia-el-comportamiento-del-content"><a class="header" href="#agregar-el-método-approve-que-cambia-el-comportamiento-del-content">Agregar el método <code>approve</code> que cambia el comportamiento del <code>content</code></a></h3>
+<p>El método <code>approve</code> será similar al método <code>request_review</code>: establecerá
+<code>state</code> en el valor que el estado actual dice que debería tener cuando se
+aprueba ese estado, como se muestra en el Listado 17-16:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">pub struct Post {
+</span><span class="boring">    state: Option&lt;Box&lt;State&gt;&gt;,
+</span><span class="boring">    content: String,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Post {
+    // --snip--
+    pub fn approve(&amp;mut self) {
+        if let Some(s) = self.state.take() {
+            self.state = Some(s.approve())
+        }
+    }
+}
+
+trait State {
+    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt;;
+    fn approve(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt;;
+}
+
+struct Draft {}
+
+impl State for Draft {
+<span class="boring">    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt; {
+</span><span class="boring">        Box::new(PendingReview {})
+</span><span class="boring">    }
+</span><span class="boring">
+</span>    // --snip--
+    fn approve(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt; {
+        self
+    }
+}
+
+struct PendingReview {}
+
+impl State for PendingReview {
+<span class="boring">    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt; {
+</span><span class="boring">        self
+</span><span class="boring">    }
+</span><span class="boring">
+</span>    // --snip--
+    fn approve(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt; {
+        Box::new(Published {})
+    }
+}
+
+struct Published {}
+
+impl State for Published {
+    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt; {
+        self
+    }
+
+    fn approve(self: Box&lt;Self&gt;) -&gt; Box&lt;State&gt; {
+        self
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 17-16: Implementando el método <code>approve</code> en
+<code>Post</code> y el <em>trait</em> <code>State</code></span></p>
+<p>Agregamos el método <code>approve</code> al <em>trait</em> <code>State</code> y agregamos una nueva
+estructura que implementa <code>State</code>, el estado <code>Published</code>.</p>
+<p>Similar a <code>request_review</code>, si llamamos al método <code>approve</code> en un <code>Draft</code>, no
+tendrá ningún efecto porque devolverá <code>self</code>. Cuando llamamos a <code>approve</code> on
+<code>PendingReview</code>, devuelve una nueva instancia encuadrada de la estructura
+<code>Published</code>. La estructura <code>Publicada</code> implementa el <em>trait</em> <code>State</code>, y tanto
+para el método <code>request_review</code> como para el método <code>approve</code>, se devuelve a
+sí mismo, porque la publicación debe permanecer en el estado <code>Published</code> en
+esos casos.</p>
+<p>Ahora necesitamos actualizar el método <code>content</code> en <code>Post</code>: si el estado es
+<code>Published</code>, queremos devolver el valor en el campo <code>content</code> de la
+publicación; de lo contrario, queremos devolver un <em>string slice</em> vacío, como
+se muestra en el Listado 17-17:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">trait State {
+</span><span class="boring">    fn content&lt;'a&gt;(&amp;self, post: &amp;'a Post) -&gt; &amp;'a str;
+</span><span class="boring">}
+</span><span class="boring">pub struct Post {
+</span><span class="boring">    state: Option&lt;Box&lt;State&gt;&gt;,
+</span><span class="boring">    content: String,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Post {
+    // --snip--
+    pub fn content(&amp;self) -&gt; &amp;str {
+        self.state.as_ref().unwrap().content(&amp;self)
+    }
+    // --snip--
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 17-17: Actualización del método <code>content</code> en
+<code>Post</code> para delegar en un método <code>content</code> en <code>State</code></span></p>
+<p>Porque el objetivo es mantener todas estas reglas dentro de las estructuras
+que implementan <code>State</code>, llamamos a un método <code>content</code> sobre el valor en
+<code>state</code> y pasamos la publicación instancia (es decir, <code>self</code>) como argumento.
+Luego devolvemos el valor que es regresó de usar el método <code>content</code> en el
+valor <code>state</code>.</p>
+<p>Llamamos al método <code>as_ref</code> en la <code>Option</code> porque queremos una referencia al
+valor dentro de la <code>Option</code> en lugar de la propiedad del valor. Porque
+<code>state</code> es un <code>Option&lt;Box&lt;State&gt;&gt;</code>, cuando llamamos <code>as_ref</code>, un
+<code>Option&lt;&amp;Box&lt;State&gt;&gt;</code> es devuelto. Si no llamamos a <code>as_ref</code>, obtendríamos un
+error porque no podemos mueve <code>state</code> fuera del <code>&amp;self</code> prestado del
+parámetro function.</p>
+<p>Luego llamamos al método <code>unwrap</code>, que sabemos que nunca entrará en pánico,
+porque conocer los métodos en 'Post' asegurar que <code>state</code> siempre contenga un
+<code>Some</code> valor cuando esos métodos están hechos. Este es uno de los casos de
+los que hablamos en la sección “Casos cuando tiene más información que el
+compilador” del Capítulo 9 cuando sabemos que un valor <code>None</code> nunca es
+posible, aunque el compilador no es capaz de entender eso.</p>
+<p>En este punto, cuando llamemos a <code>content</code> en <code>&amp;Box&lt;State&gt;</code>, la coerción
+<em>deref</em> tendrá efecto en el <code>&amp;</code> y en el <code>Box</code> por lo que el método <code>content</code>
+será en última instancia llamado en el tipo que implementa el <em>trait</em>
+<code>State</code>. Eso significa que tenemos que agregar <code>content</code> a la definición de
+<em>trait</em> <code>State</code>, y ahí es donde pondremos la lógica de qué contenido devolver
+dependiendo de qué estado tenemos, como se muestra en el Listado 17-18:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">pub struct Post {
+</span><span class="boring">    content: String
+</span><span class="boring">}
+</span>trait State {
+    // --snip--
+    fn content&lt;'a&gt;(&amp;self, post: &amp;'a Post) -&gt; &amp;'a str {
+        &quot;&quot;
+    }
+}
+
+// --snip--
+struct Published {}
+
+impl State for Published {
+    // --snip--
+    fn content&lt;'a&gt;(&amp;self, post: &amp;'a Post) -&gt; &amp;'a str {
+        &amp;post.content
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 17-18: Agregar el método <code>content</code> al <em>trait</em>
+<code>State</code></span></p>
+<p>Agregamos una implementación predeterminada para el método <code>content</code> que
+devuelve un <em>string slice</em> vacío. Eso significa que no necesitamos
+implementar <code>content</code> en las estructuras <code>Draft</code> y <code>PendingReview</code>. La
+estructura <code>Published</code> anulará el método <code>content</code> y devolverá el valor en
+<code>post.content</code>.</p>
+<p>Tenga en cuenta que necesitamos anotaciones de <em>lifetime</em> en este método,
+como discutimos en el Capítulo 10. Estamos tomando como referencia un
+<code>post</code> como argumento y devolviendo una referencia a parte de ese
+<code>post</code>, por lo que la vida de la referencia devuelta está relacionado con el
+<em>lifetime</em> del argumento <code>post</code>.</p>
+<p>Y hemos terminado, ¡todo el Listado 17-11 ahora funciona!. Implementamos el
+patrón de estado con las reglas del flujo de trabajo de publicación de blog.
+La lógica relacionada con las reglas vive en los <em>objetos de estado</em>
+(<em>state objects</em>) en lugar de dispersarse en <code>Post</code>.</p>
+<h3 id="trade-offs-del-patrón-de-estado"><a class="header" href="#trade-offs-del-patrón-de-estado"><em>Trade-offs</em> del patrón de estado</a></h3>
+<p>Hemos demostrado que Rust es capaz de implementar el patrón de estado
+orientado a objetos para encapsular los diferentes tipos de comportamiento
+que una publicación debe tener en cada estado. Los métodos en <code>Post</code> no saben
+nada sobre los diversos comportamientos. La forma en que organizamos el
+código, tenemos que buscar en un solo lugar para conocer las diferentes
+formas en que se puede comportar una publicación publicada: la implementación
+del <em>trait</em> <code>State</code> en la estructura <code>Published</code>.</p>
+<p>Si tuviéramos que crear una implementación alternativa que no usara el patrón
+de estado, podríamos usar expresiones <code>match</code> en los métodos en <code>Post</code> o
+incluso en el código <code>main</code> que verifica el estado de la publicación y cambia
+el comportamiento en esos lugares. ¡Eso significaría que tendríamos que
+buscar en varios lugares para comprender todas las implicaciones de una
+publicación en el estado publicado! Esto solo aumentaría a más estados que
+agregamos: cada una de esas expresiones <code>match</code> necesitaría otro brazo.</p>
+<p>Con el patrón de estado, los métodos <code>Post</code> y los lugares que usamos <code>Post</code>
+no necesitan expresiones <code>match</code>, y para agregar un nuevo estado, solo
+necesitaríamos agregar una nueva estructura e implementar los métodos del
+<em>trait</em> en esa estructura.</p>
+<p>La implementación que usa el patrón de estado es fácil de ampliar para
+agregar más funcionalidad. Para ver la simplicidad de mantener el código que
+usa el patrón de estado, pruebe algunas de estas sugerencias:</p>
+<ul>
+<li>Agregue un método <code>reject</code> que cambie el estado de la publicación de
+<code>PendingReview</code> de nuevo a <code>Draft</code>.</li>
+<li>Requiere dos llamadas para <code>approve</code> antes de que el estado pueda cambiarse
+a <code>Published</code>.</li>
+<li>Permitir a los usuarios agregar contenido de texto solo cuando una
+publicación está en el estado <code>Draft</code>. Sugerencia: haga que el objeto de
+estado sea responsable de lo que podría cambiar sobre el contenido, pero no
+será responsable de modificar el <code>Post</code>.</li>
+</ul>
+<p>Una desventaja del patrón de estado es que, debido a que los estados
+implementan las transiciones entre estados, algunos de los estados están
+acoplados entre sí. Si agregamos otro estado entre <code>PendingReview</code> y
+<code>Published</code>, como <code>Scheduled</code>, tendríamos que cambiar el código en
+<code>PendingReview</code> para pasar a <code>Scheduled</code> en su lugar. Sería menos trabajo si
+<code>PendingReview</code> no necesitara cambiarse con la adición de un nuevo estado,
+pero eso significaría cambiar a otro patrón de diseño.</p>
+<p>Otro inconveniente es que hemos duplicado algo de lógica. Para eliminar
+parte de la duplicación, podemos intentar realizar implementaciones
+predeterminadas para los métodos <code>request_review</code> y <code>approve</code> en el <em>trait</em>
+<code>State</code> que devuelve <code>self</code>; sin embargo, esto violaría la seguridad de los
+objetos, porque el <em>trait</em> no sabe cuál será exactamente el <code>self</code> concreto. Queremos poder utilizar <code>State</code> como un <em>trait object</em>, por lo que necesitamos que sus métodos sean seguros para los objetos.</p>
+<p>Otra duplicación incluye las implementaciones similares de los métodos
+<code>request_review</code> y <code>approve</code> en <code>Post</code>. Ambos métodos delegan a la
+implementación del mismo método en el valor en el campo <code>state</code> de <code>Option</code>
+y establecen el nuevo valor del campo <code>state</code> en el resultado. Si tuviéramos
+muchos métodos en <code>Post</code> que siguieran este patrón, podríamos considerar la
+definición de una macro para eliminar la repetición (ver el Apéndice D para
+más información sobre macros).</p>
+<p>Al implementar el patrón de estado exactamente como está definido para los
+lenguajes orientados a objetos, no estamos aprovechando al máximo las
+fortalezas de Rust como podríamos. Veamos algunos cambios que podemos hacer
+en el <em>crate</em> <code>blog</code> que puede convertir los estados inválidos y las
+transiciones en errores de tiempo de compilación.</p>
+<h4 id="codificación-de-estados-encoding-states-y-comportamiento-como-tipos"><a class="header" href="#codificación-de-estados-encoding-states-y-comportamiento-como-tipos"><em>Codificación de estados</em> (<em>Encoding States</em>) y comportamiento como tipos</a></h4>
+<p>Le mostraremos cómo repensar el patrón de estado para obtener un conjunto
+diferente de concesiones. En lugar de encapsular completamente los estados y
+las transiciones, por lo que el código externo no los conoce, codificaremos
+los estados en diferentes tipos. En consecuencia, el sistema de comprobación
+de tipos de Rust evitará los intentos de utilizar borradores de
+publicaciones donde solo se permiten publicaciones publicadas al emitir un
+error de compilación.</p>
+<p>Consideremos la primera parte de <code>main</code> en el Listado 17-11:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">fn main() {
+    let mut post = Post::new();
+
+    post.add_text(&quot;I ate a salad for lunch today&quot;);
+    assert_eq!(&quot;&quot;, post.content());
+}
+</code></pre>
+<p>Todavía habilitamos la creación de nuevas publicaciones en el estado del
+borrador utilizando <code>Post::new</code> y la posibilidad de agregar texto al
+contenido de la publicación. Pero en lugar de tener un método <code>content</code> en
+una publicación preliminar que devuelve un <em>string</em> vacío, lo haremos para
+que las publicaciones preliminares no tengan el método <code>content</code> en
+absoluto. De esta forma, si tratamos de obtener el contenido de un borrador,
+obtendremos un error de compilación que nos indicará que el método no
+existe. Como resultado, nos será imposible mostrar accidentalmente el
+contenido del borrador de la publicación en producción, porque ese código ni
+siquiera se compilará. El listado 17-19 muestra la definición de una
+estructura <code>Post</code> y una estructura <code>DraftPost</code>, así como los métodos en cada
+uno:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Post {
+    content: String,
+}
+
+pub struct DraftPost {
+    content: String,
+}
+
+impl Post {
+    pub fn new() -&gt; DraftPost {
+        DraftPost {
+            content: String::new(),
+        }
+    }
+
+    pub fn content(&amp;self) -&gt; &amp;str {
+        &amp;self.content
+    }
+}
+
+impl DraftPost {
+    pub fn add_text(&amp;mut self, text: &amp;str) {
+        self.content.push_str(text);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 17-19: Un <code>Post</code> con un método <code>content</code> y un
+<code>DraftPost</code> sin un método <code>content</code></span></p>
+<p>Las estructuras <code>Post</code> y <code>DraftPost</code> tienen un campo <code>content</code> privado que
+almacena el texto de la entrada del blog. Las estructuras ya no tienen el
+campo <code>state</code> porque estamos moviendo la codificación del estado a los tipos
+de las estructuras. La estructura <code>Post</code> representará una publicación
+publicada, y tiene un método <code>content</code> que devuelve el <code>content</code>.</p>
+<p>Todavía tenemos una función <code>Post::new</code>, pero en lugar de devolver una
+instancia de<code> Post</code>, devuelve una instancia de <code>DraftPost</code>. Como <code>content</code>
+es privado y no hay funciones que devuelvan <code>Post</code>, no es posible crear una
+instancia de <code>Post</code> en este momento.</p>
+<p>La estructura <code>DraftPost</code> tiene un método <code>add_text</code>, por lo que podemos
+agregar texto a <code>content</code> como antes, pero tenga en cuenta que <code>DraftPost</code>
+no tiene definido un método <code>content</code>. Entonces, ahora el programa asegura
+que todas las publicaciones comiencen como borradores de publicaciones, y
+las publicaciones preliminares no tienen su contenido disponible para
+mostrar. Cualquier intento de evitar estas restricciones dará como resultado
+un error de compilación.</p>
+<h4 id="implementando-transiciones-como-transformaciones-en-diferentes-tipos"><a class="header" href="#implementando-transiciones-como-transformaciones-en-diferentes-tipos">Implementando transiciones como transformaciones en diferentes tipos</a></h4>
+<p>Entonces, ¿cómo conseguimos una publicación publicada?. Queremos hacer
+cumplir la regla de que un borrador debe ser revisado y aprobado antes de
+que pueda publicarse. Una publicación en el estado de revisión pendiente aún
+no debe mostrar ningún contenido. Implementemos estas restricciones
+agregando otra estructura, <code>PendingReviewPost</code>, definiendo el método
+<code>request_review</code> en <code>DraftPost</code> para devolver <code>PendingReviewPost</code>, y
+definiendo un método <code>approve</code> en <code>PendingReviewPost</code> para devolver <code>Post</code>,
+como se muestra en el listado 17-20:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">pub struct Post {
+</span><span class="boring">    content: String,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">pub struct DraftPost {
+</span><span class="boring">    content: String,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl DraftPost {
+    // --snip--
+
+    pub fn request_review(self) -&gt; PendingReviewPost {
+        PendingReviewPost {
+            content: self.content,
+        }
+    }
+}
+
+pub struct PendingReviewPost {
+    content: String,
+}
+
+impl PendingReviewPost {
+    pub fn approve(self) -&gt; Post {
+        Post {
+            content: self.content,
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 17-20: Un <code>PendingReviewPost</code> que se crea al
+invocar <code>request_review</code> en <code>DraftPost</code> y un método <code>approve</code> que convierte
+un <code>PendingReviewPost</code> en un <code>Post</code> publicado</span></p>
+<p>Los métodos <code>request_review</code> y <code>approve</code> toman la propiedad de <code>self</code>,
+consumiendo así las instancias <code>DraftPost</code> y <code>PendingReviewPost</code> y
+transformándolas en <code>PendingReviewPost</code> y en <code>Post</code> publicado,
+respectivamente. De esta manera, no tendremos ninguna instancia <code>DraftPost</code>
+persistente después de haber llamado <code>request_review</code> en ellos, y así
+sucesivamente. La estructura <code>PendingReviewPost</code> no tiene un método
+<code>content</code> definido, por lo que intentar leer su contenido genera un error de
+compilación, como con <code>DraftPost</code>. Porque la única forma de obtener una
+instancia de publicación publicada que tenga un método de <code>content</code> definido
+es llamar al método <code>approve</code> en un <code>PendingReviewPost</code>, y la única forma de
+obtener un <code>PendingReviewPost</code> es llamar al método <code>request_review</code> en un
+<code>DraftPost</code>, ahora hemos codificado el flujo de trabajo de la publicación de
+blog en el sistema de tipos.</p>
+<p>Pero también tenemos que hacer algunos pequeños cambios en <code>main</code>. Los
+métodos <code>request_review</code> y <code>approve</code> devuelven nuevas instancias en lugar de
+modificar la estructura a la que están llamadas, por lo que necesitamos
+agregar más asignaciones <em>shadowing</em> <code>let post =</code> para guardar las instancias
+devueltas. Tampoco podemos tener las afirmaciones sobre el borrador y los
+contenidos pendientes de revisión del mensaje como cadenas vacías, ni las
+necesitamos: no podemos compilar código que intente usar el contenido de las
+publicaciones en esos estados por más tiempo. El código actualizado en
+<code>main</code> se muestra en el Listado 17-21:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">extern crate blog;
+use blog::Post;
+
+fn main() {
+    let mut post = Post::new();
+
+    post.add_text(&quot;I ate a salad for lunch today&quot;);
+
+    let post = post.request_review();
+
+    let post = post.approve();
+
+    assert_eq!(&quot;I ate a salad for lunch today&quot;, post.content());
+}
+</code></pre>
+<p><span class="caption">Listado 17-21: Modificaciones a <code>main</code> para usar la
+nueva implementación del flujo de trabajo de blog</span></p>
+<p>Los cambios que necesitamos hacer a <code>main</code> para reasignar <code>post</code> significan
+que esta implementación ya no sigue el patrón de estado orientado a objetos:
+las transformaciones entre los estados ya no están encapsuladas por completo
+dentro de la implementación <code>Post</code>. Sin embargo, nuestra ganancia es que los
+estados inválidos ahora son imposibles debido al sistema de tipos y la
+verificación de tipos que ocurre en tiempo de compilación. Esto garantiza
+que se descubrirán ciertos errores, como la visualización del contenido de
+una publicación no publicada, antes de que lleguen a la producción.</p>
+<p>Pruebe las tareas sugeridas para los requisitos adicionales que mencionamos
+al comienzo de esta sección en el <em>crate</em> <code>blog</code>, ya que es posterior al
+Listado 17-20 para ver qué piensa sobre el diseño de esta versión del
+código. Tenga en cuenta que algunas de las tareas pueden completarse ya en
+este diseño.</p>
+<p>Hemos visto que, aunque Rust es capaz de implementar patrones de diseño
+orientados a objetos, otros patrones, como el estado de codificación en el
+sistema de tipos, también están disponibles en Rust. Estos patrones tienen
+diferentes intercambios. Aunque es posible que esté muy familiarizado con
+los patrones orientados a objetos, repensar el problema para aprovechar las
+características de Rust puede proporcionar beneficios, como la prevención de
+algunos errores en tiempo de compilación. Los patrones orientados a objetos
+no siempre serán la mejor solución en Rust debido a ciertas características,
+como la propiedad, que los lenguajes orientados a objetos no tienen.</p>
+<h2 id="resumen"><a class="header" href="#resumen">Resumen</a></h2>
+<p>No importa si cree que Rust es un lenguaje orientado a objetos después de
+leer este capítulo, ahora sabe que puede usar <em>trait objects</em> para obtener
+algunas características orientadas a objetos en Rust. El <em>dynamic dispatch</em>
+(<em>despacho dinámico</em>) puede darle flexibilidad a su código a cambio de un
+poco de rendimiento en el tiempo de ejecución. Puede utilizar esta
+flexibilidad para implementar patrones orientados a objetos que pueden
+ayudar al mantenimiento de su código. Rust también tiene otras
+características, como la propiedad, que los lenguajes orientados a objetos
+no tienen. Un patrón orientado a objetos no siempre será la mejor manera de
+aprovechar las fortalezas de Rust, pero es una opción disponible.</p>
+<p>A continuación, veremos patrones, que son otra de las características de
+Rust que permiten mucha flexibilidad. Los hemos visto brevemente a lo largo
+del libro, pero todavía no hemos visto su capacidad completa. ¡Vamonos!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch17-02-trait-objects.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch18-00-patterns.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch17-02-trait-objects.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch18-00-patterns.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

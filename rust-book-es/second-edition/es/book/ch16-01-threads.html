@@ -1,0 +1,540 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Threads - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html" class="active"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="usar-hilos-threads-para-ejecutar-código-simultáneamente"><a class="header" href="#usar-hilos-threads-para-ejecutar-código-simultáneamente">Usar hilos <em>Threads</em> para ejecutar código simultáneamente</a></h2>
+<p>En la mayoría de los sistemas operativos actuales, el código de un programa
+ejecutado se ejecuta en <em>proceso</em> y el sistema operativo administra múltiples
+procesos a la vez. Dentro de su programa, también puede tener partes
+independientes que se ejecutan simultáneamente. Las características que
+ejecutan estas partes independientes se llaman <em>hilos</em> (<em>threads</em>).</p>
+<p>La división de la computación en su programa en múltiples hilos puede mejorar
+el rendimiento porque el programa realiza múltiples tareas al mismo tiempo,
+pero también agrega complejidad. Debido a que los hilos se pueden ejecutar
+simultáneamente, no hay garantía inherente sobre el orden en que se
+ejecutarán partes de su código en diferentes hilos. Esto puede ocasionar
+problemas, como:</p>
+<ul>
+<li>Condiciones de carrera, donde los hilos están accediendo a los datos o
+recursos en un orden inconsistente</li>
+<li><em>Deadlocks</em>, donde dos subprocesos están esperando el uno al otro para
+terminar usando un recurso que tiene el otro subproceso, evitando que ambos
+subprocesos continúen</li>
+<li>Errores que ocurren solo en ciertas situaciones y son difíciles de
+reproducir y corregir confiablemente</li>
+</ul>
+<p>Rust intenta mitigar los efectos negativos del uso de hilos, pero
+la programación en un contexto multiproceso todavía requiere una reflexión
+cuidadosa y requiere una estructura de código que es diferente de la de los
+programas que se ejecutan en un solo hilo.</p>
+<p>Los lenguajes de programación implementan subprocesos de diferentes formas.
+Muchos de los sistemas operativos proporcionan una API para crear nuevos
+hilos. Este modelo donde un lenguaje llama a las API del sistema operativo
+para crear subprocesos a veces se llama <em>1:1</em>, es decir, un hilo del sistema operativo por hilo de un lengunaje.</p>
+<p>Muchos lenguajes de programación proporcionan su propia implementación
+especial de hilos. Los hilos de programación proporcionados por el lebguaje
+se conocen como hilos <em>verdes</em>, y los lenguajes que usan estos hilos verdes
+los ejecutarán en el contexto de un diferente número de hilos del sistema
+operativo. Por esta razón, el modelo de subproceso verde se llama modelo
+<em>M:N</em> : hay <code>M</code> subprocesos verdes por <code>N</code> hilos del sistema operativo,
+donde <code>M</code> y <code>N</code> no son necesariamente los mismos número.</p>
+<p>Cada modelo tiene sus propias ventajas y desventajas, y la compensación más
+importante para Rust es el soporte en tiempo de ejecución. <em>Runtime</em> es un término confuso y puede tener diferentes significados en diferentes contextos.</p>
+<p>En este contexto, por <em>runtime</em> nos referimos al código que está incluido en
+el lenguaje en cada binario este código puede ser grande o pequeño según el
+lenguaje, pero cada lenguaje no ensamblado tendrá una cierta cantidad de
+código de tiempo de ejecución. Por esa razón, coloquialmente cuando las
+personas dicen que un lenguaje no tiene “tiempo de ejecución”, a menudo
+significa “tiempo de ejecución pequeño” (<em>“small runtime.”</em>). Los tiempos de
+ejecución más pequeños tienen menos funciones pero tienen el
+ventaja de dar como resultado binarios más pequeños, que hacen que sea más
+fácil combinar el lenguaje con otros lenguajes en más contextos. Aunque
+muchos lenguajes están bien para aumentar el tamaño del tiempo de ejecución a
+cambio de más características, Rust no necesita casi tiempo de ejecución y no
+puede comprometerse a poder llamar a C para mantener el rendimiento.</p>
+<p>El modelo <em>green-threading</em> M: N requiere un tiempo de ejecución de lenguaje
+más grande para administrar <em>threads</em>. Como tal, la biblioteca estándar de
+Rust solo proporciona una implementación de 1:1 <em>threading</em>. Debido a que
+Rust es un lenguaje de bajo nivel, hay <em>crates</em> que implemente el <em>threading</em>
+M:N
+if you would rather trade overhead for aspects such as more control over
+which threads run when and lower costs of context switching, for example.</p>
+<p>Ahora que hemos definido los hilos en Rust, exploremos cómo usar el
+API relacionada con hilos proporcionada por la biblioteca estándar.</p>
+<h3 id="creando-un-nuevo-hilo-thread-con-spawn"><a class="header" href="#creando-un-nuevo-hilo-thread-con-spawn">Creando un nuevo hilo <em>Thread</em> con <code>spawn</code></a></h3>
+<p>Para crear un nuevo hilo, llamamos a la función <code>thread::spawn</code> y le pasamos
+un <em>closure</em> (hablamos de <em>closure</em> en el Capítulo 13) que contiene el código
+que queremos ejecutar en el nuevo hilo. El ejemplo en el listado 16-1 imprime
+un texto de un hilo principal y otro texto de un nuevo hilo:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">use std::thread;
+use std::time::Duration;
+
+fn main() {
+    thread::spawn(|| {
+        for i in 1..10 {
+            println!(&quot;hi number {} from the spawned thread!&quot;, i);
+            thread::sleep(Duration::from_millis(1));
+        }
+    });
+
+    for i in 1..5 {
+        println!(&quot;hi number {} from the main thread!&quot;, i);
+        thread::sleep(Duration::from_millis(1));
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 16-1: Creando un nuevo hilo para imprimir una
+cosa mientras el hilo principal imprime algo más</span></p>
+<p>Tenga en cuenta que con esta función, el nuevo <em>thread</em> se detendrá cuando e
+hilo principal finalice, haya terminado de ejecutarse o no. El resultado de
+este programa puede ser un poco diferente cada vez, pero se verá de manera
+similar a lo siguiente:</p>
+<pre><code class="language-text">hi number 1 from the main thread!
+hi number 1 from the spawned thread!
+hi number 2 from the main thread!
+hi number 2 from the spawned thread!
+hi number 3 from the main thread!
+hi number 3 from the spawned thread!
+hi number 4 from the main thread!
+hi number 4 from the spawned thread!
+hi number 5 from the spawned thread!
+</code></pre>
+<p>Las llamadas a <code>thread::sleep</code> obligan a un hilo a detener su ejecución
+durante un breve período de tiempo, permitiendo la ejecución de un hilo
+diferente. Los hilos probablemente se turnarán, pero eso no está garantizado:
+depende de cómo el sistema operativo programa los hilos. En esta ejecución,
+el hilo principal se imprimió primero, aunque la declaración de impresión del
+hilo generado aparece primero en el código. Y a pesar de que le dijimos al
+hilo generado que se imprimiera hasta que <code>i</code> sea 9, solo llegó a 5 antes de
+que el hilo principal se apagara.</p>
+<p>Si ejecuta este código y solo ve el resultado del hilo principal, o no ve
+ninguna superposición, intente aumentar los números en los rangos para crear
+más oportunidades para que el sistema operativo cambie entre los hilos.</p>
+<h3 id="esperando-a-que-todos-los-hilos-terminen-usando-join-handles"><a class="header" href="#esperando-a-que-todos-los-hilos-terminen-usando-join-handles">Esperando a que todos los hilos terminen usando <code>join</code> <em>Handles</em></a></h3>
+<p>El código en el listado 16-1 no solo detiene el subproceso <em>engendrado</em>
+(<em>spawned</em>) prematuramente la mayor parte del tiempo debido al final del
+subproceso principal, sino que tampoco puede garantizar que el subproceso
+generado se ejecute en absoluto. ¡La razón es que no hay garantía sobre el
+orden en que se ejecutan los hilos!</p>
+<p>Podemos solucionar el problema de que el subproceso generado no se ejecute, o
+no se ejecute por completo, al guardar el valor de retorno de
+<code>thread::spawn</code> en una variable. El tipo de devolución de <code>thread::spawn</code> es
+<code>JoinHandle</code>. Un <code>JoinHandle</code> es un valor propio que, cuando llamemos al
+método <code>join</code>, esperará a que su subproceso termine. El listado 16-2 muestra
+cómo usar el <code>JoinHandle</code> del hilo que creamos en el listado 16-1 y llamar
+<code>join</code> para asegurarse de que el hilo generado termine antes de que <code>main</code>
+salga:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">use std::thread;
+use std::time::Duration;
+
+fn main() {
+    let handle = thread::spawn(|| {
+        for i in 1..10 {
+            println!(&quot;hi number {} from the spawned thread!&quot;, i);
+            thread::sleep(Duration::from_millis(1));
+        }
+    });
+
+    for i in 1..5 {
+        println!(&quot;hi number {} from the main thread!&quot;, i);
+        thread::sleep(Duration::from_millis(1));
+    }
+
+    handle.join().unwrap();
+}
+</code></pre></pre>
+<p><span class="caption">Listado 16-2: Guardar un <code>JoinHandle</code> de
+<code>thread::spawn</code> para garantizar que el hilo se ejecuta hasta su
+finalización</span></p>
+<p>Llamar a <code>join</code> en el <em>handle</em> bloquea el hilo que se está ejecutando
+actualmente hasta que termina el hilo representado por el <em>handle</em>.
+<em>Bloquear</em> un hilo significa que el hilo no puede funcionar o salir.
+Debido a que hemos llamado <code>join</code> después del ciclo <code>for</code> del hilo principal,
+la ejecución del Listado 16-2 debería producir un resultado similar al siguiente:</p>
+<pre><code class="language-text">hi number 1 from the main thread!
+hi number 2 from the main thread!
+hi number 1 from the spawned thread!
+hi number 3 from the main thread!
+hi number 2 from the spawned thread!
+hi number 4 from the main thread!
+hi number 3 from the spawned thread!
+hi number 4 from the spawned thread!
+hi number 5 from the spawned thread!
+hi number 6 from the spawned thread!
+hi number 7 from the spawned thread!
+hi number 8 from the spawned thread!
+hi number 9 from the spawned thread!
+</code></pre>
+<p>Los dos hilos continúan alternando, pero el hilo principal espera debido a la
+llamada a <code>handle.join()</code> y no termina hasta que finaliza el hilo generado.</p>
+<p>Pero veamos qué sucede cuando movemos <code>handle.join()</code> antes del bucle <code>for</code>
+en <code>main</code>, así:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">use std::thread;
+use std::time::Duration;
+
+fn main() {
+    let handle = thread::spawn(|| {
+        for i in 1..10 {
+            println!(&quot;hi number {} from the spawned thread!&quot;, i);
+            thread::sleep(Duration::from_millis(1));
+        }
+    });
+
+    handle.join().unwrap();
+
+    for i in 1..5 {
+        println!(&quot;hi number {} from the main thread!&quot;, i);
+        thread::sleep(Duration::from_millis(1));
+    }
+}
+</code></pre></pre>
+<p>El hilo principal esperará a que termine el hilo generado (spawned) y luego ejecutará su ciclo <code>for</code>, por lo que la salida ya no se intercalará, como se
+muestra aquí:</p>
+<pre><code class="language-text">hi number 1 from the spawned thread!
+hi number 2 from the spawned thread!
+hi number 3 from the spawned thread!
+hi number 4 from the spawned thread!
+hi number 5 from the spawned thread!
+hi number 6 from the spawned thread!
+hi number 7 from the spawned thread!
+hi number 8 from the spawned thread!
+hi number 9 from the spawned thread!
+hi number 1 from the main thread!
+hi number 2 from the main thread!
+hi number 3 from the main thread!
+hi number 4 from the main thread!
+</code></pre>
+<p>Los pequeños detalles, como donde se llama a <code>join</code>, pueden afectar si sus
+hilos se ejecutan al mismo tiempo o no.</p>
+<h3 id="usar-move-closures-con-threads"><a class="header" href="#usar-move-closures-con-threads">Usar <code>move</code> <em>Closures</em> con <em>Threads</em></a></h3>
+<p>El <code>move</code> <em>closure</em> se usa a menudo junto con <code>thread::spawn</code> porque le
+permite usar datos de un hilo en otro hilo.</p>
+<p>En el Capítulo 13, mencionamos que podemos usar la palabra clave <code>move</code> antes
+de la lista de parámetros de un <em>closure</em> para forzar al <em>closure</em> a tomar
+posesión de los valores que utiliza en el entorno. Esta técnica es
+especialmente útil cuando se crean nuevos hilos para transferir la propiedad
+de los valores de un hilo a otro.</p>
+<p>Observe en el listado 16-1 que el <em>closure</em> que pasamos a <code>thread::spawn</code> no
+toma argumentos: no estamos usando ningún dato del hilo principal en el
+código del hilo generado. Para usar datos del hilo principal en el hilo
+generado, el <em>closure</em> del hilo engendrado debe capturar los valores que
+necesita. El listado 16-3 muestra un intento de crear un vector en el hilo
+principal y usarlo en el hilo generado. Sin embargo, esto aún no funcionará,
+como verá en un momento.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">use std::thread;
+
+fn main() {
+    let v = vec![1, 2, 3];
+
+    let handle = thread::spawn(|| {
+        println!(&quot;Here's a vector: {:?}&quot;, v);
+    });
+
+    handle.join().unwrap();
+}
+</code></pre>
+<p><span class="caption">Listado 16-3: Intentando usar un vector creado por el
+hilo principal en otro hilo</span></p>
+<p>El <em>closure</em> utiliza <code>v</code>, por lo que capturará <code>v</code> y lo convertirá en parte
+del entorno del <em>closure</em>. Debido a que <code>thread::spawn</code> ejecuta este
+<em>closure</em> en un nuevo hilo, deberíamos poder acceder a <code>v</code> dentro del nuevo
+hilo. Pero cuando compilamos este ejemplo, obtenemos el siguiente error:</p>
+<pre><code class="language-text">error[E0373]: closure may outlive the current function, but it borrows `v`,
+which is owned by the current function
+ --&gt; src/main.rs:6:32
+  |
+6 |     let handle = thread::spawn(|| {
+  |                                ^^ may outlive borrowed value `v`
+7 |         println!(&quot;Here's a vector: {:?}&quot;, v);
+  |                                           - `v` is borrowed here
+  |
+help: to force the closure to take ownership of `v` (and any other referenced
+variables), use the `move` keyword
+  |
+6 |     let handle = thread::spawn(move || {
+  |                                ^^^^^^^
+</code></pre>
+<p>Rust <em>infiere</em> cómo capturar <code>v</code>, y porque <code>println!</code> solo necesita una
+referencia a <code>v</code>, el <em>closure</em> intenta tomar prestado <code>v</code>. Sin embargo, hay
+un problema: Rust no puede decir cuánto tiempo se ejecutará el subproceso
+generado, por lo que no sabe si la referencia a <code>v</code> siempre será válida.</p>
+<p>El listado 16-4 proporciona un escenario que es más probable que tenga una
+referencia a <code>v</code> que no será válida:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">use std::thread;
+
+fn main() {
+    let v = vec![1, 2, 3];
+
+    let handle = thread::spawn(|| {
+        println!(&quot;Here's a vector: {:?}&quot;, v);
+    });
+
+    drop(v); // oh no!
+
+    handle.join().unwrap();
+}
+</code></pre>
+<p><span class="caption">Listado 16-4: Un hilo con un <em>closure</em> que intenta
+capturar una referencia a <code>v</code> de un hilo principal que suelta <code>v</code></span></p>
+<p>Si se nos permitiera ejecutar este código, existe la posibilidad de que el
+hilo generado se ponga inmediatamente en segundo plano sin ejecutar en
+absoluto. El hilo generado tiene una referencia a <code>v</code> dentro, pero el hilo
+principal cae inmediatamente <code>v</code>, usando la función <code>drop</code> que discutimos en
+el Capítulo 15. Luego, cuando el hilo engendrado comienza a ejecutarse, <code>v</code>
+ya no está válido, por lo que una referencia al mismo tampoco es válida. ¡Oh
+no!</p>
+<p>Para corregir el error del compilador en el listado 16-3, podemos usar los
+consejos del mensaje de error:</p>
+<pre><code class="language-text">help: to force the closure to take ownership of `v` (and any other referenced
+variables), use the `move` keyword
+  |
+6 |     let handle = thread::spawn(move || {
+  |                                ^^^^^^^
+</code></pre>
+<p>Al agregar la palabra clave <code>mover</code> antes del <em>closure</em>, forzamos al
+<em>closure</em> a tomar posesión de los valores que está usando en lugar de
+permitir que Rust infiera que debe tomar prestados los valores. La
+modificación del listado 16-3 que se muestra en el listado 16-5 se compilará
+y ejecutará según lo que pretendemos:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">use std::thread;
+
+fn main() {
+    let v = vec![1, 2, 3];
+
+    let handle = thread::spawn(move || {
+        println!(&quot;Here's a vector: {:?}&quot;, v);
+    });
+
+    handle.join().unwrap();
+}
+</code></pre></pre>
+<p><span class="caption">Listado 16-5: Usar la palabra clave <code>move</code> para forzar
+a un <em>closure</em> a tomar posesión de los valores que usa</span></p>
+<p>¿Qué pasaría con el código en el listado 16-4 donde el hilo principal llamado
+<code>drop</code> si usamos un <em>closure</em> <code>move</code>?, ¿<code>move</code> arreglaría ese caso?.
+Lamentablemente no; obtendríamos un error diferente porque lo que el listado
+16-4 intenta hacer no está permitido por un motivo diferente. Si agregamos
+<code>move</code> al <em>closure</em>, moveríamos <code>v</code> al entorno del <em>closure</em>, y ya no
+podríamos llamar <code>drop</code> en el hilo principal. Obtendríamos este error de
+compilación en su lugar:</p>
+<pre><code class="language-text">error[E0382]: use of moved value: `v`
+  --&gt; src/main.rs:10:10
+   |
+6  |     let handle = thread::spawn(move || {
+   |                                ------- value moved (into closure) here
+...
+10 |     drop(v); // oh no!
+   |          ^ value used here after move
+   |
+   = note: move occurs because `v` has type `std::vec::Vec&lt;i32&gt;`, which does
+   not implement the `Copy` trait
+</code></pre>
+<p>¡Las reglas de propiedad de Rust nos han salvado de nuevo! Obtuvimos un error
+del código en el listado 16-3 porque Rust estaba siendo conservador y solo
+pedía prestado <code>v</code> para el hilo, lo que significaba que el hilo principal
+podría invalidar teóricamente la referencia del hilo generado. Al decirle a
+Rust que mueva la propiedad de <code>v</code> al hilo generado, le garantizamos a Rust
+que el hilo principal ya no usará <code>v</code>. Si cambiamos el Listado 16-4 de la
+misma manera, entonces estamos violando las reglas de propiedad cuando
+tratamos de usar <code>v</code> en el hilo principal. La palabra clave <code>move</code> anula el
+valor predeterminado de préstamo de Rust; no nos permite violar las reglas de
+propiedad.</p>
+<p>Con una comprensión básica de los hilos y la API del hilo, veamos qué podemos
+<em>hacer</em> con los hilos.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch16-00-concurrency.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch16-02-message-passing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch16-00-concurrency.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch16-02-message-passing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Test Organization - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html" class="active"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="organización-de-prueba"><a class="header" href="#organización-de-prueba">Organización de prueba</a></h2>
+<p>Como se mencionó al comienzo del capítulo, las pruebas son una disciplina
+compleja, y diferentes personas usan terminología y organización diferentes.
+La comunidad de Rust piensa en las pruebas en términos de dos categorías
+principales: <em>pruebas unitarias</em> y <em>pruebas de integración</em>
+(<em>unit tests</em> and <em>integration tests</em>). Las pruebas unitarias son pequeñas y
+más enfocadas, probando un módulo por separado a la vez, y pueden probar
+interfaces privadas. Las pruebas de integración son completamente externas a
+su biblioteca y usan su código de la misma manera que cualquier otro código
+externo, utilizando solo la interfaz pública y posiblemente ejerciendo
+múltiples módulos por prueba.</p>
+<p>Escribir ambos tipos de pruebas es importante para garantizar que las piezas
+de su biblioteca estén haciendo lo que espera, por separado y juntas.</p>
+<h3 id="pruebas-unitarias"><a class="header" href="#pruebas-unitarias">Pruebas unitarias</a></h3>
+<p>El propósito de las pruebas unitarias es probar cada unidad de código
+aisladamente del resto del código para identificar rápidamente dónde está el
+código y qué no funciona como se espera. Colocará pruebas unitarias en el
+directorio <em>src</em> de cada archivo con el código que están probando. La
+convención es crear un módulo llamado <code>tests</code> en cada archivo para contener
+las funciones de prueba y anotar el módulo con <code>cfg(test)</code>.</p>
+<h4 id="el-módulo-de-pruebas-y-cfgprueba"><a class="header" href="#el-módulo-de-pruebas-y-cfgprueba">El Módulo de Pruebas y <code>#[cfg(prueba)]</code></a></h4>
+<p>La anotación <code>#[cfg(prueba)]</code> en el módulo de pruebas le dice a Rust que
+compile y ejecute el código de prueba solo cuando ejecuta <code>carga test</code>, no
+cuando ejecuta <code>cargo build</code>. Esto ahorra tiempo de compilación cuando solo
+desea construir la biblioteca y ahorra espacio en el artefacto compilado
+resultante porque las pruebas no están incluidas. Verá que debido a que las
+pruebas de integración van en un directorio diferente, no necesitan la
+anotación <code>#[cfg(prueba)]</code>. Sin embargo, como las pruebas unitarias van en
+los mismos archivos que el código, usará <code>#[cfg(prueba)]</code> para especificar
+que no se deben incluir en el resultado compilado.</p>
+<p>Recuerde que cuando generamos el nuevo proyecto <code>adder</code> en la primera sección
+de este capítulo, Cargo generó este código para nosotros:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Este código es el módulo de prueba generado automáticamente. El atributo
+<code>cfg</code> significa <em>configuración</em> y le dice a Rust que el siguiente ítem solo
+debería incluirse dado una determinada opción de configuración. En este caso,
+la opción de configuración es <code>test</code>, que es proporcionada por Rust para
+compilar y ejecutar pruebas. Al utilizar el atributo <code>cfg</code>, Cargo compila
+nuestro código de prueba solo si ejecutamos activamente las pruebas con
+<code>cargo test</code>. Esto incluye cualquier función auxiliar que pueda estar dentro
+de este módulo, además de las funciones anotadas con <code>#[test]</code>.</p>
+<h4 id="prueba-de-funciones-privadas"><a class="header" href="#prueba-de-funciones-privadas">Prueba de funciones privadas</a></h4>
+<p>Existe un debate dentro de la comunidad de pruebas sobre si las funciones
+privadas deben o no evaluarse directamente, y otros idiomas dificultan o
+imposibilitan la prueba de funciones privadas. Independientemente de la
+ideología de prueba que adhiera, las reglas de privacidad de Rust le permiten
+probar funciones privadas. Considere el código en el listado 11-12 con la
+función privada <code>internal_adder</code>.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn add_two(a: i32) -&gt; i32 {
+    internal_adder(a, 2)
+}
+
+fn internal_adder(a: i32, b: i32) -&gt; i32 {
+    a + b
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn internal() {
+        assert_eq!(4, internal_adder(2, 2));
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 11-12: Prueba de una función privada</span></p>
+<p>Tenga en cuenta que la función <code>internal_adder</code> no está marcada como <code>pub</code>,
+pero como las pruebas son solo código Rust y el módulo <code>tests</code> es simplemente
+otro módulo, puede importar y llamar <code>internal_adder</code> en una prueba bien.
+Si no crees que se deben probar las funciones privadas, no hay nada en Rust
+que te obligue a hacerlo.</p>
+<h3 id="pruebas-de-integración"><a class="header" href="#pruebas-de-integración">Pruebas de integración</a></h3>
+<p>En Rust, las pruebas de integración son completamente externas a tu
+biblioteca. Utilizan su biblioteca de la misma manera que lo haría con
+cualquier otro código, lo que significa que solo pueden llamar a funciones
+que forman parte de la API pública de su biblioteca. Su propósito es probar
+si muchas partes de su biblioteca funcionan juntas correctamente. Las
+unidades de código que funcionan correctamente por sí mismas podrían tener
+problemas cuando están integradas, por lo que la cobertura de prueba del
+código integrado también es importante. Para crear pruebas de integración,
+primero necesita un directorio <em>tests</em>.</p>
+<h4 id="el-directorio-tests"><a class="header" href="#el-directorio-tests">El directorio <em>tests</em></a></h4>
+<p>Creamos un directorio <em>tests</em> en el nivel superior de nuestro directorio de
+proyectos, junto a <em>src</em>. Cargo sabe buscar archivos de prueba de integración
+en este directorio. Entonces podemos hacer tantos archivos de prueba como
+queramos en este directorio, y Cargo compilará cada uno de los archivos como
+una caja individual.</p>
+<p>Vamos a crear una prueba de integración. Con el código en el listado 11-12
+todavía en el archivo <em>src/lib.rs</em>, cree un directorio <em>tests</em>, cree un nuevo
+archivo llamado <em>tests/integration_test.rs</em>, e ingrese el código en el
+listado 11-13.</p>
+<p><span class="filename">Filename: tests/integration_test.rs</span></p>
+<pre><code class="language-rust ignore">extern crate adder;
+
+#[test]
+fn it_adds_two() {
+    assert_eq!(4, adder::add_two(2));
+}
+</code></pre>
+<p><span class="caption">Una prueba de integración de una función
+en el crate <code>adder</code></span></p>
+<p>Hemos agregado <code>extern crate adder</code> en la parte superior del código, que no
+necesitamos en las pruebas unitarias. La razón es que cada prueba en el
+directorio <code>tests</code> es una caja separada, por lo que debemos importar nuestra
+biblioteca a cada una de ellas.</p>
+<p>No es necesario anotar ningún código en <em>tests/integration_test.rs</em> con
+<code>#[cfg(prueba)]</code>. Cargo trata el directorio <code>tests</code> especialmente y compila
+los archivos en este directorio solo cuando ejecutamos <code>cargo test</code>. Ejecute
+<code>cargo test</code> ahora:</p>
+<pre><code class="language-text">$ cargo test
+   Compiling adder v0.1.0 (file:///projects/adder)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.31 secs
+     Running target/debug/deps/adder-abcabcabc
+
+running 1 test
+test tests::internal ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/debug/deps/integration_test-ce99bcc2479f4607
+
+running 1 test
+test it_adds_two ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+   Doc-tests adder
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>Las tres secciones de salida incluyen las pruebas unitarias, la prueba de
+integración y las pruebas de doc. La primera sección para las pruebas
+unitarias es la misma que hemos visto: una línea para cada prueba unitaria
+(una llamada <code>internal</code> que agregamos en el Listado 11-12) y luego una línea
+de resumen para las pruebas unitarias.</p>
+<p>La sección de pruebas de integración comienza con la línea
+<code>Running target/debug/deps/ integration test-ce99bcc2479f4607</code>
+(el hash al final de su salida será diferente). A continuación, hay una línea
+para cada función de prueba en esa prueba de integración y una línea de
+resumen para los resultados de la prueba de integración justo antes de que
+comience la sección <code>Doc-tests adder</code>.</p>
+<p>De forma similar a cómo agregar más funciones de prueba unitarias agrega más
+líneas de resultado a la sección de pruebas de la unidad, agregar más
+funciones de prueba al archivo de prueba de integración agrega más líneas de
+resultados a esta sección del archivo de prueba de integración. Cada archivo
+de prueba de integración tiene su propia sección, por lo que si agregamos más
+archivos en el directorio <em>tests</em>, habrá más secciones de prueba de integración.</p>
+<p>Todavía podemos ejecutar una función de prueba de integración particular
+especificando el nombre de la función de prueba como un argumento para
+<code>cargo test</code>. Para ejecutar todas las pruebas en un archivo de prueba de
+integración en particular, use el argumento <code>--test</code> de <code>cargo test</code> seguido
+del nombre del archivo:</p>
+<pre><code class="language-text">$ cargo test --test integration_test
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+     Running target/debug/integration_test-952a27e0126bb565
+
+running 1 test
+test it_adds_two ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>Este comando ejecuta solo las pruebas en el archivo
+*tests/integration_test.rs *.</p>
+<h4 id="submódulos-en-pruebas-de-integración"><a class="header" href="#submódulos-en-pruebas-de-integración">Submódulos en pruebas de integración</a></h4>
+<p>A medida que agrega más pruebas de integración, es posible que desee crear
+más de un archivo en el directorio <em>tests</em> para ayudar a organizarlos; por
+ejemplo, puede agrupar las funciones de prueba por la funcionalidad que están
+probando. Como se mencionó anteriormente, cada archivo en el directorio
+<em>tests</em> se compila como su propio <em>crate</em> separado.</p>
+<p>El tratamiento de cada archivo de prueba de integración como su propio
+<em>crate</em> es útil para crear ámbitos separados que se parecen más a la forma en
+que los usuarios finales usarán su <em>crate</em>. Sin embargo, esto significa que
+los archivos en el directorio <em>tests</em> no comparten el mismo comportamiento
+que los archivos en <em>src</em> hacen, como aprendió en el Capítulo 7 con respecto
+a cómo separar el código en módulos y archivos.</p>
+<p>El comportamiento diferente de los archivos en el directorio <em>tests</em> es más
+notable cuando tiene un conjunto de funciones auxiliares que serían útiles en
+múltiples archivos de prueba de integración e intenta seguir los pasos de la
+sección “Mover módulos a otros archivos” del capítulo 7 para extraerlos en un módulo común. Por ejemplo, si creamos <em>tests/common.rs</em> y colocamos una
+función llamada <code>setup</code>, podemos agregar un código a <code>setup</code> que queremos
+llamar desde múltiples funciones de prueba en múltiples archivos de prueba:</p>
+<p><span class="filename">Filename: tests/common.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn setup() {
+    // setup code specific to your library's tests would go here
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Cuando ejecutemos las pruebas nuevamente, veremos una nueva sección en la
+salida de prueba para el archivo <em>common.rs</em>, aunque este archivo no contenga
+ninguna función de prueba ni llamemos a la función <code>setup</code> desde ningún lugar:</p>
+<pre><code class="language-text">running 1 test
+test tests::internal ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/debug/deps/common-b8b07b6f1be2db70
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/debug/deps/integration_test-d993c68b431d39df
+
+running 1 test
+test it_adds_two ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+   Doc-tests adder
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p><code>common</code> aparece en los resultados de la prueba con <code>running 0 tests</code> para
+que no sea lo que queríamos. Solo queríamos compartir un código con los otros
+archivos de prueba de integración.</p>
+<p>Para evitar que aparezca <code>common</code> en la salida de prueba, en lugar de crear
+<em>tests/common.rs</em>, crearemos <em>tests/common/mod.rs</em>. En la sección “Reglas de
+los sistemas de archivos del módulo” del Capítulo 7, usamos la convención de
+nomenclatura <em>nombre_módulo/mod.rs</em> para los archivos de los módulos que
+tienen submódulos. No tenemos submódulos para 'comunes' aquí, pero nombrar el
+archivo de esta manera le dice a Rust que no trate el módulo <code>common</code> como un
+archivo de prueba de integración. Cuando movemos el código de la función
+<code>setup</code> en <em>tests/common/mod.rs</em> y eliminamos el archivo <em>tests/common.rs</em>,
+la sección en la salida de prueba ya no aparecerá. Los archivos en
+subdirectorios del directorio <em>tests</em> no se compilan como <em>cretes</em> separadas
+o tienen secciones en la salida de prueba.</p>
+<p>Después de que hemos creado <em>tests/common/mod.rs</em>, podemos usarlo desde
+cualquiera de los archivos de prueba de integración como un módulo. Aquí hay
+un ejemplo de llamar a la función <code>setup</code> de la prueba <code>it_adds_two</code> en
+<em>tests/integration_test.rs</em>:</p>
+<p><span class="filename">Filename: tests/integration_test.rs</span></p>
+<pre><code class="language-rust ignore">extern crate adder;
+
+mod common;
+
+#[test]
+fn it_adds_two() {
+    common::setup();
+    assert_eq!(4, adder::add_two(2));
+}
+</code></pre>
+<p>Tenga en cuenta que la declaración <code>mod common;</code> es la misma que las
+declaraciones de módulo que demostramos en el listado 7-4. Luego, en la
+función de prueba, podemos llamar a la función <code>common::setup ()</code>.</p>
+<h4 id="pruebas-de-integración-para-binary-crates"><a class="header" href="#pruebas-de-integración-para-binary-crates">Pruebas de integración para <em>Binary Crates</em></a></h4>
+<p>Si nuestro proyecto es una <em>binary crates</em> que solo contiene un archivo
+<em>src/main.rs</em> y no tiene un archivo <em>src/lib.rs</em>, no podemos crear pruebas de
+integración en el directorio <em>tests</em> y usar <code>extern crate</code> para importar
+funciones definidas en el archivo *src/main.rs *. Solo los <em>crates</em> de la
+biblioteca exponen funciones que otros <em>crates</em> pueden llamar y usar; los
+<em>binary crates</em> se deben ejecutar por sí mismas.</p>
+<p>Esta es una de las razones por las que los proyectos de Rust que proporcionan
+un binario tienen un archivo <em>src/main.rs</em> sencillo que llama a la lógica que
+vive en el archivo <em>src/lib.rs</em>. Usando esa estructura, las pruebas de
+integración <em>pueden</em> probar el <em>crates</em> de la biblioteca usando
+<code>extern crate</code> para ejercer la funcionalidad importante. Si la funcionalidad
+importante funciona, la pequeña cantidad de código en el archivo
+<em>src/main.rs</em> también funcionará, y esa pequeña cantidad de código no
+necesita ser probada.</p>
+<h2 id="resumen"><a class="header" href="#resumen">Resumen</a></h2>
+<p>Las funciones de prueba de Rust proporcionan una manera de especificar cómo
+debe funcionar el código para garantizar que continúe funcionando como espera
+incluso cuando realice cambios. Las pruebas unitarias ejercitan diferentes
+partes de una biblioteca por separado y pueden probar detalles privados de
+implementación. Las pruebas de integración comprueban que muchas partes de la
+biblioteca funcionen juntas correctamente, y usan la API pública de la
+biblioteca para probar el código de la misma forma que el código externo lo
+usará. A pesar de que el sistema de tipos y las reglas de propiedad de Rust
+ayudan a prevenir algunos tipos de errores, las pruebas siguen siendo
+importantes para reducir los errores de lógica que tienen que ver con la
+forma en que se espera que su código se comporte.</p>
+<p>¡Combinaremos el conocimiento que aprendió en este capítulo y en capítulos
+anteriores para trabajar en un proyecto!.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch11-02-running-tests.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch12-00-an-io-project.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch11-02-running-tests.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch12-00-an-io-project.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,1008 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>All the Pattern Syntax - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html" class="active"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="sintaxis-de-patrones"><a class="header" href="#sintaxis-de-patrones">Sintaxis de patrones</a></h2>
+<p>A lo largo del libro, has visto ejemplos de muchos tipos de patrones. En esta
+sección, reunimos toda la sintaxis válida en los patrones y discutimos por
+qué es posible que desee usar cada uno.</p>
+<h3 id="matching-literals"><a class="header" href="#matching-literals">Matching Literals</a></h3>
+<p>Como viste en el Capítulo 6, puedes unir patrones contra literales
+directamente. El siguiente código brinda algunos ejemplos:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x = 1;
+
+match x {
+    1 =&gt; println!(&quot;one&quot;),
+    2 =&gt; println!(&quot;two&quot;),
+    3 =&gt; println!(&quot;three&quot;),
+    _ =&gt; println!(&quot;anything&quot;),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Este código imprime <code>one</code> porque el valor en <code>x</code> es 1. Esta sintaxis es útil
+cuando desea que su código realice una acción si obtiene un valor concreto en
+particular.</p>
+<h3 id="coincidencia-de-variables-con-nombre"><a class="header" href="#coincidencia-de-variables-con-nombre">Coincidencia de variables con nombre</a></h3>
+<p>Las variables con nombre son patrones irrefutables que coinciden con
+cualquier valor, y los hemos utilizado muchas veces en el libro. Sin embargo,
+hay una complicación cuando usa variables con nombre en expresiones <code>match</code>.
+Debido a que <code>match</code> inicia un nuevo ámbito, las variables declaradas como
+parte de un patrón dentro de la expresión <code>match</code> sombrearán aquellas con el
+mismo nombre fuera de la construcción <code>match</code>, como es el caso de todas las
+variables. En el listado 18-11, declaramos una variable llamada <code>x</code> con el
+valor <code>Some(5)</code> y una variable <code>y</code> con el valor <code>10</code>. Luego creamos una
+expresión <code>match</code> en el valor <code>x</code>. Mire los patrones en los brazos de partido
+y <code>println!</code>. Al final, e intente descubrir qué se imprimirá el código antes
+de ejecutar este código o leer más.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let x = Some(5);
+    let y = 10;
+
+    match x {
+        Some(50) =&gt; println!(&quot;Got 50&quot;),
+        Some(y) =&gt; println!(&quot;Matched, y = {:?}&quot;, y),
+        _ =&gt; println!(&quot;Default case, x = {:?}&quot;, x),
+    }
+
+    println!(&quot;at the end: x = {:?}, y = {:?}&quot;, x, y);
+}
+</code></pre></pre>
+<p><span class="caption">Listado 18-11: Una expresión <code>match</code> con un brazo que
+introduce un <em>shadowed variable</em> <code>y</code></span></p>
+<p>Veamos qué pasa cuando se ejecuta la expresión <code>match</code>. El patrón
+en el primer brazo coincidente no coincide con el valor definido de <code>x</code>, por
+lo que el código continúa. El patrón en el brazo del segundo <em>match</em>
+introduce una nueva variable llamada <code>y</code> que coincidirá con cualquier valor
+dentro de un valor <code>Some</code>. Porque estamos en un nuevo alcance dentro
+la expresión <code>match</code>, esta es una nueva variable <code>y</code>, no la <code>y</code> que
+declaramos en el comienzo con el valor 10. Este nuevo enlace <code>y</code> coincidirá
+con cualquier valor dentro de <code>Some</code>, que es lo que tenemos en <code>x</code>. Por lo
+tanto, este nuevo <code>y</code> se une a el valor interno de <code>Some</code> en <code>x</code>. Ese valor
+es <code>5</code>, por lo que la expresión de ese brazo ejecuta e imprime
+<code>Matched, y = 5</code>.</p>
+<p>Si <code>x</code> ha sido un valor <code>None</code> en lugar de <code>Some(5)</code>, los patrones en el
+primer dos brazos no habrían coincidido, por lo que el valor habría
+coincidido con el guion bajo. No introdujimos la variable <code>x</code> en el patrón del
+subrayar el brazo, por lo que la <code>x</code> en la expresión sigue siendo la <code>x</code>
+externa que no ha sido <em>shadowed</em>. En este caso hipotético, el <code>match</code>
+imprimiría <code>Default case, x = None</code>.</p>
+<p>Cuando se completa la expresión <code>match</code>, su alcance finaliza, y también lo
+hace el alcance del <code>y</code> interno. El último <code>println!</code> produce
+<code>at the end: x = Some(5), y = 10</code>.</p>
+<p>Para crear una expresión de <code>match</code> que compare los valores de las <code>x</code> y las <code>y</code> externas, en lugar de introducir una variable <em>shadowed</em>, tendríamos que
+usar un <em>match guard conditional</em> en su lugar. Hablaremos sobre los protectores de partido más adelante en la sección “Condicionales adicionales con <em>Match Guards</em>”.</p>
+<h3 id="patrones-múltiples"><a class="header" href="#patrones-múltiples">Patrones múltiples</a></h3>
+<p>En las expresiones <code>match</code>, puede hacer coincidir varios patrones con la
+sintaxis <code>|</code>, lo que significa <em>o</em>. Por ejemplo, el siguiente código coincide
+con el valor de <code>x</code> contra los brazos del <code>match</code>, el primero de los cuales
+tiene una opción <em>o</em>, lo que significa que si el valor de <code>x</code> coincide con
+cualquiera de los valores en ese brazo, el código de ese brazo se ejecutará:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x = 1;
+
+match x {
+    1 | 2 =&gt; println!(&quot;one or two&quot;),
+    3 =&gt; println!(&quot;three&quot;),
+    _ =&gt; println!(&quot;anything&quot;),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Este código imprime <code>uno o dos</code>.</p>
+<h3 id="coincidencia-de-rangos-de-valores-con-"><a class="header" href="#coincidencia-de-rangos-de-valores-con-">Coincidencia de rangos de valores con <code>...</code></a></h3>
+<p>La sintaxis <code>...</code> nos permite coincidir con un rango de valores inclusivo. En
+el siguiente código, cuando un patrón coincide con cualquiera de los valores
+dentro del rango, ese brazo se ejecutará:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x = 5;
+
+match x {
+    1 ... 5 =&gt; println!(&quot;one through five&quot;),
+    _ =&gt; println!(&quot;something else&quot;),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Si <code>x</code> es 1, 2, 3, 4 o 5, el primer brazo coincidirá. Esta sintaxis es más
+conveniente que usar el operador <code>|</code> para expresar la misma idea; en lugar
+de <code>1 ... 5</code>, tendríamos que especificar <code>1 | 2 | 3 | 4 | 5</code> si usamos <code>|</code>.
+Especificar un rango es mucho más corto, especialmente si queremos hacer
+coincidir, por ejemplo, cualquier número entre 1 y 1.000.</p>
+<p>Los rangos solo se permiten con valores numéricos o valores <code>char</code>, porque
+el compilador verifica que el rango no esté vacío en tiempo de compilación.
+Los únicos tipos que Rust puede decir si un rango está vacío o no son <code>char</code>
+y valores numéricos.</p>
+<p>Aquí hay un ejemplo que usa rangos de valores <code>char</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x = 'c';
+
+match x {
+    'a' ... 'j' =&gt; println!(&quot;early ASCII letter&quot;),
+    'k' ... 'z' =&gt; println!(&quot;late ASCII letter&quot;),
+    _ =&gt; println!(&quot;something else&quot;),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Rust puede decir que <code>c</code> está dentro del rango del primer patrón e imprime
+<code>early ASCII letter</code>.</p>
+<h3 id="destructuring-to-break-apart-values"><a class="header" href="#destructuring-to-break-apart-values">Destructuring to Break Apart Values</a></h3>
+<p>También podemos usar patrones para desestructurar estructuras, enumeraciones
+tuplas y referencias para usar diferentes partes de estos valores. Veamos
+cada valor.</p>
+<h4 id="destructuring-structs"><a class="header" href="#destructuring-structs">Destructuring Structs</a></h4>
+<p>El listado 18-12 muestra una estructura <code>Point</code> con dos campos, <code>x</code> y <code>y</code>,
+que podemos separar utilizando un patrón con una declaración <code>let</code>.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    let Point { x: a, y: b } = p;
+    assert_eq!(0, a);
+    assert_eq!(7, b);
+}
+</code></pre></pre>
+<p><span class="caption">Listado 18-12: Desestructuración de los campos de una
+estructura en variables separadas</span></p>
+<p>Este código crea las variables <code>a</code> y <code>b</code> que coinciden con los valores de
+los campos <code>x</code> y <code>y</code> de la variable <code>p</code>. Este ejemplo muestra que los
+nombres de las variables en el patrón no tienen que coincidir con los
+nombres de campo de la estructura. Pero es común querer que los nombres de
+las variables coincidan con los nombres de los campos para que sea más fácil
+recordar qué variables provienen de qué campos.</p>
+<p>Debido a que tener nombres de variables coinciden con los campos es común y
+porque al escribir <code>let Point { x: x, y: y } = p;</code> contiene mucha
+duplicación, hay una forma abreviada de patrones que coinciden con los
+campos de estructura: solo necesita listar el nombre del campo de estructura
+y las variables creadas a partir del patrón tendrán los mismos nombres. El
+listado 18-13 muestra código que se comporta de la misma manera que el
+código en el listado 18-12, pero las variables creadas en el patrón <code>let</code>
+son <code>x</code> y <code>y</code> en lugar de <code>a</code> y <code>b</code>.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    let Point { x, y } = p;
+    assert_eq!(0, x);
+    assert_eq!(7, y);
+}
+</code></pre></pre>
+<p><span class="caption">Listing 18-13: Destructuring struct fields using struct
+field shorthand</span></p>
+<p>Este código crea las variables <code>x</code> y <code>y</code> que coinciden con los campos <code>x</code> y
+<code>y</code> de la variable <code>p</code>. El resultado es que las variables <code>x</code> y <code>y</code>
+contienen los valores de la estructura <code>p</code>.</p>
+<p>También podemos desestructurar con valores literales como parte del patrón
+<em>struct</em> en lugar de crear variables para todos los campos. Hacerlo nos
+permite probar algunos de los campos para valores particulares al crear
+variables para desestructurar los otros campos.</p>
+<p>El listado 18-14 muestra una expresión de <code>match</code> que separa los valores de
+<code>Point</code> en tres casos: puntos que se encuentran directamente en el eje <code>x</code>
+(que es verdadero cuando <code>y = 0</code>), en el eje <code>y</code> (<code>x = 0</code>), o ninguno.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">struct Point {
+</span><span class="boring">    x: i32,
+</span><span class="boring">    y: i32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    match p {
+        Point { x, y: 0 } =&gt; println!(&quot;On the x axis at {}&quot;, x),
+        Point { x: 0, y } =&gt; println!(&quot;On the y axis at {}&quot;, y),
+        Point { x, y } =&gt; println!(&quot;On neither axis: ({}, {})&quot;, x, y),
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 18-14: <em>Destructuring</em> y <em>matching</em> valores
+literales en un patrón</span></p>
+<p>El primer brazo coincidirá con cualquier punto que se encuentre en el eje
+<code>x</code> al especificar que el campo <code>y</code> coincide si su valor coincide con el
+literal <code>0</code>. El patrón aún crea una variable <code>x</code> que podemos usar en el
+código para este brazo.</p>
+<p>De forma similar, el segundo brazo coincide con cualquier punto del eje <code>y</code>
+al especificar que el campo <code>x</code> coincide si su valor es <code>0</code> y crea una
+variable <code>y</code> para el valor del campo <code>y</code>. El tercer brazo no especifica
+ningún literal, por lo que coincide con cualquier otro <code>Point</code> y crea
+variables para los campos <code>x</code> y <code>y</code>.</p>
+<p>En este ejemplo, el valor <code>p</code> coincide con el segundo brazo en virtud de
+<code>x</code> que contiene un 0, por lo que este código imprimirá <code>On the y axis at 7</code>.</p>
+<h4 id="destructuring-enums"><a class="header" href="#destructuring-enums">Destructuring Enums</a></h4>
+<p>Hemos desestructurado las enumeraciones anteriormente en este libro, por
+ejemplo, cuando desestructuramos <code>Option&lt;i32&gt;</code> en el Listado 6-5 en el
+Capítulo 6. Un detalle que no hemos mencionado explícitamente es que el
+patrón para desestructurar una enumeración debe corresponder a la forma en
+que se definen los datos almacenados dentro de la enumeración. Como ejemplo,
+en el Listado 18-15 utilizamos la enumeración <code>Message</code> del Listado 6-2 y
+escribimos un <code>match</code> con patrones que desestructurarán cada valor interno.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+
+fn main() {
+    let msg = Message::ChangeColor(0, 160, 255);
+
+    match msg {
+        Message::Quit =&gt; {
+            println!(&quot;The Quit variant has no data to destructure.&quot;)
+        },
+        Message::Move { x, y } =&gt; {
+            println!(
+                &quot;Move in the x direction {} and in the y direction {}&quot;,
+                x,
+                y
+            );
+        }
+        Message::Write(text) =&gt; println!(&quot;Text message: {}&quot;, text),
+        Message::ChangeColor(r, g, b) =&gt; {
+            println!(
+                &quot;Change the color to red {}, green {}, and blue {}&quot;,
+                r,
+                g,
+                b
+            )
+        }
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 18-15: <em>Destructuring enum</em> variantes que contienen diferentes tipos de valores</span></p>
+<p>Este código imprimirá <code>Change the color to red 0, green 160, and blue 255</code>.
+Intente cambiar el valor de <code>msg</code> y ejecutarlo para ver el código de los
+otros brazos.</p>
+<p>Para las variantes <em>enum</em> sin ningún dato, como <code>Message::Quit</code>, no podemos
+desestructurar el valor más. Solo podemos hacer coincidir el valor literal
+<code>Message::Quit</code>, y no hay variables en ese patrón.</p>
+<p>Para las variantes de enumeración tipo <em>struct</em>, como <code>Message::Move</code>,
+podemos usar un patrón similar al patrón que especificamos para que coincida
+con las estructuras. Después del nombre de la variante, colocamos llaves
+y luego enumeramos los campos con variables para separar las piezas y
+usarlas en el código para este brazo. Aquí usamos la forma abreviada como lo
+hicimos en el listado 18-13.</p>
+<p>Para las variantes <em>enum</em> tipo tupla, como <code>Message::Write</code> que contiene una
+tupla con un elemento y <code>Message::ChangeColor</code> que contiene una tupla con
+tres elementos, el patrón es similar al patrón que especificamos para hacer
+coincidir tuplas. El número de variables en el patrón debe coincidir con la
+cantidad de elementos en la variante que estamos combinando.</p>
+<h4 id="destructuring-references"><a class="header" href="#destructuring-references">Destructuring References</a></h4>
+<p>Cuando el valor que estamos combinando con nuestro patrón contiene una
+referencia, necesitamos desestructurar la referencia del valor, lo cual
+podemos hacer especificando un <code>&amp;</code> en el patrón. Hacerlo nos permite obtener
+una variable que contenga el valor al que apunta la referencia en lugar de
+obtener una variable que contenga la referencia. Esta técnica es
+especialmente útil en <em>closures</em> donde tenemos iteradores que iteran sobre
+referencias, pero queremos usar los valores en el <em>closure</em> en lugar de las
+referencias.</p>
+<p>El ejemplo en el listado 18-16 itera sobre referencias a instancias <code>Point</code>
+en un vector, desestructurando la referencia y la estructura para que
+podamos realizar cálculos sobre los valores <code>x</code> y <code>y</code> fácilmente.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">struct Point {
+</span><span class="boring">    x: i32,
+</span><span class="boring">    y: i32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>let points = vec![
+    Point { x: 0, y: 0 },
+    Point { x: 1, y: 5 },
+    Point { x: 10, y: -3 },
+];
+
+let sum_of_squares: i32 = points
+    .iter()
+    .map(|&amp;Point { x, y }| x * x + y * y)
+    .sum();
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-16: <em>Destructuring</em> una referencia a una
+estructura en los valores del campo <em>struct</em></span></p>
+<p>Este código nos da la variable <code>sum_of_squares</code> que contiene el valor 135,
+que es el resultado de cuadrar el valor <code>x</code> y el valor <code>y</code>, sumarlos y luego
+sumar el resultado de cada <code>Point</code> en los <code>points</code> vector para obtener un
+número.</p>
+<p>Si no hubiésemos incluido <code>&amp;</code> en <code>&amp;Punto { x, y }</code>, obtendríamos un error de
+coincidencia de tipo, porque <code>iter</code> repetiría las referencias a los
+elementos en el vector en lugar de los valores reales. El error sería así:</p>
+<pre><code class="language-text">error[E0308]: mismatched types
+  --&gt;
+   |
+14 |         .map(|Point { x, y }| x * x + y * y)
+   |               ^^^^^^^^^^^^ expected &amp;Point, found struct `Point`
+   |
+   = note: expected type `&amp;Point`
+              found type `Point`
+</code></pre>
+<p>Este error indica que Rust esperaba que nuestro <em>closure</em> coincidiera con
+<code>&amp;Point</code>, pero tratamos de hacer coincidir directamente con un valor de
+<code>Point</code>, no con una referencia a un <code>Point</code>.</p>
+<h4 id="destructuring-structs-and-tuples"><a class="header" href="#destructuring-structs-and-tuples">Destructuring Structs and Tuples</a></h4>
+<p>Podemos mezclar, unir y jerarquizar patrones de desestructuración de formas
+aún más complejas. El siguiente ejemplo muestra una desestructuración
+complicada donde anidamos estructuras y tuplas dentro de una tupla y
+desestructuramos todos los valores primitivos:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">struct Point {
+</span><span class="boring">    x: i32,
+</span><span class="boring">    y: i32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>let ((feet, inches), Point {x, y}) = ((3, 10), Point { x: 3, y: -10 });
+<span class="boring">}
+</span></code></pre></pre>
+<p>Este código nos permite dividir los tipos complejos en sus componentes para
+que podamos usar los valores que nos interesan por separado.</p>
+<p>La desestructuración con patrones es una forma conveniente de usar
+fragmentos de valores, como el valor de cada campo en una estructura,
+separadamente el uno del otro.</p>
+<h3 id="ignorar-valores-en-un-patrón"><a class="header" href="#ignorar-valores-en-un-patrón">Ignorar valores en un patrón</a></h3>
+<p>Has visto que a veces es útil ignorar los valores en un patrón, como en el
+último brazo de una <code>match</code>, para obtener una captura que en realidad no
+hace nada, pero que da cuenta de todos los valores posibles restantes. Hay
+algunas maneras de ignorar valores enteros o partes de valores en un patrón:
+usando el patrón <code>_</code> (que has visto), usando el patrón <code>_</code> dentro de otro
+patrón, usando un nombre que comienza con un guión bajo, o usando <code>..</code> para
+ignorar las partes restantes de un valor. Exploremos cómo y por qué usar
+cada uno de estos patrones.</p>
+<h4 id="ignorar-un-valor-completo-con-_"><a class="header" href="#ignorar-un-valor-completo-con-_">Ignorar un valor completo con <code>_</code></a></h4>
+<p>Hemos utilizado el guión bajo (<code>_</code>) como un patrón comodín que coincidirá
+con cualquier valor pero no se vinculará al valor. Aunque el patrón de
+subrayado <code>_</code> es especialmente útil como el último brazo en una expresión de
+<code>match</code>, podemos usarlo en cualquier patrón, incluidos los parámetros de
+función, como se muestra en el listado 18-17.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn foo(_: i32, y: i32) {
+    println!(&quot;This code only uses the y parameter: {}&quot;, y);
+}
+
+fn main() {
+    foo(3, 4);
+}
+</code></pre></pre>
+<p><span class="caption">Listado 18-17: Usando <code>_</code> en una firma de
+función</span></p>
+<p>Este código ignorará por completo el valor pasado como primer argumento, <code>3</code>
+e imprimirá <code>This code only uses the y parameter: 4</code>.</p>
+<p>En la mayoría de los casos, cuando ya no necesita un parámetro de función en
+particular, debe cambiar la firma para que no incluya el parámetro no
+utilizado. Ignorar un parámetro de función puede ser especialmente útil en
+algunos casos, por ejemplo, cuando se implementa un <em>trait</em> cuando se
+necesita una determinada firma de tipo, pero el cuerpo de la función en su
+implementación no necesita uno de los parámetros. El compilador no advertirá
+sobre los parámetros de la función no utilizados, como lo haría si usara un
+nombre en su lugar.</p>
+<h4 id="ignorar-partes-de-un-valor-con-un-anidado-_"><a class="header" href="#ignorar-partes-de-un-valor-con-un-anidado-_">Ignorar partes de un valor con un anidado <code>_</code></a></h4>
+<p>También podemos usar <code>_</code> dentro de otro patrón para ignorar solo parte de un
+valor, por ejemplo, cuando queremos probar solo una parte de un valor, pero
+no tenemos uso para las otras partes en el código correspondiente que
+queremos ejecutar. El listado 18-18 muestra el código responsable de
+administrar el valor de una configuración. Los requisitos comerciales son
+que no se debe permitir que el usuario sobrescriba una personalización
+existente de una configuración, pero puede deshacer la configuración y puede
+darle un valor a la configuración si está actualmente desarmada.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut setting_value = Some(5);
+let new_setting_value = Some(10);
+
+match (setting_value, new_setting_value) {
+    (Some(_), Some(_)) =&gt; {
+        println!(&quot;Can't overwrite an existing customized value&quot;);
+    }
+    _ =&gt; {
+        setting_value = new_setting_value;
+    }
+}
+
+println!(&quot;setting is {:?}&quot;, setting_value);
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-18: Utilizando un guión bajo dentro de
+patrones que coinciden con las variantes <code>Some</code> cuando no necesitamos usar
+el valor dentro de <code>Some</code></span></p>
+<p>Este código imprimirá <code>Can't overwrite an existing customized value</code> y
+luego <code>setting is Some(5)</code>. En el primer brazo de coincidencia, no es
+necesario que coincidamos ni utilicemos los valores dentro de la variante
+<code>Some</code>, pero sí debemos probar el caso cuando <code>setting_value</code> y
+<code>new_setting_value</code> son la variante <code>Some</code>. En ese caso, imprimimos por qué
+no estamos cambiando <code>setting_value</code>, y no se cambia.</p>
+<p>En todos los demás casos (si <code>setting_value</code> o <code>new_setting_value</code> son
+<code>None</code>) expresados por el patrón <code>_</code> en el segundo brazo, queremos permitir
+que <code>new_setting_value</code> se convierta en <code>setting_value</code>.</p>
+<p>También podemos usar guiones bajos en varios lugares dentro de un patrón
+para ignorar valores particulares. El listado 18-19 muestra un ejemplo de
+ignorar los valores segundo y cuarto en una tupla de cinco elementos.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let numbers = (2, 4, 8, 16, 32);
+
+match numbers {
+    (first, _, third, _, fifth) =&gt; {
+        println!(&quot;Some numbers: {}, {}, {}&quot;, first, third, fifth)
+    },
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-19: Ignorar varias partes de una
+tupla</span></p>
+<p>Este código imprimirá <code>Some numbers: 2, 8, 32</code>, y los valores 4 y 16 serán
+ignorados.</p>
+<h4 id="ignorar-una-variable-no-utilizada-iniciando-su-nombre-con-_"><a class="header" href="#ignorar-una-variable-no-utilizada-iniciando-su-nombre-con-_">Ignorar una variable no utilizada iniciando su nombre con <code>_</code></a></h4>
+<p>Si creas una variable pero no la usas en ningún lado, Rust generalmente
+emitirá una advertencia porque podría ser un error. Pero a veces es útil
+crear una variable que no usará todavía, como cuando está creando prototipos
+o simplemente iniciando un proyecto. En esta situación, puede decirle a Rust
+que no le advierta sobre la variable no utilizada comenzando el nombre de la
+variable con un guión bajo. En el listado 18-20, creamos dos variables sin
+usar, pero cuando ejecutamos este código, solo deberíamos recibir una
+advertencia sobre una de ellas.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let _x = 5;
+    let y = 10;
+}
+</code></pre></pre>
+<p><span class="caption">Listado 18-20: Iniciar un nombre de variable con un
+guión bajo para evitar recibir advertencias de variables no utilizadas</span></p>
+<p>Aquí recibimos una advertencia acerca de no usar la variable <code>y</code>, pero no
+recibimos una advertencia acerca de no usar la variable precedida por el
+guión bajo.</p>
+<p>Tenga en cuenta que hay una diferencia sutil entre usar solo <code>_</code> y usar un
+nombre que comience con un guión bajo. La sintaxis <code>_x</code> todavía vincula el
+valor a la variable, mientras que <code>_</code> no se une en absoluto. Para mostrar un
+caso en el que importa esta distinción, el Listado 18-21 nos proporcionará
+un error.</p>
+<pre><code class="language-rust ignore">let s = Some(String::from(&quot;Hello!&quot;));
+
+if let Some(_s) = s {
+    println!(&quot;found a string&quot;);
+}
+
+println!(&quot;{:?}&quot;, s);
+</code></pre>
+<p><span class="caption">Listado 18-21: una variable no utilizada que comience
+con un guión bajo aún vincula el valor, que podría tomar posesión del
+valor</span></p>
+<p>Recibiremos un error porque el valor <code>s</code> se moverá a <code>_s</code>, lo que nos impide
+usar <code>s</code> nuevamente. Sin embargo, usar el guión bajo por sí mismo nunca se
+vincula al valor. El listado 18-22 se compilará sin ningún error porque <code>s</code>
+no se mueve a <code>_</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s = Some(String::from(&quot;Hello!&quot;));
+
+if let Some(_) = s {
+    println!(&quot;found a string&quot;);
+}
+
+println!(&quot;{:?}&quot;, s);
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-22: El uso de un guión bajo no vincula el
+valor</span></p>
+<p>Este código funciona bien porque nunca vinculamos <code>s</code> a nada; no se mueve.</p>
+<h4 id="ignorar-las-partes-restantes-de-un-valor-con-"><a class="header" href="#ignorar-las-partes-restantes-de-un-valor-con-">Ignorar las partes restantes de un valor con <code>..</code></a></h4>
+<p>Con valores que tienen muchas partes, podemos usar la sintaxis <code>..</code> para
+usar solo algunas partes e ignorar el resto, evitando la necesidad de
+enumerar guiones bajos para cada valor ignorado. El patrón <code>..</code> ignora
+cualquier parte de un valor que no hayamos igualado explícitamente en el
+resto del patrón. En el listado 18-23, tenemos una estructura <code>Point</code> que
+contiene una coordenada en el espacio tridimensional. En la expresión
+<code>match</code>, queremos operar solo en la coordenada <code>x</code> e ignorar los valores en
+los campos <code>y</code> y <code>z</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Point {
+    x: i32,
+    y: i32,
+    z: i32,
+}
+
+let origin = Point { x: 0, y: 0, z: 0 };
+
+match origin {
+    Point { x, .. } =&gt; println!(&quot;x is {}&quot;, x),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-23: Ignorando todos los campos de un
+<code>Point</code> a excepción de <code>x</code> usando <code>..</code></span></p>
+<p>Enumeramos el valor <code>x</code> y luego solo incluimos el patrón <code>..</code>. Esto es más
+rápido que tener que listar <code>y: _</code> y <code>z: _</code>, particularmente cuando estamos
+trabajando con estructuras que tienen muchos campos en situaciones donde
+solo uno o dos campos son relevantes.</p>
+<p>La sintaxis <code>..</code> se ampliará a tantos valores como sea necesario. El listado
+18-24 muestra cómo usar <code>..</code> con una tupla.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let numbers = (2, 4, 8, 16, 32);
+
+    match numbers {
+        (first, .., last) =&gt; {
+            println!(&quot;Some numbers: {}, {}&quot;, first, last);
+        },
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 18-24: Coincidencia solo del primer y último
+valor en una tupla e ignorando todos los demás valores</span></p>
+<p>En este código, el primer y último valor se corresponden con <code>first</code> y
+<code>last</code>. El <code>..</code> coincidirá e ignorará todo en el medio.</p>
+<p>Sin embargo, usar <code>..</code> no debe ser ambiguo. Si no está claro qué valores
+están destinados a la correspondencia y cuáles deben ignorarse, Rust nos
+dará un error. El listado 18-25 muestra un ejemplo de uso de <code>..</code>
+ambiguamente, por lo que no se compilará.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">fn main() {
+    let numbers = (2, 4, 8, 16, 32);
+
+    match numbers {
+        (.., second, ..) =&gt; {
+            println!(&quot;Some numbers: {}&quot;, second)
+        },
+    }
+}
+</code></pre>
+<p><span class="caption">Listado 18-25: Un intento de usar <code>..</code> de una manera
+ambigua</span></p>
+<p>Cuando compilamos este ejemplo, obtenemos este error:</p>
+<pre><code class="language-text">error: `..` can only be used once per tuple or tuple struct pattern
+ --&gt; src/main.rs:5:22
+  |
+5 |         (.., second, ..) =&gt; {
+  |                      ^^
+</code></pre>
+<p>Es imposible para Rust determinar cuántos valores en la tupla ignorar antes
+de hacer coincidir un valor con <code>second</code> y cuántos valores adicionales
+ignorar después. Este código podría significar que queremos ignorar <code>2</code>,
+enlazar <code>second</code> a <code>4</code>, y luego ignorar <code>8</code>, <code>16</code> y <code>32</code>; o que queremos
+ignorar <code>2</code> y <code>4</code>, enlazar <code>second</code> a <code>8</code>, y luego ignorar <code>16</code> y <code>32</code>;
+Etcétera. El nombre de la variable <code>second</code> no significa nada especial para
+Rust, así que obtenemos un error de compilación porque el uso de <code>..</code> en dos
+lugares como este es ambiguo.</p>
+<h3 id="crear-referencias-en-patrones-con-ref-y-ref-mut"><a class="header" href="#crear-referencias-en-patrones-con-ref-y-ref-mut">Crear referencias en patrones con <code>ref</code> y <code>ref mut</code></a></h3>
+<p>Veamos el uso de <code>ref</code> para hacer referencias para que la propiedad de los
+valores no se mueva a las variables en el patrón. Por lo general, cuando
+coincide con un patrón, las variables introducidas por el patrón están
+vinculadas a un valor. Las reglas de propiedad de Rust significan que el
+valor se moverá al <code>match</code> o al lugar en el que esté utilizando el patrón.
+El listado 18-26 muestra un ejemplo de un <code>match</code> que tiene un patrón con
+una variable y luego el uso de todo el valor en la instrucción <code>println!</code>.
+Más tarde, después del <code>match</code>. Este código no podrá compilarse porque la
+propiedad de parte del valor <code>robot_name</code> se transfiere a la variable <code>name</code>
+en el patrón del primer brazo <code>match</code>.</p>
+<pre><code class="language-rust ignore">let robot_name = Some(String::from(&quot;Bors&quot;));
+
+match robot_name {
+    Some(name) =&gt; println!(&quot;Found a name: {}&quot;, name),
+    None =&gt; (),
+}
+
+println!(&quot;robot_name is: {:?}&quot;, robot_name);
+</code></pre>
+<p><span class="caption">Listado 18-26: Crear una variable en un patrón de
+brazo <code>match</code> toma posesión del valor</span></p>
+<p>Como la propiedad de parte de <code>robot_name</code> se ha movido a <code>name</code>, ya no
+podemos usar <code>robot_name</code> en <code>println!</code> después de la <code>coincidencia</code> porque
+<code>robot_name</code> ya no tiene propiedad.</p>
+<p>Para corregir este código, queremos hacer que el patrón <code>Some (name)</code>
+<em>tome prestado</em> esa parte de <code>robot_name</code> en lugar de tomar posesión. Ya has
+visto que, fuera de los patrones, la forma de tomar prestado un valor es
+crear una referencia usando <code>&amp;</code>, por lo que podrías pensar que la solución
+está cambiando <code>Some(name)</code> a <code>Some(&amp;name)</code>.</p>
+<p>Sin embargo, como viste en la sección “Destructuring to Break Apart Values”,
+la sintaxis <code>&amp;</code> en patrones no <em>crea</em> una referencia sino <em>coincide</em> con una
+referencia existente en el valor. Debido a que <code>y</code> ya tiene ese significado
+en los patrones, no podemos usar <code>&amp;</code> para crear una referencia en un patrón.</p>
+<p>En cambio, para crear una referencia en un patrón, usamos la palabra clave
+<code>ref</code> antes de la nueva variable, como se muestra en el Listado 18-27.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let robot_name = Some(String::from(&quot;Bors&quot;));
+
+match robot_name {
+    Some(ref name) =&gt; println!(&quot;Found a name: {}&quot;, name),
+    None =&gt; (),
+}
+
+println!(&quot;robot_name is: {:?}&quot;, robot_name);
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-27: Crear una referencia para que una
+variable de patrón no tome posesión de un valor</span></p>
+<p>Este ejemplo se compilará porque el valor en la variante <code>Some</code> en
+<code>robot_name</code> no se mueve al <code>match</code>; el <code>match</code> solo tomó una referencia a
+los datos en <code>robot_name</code> en lugar de moverlo.</p>
+<p>Para crear una referencia mutable para que podamos mutar un valor
+coincidente en un patrón, usamos <code>ref mut</code> en lugar de <code>&amp;mut</code>. La razón es,
+una vez más, que en los patrones, el último es para hacer coincidir las
+referencias mutables existentes, no crear nuevas. El listado 18-28 muestra
+un ejemplo de un patrón que crea una referencia mutable.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut robot_name = Some(String::from(&quot;Bors&quot;));
+
+match robot_name {
+    Some(ref mut name) =&gt; *name = String::from(&quot;Another name&quot;),
+    None =&gt; (),
+}
+
+println!(&quot;robot_name is: {:?}&quot;, robot_name);
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-28: Crear una referencia mutable a un valor
+como parte de un patrón usando <code>ref mut</code></span></p>
+<p>Este ejemplo compilará e imprimirá <code>robot_name is: Some(&quot;Another name&quot;)</code>.
+Debido a que <code>name</code> es una referencia mutable, tenemos que eliminar la
+referencia dentro del código del brazo de coincidencia usando el operador
+<code>*</code> para mutar el valor.</p>
+<h3 id="condicionales-adicionales-con-match-guards"><a class="header" href="#condicionales-adicionales-con-match-guards">Condicionales adicionales con <em>Match Guards</em></a></h3>
+<p>Un <em>match guard</em> es una condición adicional <code>if</code> especificada después del
+patrón en un brazo <code>match</code> que también debe coincidir, junto con la
+coincidencia de patrón, para que se elija ese brazo. Los <em>match guard</em> son útiles para expresar ideas más complejas de lo que permite un
+patrón solo.</p>
+<p>La condición puede usar variables creadas en el patrón. El listado 18-29
+muestra un <code>match</code> donde el primer brazo tiene el patrón <code>Some(x)</code> y también
+tiene un guarda partido de <code>if x &lt; 5</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let num = Some(4);
+
+match num {
+    Some(x) if x &lt; 5 =&gt; println!(&quot;less than five: {}&quot;, x),
+    Some(x) =&gt; println!(&quot;{}&quot;, x),
+    None =&gt; (),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-29: Agregar un <em>match guard</em> a un
+patrón</span></p>
+<p>Este ejemplo imprimirá <code>less than five: 4</code>. Cuando <code>num</code> se compara con el
+patrón en el primer brazo, coincide, porque <code>Some(4)</code> coincide con
+<code>Some(x)</code>. Luego, el <em>match guard</em> verifica si el valor en <code>x</code> es menor que
+<code>5</code>, y como lo es, se selecciona el primer brazo.</p>
+<p>Si <code>num</code> hubiera sido <code>Some(10)</code>en su lugar, el <em>match guard</em> en el primer
+brazo habría sido falso porque 10 no es menor que 5. Rust luego iría al
+segundo brazo, que coincidiría porque el segundo brazo no tiene un
+<em>match guard</em> y por lo tanto coincide con cualquier variante de <code>Some</code>.</p>
+<p>No hay forma de expresar la condición <code>if x &lt; 5</code>dentro de un patrón, por lo
+que el <em>match guard</em> nos da la capacidad de expresar esta lógica.</p>
+<p>En el Listado 18-11, mencionamos que podríamos usar <em>match guard</em> para
+resolver nuestro problema de <em>shadowing</em> de patrones. Recuerde que se creó
+una nueva variable dentro del patrón en la expresión <code>match</code> en lugar de
+usar la variable fuera del <code>match</code>. Esa nueva variable significaba que no
+podíamos comparar con el valor de la variable externa. El listado 18-30
+muestra cómo podemos usar un <em>match guard</em> para solucionar este problema.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let x = Some(5);
+    let y = 10;
+
+    match x {
+        Some(50) =&gt; println!(&quot;Got 50&quot;),
+        Some(n) if n == y =&gt; println!(&quot;Matched, n = {:?}&quot;, n),
+        _ =&gt; println!(&quot;Default case, x = {:?}&quot;, x),
+    }
+
+    println!(&quot;at the end: x = {:?}, y = {:?}&quot;, x, y);
+}
+</code></pre></pre>
+<p><span class="caption">Listado 18-30: Uso de un <em>match guard</em> para
+probar la igualdad con una variable externa</span></p>
+<p>Este código ahora imprimirá <code>Default case, x = Some(5)</code>. El patrón en el
+brazo del segundo <em>match</em> no introduce una nueva variable <code>y</code> que <em>shadow</em>
+el<code> y</code> externo, lo que significa que podemos usar el <code>y</code> externo en el
+<em>match guard</em>. En lugar de especificar el patrón como <code>Some(y)</code>, que habría
+<em>shadowed</em> el <code>y</code> externo, especificamos <code>Some(n)</code>. Esto crea una nueva
+variable <code>n</code> que no <em>shadow</em> nada porque no hay una variable <code>n</code> fuera del
+<code>match</code>.</p>
+<p>La función <em>match guard</em> <code>if n == y</code> no es un patrón y, por lo tanto, no
+introduce nuevas variables. Este <code>y</code> <em>es</em> el <code>y</code> externo en vez de un nuevo
+<code>y</code> <em>shadowed</em>, y podemos buscar un valor que tenga el mismo valor que el
+<code>y</code> externo al comparar <code>n</code> con <code>y</code>.</p>
+<p>También puede usar el operador <em>o</em> <code>|</code> en un <em>match guard</em> para especificar
+múltiples patrones; la condición de <em>match guard</em> se aplicará a todos los
+patrones. El listado 18-31 muestra la prioridad de combinar un <em>match guard</em>
+con un patrón que usa <code>|</code>. La parte importante de este ejemplo es que el
+<em>match guard</em> <code>if y</code> se aplica a <code>4</code>, <code>5</code>, <em>y</em> <code>6</code>, aunque podría parecer
+<code>if y</code> solo se aplica a <code>6</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x = 4;
+let y = false;
+
+match x {
+    4 | 5 | 6 if y =&gt; println!(&quot;yes&quot;),
+    _ =&gt; println!(&quot;no&quot;),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-31: Combinando múltiples patrones con un
+<em>match guard</em></span></p>
+<p>La condición de coincidencia establece que el brazo solo coincide si el
+valor de <code>x</code> es igual a <code>4</code>, <code>5</code>, o <code>6</code> <em>y</em> si <code>y</code> es <code>true</code>. Cuando se
+ejecuta este código, el patrón del primer brazo coincide porque <code>x</code> es <code>4</code>,
+pero el <em>match guard</em> <code>if y</code> es falso, por lo que no se elige el primer
+brazo. El código pasa al segundo brazo, que no coincide, y este programa
+imprime <code>no</code>. La razón es que la condición <code>if</code> se aplica a todo el patrón
+<code>4 | 5 | 6</code>, no solo al último valor <code>6</code>. En otras palabras, la precedencia
+de un <em>match guard</em> en relación con un patrón se comporta así:</p>
+<pre><code class="language-text">(4 | 5 | 6) if y =&gt; ...
+</code></pre>
+<p>rather than this:</p>
+<pre><code class="language-text">4 | 5 | (6 if y) =&gt; ...
+</code></pre>
+<p>Después de ejecutar el código, el comportamiento de precedencia es evidente:
+si el <em>match guard</em> se aplicara solo al valor final en la lista de valores
+especificada usando el operador <code>|</code>, el brazo se habría igualado y el
+programa habría impreso <code>yes</code>.</p>
+<h3 id="-bindings"><a class="header" href="#-bindings"><code>@</code> Bindings</a></h3>
+<p>El operador <em>arroba</em> (<code>@</code>) nos permite crear una variable que contiene un
+valor al mismo tiempo que probamos ese valor para ver si coincide con un
+patrón. El listado 18-32 muestra un ejemplo donde queremos probar que un
+campo <code>Message::Hello</code> <code>id</code> está dentro del rango <code>3 ... 7</code>. Pero también
+queremos vincular el valor a la variable <code>id_variable</code> para que podamos
+usarlo en el código asociado con el brazo. Podríamos nombrar esta variable
+<code>id</code>, lo mismo que el campo, pero para este ejemplo utilizaremos un nombre
+diferente.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Message {
+    Hello { id: i32 },
+}
+
+let msg = Message::Hello { id: 5 };
+
+match msg {
+    Message::Hello { id: id_variable @ 3...7 } =&gt; {
+        println!(&quot;Found an id in range: {}&quot;, id_variable)
+    },
+    Message::Hello { id: 10...12 } =&gt; {
+        println!(&quot;Found an id in another range&quot;)
+    },
+    Message::Hello { id } =&gt; {
+        println!(&quot;Found some other id: {}&quot;, id)
+    },
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 18-32: Usando <code>@</code> para enlazar a un valor en
+un patrón mientras también lo prueba</span></p>
+<p>Este ejemplo imprimirá <code>Found an id in range: 5</code>. Al especificar
+<code>id_variable @</code> antes del rango <code>3 ... 7</code>, estamos capturando cualquier
+valor que coincida con el rango, al mismo tiempo que probamos que el valor
+coincide con el <em>patrón de rango</em> (<em>range pattern</em>).</p>
+<p>En el segundo brazo, donde solo tenemos un rango especificado en el patrón,
+el código asociado con el brazo no tiene una variable que contenga el valor
+real del campo <code>id</code>. El valor del campo <code>id</code> podría haber sido 10, 11 o 12,
+pero el código que acompaña a ese patrón no sabe cuál es. El código de
+patrón no puede usar el valor del campo <code>id</code>, porque no hemos guardado el
+valor <code>id</code> en una variable.</p>
+<p>En el último brazo, donde hemos especificado una variable sin un rango,
+tenemos el valor disponible para usar en el código del brazo en una variable
+llamada <code>id</code>. La razón es que hemos utilizado la sintaxis abreviada del
+campo <em>struct</em>. Pero no hemos aplicado ninguna prueba al valor en el campo
+<code>id</code> en este brazo, como hicimos con los primeros dos brazos: cualquier
+valor coincidiría con este patrón.</p>
+<p>Usar <code>@</code> nos permite probar un valor y guardarlo en una variable dentro de
+un patrón.</p>
+<h2 id="resumen"><a class="header" href="#resumen">Resumen</a></h2>
+<p>Los patrones de Rust son muy útiles ya que ayudan a distinguir entre
+diferentes tipos de datos. Cuando se usa en expresiones <code>match</code>, Rust
+asegura que sus patrones cubren todos los valores posibles, o su programa no
+compilará. Los patrones en las declaraciones <code>let</code> y los parámetros de
+función hacen que esos constructos sean más útiles, lo que permite la
+desestructuración de los valores en partes más pequeñas al mismo tiempo que
+la asignación a las variables. Podemos crear patrones simples o complejos
+para satisfacer nuestras necesidades.</p>
+<p>Luego, para el penúltimo capítulo del libro, veremos algunos aspectos
+avanzados de una variedad de características de Rust.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch18-02-refutability.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch19-00-advanced-features.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch18-02-refutability.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch19-00-advanced-features.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

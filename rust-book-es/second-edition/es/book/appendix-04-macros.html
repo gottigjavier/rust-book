@@ -1,0 +1,626 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>D - Macros - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html" class="active"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="apéndice-d-macros"><a class="header" href="#apéndice-d-macros">Apéndice D: Macros</a></h2>
+<p>Hemos utilizado macros como <code>println!</code> a lo largo de este libro, pero no
+hemos explorado completamente qué es una macro y cómo funciona. Este apéndice
+explica las macros de la siguiente manera:</p>
+<ul>
+<li>Qué son las macros y cómo se diferencian de las funciones</li>
+<li>Cómo definir una macro declarativa para hacer metaprogramación</li>
+<li>Cómo definir una macro de procedimiento para crear <em>traits</em> <code>derive</code>
+personalizados</li>
+</ul>
+<p>Estamos cubriendo los detalles de las macros en un apéndice porque todavía
+están evolucionando en Rust. Las macros han cambiado y, en un futuro próximo,
+cambiarán a un ritmo más rápido que el resto del lenguaje y la biblioteca
+estándar desde Rust 1.0, por lo que es más probable que esta sección quede
+desactualizada que el resto del libro. Debido a las garantías de estabilidad
+de Rust, el código que se muestra aquí seguirá funcionando con versiones
+futuras, pero puede haber capacidades adicionales o formas más sencillas de
+escribir macros que no estaban disponibles en el momento de esta publicación.
+Tenga esto en cuenta cuando intente implementar algo de este apéndice.</p>
+<h3 id="la-diferencia-entre-macros-y-funciones"><a class="header" href="#la-diferencia-entre-macros-y-funciones">La diferencia entre macros y funciones</a></h3>
+<p>Fundamentalmente, las macros son una forma de escribir código que escribe
+otro código, que se conoce como <em>metaprogramación</em>. En el Apéndice C,
+discutimos el atributo <code>derive</code>, que genera una implementación de varios
+rasgos para usted. También utilizamos las macros <code>println!</code> Y <code>vec!</code>. En todo
+el libro. Todas estas macros <em>se expanden</em> para producir más código que el
+código que ha escrito manualmente.</p>
+<p>La metaprogramación es útil para reducir la cantidad de código que tiene que
+escribir y mantener, que también es uno de los roles de las funciones. Sin
+embargo, las macros tienen algunos poderes adicionales que las funciones no
+tienen.</p>
+<p>Una firma de función debe declarar el número y tipo de parámetros que tiene
+la función. Las macros, por otro lado, pueden tomar un número variable de
+parámetros: podemos llamar <code>println!(&quot;Hello&quot;)</code> con un argumento o
+<code>println!(&quot;hello {}&quot;, name)</code> con dos argumentos. Además, las macros se
+expanden antes de que el compilador interprete el significado del código, por
+lo que una macro puede, por ejemplo, implementar un <em>trait</em> en un tipo dado.
+Una función no puede, porque se llama en el tiempo de ejecución y un <em>trait</em>
+debe implementarse en tiempo de compilación.</p>
+<p>La desventaja de implementar una macro en lugar de una función es que las
+definiciones de macro son más complejas que las definiciones de función
+porque estás escribiendo el código de Rust que escribe el código de Rust.
+Debido a esta indirección, las definiciones de macro generalmente son más
+difíciles de leer, comprender y mantener que las definiciones de funciones.</p>
+<p>Otra diferencia entre las macros y las funciones es que las definiciones de
+macro no son espacios de nombres dentro de los módulos, como son las
+definiciones de funciones. Para evitar conflictos de nombres inesperados al
+usar <em>crate</em> externas, tiene que incluir explícitamente las macros en el
+alcance de su proyecto al mismo tiempo que lleva el <em>crate</em> externo dentro
+del alcance, usando la anotación <code>#[macro_use]</code>. El siguiente ejemplo traerá
+todas las macros definidas en el <em>crate</em> <code>serde</code> dentro del alcance del
+<em>crate</em> actual:</p>
+<pre><code class="language-rust ignore">#[macro_use]
+extern crate serde;
+</code></pre>
+<p>Si <code>extern crate</code> fuera capaz de traer macros al alcance de forma
+predeterminada sin esta anotación explícita, no se le permitiría usar dos
+<em>crates</em> que le permitieron definir macros con el mismo nombre. En la
+práctica, este conflicto no ocurre a menudo, pero cuantas más <em>crates</em> uses,
+más posibilidades habrá.</p>
+<p>Existe una última diferencia importante entre las macros y las funciones:
+debe definir o incluir macros en el alcance <em>antes</em> de que las llame en un
+archivo, mientras que puede definir funciones en cualquier lugar y llamarlas
+a cualquier lugar.</p>
+<h3 id="macros-declarativas-con-macro_rules-para-la-metaprogramación-general"><a class="header" href="#macros-declarativas-con-macro_rules-para-la-metaprogramación-general">Macros declarativas con <code>macro_rules!</code> para la metaprogramación general</a></h3>
+<p>La forma más utilizada de macros en Rust son <em>macros declarativas</em>. A veces
+también se les conoce como <em>macros por ejemplo</em>, <em><code>macro_rules!</code> macros</em>, o
+simplemente simples <em>macros</em>. En esencia, las macros declarativas le permiten
+escribir algo similar a una expresión de <code>match</code> de Rust. Como se discutió en
+el Capítulo 6, las expresiones <code>match</code> son estructuras de control que toman
+una expresión, comparan el valor resultante de la expresión con patrones y
+luego ejecutan el código asociado con el patrón coincidente. Las macros
+también comparan un valor con patrones que tienen código asociado a ellos; en
+esta situación, el valor es el código fuente literal de Rust que se pasa a la
+macro, los patrones se comparan con la estructura de ese código fuente, y el
+código asociado con cada patrón es el código que reemplaza el código pasado a
+la macro. Todo esto sucede durante la compilación.</p>
+<p>Para definir una macro, utiliza la construcción <code>macro_rules!</code>. ¡Exploremos
+cómo usar <code>macro_rules!</code>. Mirando cómo se define la macro <code>vec!</code>. El Capítulo
+8 cubrió cómo podemos usar la macro <code>vec!</code>. Para crear un nuevo vector con
+valores particulares. Por ejemplo, la siguiente macro crea un nuevo vector
+con tres enteros dentro:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v: Vec&lt;u32&gt; = vec![1, 2, 3];
+<span class="boring">}
+</span></code></pre></pre>
+<p>También podríamos usar la macro <code>vec!</code> para hacer un vector de dos enteros o
+un vector de cinco <em>string slices</em>. No podríamos usar una función para hacer
+lo mismo porque no sabríamos la cantidad o el tipo de valores por adelantado.</p>
+<p>Veamos una definición ligeramente simplificada de la macro <code>vec!</code> en el
+Listado D-1.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[macro_export]
+macro_rules! vec {
+    ( $( $x:expr ),* ) =&gt; {
+        {
+            let mut temp_vec = Vec::new();
+            $(
+                temp_vec.push($x);
+            )*
+            temp_vec
+        }
+    };
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado D-1: Una versión simplificada de la definición
+de macro <code>vec!</code></span></p>
+<blockquote>
+<p>Nota: La definición real de la macro <code>vec!</code> en la biblioteca estándar
+incluye un código para preasignar la cantidad correcta de memoria por
+adelantado. Ese código es una optimización que no incluimos aquí para
+simplificar el ejemplo.</p>
+</blockquote>
+<p>La anotación <code>#[macro_export]</code> indica que esta macro debe estar disponible
+siempre que se importe el <em>crate</em> en la que estamos definiendo la macro. Sin
+esta anotación, incluso si alguien que dependa de este <em>crate</em> usa la
+anotación <code>#[macro_use]</code>, la macro no se incluiría en el alcance.</p>
+<p>Luego comenzamos la definición de macro con <code>macro_rules!</code> y el nombre de la
+macro que estamos definiendo <em>sin</em> el signo de exclamación. El nombre, en
+este caso <code>vec</code>, es seguido por llaves que denotan el cuerpo de la definición
+de macro.</p>
+<p>La estructura en el cuerpo <code>vec!</code> es similar a la estructura de una expresión
+<code>match</code>. Aquí tenemos un brazo con el patrón <code>( $( $x:expr ),* )</code>, seguido de
+<code>=&gt;</code> y el bloque de código asociado con este patrón. Si el patrón coincide,
+se emitirá el bloque de código asociado. Dado que este es el único patrón en
+esta macro, solo hay una forma válida de concordar; cualquier otro será un
+error. Las macros más complejas tendrán más de un brazo.</p>
+<p>La sintaxis de patrón válida en las definiciones de macro es diferente de la
+sintaxis de patrón cubierta en el Capítulo 18 porque los patrones de macro se
+hacen coincidir con la estructura de código de Rust en lugar de los valores.
+Veamos qué significan las piezas del patrón del Listado D-1; para ver la
+sintaxis completa del patrón de macro, vea <a href="../../reference/macros.html">la referencia</a>.</p>
+<p>Primero, un conjunto de paréntesis abarca todo el patrón. Luego viene un
+signo de dólar (<code>$</code>) seguido de un conjunto de paréntesis, que captura
+valores que coinciden con el patrón entre paréntesis para usar en el código
+de reemplazo. Dentro de <code>$()</code> es <code>$x:expr</code>, que coincide con cualquier
+expresión de Rust y le da a la expresión el nombre <code>$ x</code>.</p>
+<p>La coma que sigue a <code>$()</code> indica que un carácter literal de separador de coma
+podría aparecer opcionalmente después del código que coincide con el código
+capturado en <code>$()</code>. El <code>*</code> que sigue a la coma especifica que el patrón
+coincide con cero o más de lo que precede al <code>*</code>.</p>
+<p>Cuando llamamos a esta macro con <code>vec![1, 2, 3];</code>, el patrón <code>$ x</code> coincide
+tres veces con las tres expresiones <code>1</code>, <code>2</code> y <code>3</code>.</p>
+<p>Ahora veamos el patrón en el cuerpo del código asociado a este brazo: el
+código <code>temp_vec.push()</code> dentro de la parte <code>$()*</code> se genera para cada parte
+que coincide con <code>$()</code> en el patrón , cero o más veces, según cuántas veces
+coincida el patrón. El <code>$ x</code> se reemplaza con cada expresión coincidente.
+Cuando llamamos a esta macro con <code>vec! [1, 2, 3];</code>, el código generado que
+reemplaza esta llamada de macro será el siguiente:</p>
+<pre><code class="language-rust ignore">let mut temp_vec = Vec::new();
+temp_vec.push(1);
+temp_vec.push(2);
+temp_vec.push(3);
+temp_vec
+</code></pre>
+<p>Hemos definido una macro que puede tomar cualquier cantidad de argumentos de
+cualquier tipo y puede generar código para crear un vector que contenga los
+elementos especificados.</p>
+<p>Dado que la mayoría de los programadores de Rust <em>utilizarán</em> macros más que
+<em>write</em> macros, no discutiremos <code>macro_rules!</code>. Para obtener más información
+sobre cómo escribir macros, consulte la documentación en línea u otros
+recursos, como <a href="https://danielkeep.github.io/tlborm/book/index.html">“The Little Book of Rust Macros”</a>.</p>
+<h3 id="macros-de-procedimiento-para-personalizar-derive"><a class="header" href="#macros-de-procedimiento-para-personalizar-derive">Macros de procedimiento para personalizar <code>derive</code></a></h3>
+<p>La segunda forma de macros se llama <em>procedural macros</em> (<em>macros de
+procedimiento</em>) porque se asemejan más a funciones (que son un tipo de
+procedimiento). Las macros de procedimiento aceptan algún código de Rust como
+entrada, operan en ese código y producen algún código de Rust como salida en
+lugar de coincidir con patrones y reemplazar el código con otro código como
+lo hacen las macros declarativas. En el momento de escribir estas líneas,
+solo puede definir macros de procedimiento para permitir que sus <em>traits</em> se
+implementen en un tipo especificando el nombre de <em>trait</em> en una anotación
+<code>derivar</code>.</p>
+<p>Crearemos un <em>crate</em> llamada <code>hello_macro</code> que define un <em>trait</em> llamado
+<code>HelloMacro</code> con una función asociada llamada <code>hello_macro</code>. En lugar de
+hacer que nuestros usuarios del <em>crate</em> implementen el <em>trait</em> <code>HelloMacro</code>
+para cada uno de sus tipos, proporcionaremos una macro de procedimientos para
+que los usuarios puedan anotar su tipo con <code>#[derive(HelloMacro)]</code> para
+obtener una implementación predeterminada de <code>hello_macro</code> función. La
+implementación predeterminada imprimirá <code>Hello, Macro! My name is TypeName!</code>
+donde <code>TypeName</code> es el nombre del tipo en el que se ha definido este <em>trait</em>.
+En otras palabras, escribiremos un <em>crate</em> que permita a otro programador
+escribir código como el Listado D-2 usando nuestro <em>crate</em>.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">extern crate hello_macro;
+#[macro_use]
+extern crate hello_macro_derive;
+
+use hello_macro::HelloMacro;
+
+#[derive(HelloMacro)]
+struct Pancakes;
+
+fn main() {
+    Pancakes::hello_macro();
+}
+</code></pre>
+<p><span class="caption">Listado D-2: El código que un usuario de nuestro <em>crate</em>
+podrá escribir cuando utilice nuestra macro de procedimientos</span></p>
+<p>Este código imprimirá <code>Hello, Macro! My name is Pancakes!</code> cuando hayamos
+terminado. El primer paso es crear un nueva <em>library crate</em>, como esta:</p>
+<pre><code class="language-text">$ cargo new hello_macro --lib
+</code></pre>
+<p>A continuación, definiremos el <em>trait</em> <code>HelloMacro</code> y su función asociada:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait HelloMacro {
+    fn hello_macro();
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Tenemos un <em>trait</em> y su función. En este punto, nuestro usuario del <em>trait</em>
+podría implementar el <em>trait</em> para lograr la funcionalidad deseada, así:</p>
+<pre><code class="language-rust ignore">extern crate hello_macro;
+
+use hello_macro::HelloMacro;
+
+struct Pancakes;
+
+impl HelloMacro for Pancakes {
+    fn hello_macro() {
+        println!(&quot;Hello, Macro! My name is Pancakes!&quot;);
+    }
+}
+
+fn main() {
+    Pancakes::hello_macro();
+}
+</code></pre>
+<p>Sin embargo, tendrían que escribir el bloque de implementación para cada tipo
+que quisieran usar con <code>hello_macro</code>; queremos evitar que tengan que hacer
+este trabajo.</p>
+<p>Además, todavía no podemos proporcionar una implementación predeterminada
+para la función <code>hello_macro</code> que imprimirá el nombre del tipo en el que se
+implementa el <em>trait</em>: Rust no tiene capacidades de reflexión, por lo que no
+puede buscar el nombre del tipo en tiempo de ejecución necesitamos una macro
+para generar código en tiempo de compilación.</p>
+<p>El siguiente paso es definir la macro de procedimiento. En el momento de
+escribir estas líneas, las macros de procedimiento deben estar en su propio
+<em>crate</em>. Eventualmente, esta restricción podría ser levantada. La convención
+para estructurar <em>crates</em> y macrofolios es la siguiente: para un <em>crate</em>
+llamada <code>foo</code>, un <em>crate</em> macro de procedimientos derivada personalizada se
+llama <code>foo_derive</code>. Comencemos un nuevo <em>crate</em> llamada <code>hello_macro_derive</code>
+dentro de nuestro proyecto <code>hello_macro</code>:</p>
+<pre><code class="language-text">$ cargo new hello_macro_derive --lib
+</code></pre>
+<p>Nuestros dos <em>crates</em> están estrechamente relacionadas, por lo que creamos la
+macro de procedimiento dentro del directorio de nuestro <em>crate</em>
+<code>hello_macro</code>. Si cambiamos la definición de <em>trait</em> en <code>hello_macro</code>,
+también tendremos que cambiar la implementación de la macro de procedimiento
+en <code>hello_macro_derive</code>. Los dos <em>crates</em> tendrán que publicarse por separado
+y los programadores que utilicen estos <em>crates</em> tendrán que agregar ambas
+como dependencias y ponerlas a ambas en el alcance. Podríamos, en cambio, hacer que el <em>crates</em> <code>hello_macro</code> use <code>hello_macro_derive</code> como una
+dependencia y reexportar el código macro de procedimiento. Pero la forma en
+que hemos estructurado el proyecto hace posible que los programadores usen <code>hello_macro</code> incluso si no quieren la funcionalidad <code>derivar</code>.</p>
+<p>Necesitamos declarar el <em>crate</em> <code>hello_macro_derive</code> como una macro <em>crate</em>
+de procedimientos. También necesitaremos la funcionalidad de los <em>crates</em>
+<code>syn</code> y <code>quote</code>, como verá en un momento, por lo que debemos agregarlas como
+dependencias. Agregue lo siguiente al archivo <em>Cargo.toml</em> para
+<code>hello_macro_derive</code>:</p>
+<p><span class="filename">Filename: hello_macro_derive/Cargo.toml</span></p>
+<pre><code class="language-toml">[lib]
+proc-macro = true
+
+[dependencies]
+syn = &quot;0.11.11&quot;
+quote = &quot;0.3.15&quot;
+</code></pre>
+<p>Para comenzar a definir la macro de procedimiento, coloque el código en el
+Listado D-3 en su archivo <em>src/lib.rs</em> para el <em>crate</em> <code>hello_macro_derive</code>.
+Tenga en cuenta que este código no se compilará hasta que agreguemos una
+definición para la función <code>impl_hello_macro</code>.</p>
+<p><span class="filename">Filename: hello_macro_derive/src/lib.rs</span></p>
+<pre><code class="language-rust ignore">extern crate proc_macro;
+extern crate syn;
+#[macro_use]
+extern crate quote;
+
+use proc_macro::TokenStream;
+
+#[proc_macro_derive(HelloMacro)]
+pub fn hello_macro_derive(input: TokenStream) -&gt; TokenStream {
+    // Construct a string representation of the type definition
+    let s = input.to_string();
+
+    // Parse the string representation
+    let ast = syn::parse_derive_input(&amp;s).unwrap();
+
+    // Build the impl
+    let gen = impl_hello_macro(&amp;ast);
+
+    // Return the generated impl
+    gen.parse().unwrap()
+}
+</code></pre>
+<p><span class="caption">Listado D-3: Código que la mayoría de los
+<em>macro crates</em> de procedimiento deberán tener para procesar el código de
+Rust</span></p>
+<p>Observe la forma en que hemos dividido las funciones en D-3; esto será el
+mismo para casi todos los <em>macro crate</em> de procedimiento que ve o crea,
+porque hace que escribir un macro de procedimiento sea más conveniente. Lo
+que elija hacer en el lugar donde se llama a la función <code>impl_hello_macro</code>
+será diferente dependiendo del propósito de su macro de procedimiento.</p>
+<p>Hemos introducido tres <em>crates</em> nuevos: <code>proc_macro</code>, <a href="https://crates.io/crates/syn"><code>syn</code></a>, y <a href="https://crates.io/crates/quote"><code>quote</code></a>.
+El <em>crate</em> <code>proc_macro</code> viene con Rust, por lo que no fue necesario agregarlo a las dependencias en <em>Cargo.toml</em>. El <em>crate</em> <code>proc_macro</code> nos permite
+convertir el código Rust en un <em>string</em> que contiene ese código Rust. El
+<code>syn</code> crate analiza el código de Rust de un <em>string</em> en una estructura de
+datos en la que podemos realizar operaciones. El <em>crate</em> <code>quote</code> toma las
+estructuras de datos <code>syn</code> y las convierte nuevamente en código Rust. Estos
+<em>crates</em> hacen que sea mucho más simple analizar cualquier tipo de código
+Rust que podamos querer manejar: escribir un analizador completo para el
+código Rust no es tarea fácil.</p>
+<p>Se llamará a la función <code>hello_macro_derive</code> cuando un usuario de nuestra
+biblioteca especifique <code>#[derive(HelloMacro)]</code> en un tipo. La razón es que
+hemos anotado la función <code>hello_macro_derive</code> aquí con <code>proc_macro_derive</code> y
+hemos especificado el nombre, <code>HelloMacro</code>, que coincide con nuestro nombre
+de <em>trait</em>; esa es la convención que siguen la mayoría de las macros de
+procedimiento.</p>
+<p>Esta función primero convierte la <code>input</code> de un <code>TokenStream</code> en un <code>String</code>
+llamando a <code>to_string</code>. Este <code>String</code> es una representación de <em>string</em> del
+código Rust para el cual derivamos <code>HelloMacro</code>. En el ejemplo del Listado
+D-2, <code>s</code> tendrá el valor <code>String</code> <code>struct Pancakes;</code> porque ese es el código
+Rust al que agregamos la anotación <code>#[derive(HelloMacro)]</code>.</p>
+<blockquote>
+<p>Nota: En el momento de escribir esto, solo puedes convertir un
+<code>TokenStream</code> en un <em>string</em>. Una API más rica existirá en el futuro.</p>
+</blockquote>
+<p>Ahora tenemos que analizar el código de Rust <code>String</code> en una estructura de
+datos que luego podemos interpretar y realizar operaciones. Aquí es donde
+<code>syn</code> entra en juego. La función <code>parse_derive_input</code> en <code>syn</code> toma <code>String</code>
+y devuelve una estructura <code>DeriveInput</code> que representa el código Rust
+analizado. El siguiente código muestra las partes relevantes de la estructura
+<code>DeriveInput</code> que obtenemos al analizar el <em>string</em> <code>struct Pancakes;</code>:</p>
+<pre><code class="language-rust ignore">DeriveInput {
+    // --snip--
+
+    ident: Ident(
+        &quot;Pancakes&quot;
+    ),
+    body: Struct(
+        Unit
+    )
+}
+</code></pre>
+<p>Los campos de esta estructura muestran que el código de Rust que hemos
+analizado es una estructura de unidad con el <code>ident</code> (identificador, que
+significa el nombre) de <code>Pancakes</code>. Hay más campos en esta estructura para
+describir todo tipo de código Rust; revise la
+<a href="https://docs.rs/syn/0.11.11/syn/struct.DeriveInput.html"><code>syn</code> documentation for <code>DeriveInput</code></a> para más información.</p>
+<p>En este punto, no hemos definido la función <code>impl_hello_macro</code>, que es donde
+construiremos el nuevo código Rust que queremos incluir. Pero antes de
+hacerlo, tenga en cuenta que la última parte de esta función
+<code>hello_macro_derive</code> usa la función <code>parse</code> del <em>crate</em> <code>quote</code> para convertir
+la salida de la función <code>impl_hello_macro</code> de nuevo en <code>TokenStream</code>. El
+<code>TokenStream</code> devuelto se agrega al código que escriben nuestros usuarios de
+<em>crates</em>, por lo que cuando compilan su <em>crate</em>, obtendrán la funcionalidad
+adicional que proporcionamos.</p>
+<p>Es posible que haya notado que estamos llamando <code>unwrap</code> al pánico si las
+llamadas a las funciones <code>parse_derive_input</code> o <code>analizar</code> fracasan aquí.
+Pánico en los errores es necesario en el código de macro de procedimiento
+porque las funciones <code>proc_macro_derive</code> deben devolver <code>TokenStream</code> en
+lugar de <code>Result</code> para ajustarse a la API de macro de procedimiento. Elegimos
+simplificar este ejemplo usando <code>unwrap</code>; en el código de producción, debe
+proporcionar mensajes de error más específicos sobre lo que salió mal usando
+<code>panic!</code> o <code>expect</code>.</p>
+<p>Ahora que tenemos el código para convertir el código anotado de Rust de un
+<code>TokenStream</code> en una instancia <code>String</code> y <code>DeriveInput</code>, generemos el código
+que implementa el <em>trait</em> <code>HelloMacro</code> en el tipo anotado:</p>
+<p><span class="filename">Filename: hello_macro_derive/src/lib.rs</span></p>
+<pre><code class="language-rust ignore">fn impl_hello_macro(ast: &amp;syn::DeriveInput) -&gt; quote::Tokens {
+    let name = &amp;ast.ident;
+    quote! {
+        impl HelloMacro for #name {
+            fn hello_macro() {
+                println!(&quot;Hello, Macro! My name is {}&quot;, stringify!(#name));
+            }
+        }
+    }
+}
+</code></pre>
+<p>Obtenemos una instancia de estructura <code>Ident</code> que contiene el nombre
+(identificador) del tipo anotado usando <code>ast.ident</code>. El código en el Listado
+D-2 especifica que el <code>name</code> será <code>Ident(&quot;Pancakes&quot;)</code>.</p>
+<p>La macro <code>quote!</code> nos permite escribir el código Rust que queremos devolver y
+convertirlo en <code>quote::Tokens</code>. Esta macro también proporciona algunas
+mecánicas de plantillas muy interesantes; podemos escribir <code>#name</code>, y
+<code>quote!</code> lo reemplazará con el valor en la variable llamada <code>name</code>. Incluso
+puede hacer una repetición similar a la forma en que funcionan las macros
+normales. Consulte <a href="https://docs.rs/quote">the <code>quote</code> crate’s docs</a> para una
+introducción completa.</p>
+<p>Queremos que nuestra macro de procedimientos genere una implementación de
+nuestro <em>trait</em> <code>HelloMacro</code> para el tipo anotado por el usuario, que podemos
+obtener usando <code>#name</code>.La implementación del <em>trait</em> tiene una función,
+<code>hello_macro</code>, cuyo cuerpo contiene el funcionalidad que queremos
+proporcionar: impresión <code>Hello, Macro! My name is</code> y luego el nombre del tipo
+anotado.</p>
+<p>La macro <code>stringify!</code> Utilizada aquí está integrada en Rust. Toma una
+expresión Rust, como <code>1 + 2</code>, y en tiempo de compilación convierte la
+expresión en un literal de <em>string</em>, como <code>&quot;1 + 2&quot;</code>. Esto es diferente de
+<code>format!</code> o <code>println!</code>, que evalúa la expresión y luego convierte el
+resultado en <code>String</code>. Existe la posibilidad de que la entrada <code>#name</code> sea
+una expresión para imprimir literalmente, entonces usamos <code>stringify!</code>.
+Usando <code>stringify!</code> también guarda una asignación convirtiendo <code>#name</code> a un
+<em>string</em> literal en tiempo de compilación.</p>
+<p>En este punto, <code>cargo build</code> debería completarse con éxito en ambos
+<code>hello_macro</code> y <code>hello_macro_derive</code>. Vamos a conectar estos <em>crates</em> al
+código en el Listado D-2 para ver la macro de procedimiento en acción! cree
+un nuevo proyecto binario en su directorio <em>proyectos</em> utilizando
+<code>cargo new --bin pancakes</code>. Necesitamos agregar <code>hello_macro</code> y
+<code>hello_macro_derive</code> como dependencias en los <code>pancakes</code>
+<em>crates</em> <em>Cargo.toml</em>. Si publica sus versiones de <code>hello_macro</code> y
+<code>hello_macro_derive</code> a <em>https://crates.io/</em>, serían dependencias regulares;
+si no, puede especificarlos como dependencias <code>path</code> de la siguiente manera:</p>
+<pre><code class="language-toml">[dependencies]
+hello_macro = { path = &quot;../hello_macro&quot; }
+hello_macro_derive = { path = &quot;../hello_macro/hello_macro_derive&quot; }
+</code></pre>
+<p>Coloque el código del Listado D-2 en <em>src/main.rs</em>, y ejecute <code>cargo run</code>:
+debería imprimir <code>Hello, Macro! My name is Pancakes!</code> la implementación del
+<em>trait</em> <code>HelloMacro</code> de la macro procedural se incluyó sin que el <em>crate</em>
+<code>pancakes</code> necesitara implementarla; el <code>#[derive HelloMacro)]</code> agregó la
+implementación del <em>traits</em>.</p>
+<h3 id="el-futuro-de-las-macros"><a class="header" href="#el-futuro-de-las-macros">El futuro de las macros</a></h3>
+<p>En el futuro, Rust ampliará las macros declarativas y de procedimiento. Rust
+utilizará un mejor sistema de macros declarativas con la palabra clave
+<code>macro</code> y agregará más tipos de macros de procedimientos para tareas más
+potentes que simplemente <code>derive</code>. Estos sistemas aún están en desarrollo en
+el momento de esta publicación; Consulte la documentación en línea de Rust
+para obtener la información más reciente.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="appendix-03-derivable-traits.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="appendix-05-translation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="appendix-03-derivable-traits.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="appendix-05-translation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

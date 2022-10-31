@@ -1,0 +1,884 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Writing tests - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html" class="active"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="cómo-escribir-pruebas"><a class="header" href="#cómo-escribir-pruebas">Cómo escribir pruebas</a></h2>
+<p>Las pruebas son funciones de Rust que verifican que el código que no es
+prueba está funcionando de la manera esperada. Los cuerpos de las funciones
+de prueba suelen realizar estas tres acciones:</p>
+<ol>
+<li>Configure cualquier información o estado necesario.</li>
+<li>Ejecute el código que desea probar.</li>
+<li>Afirma que los resultados son lo que esperas.</li>
+</ol>
+<p>Veamos las características que Rust proporciona específicamente para escribir
+pruebas que toman estas acciones, que incluyen el atributo <code>test</code>, algunas
+macros y el atributo <code>should_panic</code>.</p>
+<h3 id="la-anatomía-de-una-función-de-prueba"><a class="header" href="#la-anatomía-de-una-función-de-prueba">La anatomía de una función de prueba</a></h3>
+<p>En su forma más simple, una prueba en Rust es una función anotada con el
+atributo <code>test</code>. Los atributos son metadatos sobre piezas de código Rust; un
+ejemplo es el atributo <code>derive</code> que usamos con las estructuras en el
+Capítulo 5. Para cambiar una función a una función de prueba, agregue
+<code>#[test]</code> en la línea antes de <code>fn</code>. Cuando ejecuta sus pruebas con el
+comando <code>cargo test</code>, Rust construye un binario ejecutable de prueba que
+ejecuta las funciones anotadas con el atributo <code>test</code> e informa si cada
+función de prueba pasa o falla.</p>
+<p>En el Capítulo 7, vimos que cuando realizamos un nuevo proyecto de biblioteca
+con Cargo, automáticamente se genera para nosotros un módulo de prueba con
+una función de prueba. Este módulo le ayuda a comenzar a escribir sus pruebas
+para que no tenga que buscar la estructura exacta y la sintaxis de las
+funciones de prueba cada vez que inicia un nuevo proyecto. ¡Puede agregar
+tantas funciones de prueba adicionales como tantos módulos de prueba como
+desee!</p>
+<p>Exploraremos algunos aspectos de cómo funcionan las pruebas experimentando
+con la prueba de plantilla generada por nosotros sin probar realmente ningún
+código. Luego, escribiremos algunas pruebas del mundo real que llaman a algún
+código que hemos escrito y afirman que su comportamiento es correcto.</p>
+<p>Vamos a crear un nuevo proyecto de biblioteca llamado <code>adder</code>:</p>
+<pre><code class="language-text">$ cargo new adder --lib
+     Created library `adder` project
+$ cd adder
+</code></pre>
+<p>El contenido del archivo <em>src/lib.rs</em> en su biblioteca <code>adder</code> debe parecerse
+al Listado 11-1.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 11-1: el módulo de prueba y la función generada
+automáticamente por <code>cargo new</code></span></p>
+<p>Por ahora, ignoremos las dos líneas superiores y nos centraremos en la
+función para ver cómo funciona. Tenga en cuenta la anotación <code>#[test]</code> antes
+de la línea <code>fn</code>: este atributo indica que se trata de una función de prueba,
+por lo que el ejecutable de prueba sabe que debe tratar esta función como una
+prueba. También podríamos tener funciones que no sean de prueba en el módulo
+<code>tests</code> para ayudar a configurar escenarios comunes o realizar operaciones
+comunes, por lo que debemos indicar qué funciones son pruebas utilizando el
+atributo <code>#[test]</code>.</p>
+<p>El cuerpo de la función utiliza la macro <code>assert_eq!</code> Para afirmar que 2 + 2
+es igual a 4. Esta afirmación sirve como un ejemplo del formato para una
+prueba típica. Vamos a ejecutarlo para ver que pasa esta prueba.</p>
+<p>El comando <code>cargo test</code> ejecuta todas las pruebas en nuestro proyecto, como
+se muestra en el Listado 11-2.</p>
+<pre><code class="language-text">$ cargo test
+   Compiling adder v0.1.0 (file:///projects/adder)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22 secs
+     Running target/debug/deps/adder-ce99bcc2479f4607
+
+running 1 test
+test tests::it_works ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+   Doc-tests adder
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p><span class="caption">Listado 11-2: El resultado de ejecutar la prueba
+generada automáticamente</span></p>
+<p>Cargo compilado y ejecutado la prueba. Después de las líneas <code>Compiling</code>,
+<code>Finished</code>, y <code>Running</code> está la línea <code>running 1 test</code>. La siguiente línea
+muestra el nombre de la función de prueba generada, llamada <code>it_works</code>, y el
+resultado de ejecutar esa prueba, <code>ok</code>. El resumen general de la ejecución de
+las pruebas aparece a continuación. El texto <code>test result: ok</code> significa que
+pasaron todas las pruebas y que pasó la porción que dice <code>1 passed; 0 failed</code>
+totaliza el número de pruebas que pasaron o fallaron.</p>
+<p>Como no tenemos ninguna prueba que hayamos marcado como ignorada, el resumen
+muestra <code>0 ignorado</code>. Tampoco hemos filtrado las pruebas que se están
+ejecutando, por lo que el final del resumen muestra <code>0 filtered out</code>.
+Hablaremos sobre ignorar y filtrar las pruebas en la siguiente sección,
+“Controlar cómo se ejecutan las pruebas”.</p>
+<p>La estadística <code>0 measured</code> es para <em>benchmark tests</em> que miden el
+rendimiento. <em>Benchmark tests</em>, al momento de escribir este
+documento, solo disponibles en Rust <em>nightly</em>. Ver
+<a href="../../unstable-book/library-features/test.html">the documentation about benchmark tests</a> para aprender más.</p>
+<p>La siguiente parte de la salida de prueba, que comienza con <code>Doc-tests adder</code>,
+es para los resultados de cualquier prueba de documentación. Todavía no
+tenemos pruebas de documentación, pero Rust puede compilar cualquier ejemplo
+de código que aparezca en nuestra documentación API. ¡Esta característica nos
+ayuda a mantener nuestros documentos y nuestro código sincronizados!
+Discutiremos cómo escribir pruebas de documentación en la sección
+“Comentarios de la documentación como pruebas” del Capítulo 14. Por ahora,
+ignoraremos el resultado de <code>Doc-tests</code>.</p>
+<p>Cambiemos el nombre de nuestra prueba para ver cómo eso cambia la salida de
+la prueba. Cambie la función <code>it_works</code> a un nombre diferente, como
+<code>exploration</code>, como sigue:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>#[cfg(test)]
+mod tests {
+    #[test]
+    fn exploration() {
+        assert_eq!(2 + 2, 4);
+    }
+}
+</code></pre></pre>
+<p>Luego ejecute <code>cargo test</code> nuevamente. La salida ahora muestra <code>exploración</code> en lugar de <code>it_works</code>:</p>
+<pre><code class="language-text">running 1 test
+test tests::exploration ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>Agreguemos otra prueba, ¡pero esta vez haremos una prueba que falla! Las
+pruebas fallan cuando algo en la función de prueba entra en pánico. Cada
+prueba se ejecuta en un nuevo <em>hilo</em> (<em>thread</em>), y cuando el hilo principal
+ve que un hilo de prueba ha muerto, la prueba se marca como fallida. Hablamos
+sobre la forma más simple de causar pánico en el Capítulo 9, que es llamar a
+la macro <code>panic!</code>. Ingrese la nueva prueba, <code>another</code>, para que su archivo
+<em>src/lib.rs</em> se vea como el Listado 11-3.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>#[cfg(test)]
+mod tests {
+    #[test]
+    fn exploration() {
+        assert_eq!(2 + 2, 4);
+    }
+
+    #[test]
+    fn another() {
+        panic!(&quot;Make this test fail&quot;);
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 11-3: Agregar una segunda prueba que fallará
+porque llamamos a la macro <code>panic!</code>o</span></p>
+<p>Ejecute las pruebas nuevamente usando <code>cargo test</code>. La salida debería verse
+como el Listado 11-4, que muestra que nuestra prueba <code>exploración</code> pasó y
+<code>another</code> falló.</p>
+<pre><code class="language-text">running 2 tests
+test tests::exploration ... ok
+test tests::another ... FAILED
+
+failures:
+
+---- tests::another stdout ----
+    thread 'tests::another' panicked at 'Make this test fail', src/lib.rs:10:8
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+
+failures:
+    tests::another
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
+
+error: test failed
+</code></pre>
+<p><span class="caption">Listado 11-4: resultados de la prueba cuando una prueba
+pasa y una prueba falla</span></p>
+<p>En lugar de <code>ok</code>, la línea <code>test tests::another</code> muestra <code>FAILED</code>. Aparecen
+dos nuevas secciones entre los resultados individuales y el resumen: la
+primera sección muestra el motivo detallado de cada falla de prueba. En este
+caso, <code>another</code> falló porque <code>panicked at 'Make this test fail'</code>, que sucedió
+en la línea 10 en el archivo <em>src/lib.rs</em>. La siguiente sección enumera solo
+los nombres de todas las pruebas que fallan, lo cual es útil cuando hay
+muchas pruebas y muchos resultados de pruebas fallidas detalladas. Podemos
+usar el nombre de una prueba que falla para ejecutar solo esa prueba para
+depurarla más fácilmente; hablaremos más sobre las formas de ejecutar pruebas
+en la sección “Controlar cómo se ejecutan las pruebas”.</p>
+<p>La línea de resumen se muestra al final: en general, el resultado de nuestra
+prueba es <code>FAILED</code>. Tuvimos un pase de prueba y una prueba falló.</p>
+<p>Ahora que ha visto cómo son los resultados de las pruebas en diferentes
+escenarios, veamos algunas macros además de <code>panic!</code> Que son útiles en las
+pruebas.</p>
+<h3 id="comprobando-los-resultados-con-la-macro-assert"><a class="header" href="#comprobando-los-resultados-con-la-macro-assert">Comprobando los resultados con la macro <code>assert!</code></a></h3>
+<p>La macro <code>assert!</code>, Provista por la biblioteca estándar, es útil cuando
+quiere asegurarse de que alguna condición en una prueba se evalúe como
+<code>true</code>. Le damos a la macro <code>assert!</code> Un argumento que evalúa a un booleano.
+Si el valor es <code>true</code>,<code>assert!</code>No hace nada y la prueba pasa. Si el valor
+es <code>false</code>, la macro <code>assert! </code>Llama a la macro <code>panic!</code>, Lo que hace que la
+prueba falle. El uso de la macro <code>assert!</code> Nos ayuda a verificar que nuestro
+código funcione de la manera que queremos.</p>
+<p>En el Capítulo 5, Listado 5-15, usamos una estructura <code>Rectangle</code> y un método <code>can_hold</code>, que se repiten aquí en el Listado 11-5. Pongamos este código en el archivo <em>src/lib.rs</em> y escribamos algunas pruebas con la macro <code>assert!</code>.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>#[derive(Debug)]
+pub struct Rectangle {
+    length: u32,
+    width: u32,
+}
+
+impl Rectangle {
+    pub fn can_hold(&amp;self, other: &amp;Rectangle) -&gt; bool {
+        self.length &gt; other.length &amp;&amp; self.width &gt; other.width
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 11-5: Usando la estructura <code>Rectangle</code> y su
+método <code>can_hold</code> del Capítulo 5</span></p>
+<p>El método <code>can_hold</code> devuelve un booleano, lo que significa que es un caso de
+uso perfecto para la macro <code>assert! </code>. En el listado 11-6, escribimos una
+prueba que ejerce el método <code>can_hold</code> creando una instancia <code>Rectangle</code> que
+tiene una longitud de 8 y un ancho de 7 y afirma que puede contener otra
+instancia <code>Rectangle</code> que tiene una longitud de 5 y un ancho de 1.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn larger_can_hold_smaller() {
+        let larger = Rectangle { length: 8, width: 7 };
+        let smaller = Rectangle { length: 5, width: 1 };
+
+        assert!(larger.can_hold(&amp;smaller));
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 11-6: Una prueba para <code>can_hold</code> que verifica
+si un rectángulo más grande puede contener un rectángulo más pequeño</span></p>
+<p>Tenga en cuenta que hemos agregado una nueva línea dentro del módulo
+<code>tests</code>: <code>use super::*;</code>. El módulo <code>tests</code> es un módulo regular que sigue
+las reglas de visibilidad habituales que cubrimos en el Capítulo 7 en la
+sección “Reglas de privacidad” . Como el módulo <code>tests</code> es un módulo interno,
+debemos poner el código bajo prueba en el módulo externo dentro del alcance
+del módulo interno. Aquí usamos un glob para que todo lo que definimos en el
+módulo externo esté disponible para este módulo <code>tests</code>.</p>
+<p>Hemos nombrado a nuestra prueba <code>larger_can_hold_smaller</code>, y hemos creado las
+dos instancias <code>Rectangle</code> que necesitamos. Luego llamamos a la macro
+<code>assert!</code> Y la pasamos como resultado de llamar
+<code>larger.can_hold(&amp;smaller)</code>. Se supone que esta expresión devuelve <code>true</code>,
+por lo que nuestra prueba debería pasar. ¡Vamos a averiguar!</p>
+<pre><code class="language-text">running 1 test
+test tests::larger_can_hold_smaller ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>¡Pasa!, agreguemos otra prueba, esta vez afirmando que un rectángulo más
+pequeño no puede contener un rectángulo más grande:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn larger_can_hold_smaller() {
+        // --snip--
+    }
+
+    #[test]
+    fn smaller_cannot_hold_larger() {
+        let larger = Rectangle { length: 8, width: 7 };
+        let smaller = Rectangle { length: 5, width: 1 };
+
+        assert!(!smaller.can_hold(&amp;larger));
+    }
+}
+</code></pre></pre>
+<p>Debido a que el resultado correcto de la función <code>can_hold</code> en este caso es
+<code>false</code>, necesitamos negar ese resultado antes de pasarlo a la macro
+<code>assert!</code>. Como resultado, nuestra prueba pasará si <code>can_hold</code> devuelve
+<code>false</code>:</p>
+<pre><code class="language-text">running 2 tests
+test tests::smaller_cannot_hold_larger ... ok
+test tests::larger_can_hold_smaller ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>¡Dos pruebas que pasan! Ahora veamos qué sucede con los resultados de
+nuestras pruebas cuando introducimos un error en nuestro código. Cambiemos la
+implementación del método <code>can_hold</code> reemplazando el signo mayor que con un
+signo menor que cuando se comparan las longitudes:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span><span class="boring">#[derive(Debug)]
+</span><span class="boring">pub struct Rectangle {
+</span><span class="boring">    length: u32,
+</span><span class="boring">    width: u32,
+</span><span class="boring">}
+</span>// --snip--
+
+impl Rectangle {
+    pub fn can_hold(&amp;self, other: &amp;Rectangle) -&gt; bool {
+        self.length &lt; other.length &amp;&amp; self.width &gt; other.width
+    }
+}
+</code></pre></pre>
+<p>Ejecutar las pruebas ahora produce lo siguiente:</p>
+<pre><code class="language-text">running 2 tests
+test tests::smaller_cannot_hold_larger ... ok
+test tests::larger_can_hold_smaller ... FAILED
+
+failures:
+
+---- tests::larger_can_hold_smaller stdout ----
+    thread 'tests::larger_can_hold_smaller' panicked at 'assertion failed:
+    larger.can_hold(&amp;smaller)', src/lib.rs:22:8
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+
+failures:
+    tests::larger_can_hold_smaller
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>¡Nuestras pruebas captaron el error! Como <code>larger.length</code> es 8 y
+<code>smaller.length</code> es 5, la comparación de las longitudes en <code>can_hold</code> ahora
+devuelve <code>false</code>: 8 no es menor que 5.</p>
+<h3 id="probando-la-igualdad-con-las-macros-assert_eq-y-assert_ne"><a class="header" href="#probando-la-igualdad-con-las-macros-assert_eq-y-assert_ne">Probando la igualdad con las macros <code>assert_eq!</code> Y <code>assert_ne!</code></a></h3>
+<p>Una forma común de probar la funcionalidad es comparar el resultado del
+código bajo prueba con el valor que espera que devuelva el código para
+asegurarse de que son iguales. Puede hacer esto usando la macro <code>assert!</code> Y
+pasarle una expresión usando el operador <code>==</code>. Sin embargo, esta es una
+prueba tan común que la biblioteca estándar proporciona un par de macros:
+<code>assert_eq!</code> y <code>assert_ne!</code> para realizar esta prueba de manera más
+conveniente. Estas macros comparan dos argumentos para igualdad o desigualdad,
+respectivamente. También imprimirán los dos valores si la afirmación falla,
+lo que hace que sea más fácil ver <em>por qué</em> la prueba falló; por el contrario
+la macro <code>assert!</code> solo indica que obtuvo un valor <code>false</code> para la expresión
+<code>==</code>, no los valores que conducen al valor <code>false</code>.</p>
+<p>En el listado 11-7, escribimos una función llamada <code>add_two</code> que agrega <code>2</code> a
+su parámetro y devuelve el resultado. Luego probamos esta función usando la
+macro <code>assert_eq!</code>.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>pub fn add_two(a: i32) -&gt; i32 {
+    a + 2
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_adds_two() {
+        assert_eq!(4, add_two(2));
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 11-7: probando la función <code>add_two</code> usando la
+macro <code>assert_eq!</code></span></p>
+<p>¡Comprobemos que pase!</p>
+<pre><code class="language-text">running 1 test
+test tests::it_adds_two ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>El primer argumento que le dimos a la macro <code>assert_eq!</code>, <code>4</code>, es igual al
+resultado de invocar <code>add_two(2)</code>. La línea para esta prueba es
+<code>test tests::it_adds_two ... ok</code>, y el texto <code>ok</code> indica que nuestra prueba
+pasó.</p>
+<p>Vamos a introducir un error en nuestro código para ver cómo funciona cuando
+falla una prueba que usa <code>assert_eq!</code>. Cambie la implementación de la
+función <code>add_two</code> para agregar <code>3</code> en su lugar:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>pub fn add_two(a: i32) -&gt; i32 {
+    a + 3
+}
+</code></pre></pre>
+<p>Ejecute las pruebas nuevamente:</p>
+<pre><code class="language-text">running 1 test
+test tests::it_adds_two ... FAILED
+
+failures:
+
+---- tests::it_adds_two stdout ----
+        thread 'tests::it_adds_two' panicked at 'assertion failed: `(left == right)`
+  left: `4`,
+ right: `5`', src/lib.rs:11:8
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+
+failures:
+    tests::it_adds_two
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>¡Nuestra prueba captó el error! La prueba <code>it_adds_two</code> falló, mostrando el
+mensaje <code>assertion failed: `(left == right)`</code> y mostrando que <code>left</code> era
+<code>4</code> y <code>right</code> era <code>5</code>. Este mensaje es útil y nos ayuda a comenzar la
+depuración: significa el argumento <code>left</code> para <code>assert_eq!</code> era <code>4</code> pero el
+argumento <code>right</code>, donde tenía <code>add_two (2)</code>, era <code>5</code>.</p>
+<p>Tenga en cuenta que en algunos lenguajes y marcos de prueba, los parámetros
+de las funciones que afirman que dos valores son iguales se llaman
+<code>expected</code> y <code>real</code>, y el orden en que especificamos los argumentos es
+importante. Sin embargo, en Rust, se llaman <code>left</code> y <code>right</code>, y el orden en
+que especificamos el valor esperamos y el valor que produce el código bajo
+prueba no importa. Nosotros podría escribir la afirmación en esta prueba
+como <code>assert_eq! (add_two (2), 4)</code>, que daría como resultado un mensaje de
+error que muestra <code>assertion failed: `(left ==right)</code>  y que <code>left</code> era
+<code>5</code> y <code>right</code> era <code>4</code>.</p>
+<p>La macro <code>assert_ne!</code> Pasará si los dos valores que le damos no son iguales y
+fallar si son iguales Esta macro es más útil para casos en los que no
+estamos seguros qué valor <em>será</em>, pero sabemos cuál es el valor
+definitivamente <em>no</em> será si nuestro el código está funcionando como
+queremos. Por ejemplo, si estamos probando una función que está garantizado
+para cambiar su entrada de alguna manera, pero la forma en que la entrada
+se cambia depende del día de la semana en que realizamos nuestras pruebas,
+lo mejor afirmar podría ser que la salida de la función no es igual a la
+entrada.</p>
+<p>Debajo de la superficie, las macros <code>assert_eq!</code> y <code>assert_ne!</code> Usan los
+operadores <code>==</code> y <code>! =</code>, respectivamente. Cuando las aserciones fallan,
+estas macros imprimen su argumentos que utilizan el formato de depuración,
+lo que significa que los valores que se comparan deben implementar los
+<em>trait</em> <code>PartialEq</code> y <code>Debug</code>. Todos los tipos primitivos y la mayoría
+de los tipos de biblioteca estándar implementan estos <em>trait</em>. Para
+estructuras y enumeraciones que defina, necesitará implementar <code>PartialEq</code>
+para afirmar que los valores de esos tipos son iguales o no iguales.
+Necesitarás implementar <code>Debug</code> para imprimir los valores cuando la
+afirmación falla. Debido a que ambos <em>trait</em> son <em>trait</em> derivables,
+como se menciona en el Listado 5-12 en el Capítulo 5, esto suele ser tan
+sencillo como agregar la anotación <code>#[derive (PartialEq, Debug)]</code> a su
+definición <em>struct</em> o <em>enum</em>. Ver el Apéndice C para más detalles sobre estos y otros <em>trait</em> derivables.</p>
+<h3 id="agregar-mensajes-personalizados-de-fallo"><a class="header" href="#agregar-mensajes-personalizados-de-fallo">Agregar mensajes personalizados de fallo</a></h3>
+<p>También puede agregar un mensaje personalizado para imprimir con el mensaje
+de fallo como argumentos opcionales para las macros <code>assert!</code>, <code>Assert_eq!</code>,
+y <code>assert_ne!</code>. Cualquier argumento especificado después de un argumento
+requerido para <code>assert!</code> o los dos argumentos requeridos para <code>assert_eq!</code> y
+<code>assert_ne!</code> se pasan a la macro <code>format!</code> (Estudiado en el Capítulo 8 en la
+sección “Concatenación con el operador <code>+</code> o la Macro <code>format!</code>”), por lo
+que puede pasar una cadena de formato que contenga <code>{}</code> marcadores de
+posición y valores para ir en esos marcadores de posición. Los mensajes
+personalizados son útiles para documentar lo que significa una afirmación;
+cuando falla una prueba, tendrá una mejor idea de cuál es el problema con el
+código.</p>
+<p>Por ejemplo, supongamos que tenemos una función que saluda a las personas
+por su nombre y queremos probar que el nombre que pasamos a la función
+aparezca en el resultado:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>pub fn greeting(name: &amp;str) -&gt; String {
+    format!(&quot;Hello {}!&quot;, name)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn greeting_contains_name() {
+        let result = greeting(&quot;Carol&quot;);
+        assert!(result.contains(&quot;Carol&quot;));
+    }
+}
+</code></pre></pre>
+<p>Los requisitos para este programa aún no se han acordado, y estamos bastante
+seguros de que el texto <code>Hello</code> al comienzo del saludo cambiará. Decidimos
+que no queremos tener que actualizar la prueba cuando cambian los requisitos
+así que en lugar de verificar la igualdad exacta del valor devuelto por la
+función <code>greeting</code>, simplemente afirmaremos que la salida contiene el texto
+de la entrada parámetro.</p>
+<p>Vamos a introducir un error en este código cambiando <code>greeting</code> para no
+incluir <code>name</code> para ver cómo se ve esta falla en la prueba:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>pub fn greeting(name: &amp;str) -&gt; String {
+    String::from(&quot;Hello!&quot;)
+}
+</code></pre></pre>
+<p>Ejecutar esta prueba produce lo siguiente:</p>
+<pre><code class="language-text">running 1 test
+test tests::greeting_contains_name ... FAILED
+
+failures:
+
+---- tests::greeting_contains_name stdout ----
+        thread 'tests::greeting_contains_name' panicked at 'assertion failed:
+result.contains(&quot;Carol&quot;)', src/lib.rs:12:8
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+
+failures:
+    tests::greeting_contains_name
+</code></pre>
+<p>Este resultado simplemente indica que la aserción falló y en qué línea está
+la aserción. Un mensaje de falla más útil en este caso imprimiría el valor
+que obtenemos de la función <code>greeting</code>. Cambiemos la función de prueba,
+dándole un mensaje de falla personalizado hecho de una cadena de formato con
+un marcador de posición rellenado con el valor real que obtuvimos de la
+función <code>greeting</code>:</p>
+<pre><code class="language-rust ignore">#[test]
+fn greeting_contains_name() {
+    let result = greeting(&quot;Carol&quot;);
+    assert!(
+        result.contains(&quot;Carol&quot;),
+        &quot;Greeting did not contain name, value was `{}`&quot;, result
+    );
+}
+</code></pre>
+<p>Ahora cuando ejecutamos la prueba, obtendremos un mensaje de error más informativo:</p>
+<pre><code class="language-text">---- tests::greeting_contains_name stdout ----
+        thread 'tests::greeting_contains_name' panicked at 'Greeting did not
+contain name, value was `Hello!`', src/lib.rs:12:8
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+</code></pre>
+<p>Podemos ver el valor que realmente obtuvimos en el resultado de la prueba,
+lo que nos ayudaría a depurar lo que sucedió en lugar de lo que esperábamos
+que sucediera.</p>
+<h3 id="comprobación-de-pánicos-panics-con-should_panic"><a class="header" href="#comprobación-de-pánicos-panics-con-should_panic">Comprobación de <em>pánicos</em> (<em>Panics</em>) con <code>should_panic</code></a></h3>
+<p>Además de verificar que nuestro código arroje los valores correctos que
+esperamos, también es importante verificar que nuestro código maneje las
+condiciones de error como esperamos. Por ejemplo, considere el tipo <code>Guess</code>
+que creamos en el Capítulo 9, Listado 9-9. Otro código que usa <code>Guess</code>
+depende de la garantía de que las instancias <code>Guess</code> contendrán solo valores
+entre 1 y 100. Podemos escribir una prueba que asegure que intentar crear
+una instancia <code>Guess</code> con un valor fuera de ese rango entra en pánico.</p>
+<p>Hacemos esto agregando otro atributo, <code>should_panic</code>, a nuestra función de
+prueba. Este atributo hace pasar una prueba si el código dentro de la
+función entra en pánico; la prueba fallará si el código dentro de la función
+no entra en pánico.</p>
+<p>El listado 11-8 muestra una prueba que verifica que las condiciones de error
+de <code>Guess::new</code> ocurran cuando esperamos que lo hagan.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>pub struct Guess {
+    value: u32,
+}
+
+impl Guess {
+    pub fn new(value: u32) -&gt; Guess {
+        if value &lt; 1 || value &gt; 100 {
+            panic!(&quot;Guess value must be between 1 and 100, got {}.&quot;, value);
+        }
+
+        Guess {
+            value
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic]
+    fn greater_than_100() {
+        Guess::new(200);
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 11-8: ¡Prueba que una condición causará un
+<code>panic!</code></span></p>
+<p>Colocamos el atributo <code>#[should_panic]</code> después del atributo <code>#[test]</code> y
+antes de la función de prueba a la que se aplica. Miremos el resultado
+cuando pase esta prueba:</p>
+<pre><code class="language-text">running 1 test
+test tests::greater_than_100 ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>¡Se ve bien! Ahora introduzcamos un error en nuestro código eliminando la
+condición de que la función <code>new</code> entrará en pánico si el valor es mayor que
+100:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span><span class="boring">pub struct Guess {
+</span><span class="boring">    value: u32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>// --snip--
+
+impl Guess {
+    pub fn new(value: u32) -&gt; Guess {
+        if value &lt; 1  {
+            panic!(&quot;Guess value must be between 1 and 100, got {}.&quot;, value);
+        }
+
+        Guess {
+            value
+        }
+    }
+}
+</code></pre></pre>
+<p>Cuando ejecutamos la prueba en el listado 11-8, fallará:</p>
+<pre><code class="language-text">running 1 test
+test tests::greater_than_100 ... FAILED
+
+failures:
+
+failures:
+    tests::greater_than_100
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>No obtenemos un mensaje muy útil en este caso, pero cuando miramos la
+función de prueba, vemos que está anotada con <code>#[should_panic]</code>. El error
+que obtuvimos significa que el código en la función de prueba no causó
+pánico.</p>
+<p>Las pruebas que usan <code>should_panic</code> pueden ser imprecisas porque solo
+indican que el código ha causado cierto pánico. Una prueba <code>should_panic</code>
+pasaría incluso si la prueba entra en pánico por una razón diferente a la
+que esperábamos que sucediera. Para hacer las pruebas <code>should_panic</code> más
+precisas, podemos agregar un parámetro <code>expected</code> opcional al atributo
+<code>should_panic</code>. El arnés de prueba se asegurará de que el mensaje de falla
+contenga el texto provisto. Por ejemplo, considere el código modificado para
+<code>Guess</code> en el Listado 11-9 donde la función <code>new</code> entra en pánico con
+diferentes mensajes dependiendo de si el valor es demasiado pequeño o
+demasiado grande.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span><span class="boring">pub struct Guess {
+</span><span class="boring">    value: u32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>// --snip--
+
+impl Guess {
+    pub fn new(value: u32) -&gt; Guess {
+        if value &lt; 1 {
+            panic!(&quot;Guess value must be greater than or equal to 1, got {}.&quot;,
+                   value);
+        } else if value &gt; 100 {
+            panic!(&quot;Guess value must be less than or equal to 100, got {}.&quot;,
+                   value);
+        }
+
+        Guess {
+            value
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic(expected = &quot;Guess value must be less than or equal to 100&quot;)]
+    fn greater_than_100() {
+        Guess::new(200);
+    }
+}
+</code></pre></pre>
+<p><span class="caption">Listado 11-9: ¡Prueba que una condición causará un
+<code>panic!</code> Con un mensaje de pánico particular</span></p>
+<p>Esta prueba pasará porque el valor que ponemos en el parámetro <code>expected</code>
+del atributo <code>should_panic</code> es una subcadena del mensaje con el que entra en
+juego la función <code>Guess::new</code>. Podríamos haber especificado todo el mensaje
+de pánico que esperamos, que en este caso sería
+<code>Guess value must be less than or equal to 100, got 200.</code>. Lo que elija especificar en el parámetro esperado para <code>should_panic</code> depende de cómo
+gran parte del mensaje de pánico es único o dinámico y qué tan preciso
+quiere que sea su prueba. En este caso, una subcadena del mensaje de pánico
+es suficiente para garantizar que el código en la función de prueba ejecuta
+el caso <code>else if value&gt; 100</code>.</p>
+<p>Para ver qué sucede cuando falla una prueba <code>should_panic</code> con un mensaje
+<code>expected</code>, volvamos a introducir un error en nuestro código intercambiando
+los cuerpos de los bloques <code>if value &lt;1</code> y <code>else if value&gt; 100</code>:</p>
+<pre><code class="language-rust ignore">if value &lt; 1 {
+    panic!(&quot;Guess value must be less than or equal to 100, got {}.&quot;, value);
+} else if value &gt; 100 {
+    panic!(&quot;Guess value must be greater than or equal to 1, got {}.&quot;, value);
+}
+</code></pre>
+<p>Esta vez, cuando ejecutamos la prueba <code>should_panic</code>, fallará:</p>
+<pre><code class="language-text">running 1 test
+test tests::greater_than_100 ... FAILED
+
+failures:
+
+---- tests::greater_than_100 stdout ----
+        thread 'tests::greater_than_100' panicked at 'Guess value must be
+greater than or equal to 1, got 200.', src/lib.rs:11:12
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+note: Panic did not include expected string 'Guess value must be less than or
+equal to 100'
+
+failures:
+    tests::greater_than_100
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>El mensaje de falla indica que esta prueba entró en pánico como esperábamos,
+pero el mensaje de pánico no incluyó la cadena de texto esperada
+<code>'Guess value must be less than or equal to 100'</code>. El mensaje de pánico que
+obtuvimos en este caso fue
+<code>Guess value must be greater than or equal to 1,got 200.</code>. ¡Ahora podemos
+comenzar a descubrir dónde está nuestro error!.</p>
+<p>Ahora que conoce varias formas de escribir pruebas, veamos qué está
+sucediendo cuando ejecutemos nuestras pruebas y exploremos las diferentes
+opciones que podemos usar con <code>cargo test</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch11-00-testing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch11-02-running-tests.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch11-00-testing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch11-02-running-tests.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

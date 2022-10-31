@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Box&lt;T&gt; Points to Data on the Heap and Has a Known Size - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html" class="active"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="usando-box-t-para-apuntar-a-los-datos-en-el-heap"><a class="header" href="#usando-box-t-para-apuntar-a-los-datos-en-el-heap">Usando <code>Box &lt;T&gt;</code> para apuntar a los datos en el Heap</a></h2>
+<p>El puntero inteligente más sencillo es un <em>box</em>, cuyo tipo está escrito
+<code>Box &lt;T&gt;</code>. Los <em>Boxes</em> le permiten almacenar datos en el montículo en lugar
+de en la pila. Lo que queda en la pila es el puntero a los datos del
+montículo. Consulte el Capítulo 4 para revisar la diferencia entre la pila y
+el montículo.</p>
+<p>Los <em>Boxes</em>  no tienen sobrecarga de rendimiento, aparte de almacenar sus
+datos en el montículo en lugar de en la pila. Pero tampoco tienen muchas
+capacidades adicionales. Los usarás más a menudo en estas situaciones:</p>
+<ul>
+<li>Cuando tiene un tipo cuyo tamaño no se puede conocer en el momento de la
+compilación y desea usar un valor de ese tipo en un contexto que requiere un
+tamaño exacto</li>
+<li>Cuando tiene una gran cantidad de datos y desea transferir la propiedad,
+pero asegúrese de que los datos no se copiarán cuando lo haga</li>
+<li>Cuando desea poseer un valor y solo le importa que sea un tipo que
+implemente un rasgo particular en lugar de ser de un tipo específico</li>
+</ul>
+<p>Demostraremos la primera situación en la sección “Habilitación de tipos
+recursivos con <em>Boxes</em>”. En el segundo caso, transferir la propiedad de una
+gran cantidad de datos puede llevar mucho tiempo porque los datos se copian
+en la pila. Para mejorar el rendimiento en esta situación, podemos almacenar
+la gran cantidad de datos en el montículo en una <em>box</em>. Luego, solo se copia
+la pequeña cantidad de datos del puntero en la pila, mientras que los datos a
+los que hace referencia permanecen en un lugar en el montículo. El tercer
+caso se conoce como <em>trait object</em>, y el capítulo 17 dedica una sección
+completa, “Usar <em>trait object</em> que permiten valores de diferentes tipos”,
+solo para ese tema. ¡Entonces, lo que aprendes aquí lo aplicará nuevamente en
+el Capítulo 17!.</p>
+<h3 id="usando-un-boxt-para-almacenar-datos-en-el-montículo"><a class="header" href="#usando-un-boxt-para-almacenar-datos-en-el-montículo">Usando un <code>Box&lt;T&gt;</code> para almacenar datos en el montículo</a></h3>
+<p>Antes de analizar este caso de uso para <code>Box &lt;T&gt;</code>, cubriremos la sintaxis y
+cómo interactuar con los valores almacenados dentro de <code>Box &lt;T&gt;</code>.</p>
+<p>El listado 15-1 muestra cómo usar un <em>box</em> para almacenar un valor <code>i32</code> en el montículo:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let b = Box::new(5);
+    println!(&quot;b = {}&quot;, b);
+}
+</code></pre></pre>
+<p><span class="caption">Listado 15-1: Almacenamiento de un valor <code>i32</code> en el
+montículo usando un <em>box</em></span></p>
+<p>Definimos la variable <code>b</code> para que tenga el valor de un <code>Box</code> que apunta al
+valor <code>5</code>, que se asigna en el montículo. Este programa imprimirá <code>b = 5</code>; en
+este caso, podemos acceder a los datos en el <em>box</em> de forma similar a como lo
+haríamos si estos datos estuvieran en la pila. Al igual que cualquier valor
+propio, cuando un <em>box</em> sale del alcance, como <code>b</code> lo hace al final de <code>main</code>
+será desasignado. La desasignación ocurre para el <em>box</em> (almacenada en la
+pila) y los datos a los que apunta (almacenados en el montículo).</p>
+<p>Poner un solo valor en el montículo no es muy útil, por lo que no utilizará
+los <em>boxes</em> por sí mismo de esta manera muy a menudo. Tener valores como un
+solo <code>i32</code> en la pila, donde están almacenados por defecto, es más apropiado
+en la mayoría de las situaciones. Veamos un caso en el que los <em>boxes</em> nos
+permiten definir tipos que no se nos permitirían si no tuviéramos <em>boxes</em>.</p>
+<h3 id="habilitación-de-tipos-recursivos-con-boxes"><a class="header" href="#habilitación-de-tipos-recursivos-con-boxes">Habilitación de tipos recursivos con <em>Boxes</em></a></h3>
+<p>En tiempo de compilación, Rust necesita saber cuánto espacio ocupa un tipo.
+Un tipo cuyo tamaño no se puede conocer en el momento de la compilación es un
+<em>tipo recursivo</em>, donde un valor puede tener como parte de sí mismo otro
+valor del mismo tipo. Debido a que este anidamiento de valores podría,
+teóricamente, continuar infinitamente, Rust no sabe cuánto espacio necesita
+un valor de tipo recursivo. Sin embargo, los <em>boxes</em> tienen un tamaño
+conocido, por lo que al insertar un <em>box</em> en una definición de tipo recursivo
+puede tener tipos recursivos.</p>
+<p>Exploremos la <em>cons list</em>, que es un tipo de datos común en los lenguajes de
+programación funcionales, como un ejemplo de tipo recursivo. El tipo <em>cons
+list</em> que definiremos es sencillo excepto por la recursión; por lo tanto, los
+conceptos en el ejemplo con el que trabajaremos serán útiles cada vez que
+ingrese en situaciones más complejas que involucren tipos recursivos.</p>
+<h4 id="más-información-sobre-el-cons-list"><a class="header" href="#más-información-sobre-el-cons-list">Más información sobre el <em>Cons List</em></a></h4>
+<p>Un <em>cons list</em> es una estructura de datos que proviene del lenguaje de
+programación Lisp y sus dialectos en Lisp, la función <code>cons</code>
+(abreviatura de “construct function”)
+construye un nuevo par a partir de sus dos argumentos, que generalmente son
+un valor único y otro par estos pares que contienen pares forman una lista.</p>
+<p>El concepto de <em>cons function</em> se ha convertido en una jerga de programación funcional más general: “to cons <em>x</em> onto <em>y</em>” informalmente significa
+construir una nueva instancia de contenedor poniendo el elemento <em>x</em> al
+comienzo de este nuevo contenedor, seguido por el contenedor <em>y</em>.</p>
+<p>Cada elemento en una <em>cons list</em> contiene dos elementos: el valor del
+elemento actual y el siguiente ítem. El último elemento de la lista contiene
+solo un valor llamado <code>Nil</code> sin un siguiente artículo. Una <em>cons list</em>
+se produce recursivamente llamando a la función <code>cons</code>. El nombre canónico
+para denotar el caso base de la recursión es <code>Nil</code>.
+Tenga en cuenta que esto no es lo mismo que el concepto “null” o “nil” en el
+Capítulo 6, que es un valor inválido o ausente.</p>
+<p>Aunque los lenguajes de programación funcionales usan <em>cons list</em>
+frecuentemente, las <em>cons list</em> no eson una estructura de datos comúnmente
+utilizada en Rust. La mayoría de las veces cuando tiene una lista de
+elementos en Rust, <code>Vec &lt;T&gt;</code> es una mejor opción para usar. Otros tipos de
+datos recursivos más complejos <em>son</em> útiles en diversas situaciones, pero
+comenzando con la <em>cons list</em>, podemos explorar cómo los <em>boxes</em> nos permiten definir un tipo de datos recursivo sin mucha distracción.</p>
+<p>El listado 15-2 contiene una definición enum para una <em>cons list</em>. Tenga en
+cuenta que este código aún no se compilará porque el tipo <code>List</code> no tiene un
+tamaño conocido, que demostraremos</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">enum List {
+    Cons(i32, List),
+    Nil,
+}
+</code></pre>
+<p><span class="caption">Listado 15-2: El primer intento de definir una
+enumeración para representar una estructura de datos de <em>cons list</em> de
+valores <code>i32</code></span></p>
+<blockquote>
+<p>Nota: Estamos implementando una <em>cons list</em> que solo contiene valores <code>i32</code>
+para los propósitos de este ejemplo. Podríamos haberlo implementado usando
+genéricos, como discutimos en el Capítulo 10, para definir un tipo de
+<em>cons list</em> que pudiera almacenar valores de cualquier tipo.</p>
+</blockquote>
+<p>Usar el tipo <code>List</code> para almacenar la lista <code>1, 2, 3</code> se vería como el código
+en Listado 15-3:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">use List::{Cons, Nil};
+
+fn main() {
+    let list = Cons(1, Cons(2, Cons(3, Nil)));
+}
+</code></pre>
+<p><span class="caption">Listado 15-3: Usando la enumeración <code>List</code> para
+almacenar la lista <code>1,2, 3</code></span></p>
+<p>El primer valor de <code>Cons</code> tiene <code>1</code> y otro valor de <code>List</code>. Este valor de
+<code>List</code> es otro valor <code>Cons</code> que contiene <code>2</code> y otro valor <code>List</code>. Este valor
+de <code>List</code> es un valor más <code>Cons</code> que contiene <code>3</code> y un valor <code>List</code>, que
+finalmente es <code>Nil</code>, la variante no recursiva que señala el final de la lista.</p>
+<p>Si tratamos de compilar el código en el Listado 15-3, obtenemos el error que
+se muestra en el Listado 15-4:</p>
+<pre><code class="language-text">error[E0072]: recursive type `List` has infinite size
+ --&gt; src/main.rs:1:1
+  |
+1 | enum List {
+  | ^^^^^^^^^ recursive type has infinite size
+2 |     Cons(i32, List),
+  |               ----- recursive without indirection
+  |
+  = help: insert indirection (e.g., a `Box`, `Rc`, or `&amp;`) at some point to
+  make `List` representable
+</code></pre>
+<p><span class="caption">Listado 15-4: El error que obtenemos al intentar
+definir una enumeración recursiva</span></p>
+<p>El error muestra que este tipo “tiene un tamaño infinito”. La razón es que
+hemos definido <code>List</code> con una variante que es recursiva: tiene otro valor de
+sí mismo directamente. Como resultado, Rust no puede determinar cuánto
+espacio necesita para almacenar un valor de <code>List</code>. Analicemos por qué
+tenemos este error un poco. Primero, veamos cómo Rust decide cuánto espacio
+necesita para almacenar un valor de tipo no recursivo.</p>
+<h4 id="calcular-el-tamaño-de-un-tipo-no-recursivo"><a class="header" href="#calcular-el-tamaño-de-un-tipo-no-recursivo">Calcular el tamaño de un tipo no recursivo</a></h4>
+<p>Recuerde la enumeración <code>Message</code> que definimos en el Listado 6-2 cuando
+discutimos las definiciones de enum en el Capítulo 6:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Para determinar cuánto espacio asignar para un valor de <code>Message</code>, Rust
+revisa cada una de las variantes para ver qué variante necesita más espacio.
+Rust ve que <code>Message::Quit</code> no necesita ningún espacio, <code>Message::Move</code>
+necesita suficiente espacio para almacenar dos valores <code>i32</code>, y así
+sucesivamente. Debido a que solo se usará una variante, la mayor cantidad de
+espacio que necesitará un valor de <code>Message</code> es el espacio que le llevaría
+almacenar la mayor de sus variantes.</p>
+<p>En contraste esto con lo que ocurre cuando Rust intenta determinar cuánto
+espacio necesita un tipo recursivo como la enumeración <code>List</code> en el Listado
+15-2. El compilador comienza mirando la variante <code>Cons</code>, que contiene un
+valor de tipo <code>i32</code> y un valor de tipo <code>List</code>. Por lo tanto, <code>Cons</code> necesita
+una cantidad de espacio igual al tamaño de un <code>i32</code> más el tamaño de una
+<code>List</code>. Para averiguar cuánta memoria necesita el tipo <code>List</code>, el compilador
+observa las variantes, comenzando con la variante <code>Cons</code>. La variante <code>Cons</code>
+contiene un valor de tipo <code>i32</code> y un valor de tipo <code>List</code>, y este proceso
+continúa infinitamente, como se muestra en la figura 15-1.</p>
+<img alt="An infinite Cons list" src="img/trpl15-01.svg" class="center" style="width: 50%;" />
+<p><span class="caption">Figura 15-1: Una <code>List</code> infinita que consiste en
+infinitas variantes <code>Cons</code></span></p>
+<h4 id="usando-box-t-para-obtener-un-tipo-recursivo-con-un-tamaño-conocido"><a class="header" href="#usando-box-t-para-obtener-un-tipo-recursivo-con-un-tamaño-conocido">Usando <code>Box &lt;T&gt;</code> para obtener un tipo recursivo con un tamaño conocido</a></h4>
+<p>Rust no puede determinar cuánto espacio asignar para los tipos definidos
+recursivamente, por lo que el compilador da el error en el Listado 15-4. Pero
+el error incluye esta útil sugerencia:</p>
+<pre><code class="language-text">  = help: insert indirection (e.g., a `Box`, `Rc`, or `&amp;`) at some point to
+  make `List` representable
+</code></pre>
+<p>En esta sugerencia, “indirection” significa que en lugar de almacenar un
+valor directamente, cambiaremos la estructura de datos para almacenar el
+valor indirectamente almacenando un puntero al valor en su lugar.</p>
+<p>Debido a que <code>Box&lt;T&gt;</code> es un puntero, Rust siempre sabe cuánto espacio
+necesita <code>Box&lt;T&gt;</code>: el tamaño de un puntero no cambia en función de la
+cantidad de datos a los que apunta. Esto significa que podemos poner
+<code>Box&lt;T&gt;</code> dentro de la variante <code>Cons</code> en lugar de otro <code>List</code> directamente.
+El <code>Box &lt;T&gt;</code> apuntará al siguiente valor <code>List</code> que estará en el montículo en
+lugar de dentro de la variante <code>Cons</code>. Conceptualmente, todavía tenemos una
+lista, creada con listas que “sostienen” otras listas, pero esta
+implementación ahora es más como colocar los elementos uno al lado del otro
+en lugar de uno dentro del otro.</p>
+<p>Podemos cambiar la definición de la enumeración <code>List</code> en el Listado 15-2 y
+el uso de la <code>List</code> en el Listado 15-3 del código en el Listado 15-5, que
+compilará:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">enum List {
+    Cons(i32, Box&lt;List&gt;),
+    Nil,
+}
+
+use List::{Cons, Nil};
+
+fn main() {
+    let list = Cons(1,
+        Box::new(Cons(2,
+            Box::new(Cons(3,
+                Box::new(Nil))))));
+}
+</code></pre></pre>
+<p><span class="caption">Listado 15-5: Definición de <code>List</code> que usa
+<code>Box&lt;T&gt;</code> para tener un tamaño conocido</span></p>
+<p>La variante <code>Cons</code> necesitará el tamaño de un <code>i32</code> más el espacio para
+almacenar los datos del puntero de la <em>box</em>. La variante <code>Nil</code> no almacena
+valores, por lo que necesita menos espacio que la variante <code>Cons</code>. Ahora
+sabemos que cualquier valor de <code>List</code> tomará el tamaño de un <code>i32</code> más el
+tamaño de los datos del puntero de un <em>box</em>. Al usar una <em>box</em>, hemos roto la
+cadena infinita y recursiva, por lo que el compilador puede calcular el
+tamaño que necesita para almacenar un valor de <code>List</code>. La figura 15-2 muestra
+cómo es la variante <code>Cons</code> ahora.</p>
+<img alt="A finite Cons list" src="img/trpl15-02.svg" class="center" />
+<p><span class="caption">Figura 15-2: Una  <code>List</code> que no tiene un tamaño
+infinito porque <code>Cons</code> contiene un <code>Box</code></span></p>
+<p>Las casillas solo proporcionan la asignación indirecta y del montículo; no
+tienen otras capacidades especiales, como las que veremos con los otros tipos
+de punteros inteligentes. Tampoco tienen ninguna sobrecarga de rendimiento en
+la que incurran estas capacidades especiales, por lo que pueden ser útiles en
+casos como la <em>cons list</em>, donde la indirección es la única característica
+que necesitamos. Veremos más casos de uso para las <em>boxes</em> en el Capítulo 17,
+también.</p>
+<p>El tipo <code>Box&lt;T&gt;</code> es un puntero inteligente porque implementa el <em>trait</em>
+<code>Deref</code>, que permite que los valores <code>Box&lt;T&gt;</code>sean tratados como referencias.
+Cuando un valor <code>Box&lt;T&gt;</code> sale del alcance, los datos del montículo a los que
+apunta el <em>box</em> también se limpian debido a la implementación del <em>trait</em>
+<code>Drop</code>. Exploremos estos dos <em>traits</em> con más detalle. Estos dos <em>traits</em>
+serán aún más importantes para la funcionalidad proporcionada por los otros
+tipos de punteros inteligentes que discutiremos en el resto de este capítulo.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch15-00-smart-pointers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch15-02-deref.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch15-00-smart-pointers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch15-02-deref.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Advanced Lifetimes - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programming a Guessing Game</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References & Borrowing</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; Points to Data on the Heap and Has a Known Size</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Object Oriented Programming Features of Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Using Trait Objects that Allow for Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-lifetimes.html" class="active"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="lifetimes-avanzado"><a class="header" href="#lifetimes-avanzado"><em>Lifetimes</em> avanzado</a></h2>
+<p>En el Capítulo 10 de la sección “Validación de referencias con Lifetimes*”,
+aprendió a anotar referencias con parámetros de <em>lifetime</em> para decirle a
+Rust cómo se relacionan los <em>lifetimes</em> de diferentes referencias. Viste cómo
+cada referencia tiene un <em>lifetime</em>, pero la mayoría de las veces, Rust te
+dejará elidir <em>lifetimes</em>. Ahora veremos tres características avanzadas de <em>lifetimes</em> que aún no hemos cubierto:</p>
+<ul>
+<li>Subtipo de <em>lifetime</em>: asegura que una vida dura más que otra vida</li>
+<li>Límites de <em>lifetime</em>: especifica una duración para una referencia a un
+tipo genérico</li>
+<li>Inferencia de <em>lifetimes</em> de los <em>trait object</em>: permite al compilador
+inferir el <em>lifetime</em> de los *trait object y cuando necesitan ser
+especificados</li>
+</ul>
+<h3 id="garantizar-un-lifetime-sobrevivir-a-otra-con-lifetime-subtyping"><a class="header" href="#garantizar-un-lifetime-sobrevivir-a-otra-con-lifetime-subtyping">Garantizar un <em>Lifetime</em> sobrevivir a otra con <em>Lifetime Subtyping</em></a></h3>
+<p><em>Lifetime subtyping</em> especifica que un <em>lifetime</em> debería sobrevivir a otra
+<em>lifetime</em>. Para explorar el subtipado de <em>lifetime</em>, imagina que queremos
+escribir un analizador sintáctico. Usaremos una estructura llamada <code>Context</code>
+que contiene una referencia al <em>string</em> que estamos analizando. Escribiremos
+un analizador que analizará este <em>string</em> y devolverá el éxito o el fracaso.
+El analizador necesitará tomar prestado el <code>Contexto</code> para hacer el análisis
+sintáctico. El listado 19-12 implementa este código de analizador, excepto
+que el código no tiene las anotaciones de <em>lifetime</em> requeridas, por lo que
+no se compilará.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">struct Context(&amp;str);
+
+struct Parser {
+    context: &amp;Context,
+}
+
+impl Parser {
+    fn parse(&amp;self) -&gt; Result&lt;(), &amp;str&gt; {
+        Err(&amp;self.context.0[1..])
+    }
+}
+</code></pre>
+<p><span class="caption">Listado 19-12: Definición de un analizador sin
+anotaciones de <em>lifetime</em></span></p>
+<p>La compilación del código da como resultado errores porque Rust espera
+parámetros de <em>lifetime</em>
+en el <em>string slice</em> en <code>Context</code> y la referencia a un <code>Context</code> en
+<code>Parser</code>.</p>
+<p>Para simplificar, la función <code>parse</code> devuelve <code>Result&lt;(), &amp;str&gt;</code>. Es decir,
+la función no tendrá éxito y, en caso de error, devolverá la parte del
+<em>string slice</em> que no se analizó correctamente. Una implementación real
+proporcionaría más información de error y devolvería un tipo de datos
+estructurados cuando el análisis tenga éxito. No discutiremos esos detalles
+porque no son relevantes para la parte de <em>lifetimes</em> de este ejemplo.</p>
+<p>Para mantener este código simple, no escribiremos ninguna lógica de análisis.
+Sin embargo, es muy es probable que en algún lugar de la lógica de análisis
+manejemos la entrada no válida por devolver un error que hace referencia a la
+parte de la entrada que no es válida; esta referencia es lo que hace que el
+ejemplo del código sea interesante en lo que respecta a los <em>lifetimes</em>.
+Supongamos que la lógica de nuestro analizador es que la entrada no es válida
+después del primer byte. Tenga en cuenta que este código puede entrar en
+pánico si el primer byte no está en un límite de caracteres válido;
+nuevamente, estamos simplificando el ejemplo para enfocarnos en los
+<em>lifetime</em> involucradas.</p>
+<p>Para obtener este código para compilar, debemos completar los parámetros de
+<em>lifetime</em> para el <em>string slic</em>e en <code>Context</code> y la referencia al <code>Context</code>
+en <code>Parser</code>. La forma más sencilla de hacerlo es usar el mismo nombre de
+<em>lifetime</em> en todas partes, como se muestra en el listado 19-13. Recuerde la
+sección “Anotaciones de <em>lifetime</em> en definiciones de la Estructura” en el
+Capítulo 10 que cada uno de <code>struct Context&lt;'a&gt;</code>, <code>struct Parser&lt;'a&gt;</code>, y
+<code>impl&lt;'a&gt;</code>  está declarando un nuevo parámetro de <em>lifetime</em>.
+Mientras que sus nombres pasan a ser todos iguales, los tres parámetros de
+<em>lifetime</em> declarados en este ejemplo no están relacionados.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Context&lt;'a&gt;(&amp;'a str);
+
+struct Parser&lt;'a&gt; {
+    context: &amp;'a Context&lt;'a&gt;,
+}
+
+impl&lt;'a&gt; Parser&lt;'a&gt; {
+    fn parse(&amp;self) -&gt; Result&lt;(), &amp;str&gt; {
+        Err(&amp;self.context.0[1..])
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 19-13: anotando todas las referencias en
+<code>Context</code> y <code>Parser</code> con parámetros de <em>lifetime</em></span></p>
+<p>Este código compila muy bien. Le dice a Rust que un <code>Parser</code> contiene una
+referencia a <code>Context</code> con un  <code>'a</code> de <em>lifetime</em> y que <code>Context</code> contiene un
+<em>string slice</em> que también dura tanto como la referencia al <code>Context</code> en
+<code>Parser</code>. El mensaje de error del compilador de Rust establecía que se
+requerían parámetros de <em>lifetime</em> para estas referencias, y ahora hemos
+agregado parámetros de <em>lifetime</em>.</p>
+<p>A continuación, en el listado 19-14, agregaremos una función que toma una
+instancia de <code>Context</code>, usa un <code>Parser</code> para analizar ese contexto y devuelve
+lo que <code>parse</code> devuelve. Este código no funciona del todo.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">fn parse_context(context: Context) -&gt; Result&lt;(), &amp;str&gt; {
+    Parser { context: &amp;context }.parse()
+}
+</code></pre>
+<p><span class="caption">Listado 19-14: Un intento de agregar una función
+<code>parse_context</code> que toma <code> ontext</code> y usa <code>Parser</code></span></p>
+<p>Obtenemos dos errores detallados cuando tratamos de compilar el código con la
+adición de la función <code>parse_context</code>:</p>
+<pre><code class="language-text">error[E0597]: borrowed value does not live long enough
+  --&gt; src/lib.rs:14:5
+   |
+14 |     Parser { context: &amp;context }.parse()
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not live long enough
+15 | }
+   | - temporary value only lives until here
+   |
+note: borrowed value must be valid for the anonymous lifetime #1 defined on the function body at 13:1...
+  --&gt; src/lib.rs:13:1
+   |
+13 | / fn parse_context(context: Context) -&gt; Result&lt;(), &amp;str&gt; {
+14 | |     Parser { context: &amp;context }.parse()
+15 | | }
+   | |_^
+
+error[E0597]: `context` does not live long enough
+  --&gt; src/lib.rs:14:24
+   |
+14 |     Parser { context: &amp;context }.parse()
+   |                        ^^^^^^^ does not live long enough
+15 | }
+   | - borrowed value only lives until here
+   |
+note: borrowed value must be valid for the anonymous lifetime #1 defined on the function body at 13:1...
+  --&gt; src/lib.rs:13:1
+   |
+13 | / fn parse_context(context: Context) -&gt; Result&lt;(), &amp;str&gt; {
+14 | |     Parser { context: &amp;context }.parse()
+15 | | }
+   | |_^
+</code></pre>
+<p>Estos errores indican que la instancia <code>Parser</code> que se crea y el parámetro
+<code>context</code> solo se muestran vivos hasta el final de la función
+<code>parse_context</code>. Pero ambos necesitan vivir durante toda la vida de la
+función.</p>
+<p>En otras palabras, <code>Parser</code> y <code>context</code> necesitan <em>sobrevivir</em> a la función
+completa y ser válidos antes de que comience la función, así como después de
+que termine, para que todas las referencias en este código sean siempre
+válidas. El <code>Parser</code> que estamos creando y el parámetro <code>context</code> salen del
+ámbito al final de la función, porque <code>parse_context</code> toma posesión de
+<code>context</code>.</p>
+<p>Para descubrir por qué ocurren estos errores, veamos nuevamente las
+definiciones en el Listado 19-13, específicamente las referencias en la firma
+del método <code>parse</code>:</p>
+<pre><code class="language-rust ignore">    fn parse(&amp;self) -&gt; Result&lt;(), &amp;str&gt; {
+</code></pre>
+<p>¿Recuerdas las reglas de elisión?. Si anotamos los <em>lifetimes</em> de las
+referencias en lugar de elidir, la firma sería la siguiente:</p>
+<pre><code class="language-rust ignore">    fn parse&lt;'a&gt;(&amp;'a self) -&gt; Result&lt;(), &amp;'a str&gt; {
+</code></pre>
+<p>Es decir, la parte de error del valor de retorno de <code>parse</code> tiene un
+<em>lifetime</em> que está vinculado al <em>lifetime</em> de la instancia <code>Parser</code>
+(aquella de <code>&amp;self</code> en la firma del método <code>parse</code>). Eso tiene sentido: el
+<em>string slice</em> devuelto hace referencia al <em>string slice</em> en la instancia de
+<code>Contexto</code> sostenido por el <code>Parser</code>, y la definición de la estructura
+<code>Parser</code> especifica que el <em>lifetime</em> de la referencia a <code>Contexto</code> y el
+<em>lifetime</em> del <em>string slice</em> que <code>Context</code> tiene que ser el mismo.</p>
+<p>El problema es que la función <code>parse_context</code> devuelve el valor devuelto por
+<code>parse</code>, por lo que el <em>lifetime</em> del valor de retorno de <code>parse_context</code>
+está relacionado con el <em>lifetime</em> del <code>Parser</code> también. Pero la instancia
+<code>Parser</code> creada en la función <code>parse_context</code> no sobrevivirá al final de la
+función (es temporal), y <code>context</code> saldrá del ámbito al final de la función
+(<code>parse_context</code> se apropia de eso).</p>
+<p>Rust piensa que estamos intentando devolver una referencia a un valor que
+sale del alcance al final de la función, porque anotamos todos los <em>lifetime</em>
+con el mismo parámetro de <em>lifetime</em>. Las anotaciones le dijeron a Rust que
+la duración del <em>string slice</em> que <code>Context</code> contiene es la misma que la
+duración de la referencia al <code>Context</code> que <code>Parser</code> contiene.</p>
+<p>La función <code>parse_context</code> no puede ver que dentro de la función <code>parse</code>, el
+<em>string slice</em> devuelto sobrevivirá <code>Context</code> y <code>Parser</code> y que la referencia
+<code>parse_context</code> devuelta se refiere al <em>string slice</em>, no a <code>Context</code> o
+<code>Parser</code>.</p>
+<p>Al saber lo que hace la implementación de <code>parse</code>, sabemos que la única razón
+por la que el valor de retorno de <code>parse</code> está vinculado a la instancia
+<code>Parser</code> es que hace referencia al <code>Context</code> de la instancia <code>Parser</code>, que
+hace referencia al <em>string slice</em>. Por lo tanto, es realmente el <em>lifetime</em>
+del <em>string slice</em> el que <code>parse_context</code> necesita preocuparse. Necesitamos
+una manera de decirle a Rust que el <em>string slice</em> en <code>Context</code> y la
+referencia al <code>Context</code> en <code>Parser</code> tienen diferentes <em>lifetime</em> y que el
+valor de retorno de <code>parse_context</code> está vinculado a la duración del <em>string
+slice</em> en <code>Context</code>.</p>
+<p>Primero, trataremos de darle a <code>Parser</code> y <code>Context</code> diferentes parámetros de
+<em>lifetime</em>, como se muestra en el Listado 19-15. Utilizaremos <code>'s</code> y <code>'c</code>
+como nombres de parámetros de <em>lifetime</em> para aclarar qué duración va con el
+<em>string slice</em> en <code>Context</code> y que va con la referencia a <code>Context</code> en
+<code>Parser</code>. Tenga en cuenta que esta solución no solucionará completamente el
+problema, pero es un comienzo. Veremos por qué esta solución no es suficiente
+cuando intentamos compilar.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">struct Context&lt;'s&gt;(&amp;'s str);
+
+struct Parser&lt;'c, 's&gt; {
+    context: &amp;'c Context&lt;'s&gt;,
+}
+
+impl&lt;'c, 's&gt; Parser&lt;'c, 's&gt; {
+    fn parse(&amp;self) -&gt; Result&lt;(), &amp;'s str&gt; {
+        Err(&amp;self.context.0[1..])
+    }
+}
+
+fn parse_context(context: Context) -&gt; Result&lt;(), &amp;str&gt; {
+    Parser { context: &amp;context }.parse()
+}
+</code></pre>
+<p><span class="caption">Listado 19-15: Especificación de diferentes parámetros
+de <em>lifetime</em> para las referencias al string slice y al <code>Context</code></span></p>
+<p>Hemos anotado los <em>lifetimes</em> de las referencias en todos los mismos lugares
+donde las anotamos en el listado 19-13. Pero esta vez usamos diferentes
+parámetros dependiendo de si la referencia va con el <em>string slice</em> o con
+<code>Context</code>. También hemos agregado una anotación a la parte del <em>string slice</em>
+del valor de retorno de <code>parse</code> para indicar que va con el <em>lifetimes</em> del
+<em>string slice</em> en <code>Context</code>.</p>
+<p>Cuando intentamos compilar ahora, obtenemos el siguiente error:</p>
+<pre><code class="language-text">error[E0491]: in type `&amp;'c Context&lt;'s&gt;`, reference has a longer lifetime than the data it references
+ --&gt; src/lib.rs:4:5
+  |
+4 |     context: &amp;'c Context&lt;'s&gt;,
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+note: the pointer is valid for the lifetime 'c as defined on the struct at 3:1
+ --&gt; src/lib.rs:3:1
+  |
+3 | / struct Parser&lt;'c, 's&gt; {
+4 | |     context: &amp;'c Context&lt;'s&gt;,
+5 | | }
+  | |_^
+note: but the referenced data is only valid for the lifetime 's as defined on the struct at 3:1
+ --&gt; src/lib.rs:3:1
+  |
+3 | / struct Parser&lt;'c, 's&gt; {
+4 | |     context: &amp;'c Context&lt;'s&gt;,
+5 | | }
+  | |_^
+</code></pre>
+<p>Rust no sabe de ninguna relación entre <code>'c</code> y <code>'s</code>. Para que sea válida, los
+datos a los que se hace referencia en <code>Context</code> con <code>'s</code> de <em>lifetime</em> deben
+restringirse para garantizar que vivan más tiempo que la referencia con <code>'c</code>
+de <em>lifetime</em>. Si <code>'s</code> no es más largo que <code>'c</code>, la referencia a <code>Context</code>
+podría no ser válida.</p>
+<p>Ahora llegamos al punto de esta sección: la función Rust <em>lifetime subtyping</em>
+especifica que un parámetro de <em>lifetime</em> dura al menos tanto como otro. En
+los paréntesis angulares donde declaramos los parámetros de <em>lifetime</em>,
+podemos declarar un <code>'a</code>  de <em>lifetime</em> como de costumbre y declarar un <code>'b</code>
+vitalicio que viva al menos tan largo como <code>'a</code> declarando <code>'b</code> usando la
+sintaxis <code>'b:'a</code>.</p>
+<p>En nuestra definición de <code>Parser</code>, para decir que <code>'s</code> (el <em>lifetime</em> útil
+del <em>string slice</em>) se garantiza que durará al menos tanto como <code>'c</code> (el
+<em>lifetime</em> de la referencia al <code>Contexto</code>), cambiamos las declaraciones de
+<em>lifetime</em> para que se vean así:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">struct Context&lt;'a&gt;(&amp;'a str);
+</span><span class="boring">
+</span>struct Parser&lt;'c, 's: 'c&gt; {
+    context: &amp;'c Context&lt;'s&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Ahora la referencia a <code>Context</code> en <code>Parser</code> y la referencia al <em>string
+slice</em> en <code>Context</code> tienen diferentes <em>lifetimes</em>; nos hemos asegurado de que
+la duración del <em>string slice</em> sea más larga que la referencia al <code>Context</code>.</p>
+<p>Ese fue un ejemplo muy largo, pero como mencionamos al comienzo de este
+capítulo, las características avanzadas de Rust son muy específicas. A menudo
+no necesitará la sintaxis que describimos en este ejemplo, pero en tales
+situaciones, sabrá cómo referirse a algo y darle la vida necesaria.</p>
+<h3 id="lifetime-bounds-en-las-referencias-a-los-tipos-genéricos"><a class="header" href="#lifetime-bounds-en-las-referencias-a-los-tipos-genéricos"><em>Lifetime Bounds</em> en las referencias a los tipos genéricos</a></h3>
+<p>En la sección “Trait Bounds” del Capítulo 10, discutimos el uso de <em>trait
+bounds</em> en los tipos genéricos. También podemos agregar parámetros de
+<em>lifetime</em> como restricciones en tipos genéricos; estos se llaman <em>lifetime
+bounds</em>. Los <em>lifetime bounds</em> ayudan a Rust a verificar que las referencias
+en tipos genéricos no sobrevivan datos a los que hacen referencia.</p>
+<p>Como ejemplo, considere un tipo que sea un contenedor de referencias.
+Recuerde el tipo “<code>RefCell&lt;T&gt;</code> de la sección <code>RefCell&lt;T&gt;</code> y el Patrón de
+Mutabilidad Interior” en el Capítulo 15: sus métodos <code>borrow</code> y <code>borrow_mut</code>
+devuelven los tipos <code>Ref</code> y <code>RefMut</code>, respectivamente . Estos tipos son
+envoltorios sobre referencias que hacen un seguimiento de las reglas de
+endeudamiento en tiempo de ejecución. La definición de la estructura <code>Ref</code> se
+muestra en el listado 19-16, sin <em>lifetime bounds</em> por el momento.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">struct Ref&lt;'a, T&gt;(&amp;'a T);
+</code></pre>
+<p><span class="caption">Listado 19-16: Definición de una estructura para
+envolver una referencia a un tipo genérico, sin <em>lifetime bounds</em></span></p>
+<p>Sin restringir explícitamente el ciclo de <em>lifetime</em> <code>'a</code> en relación con el
+parámetro genérico <code>T</code>, Rust tendrá un error porque no sabe por cuánto tiempo
+vivirá el tipo genérico <code>T</code>:</p>
+<pre><code class="language-text">error[E0309]: the parameter type `T` may not live long enough
+ --&gt; src/lib.rs:1:19
+  |
+1 | struct Ref&lt;'a, T&gt;(&amp;'a T);
+  |                   ^^^^^^
+  |
+  = help: consider adding an explicit lifetime bound `T: 'a`...
+note: ...so that the reference type `&amp;'a T` does not outlive the data it points at
+ --&gt; src/lib.rs:1:19
+  |
+1 | struct Ref&lt;'a, T&gt;(&amp;'a T);
+  |                   ^^^^^^
+</code></pre>
+<p>Debido a que <code>T</code> puede ser de cualquier tipo,<code>T</code> podría ser una referencia o
+un tipo que contenga una o más referencias, cada una de las cuales podría
+tener su propio <em>lifetimes</em>. Rust no puede estar seguro de que <code>T</code> viva tanto
+tiempo como <code>'a</code>.</p>
+<p>Afortunadamente, el error proporciona consejos útiles sobre cómo especificar
+el <em>lifetime bound</em> en este caso:</p>
+<pre><code class="language-text">consider adding an explicit lifetime bound `T: 'a` so that the reference type
+`&amp;'a T` does not outlive the data it points at
+</code></pre>
+<p>El listado 19-17 muestra cómo aplicar este consejo especificando el <em>lifetime bound</em> cuando declaramos el tipo genérico <code>T</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Ref&lt;'a, T: 'a&gt;(&amp;'a T);
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 19-17: Agregar <em>lifetime bounds</em> en <code>T</code> para
+especificar que las referencias en <code>T</code> vivan al menos tanto como <code>'a</code></span></p>
+<p>Este código ahora compila porque la sintaxis <code>T: 'a</code> especifica que <code>T</code> puede
+ser de cualquier tipo, pero si contiene alguna referencia, las referencias
+deben vivir al menos tan largo como <code>'a</code>.</p>
+<p>Podríamos resolver este problema de una manera diferente, como se muestra en
+la definición de una estructura <code>StaticRef</code> en el listado 19-18, al agregar
+el <em>lifetime bound</em> <code>'static</code> vinculado a <code>T</code>. Esto significa que si <code>T</code>
+contiene referencias, deben tener la duración <code>'estática</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct StaticRef&lt;T: 'static&gt;(&amp;'static T);
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 19-18: Agregar un <code>'static</code> <em>lifetime bound</em>
+enlazado a <code>T</code> para restringir <code>T</code> a los tipos que tienen solo <code>'static</code> o no
+referencias</span></p>
+<p>Porque <code>'static</code> significa que la referencia debe vivir todo el
+programa completo, un tipo que no contiene referencias, cumpla con los
+criterios de todas las referencias que viven tanto como todo el programa
+(porque no hay referencias). Para el comprobador de préstamos preocupado por
+referencias que viven lo suficiente, no existe una distinción real entre un
+tipo que no tiene referencias y un tipo que tiene referencias que viven para
+siempre: las dos son las mismas para determinar si una referencia tiene una
+vida más corta a la que se refiere.</p>
+<h3 id="inferencia-de-los-tiempos-de-vida-del-trait-object"><a class="header" href="#inferencia-de-los-tiempos-de-vida-del-trait-object">Inferencia de los tiempos de vida del <em>Trait Object</em></a></h3>
+<p>En el capítulo 17 en la sección “Uso de <em>Trait Objects</em> que permiten valores
+de diferentes tipos”, discutimos los <em>trait objects</em>, que consisten en un
+<em>trait</em> detrás de una referencia, que nos permiten usar el
+<em>despacho dinámico</em>. Todavía no hemos discutido qué sucede si el tipo que
+implementa el <em>trait objects</em> de <em>trait</em> tiene un <em>lifetime</em>. Considere el
+Listado 19-19 donde tenemos un <em>trait</em> <code>Red</code> y una estructura <code>Ball</code>. La
+estructura <code>Ball</code> contiene una referencia (y por lo tanto tiene un parámetro
+de <em>lifetime</em>) y también implementa el <em>trait</em> <code>Red</code>. Queremos usar una
+instancia de <code>Ball</code> como el trait object <code>Box&lt;Red&gt;</code>.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">trait Red { }
+
+struct Ball&lt;'a&gt; {
+    diameter: &amp;'a i32,
+}
+
+impl&lt;'a&gt; Red for Ball&lt;'a&gt; { }
+
+fn main() {
+    let num = 5;
+
+    let obj = Box::new(Ball { diameter: &amp;num }) as Box&lt;Red&gt;;
+}
+</code></pre></pre>
+<p><span class="caption">Listado 19-19: Usar un tipo que tiene un parámetro de
+<em>lifetime</em> con un <em>trait object</em></span></p>
+<p>Este código compila sin ningún error, aunque no hemos anotado explícitamente
+los <em>lifetimes</em> involucradas en <code>obj</code>. Este código funciona porque hay reglas
+para trabajar con <em>lifetimes</em> y <em>trait objects</em>:</p>
+<ul>
+<li>La <em>lifetime</em> por defecto de un <em>trait object</em> es <code>'static</code>.</li>
+<li>Con <code>&amp;'a Trait</code> o <code>&amp;'a mut Trait</code>, la duración predeterminada del
+<em>trait object</em> es <code>'a</code>.</li>
+<li>Con una sola cláusula <code>T: 'a</code>, la duración predeterminada del
+<em>trait object</em> es <code>'a</code>.</li>
+<li>Con múltiples cláusulas como <code>T: 'a</code>, no hay un <em>lifetime</em> por defecto;
+debemos ser explícitos</li>
+</ul>
+<p>Cuando debemos ser explícitos, podemos agregar un <em>lifetime bound</em> en un
+<em>trait object</em> como <code>Box&lt;Red&gt;</code> usando la sintaxis <code>Box&lt;Red + 'static&gt;</code> o
+<code>Box&lt;Red + 'a&gt;</code>, dependiendo de si la referencia vive todo el programa o no.
+Al igual que con los otros límites, la sintaxis que agrega un <em>lifetime bound</em>
+significa que cualquier implementador del <em>trait</em> <code>Red</code> que tiene referencias
+dentro del tipo debe tener la misma <em>lifetime</em> especificada en los <em>trait
+object bounds</em> que esas referencias.</p>
+<p>A continuación, veamos algunas otras características avanzadas que
+administran <em>trait</em>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch19-01-unsafe-rust.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch19-03-advanced-traits.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch19-01-unsafe-rust.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch19-03-advanced-traits.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
