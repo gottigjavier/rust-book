@@ -23,7 +23,7 @@ Para compilar, estando en la carpeta "./second-edition/es" ejecute:
 $ mdbook build
 ```
 
-Esto creará la carpeta /book con los archivos .html, .css y .js listos para renderizarse en su navegador.
+Esto creará la carpeta */book*, o la actualizará si ya existe, con los archivos .html, .css y .js listos para renderizarse en su navegador.
 
 Para ver el libro en el navegador ejecute:
 
