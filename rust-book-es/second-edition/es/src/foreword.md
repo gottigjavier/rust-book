@@ -1,17 +1,17 @@
 # Prefacio
 
-No siempre fue tan claro, pero el lenguaje de programación Rust es
-fundamentalmente *empowerment*: no importa qué tipo de código esté
+No siempre fue tan claro, pero el lenguaje de programación Rust se
+fundamenta en el *empoderamiento*: no importa qué tipo de código esté
 escribiendo ahora, Rust te permite llegar más lejos, programar con confianza
 en una variedad más amplia de dominios que antes.
 
-Tomemos, por ejemplo, el trabajo de “systems-level” que trata con detalles de
+Tomemos, por ejemplo, el trabajo a “nivel de sistemas” que trata detalles de
 bajo nivel de administración de memoria, representación de datos y
 concurrencia. Tradicionalmente, este dominio de la programación se ve como
 algo arcano, accesible solo para unos pocos que han dedicado los años
 necesarios a aprender para evitar sus infames escollos. E incluso aquellos
 que lo practican lo hacen con precaución, no sea que su código esté abierto a
-exploits, crashes o corrupción.
+vulnerabilidades, crashes o corrupción.
 
 Rust rompe estas barreras al eliminar las viejas trampas y proporcionar un
 conjunto amigable y pulido de herramientas para ayudarte en el camino. Los
@@ -27,7 +27,7 @@ usar Rust para elevar sus ambiciones. Por ejemplo, introducir el paralelismo
 en Rust es una operación de relativamente bajo riesgo: el compilador
 detectará los errores clásicos por usted. Y puede abordar optimizaciones más
 agresivas en su código con la confianza de que no introducirá accidentalmente
-fallas o exploits.
+fallas o vulnerabilidades.
 
 Pero Rust no se limita a la programación de sistemas de bajo nivel. Es lo
 suficientemente expresivo y ergonómico para hacer que las aplicaciones de CLI

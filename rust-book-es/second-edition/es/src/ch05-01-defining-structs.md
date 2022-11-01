@@ -265,16 +265,16 @@ almacenar en el tipo mismo. Discutiremos los rasgos en el Capítulo 10.
 > ### Ownership of Struct Data
 >
 > En la definición de estructura `User` en el listado 5-1, utilizamos el tipo
-> `String` propiedad en lugar del tipo de sección de cadena `&str`. Esta es
+> `String` para la propiedad en lugar del tipo de sección de cadena `&str`. Esta es
 > una elección deliberada porque queremos que las instancias de esta
 > estructura sean propietarias de todos sus datos y que los datos sean
 > válidos mientras toda la estructura sea válida.
 >
-> Es posible que las estructuras almacenen referencias a datos propiedad
+> Es posible que las estructuras almacenen referencias a datos que son propiedad
 > de otra cosa, pero para hacerlo se requiere el uso de *lifetimes*, una
 > característica de Rust que discutiremos en el Capítulo 10. Lifetimes
 > garantiza que los datos a los que hace referencia una estructura son
-> válidos para siempre que la estructura sea Digamos que intenta almacenar
+> válidos para siempre que la estructura lo sea. Digamos que intenta almacenar
 > una referencia en una estructura sin especificar vidas, como esta, que
 > no funcionará:
 >
