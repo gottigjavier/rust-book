@@ -14,6 +14,7 @@ $ cargo install mdbook --vers [version-num]
 
 Se usó la [versión](https://github.com/rust-lang/rust/blob/master/src/tools/rustbook/Cargo.toml) "0.4.21"
 
+*Si clonó este repositorio y no va a hacer modificaciones en los archivos .md puede obviar el siguiente paso pues ya contiene la carpeta /book.*
 
 Para compilar, estando en la carpeta "./second-edition/es" ejecute:
 
