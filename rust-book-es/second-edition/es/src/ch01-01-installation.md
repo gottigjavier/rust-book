@@ -49,8 +49,7 @@ ejecutarlo.
 La secuencia de comandos de instalación agrega automáticamente Rust al
 PATH del sistema después de su próximo inicio de sesión. Si desea comenzar a
 usar Rust de inmediato en lugar de reiniciar su terminal, ejecute el
-siguiente comando en su caparazón para agregar Rust al PATH del sistema
-manualmente:
+siguiente comando para agregar Rust al PATH del sistema manualmente:
 
 ```text
 $ source $HOME/.cargo/env
@@ -62,7 +61,7 @@ Alternativamente, puede agregar la siguiente línea a su *~/.bash_profile*:
 $ export PATH="$HOME/.cargo/bin:$PATH"
 ```
 
-Además, necesitarás un *enlazador* (*linker*) de algún tipo. Es probable que
+Además, necesitará un *enlazador* (*linker*) de algún tipo. Es probable que
 ya esté instalado, pero cuando intenta compilar un programa de Rust y obtiene
 errores que indican que un enlazador no se pudo ejecutar, eso significa que
 un enlazador no está instalado en su sistema y tendrá que instalar uno
@@ -98,7 +97,7 @@ $ rustup update
 ```
 
 Para desinstalar Rust y `rustup`, ejecute el siguiente script de
-desinstalación desde su shell:
+desinstalación desde su terminal:
 
 ```text
 $ rustup self uninstall
@@ -106,7 +105,7 @@ $ rustup self uninstall
 
 ### Solución de problemas
 
-Para verificar si tiene instalado Rust correctamente, abra un shell e ingrese
+Para verificar si tiene instalado Rust correctamente, abra un terminal e ingrese
 esta línea:
 
 ```text
@@ -127,7 +126,7 @@ sistema `%PATH%`. Si eso es todo correcto y Rust todavía no funciona, hay
 varios lugares donde puede obtener ayuda. El más fácil es
 [the #rust IRC channel on irc.mozilla.org][irc]<!-- ignore -->, al que se
 puede acceder a través de [Mibbit][mibbit]. En esa dirección puedes chatear
-con otros Rustaceos (un sobrenombre ridículo que nos llamamos a nosotros
+con otros Rustáceos (un sobrenombre ridículo que nos llamamos a nosotros
 mismos) que pueden ayudarte. Otros recursos geniales incluyen [el foro de usuarios][users] y [Stack Overflow][stackoverflow].
 
 [irc]: irc://irc.mozilla.org/#rust

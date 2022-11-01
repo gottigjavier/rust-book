@@ -71,7 +71,7 @@ incluso partes importantes del navegador web Firefox.
 
 Rust es para las personas que desean construir el lenguaje de programación
 Rust, la comunidad, las herramientas de desarrollo y las bibliotecas. Nos
-encantaría que contribuyeras al lenguaje Rust.
+encantaría que contribuyera al lenguaje Rust.
 
 ### Personas que valoran la velocidad y la estabilidad
 
@@ -99,19 +99,19 @@ Este libro asume que ha escrito código en otro lenguaje de programación pero
 no hace suposiciones sobre cuál. Hemos intentado que el material sea
 ampliamente accesible para personas de una amplia variedad de entornos de
 programación. No pasamos mucho tiempo hablando acerca de qué *es* la
-programación o cómo pensar sobre ella. Si eres completamente nuevo en la
+programación o cómo pensar sobre ella. Si es completamente nuevo en la
 programación, lo mejor sería leer un libro que específicamente ofrezca una
 introducción a la programación.
 
 ## Como usar este libro
 
-En general, este libro asume que estás leyéndolo en secuencia de principio a
+En general, este libro asume que lo está leyéndolo en secuencia de principio a
 fin. Los capítulos posteriores se basan en conceptos de capítulos anteriores
 y anteriores los capítulos podrían no profundizar en detalles sobre un tema;
 por lo general revisamos el tema en un capítulo posterior.
 
 Encontrará dos tipos de capítulos en este libro: capítulos conceptuales y
-capítulos proyecto. En los capítulos conceptuales, aprenderás sobre un
+capítulos proyecto. En los capítulos conceptuales, aprenderá sobre un
 aspecto de Rust. En los capítulos del proyecto, crearemos pequeños programas
 juntos, aplicando lo que has aprendido hasta ahora. Los capítulos 2, 12 y 20
 son capítulos de proyectos; el resto son capítulos conceptuales.
@@ -120,16 +120,16 @@ El Capítulo 1 explica cómo instalar Rust, cómo escribir un programa
 *Hello, world!*, y cómo usar Cargo, el administrador de paquetes de Rust y la
 herramienta de compilación. El Capítulo 2 es una introducción práctica al
 lenguaje Rust. Aquí cubrimos conceptos a un alto nivel, y capítulos
-posteriores proporcionarán detalles adicionales. Si quieres ensuciarte las
+posteriores proporcionarán detalles adicionales. Si quiere ensuciarse las
 manos de inmediato, el Capítulo 2 es el lugar para eso. Al principio, usted
 podría incluso omitir el Capítulo 3, que cubre las características de Rust
-similares a las de otros lenguajes de programación, y dirígete directamente
+similares a las de otros lenguajes de programación, y dirirse directamente
 al Capítulo 4 para aprender sobre el Sistema de propiedad de Rust. Sin
-embargo, si eres un aprendiz particularmente meticuloso
+embargo, si es un aprendiz particularmente meticuloso
 que prefiere aprender cada detalle antes de pasar al siguiente, es posible
 que desee saltar el Capítulo 2 e ir directamente al Capítulo 3, volviendo al
 Capítulo 2 cuando le gustaría trabajar en un proyecto aplicando los detalles
-que has aprendido.
+que ha aprendido.
 
 El Capítulo 5 discute las estructuras y los métodos, y el Capítulo 6 cubre
 las enumeraciones, las expresiones `match` y la construcción de flujo de
@@ -160,7 +160,7 @@ analiza los *smart pointers* que proporciona la biblioteca estándar y los
 *traits* que permiten su funcionalidad.
 
 En el Capítulo 16, analizaremos diferentes modelos de programación
-concurrente y hablaremos sobre cómo Rust te ayuda a programar en múltiples
+concurrente y hablaremos sobre cómo Rust le ayuda a programar en múltiples
 *hilos* (*threads*) sin miedo. El Capítulo 17 analiza cómo los modismos de
 Rust se comparan con los principios de programación orientada a objetos con
 los que puede estar familiarizado.
@@ -180,16 +180,16 @@ clave de Rust, el Apéndice B cubre los operadores y símbolos de Rust, el
 Apéndice C cubre los *traits* derivables proporcionados por la biblioteca
 estándar, y el Apéndice D cubre las macros.
 
-No hay una manera incorrecta de leer este libro: si quieres saltarte,
+No hay una manera incorrecta de leer este libro: si quiere saltarse,
 ¡adelante! es posible que deba volver a los capítulos anteriores si
-experimenta alguna confusión. Pero haz lo que sea que funcione para ti.
+experimenta alguna confusión. Pero haga lo que sea que funcione para usted.
 
 Una parte importante del proceso de aprendizaje de Rust es aprender a leer
 los mensajes de error que muestra el compilador: estos lo guiarán hacia el
 *working code*. Como tal, proporcionaremos muchos ejemplos de código que
 no se compila junto con el mensaje de error que el compilador le mostrará en
 cada situación. ¡Sepa que si ingresa y ejecuta un ejemplo al azar, es posible
-que no compile! asegúrese de leer el texto que lo rodea para ver si el
+que no compile! Asegúrese de leer el texto que lo rodea para ver si el
 ejemplo que intenta ejecutar está destinado a error. En la mayoría de las
 situaciones, lo guiaremos a la versión correcta de cualquier código que no
 compile.

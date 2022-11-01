@@ -4,7 +4,7 @@
 capítulo, le presentamos algunos conceptos comunes de Rust mostrándole cómo
 usarlos en un programa real. Aprenderá sobre `let`, `match`, métodos,
 funciones asociadas, *crates* externos y más. Los siguientes capítulos
-explorarán estas ideas con más detalle. En este capítulo, practicarás los
+explorarán estas ideas con más detalle. En este capítulo, practicará los
 fundamentos.
 
 Implementaremos un problema clásico de programación para principiantes: un
@@ -27,8 +27,8 @@ $ cd guessing_game
 
 El primer comando, `cargo new`, toma el nombre del proyecto
 (`guessing_game`) como primer argumento. El indicador `--bin` le dice a
-Cargo que haga un proyecto binario, como el del Capítulo 1. El segundo
-comando cambia al directorio del nuevo proyecto.
+Cargo que haga un proyecto binario, como el del Capítulo 1. En caso de construir una librería se le pasaría el indicador `--lib`. 
+El segundo comando cambia al directorio del nuevo proyecto.
 
 Mire el archivo generado *Cargo.toml*:
 
@@ -56,7 +56,7 @@ fn main() {
 }
 ```
 
-Ahora compilemos este programa “Hello, world!” y ejecútelo en el mismo paso
+Ahora compilemos este programa “Hello, world!” y ejecutémoslo en el mismo paso
 usando el comando `cargo run`:
 
 ```text
@@ -67,18 +67,18 @@ $ cargo run
 Hello, world!
 ```
 
-El comando `run` es útil cuando necesitas iterar rápidamente en un proyecto,
+El comando `run` es útil cuando necesita iterar rápidamente en un proyecto,
 como lo haremos en este juego, probando rápidamente cada iteración antes de
 pasar a la siguiente.
 
-Vuelva a abrir el archivo *src/main.rs*. Estarás escribiendo todo el código
+Vuelva a abrir el archivo *src/main.rs*. Estará escribiendo todo el código
 en este archivo.
 
 ## Procesando una conjetura
 
 La primera parte del programa del juego de adivinación pedirá la entrada del
-usuario, procesará esa entrada y verificará que la entrada esté en la forma
-esperada. Para comenzar, le permitiremos al jugador ingresar una suposición.
+usuario, procesará esa entrada y verificará que la entrada esté en el formato
+esperado. Para comenzar, le permitiremos al jugador ingresar una suposición.
 Ingrese el código en el listado 2-1 en *src/main.rs*.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -113,24 +113,22 @@ estándar (que se conoce como `std`):
 use std::io;
 ```
 
-Por defecto, Rust solo trae algunos tipos al alcance de cada programa en
-[el *preludio*][prelude] <!-- ignore -->. Si un tipo que desea utilizar no
-está en el preludio, debe poner ese tipo en el alcance explícitamente con
-una instrucción `use`. El uso de la biblioteca `std::io` le proporciona
-varias funciones útiles, incluida la capacidad de aceptar las entradas del
-usuario.
+Por defecto, Rust solo tiene un conjunto de elementos definidos en la biblioteca estándar que trae al ámbito de cada programa. Este conjunto de elementos se llama
+[*preludio*][prelude] <!-- ignore -->. 
+Si un tipo que desea utilizar no está en el preludio, debe traer ese tipo al ámbito explícitamente con una instrucción `use`.
+El uso de la biblioteca `std::io` proporciona varias funciones útiles, incluida la capacidad de aceptar las entradas del usuario.
 
 [prelude]: ../../std/prelude/index.html
 
-Como viste en el Capítulo 1, la función `main` es el punto de entrada al
+Como se vio en el Capítulo 1, la función `main` es el punto de entrada al
 programa:
 
 ```rust,ignore
 fn main() {
 ```
 
-La sintaxis `fn` declara una nueva función, los paréntesis, `()`, indican
-que no hay parámetros, y las llaves, `{`, inicia el cuerpo de la función.
+La sintaxis `fn` declara una nueva función, los paréntesis (vacíos) `()` indican
+que no hay parámetros, y la llave `{` inicia el cuerpo de la función.
 
 Como también aprendió en el Capítulo 1, `println!` Es una macro que imprime
 un *string* en la pantalla:
@@ -142,7 +140,7 @@ println!("Please input your guess.");
 ```
 
 Este código está imprimiendo un mensaje indicando qué es el juego y
-solicitando la opinión del usuario.
+solicitando la opción del usuario.
 
 ### Almacenamiento de valores con variables
 
@@ -154,16 +152,16 @@ let mut guess = String::new();
 ```
 
 ¡Ahora el programa se está poniendo interesante!. Están sucediendo muchas
-cosas en esta pequeña línea. Tenga en cuenta que esta es una declaración
-`let`, que se usa para crear una *variable*. Aquí hay otro ejemplo:
+cosas en esta pequeña línea. Usamos la instrucción `let` crear la *variable*.
+Aquí hay otro ejemplo:
 
 ```rust,ignore
-let foo = bar;
+let foo = 5;
 ```
 
 Esta línea crea una nueva variable llamada `foo` y la vincula al valor
-`bar`. En Rust, las variables son inmutables por defecto. Discutiremos este
-concepto en detalle en la sección “Variables y mutabilidad” en el Capítulo
+`5`. En Rust, las variables son inmutables por defecto. Discutiremos este
+concepto en detalle en la sección “Variables y mutabilidad” del Capítulo
 3. El siguiente ejemplo muestra cómo usar `mut` antes del nombre de la
 variable para hacer que una variable sea mutable:
 
@@ -177,22 +175,20 @@ let mut bar = 5; // mutable
 > detalle en el Capítulo 3.
 
 Regresemos al programa de adivinanzas. Ahora sabe que `let mut guess`
-introducirá una variable mutable llamada `guess`. En el otro lado del signo
+introducirá una variable mutable llamada `guess`. A la derecha del signo
 igual (`=`) está el valor al que `guess` está vinculado, que es el resultado
-de llamar a `String::new`, una función que devuelve una nueva instancia de
-`String`. [`String`][string] <!-- ignore --> es un tipo de *string*
-proporcionado por la biblioteca estándar que es un fragmento de texto
-codificado en UTF-8 creíble.
+de llamar a `String::new()`, una función que devuelve una nueva instancia vacía de tipo
+`String`. [`String`][string] <!-- ignore --> es un tipo de *string* proporcionado por la biblioteca estándar que es un fragmento de texto codificado en UTF-8 que puede crecer.
 
-[string]: ../../std/string/struct.String.html
+[string]: ch08-02-strings.md
 
-La sintaxis `::` en la línea `::new` indica que `new` es una
-*función asociada* del tipo `String`. Una función asociada se implementa en
-un tipo, en este caso `String`, en lugar de en una instancia particular de
-`String`. Algunos lenguajes llaman a esto un *método estático*.
+La sintaxis `::` en la línea `::new()` indica que `new()` es una
+*función asociada* del tipo `String`. Una [`función asociada`](ch05-03-method-syntax.md#funciones-asociadas) es una función que se implementa en un tipo, en este caso un `String`, 
+y no en una instancia particular de ese tipo, como lo haría un método. 
+Algunos lenguajes llaman a esto un *método estático*.
 
-Esta función `new` crea un nuevo *string* vacío. Encontrará una función
-`new` en muchos tipos, porque es un nombre común para una función que crea
+Esta función `new()` crea un nuevo *string* vacío. Encontrará una función
+`new()` en muchos tipos, porque es un nombre común para darle una función asociada que crea
 un nuevo valor de algún tipo.
 
 En resumen, la línea `let mut guess = String::new();` ha creado una variable

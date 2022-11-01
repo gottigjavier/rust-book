@@ -1,10 +1,10 @@
 ## Hola, Cargo!
 
 Cargo es el sistema de compilación y el administrador de paquetes de Rust. La
-mayoría de los Rustaceans utilizan esta herramienta para administrar sus
-proyectos de Rust porque Cargo maneja muchas tareas para usted, como
+mayoría de los Rustáceos utilizan esta herramienta para administrar sus
+proyectos de Rust porque Cargo maneja muchas tareas por usted, como
 construir su código, descargar las bibliotecas de las que depende su código y
-construir esas bibliotecas. (Llamamos a las bibliotecas su código necesita
+construir esas bibliotecas. (A las bibliotecas que su código necesita las llamamos
 *dependencias*).
 
 Los programas más simples de Rust, como el que hemos escrito hasta ahora, no
@@ -16,15 +16,15 @@ dependencias será mucho más fácil de hacer.
 
 Debido a que la gran mayoría de los proyectos de Rust usan Cargo, el resto de
 este libro asume que también está utilizando Cargo. Cargo viene instalado con
-Rust si utilizaste los instaladores oficiales discutidos en la sección
+Rust si utilizó los instaladores oficiales discutidos en la sección
 “Instalación”. Si instaló Rust por otros medios, verifique si Cargo se
-instala ingresando lo siguiente en su terminal:
+instaló ingresando lo siguiente en su terminal:
 
 ```text
 $ cargo --version
 ```
 
-Si ves un número de versión, ¡ya lo tienes!. Si ve un error, como
+Si ve un número de versión, ¡ya lo tiene!. Si ve un error, como
 `command not found`, consulte la documentación de su método de instalación
 para determinar cómo instalar Cargo por separado.
 
@@ -104,7 +104,7 @@ fn main() {
 }
 ```
 
-Cargo ha generado un programa *Hello, world!* para ti, ¡como el que
+Cargo ha generado un programa *Hello, world!* para usted, ¡como el que
 escribimos en el Listado 1-1! Hasta ahora, las diferencias entre nuestro
 proyecto anterior y el proyecto que Cargo genera son que Cargo colocó el
 código en el directorio *src*, y tenemos un archivo de configuración
@@ -138,11 +138,11 @@ Este comando crea un archivo ejecutable en *target/debug/hello_cargo*
 actual. Puede ejecutar el ejecutable con este comando:
 
 ```text
-$ ./target/debug/hello_cargo # or .\target\debug\hello_cargo.exe on Windows
+$ ./target/debug/hello_cargo # .\target\debug\hello_cargo.exe on Windows
 Hello, world!
 ```
 
-Si todo va bien, `Hello, world!` Debería imprimirse en la terminal. Ejecuta
+Si todo va bien, `Hello, world!` debería imprimirse en la terminal. Ejecutar
 `cargo build` por primera vez también hace que Cargo cree un nuevo archivo en
 el nivel superior: *Cargo.lock*. Este archivo realiza un seguimiento de las
 versiones exactas de las dependencias en su proyecto. Este proyecto no tiene
@@ -185,38 +185,40 @@ $ cargo check
     Finished dev [unoptimized + debuginfo] target(s) in 0.32 secs
 ```
 
-¿Por qué no quieres un ejecutable?. A menudo, el `cargo check` es mucho más
-rápido que `cargo build`, porque se salta el paso de producir un ejecutable.
-Si continuamente revisas tu trabajo mientras escribes el código, ¡usar
-`cargo check` acelerará el proceso! Como tal, muchos Rustaceas llevan a cabo
+¿Por qué no querría un ejecutable?. A menudo, `cargo check` es mucho más
+rápido que `cargo build` porque se salta el paso de producir un ejecutable.
+Si continuamente revisa su trabajo mientras escribe el código, ¡usar
+`cargo check` acelerará el proceso! Como tal, muchos Rustáceos llevan a cabo
 un `cargo check` periódicamente mientras escriben su programa para asegurarse
 de que compila. Luego ejecutan `cargo build` cuando están listos para usar el
 ejecutable.
 
 Repasemos lo que hemos aprendido hasta ahora sobre Cargo:
 
-* Podemos construir un proyecto usando `cargo build` o `cargo check`.
+* Podemos crear un proyecto usando `cargo new`.
+* Podemos construir un proyecto usando `cargo build`.
 * Podemos construir y ejecutar un proyecto en un solo paso usando `cargo run`.
+* Podemos construir un proyecto para chequear errores sin crear un binario usando `cargo check`.
 * En lugar de guardar el resultado de la construcción en el mismo directorio
  que nuestro código, Cargo lo almacena en el directorio *target/debug*.
 
 Una ventaja adicional de usar Cargo es que los comandos son los mismos sin
-importar en qué sistema operativo estés trabajando. Entonces, en este punto,
+importar en qué sistema operativo esté trabajando. Entonces, en este punto,
 ya no brindaremos instrucciones específicas para Linux y macOS en comparación
 con Windows.
 
-### Building for Release
+### Construyendi para Lanzamiento (Producción)
 
 Cuando su proyecto finalmente esté listo para su lanzamiento, puede usar
 `cargo build - release` para compilarlo con optimizaciones. Este comando
 creará un ejecutable en *target/release* en lugar de *target/debug*. Las
 optimizaciones hacen que su código Rust se ejecute más rápido, pero al
-encenderlo, se alarga el tiempo que tarda su programa en compilarse. Esta es
+activarlas, se alarga el tiempo que tarda su programa en compilarse. Esta es
 la razón por la cual hay dos perfiles diferentes: uno para el desarrollo,
 cuando desea reconstruir rápidamente y con frecuencia, y otro para construir
 el programa final que le dará a un usuario que no se reconstruirá
 repetidamente y que se ejecutará tan rápido como posible. Si está evaluando
-el tiempo de ejecución de su código, asegúrese de ejecutar `carga build - release` y *benchmark* con el ejecutable en *target/release*.
+el tiempo de ejecución de su código, asegúrese de ejecutar `carga build - release` y *comparar* con el ejecutable en *target/release*.
 
 ### Cargo como Convención
 
@@ -243,11 +245,11 @@ Para obtener más información sobre Cargo, consulte [su documentación].
 
 ## Resumen
 
-¡Ya has tenido un gran comienzo en tu viaje a Rust! En este capítulo, has
+¡Ya ha tenido un gran comienzo en su viaje a Rust! En este capítulo, ha
 aprendido a:
 
-* Instale la última versión estable de Rust usando `rustup`
-* Actualización a una versión más nueva de Rust
+* Instalar la última versión estable de Rust usando `rustup`
+* Actualizar a una versión más reciente de Rust
 * Abrir documentación instalada localmente
 * Escribir y ejecutar un programa *Hello, world!* que usa `rustc` directamente
 * Crear y ejecutar un nuevo proyecto utilizando las convenciones de Cargo

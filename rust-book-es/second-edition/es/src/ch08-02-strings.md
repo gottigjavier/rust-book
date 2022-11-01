@@ -22,7 +22,7 @@ los datos de `String`.
 
 Primero definiremos lo que queremos decir con el término *string*. Rust solo
 tiene un tipo de *string* en el nucleo del lenguaje, que es el segmento de
-*string* `str` que se ve generalmente en su forma prestada `& str`. En el
+*string* `str` que se ve generalmente en su forma prestada `&str`. En el
 Capítulo 4, hablamos sobre *string slices*, que son referencias a algunos
 datos de *string* codificados en UTF-8 almacenados en otro lugar. *String*
 literales, por ejemplo, se almacenan en la salida binaria del programa y son

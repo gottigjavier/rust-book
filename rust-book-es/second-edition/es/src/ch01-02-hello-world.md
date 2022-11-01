@@ -9,14 +9,14 @@ mismo aquí!
 > exige nada específico acerca de su edición o herramienta, ni dónde vive su
 > código, por lo que si prefiere utilizar un entorno de desarrollo integrado
 > (IDE) en lugar de la línea de comandos, puede usar su IDE favorito. Muchos
-> IDE ahora tienen cierto grado de compatibilidad con Rust; revise la
+> IDEs ahora tienen cierto grado de compatibilidad con Rust; revise la
 > documentación del IDE para más detalles. Recientemente, el equipo de Rust se
-> ha centrado en permitir un excelente soporte de IDE, ¡y se ha avanzado
-> rápidamente en ese frente!
+> ha centrado en permitir un excelente soporte de IDE a través de, por ejemplo, `rust-analyzer`,
+> ¡y se ha avanzado rápidamente en ese frente!
 
 ### Crear un directorio de proyectos
 
-Comenzarás haciendo un directorio para almacenar tu código Rust. A Rust no le
+Comenzará haciendo un directorio para almacenar su código Rust. A Rust no le
 importa dónde vive su código, pero para los ejercicios y proyectos de este
 libro, le sugerimos que cree un directorio *projects* en su directorio
 personal y que mantenga todos sus proyectos allí.
@@ -116,8 +116,8 @@ parámetros y no devuelve nada. Si hubiera parámetros, entrarían entre
 paréntesis, `()`.
 
 Además, tenga en cuenta que el cuerpo de la función está envuelto en
-llaves, `{}`. Rust requiere estos alrededor de todos los cuerpos de funciones.
-Es un buen estilo colocar la abrazadera de apertura en la misma línea que la
+llaves, `{}`. Rust requiere estas alrededor de todos los cuerpos de funciones.
+Es un buen estilo colocar la llave de apertura en la misma línea que la
 declaración de función, agregando un espacio intermedio.
 
 En el momento de escribir esto, una herramienta de formateador automática
@@ -135,15 +135,16 @@ Dentro de la función `main` está el siguiente código:
 ```
 
 Esta línea hace todo el trabajo en este pequeño programa: imprime texto en la
-pantalla. Hay cuatro detalles importantes para notar aquí. Primero, el estilo Rust es para sangrar con cuatro espacios, no una *tabulación*.
+pantalla. Hay cuatro detalles importantes para notar aquí. Primero, el estilo Rust 
+es indentar con cuatro espacios, no con una *tabulación*.
 
 En segundo lugar, `println!` llama a una macro Rust. Si llamara a una función
 en su lugar, se ingresaría como `println` (sin el `!`). Analizaremos las
 macros de Rust con más detalle en el Apéndice D. Por ahora, solo necesita
 saber que usar `!` significa que está llamando a una macro en lugar de a una
-función normal.
+función normal, y que las macros a veces no siguen algunas reglas de las funciones.
 
-En tercer lugar, verá la *string* `"Hello, world!"`. Pasamos este *string*
+En tercer lugar, verá la cadena de caracteres (*string*) `"Hello, world!"`. Pasamos este *string*
 como un argumento para `println!`, Y el *string* se imprime en la pantalla.
 
 En cuarto lugar, terminamos la línea con un punto y coma (`;`), lo que indica
@@ -190,7 +191,7 @@ extensión *.pdb*. Desde aquí, ejecute el archivo *main* o *main.exe*, como
 este:
 
 ```text
-$ ./main # or .\main.exe on Windows
+$ ./main   # .\main.exe en Windows
 ```
 
 Si *main.rs* fue su programa Hello, world!, esta línea imprimiría `Hello,
@@ -199,14 +200,14 @@ world!` en su terminal.
 Si está más familiarizado con un lenguaje dinámico, como Ruby, Python o
 JavaScript, es posible que no esté acostumbrado a compilar y ejecutar un
 programa como pasos separados. Rust es un lenguaje *ahead-of-time compiled*
-lo que significa que puedes compilar un programa y darle el ejecutable a otra
-persona, y pueden ejecutarlo incluso sin tener instalado Rust. Si le da a
+lo que significa que puede compilar un programa y darle el ejecutable a otras
+personas, y pueden ejecutarlo incluso sin tener instalado Rust. Si le da a
 alguien un archivo *.rb*, *.py* o *.js*, debe tener instalada una
 implementación de Ruby, Python o JavaScript (respectivamente). Pero en esos
 lenguajes, solo necesita un comando para compilar y ejecutar su programa.
 Todo es una compensación en el diseño del lenguaje.
 
-Solo compilar con `rustc` está bien para programas simples, pero a medida que
+Compilar con `rustc` está bien para programas simples, pero a medida que
 su proyecto crezca, querrá administrar todas las opciones y facilitar el
 intercambio de su código. A continuación, le presentaremos la herramienta
 *Cargo*, que le ayudará a escribir programas reales de Rust.
