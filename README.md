@@ -55,7 +55,7 @@ Esto creará la carpeta */book*, o la actualizará si ya existe, con los archivo
 
 ### Paso 3
 
-El resultado *renderizable* está en la carpeta /book
+> El resultado *renderizable* está en la carpeta /book
 
 Para ver el libro en el navegador ejecute:
 
