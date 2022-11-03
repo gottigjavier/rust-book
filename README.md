@@ -11,7 +11,7 @@ Se clonó el repositorio [ManRR](https://github.com/ManRR/rust-book-es.git), el 
 
 En "./second-edition/es/src/" se encuentran los archivos en formato .md -markdown- en versión español.
 
-Tomando como base el contenido de estos archivos, se los revisa comparándolos con la [versión original en ingles](https://doc.rust-lang.org/stable/book/title-page.html)
+Tomando como base el contenido de estos archivos, se los revisa comparándolos con la [versión original en inglés](https://doc.rust-lang.org/stable/book/title-page.html)
 
 Una vez revisados y/o modificados se los compila mediante `mdbook` (Paso 2).
 
