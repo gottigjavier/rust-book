@@ -42,8 +42,8 @@ $ cd hello_cargo
 
 El primer comando crea un nuevo ejecutable binario llamado *hello_cargo*. El
 argumento `--bin` pasado a `cargo new` crea una aplicación ejecutable (a
-menudo simplemente llamada *binary*) en lugar de una biblioteca. Hemos
-nombrado nuestro proyecto *hello_cargo*, y Cargo crea sus archivos en un
+menudo simplemente llamada *binary*) en lugar de una biblioteca (`--lib`). Si omite el indicador, cargo asumirá por defecto el indicador `--bin`.
+Hemos nombrado nuestro proyecto *hello_cargo*, y Cargo crea sus archivos en un
 directorio del mismo nombre.
 
 Vaya al directorio *hello_cargo* y liste los archivos. Verá que Cargo ha
@@ -65,7 +65,7 @@ al código en el Listado 1-2.
 [package]
 name = "hello_cargo"
 version = "0.1.0"
-authors = ["Your Name <you@example.com>"]
+edition = "2021"
 
 [dependencies]
 ```
@@ -218,7 +218,7 @@ la razón por la cual hay dos perfiles diferentes: uno para el desarrollo,
 cuando desea reconstruir rápidamente y con frecuencia, y otro para construir
 el programa final que le dará a un usuario que no se reconstruirá
 repetidamente y que se ejecutará tan rápido como posible. Si está evaluando
-el tiempo de ejecución de su código, asegúrese de ejecutar `carga build - release` y *comparar* con el ejecutable en *target/release*.
+el tiempo de ejecución de su código, asegúrese de ejecutar `carga build --release` y *comparar* con el ejecutable en *target/release*.
 
 ### Cargo como Convención
 

@@ -1,9 +1,31 @@
- Este repositorio contiene la traducción y revisión -en proceso- al español de la segunda edición del libro "The Rust Programming Language" tomando como base el repositorio
- [ManRR](https://github.com/ManRR/rust-book-es.git), el cual es un fork del original a fecha de 18 de Mayo.
+ ## Propósito
 
-Se parte del directorio "./second-edition/es".
+ Crear una versión en español de "The Rust Programming Language".
 
-En "./second-edition/es/src/" se encuentran los archivos en formato .md -markdown- que están siendo revisados y/o traducidos para luego ser compilados a .html mediante mdbook.
+ Si su intención no es modificar el contenido sino sólo verlo, vaya directamente al **paso 3**.
+ 
+
+ ## Metodología de trabajo
+
+Se clonó el repositorio [ManRR](https://github.com/ManRR/rust-book-es.git), el cual es un fork del original a fecha de 18 de Mayo de la segunda edición del libro "The Rust Programming Language".
+
+En "./second-edition/es/src/" se encuentran los archivos en formato .md -markdown- en versión español.
+
+Tomando como base el contenido de estos archivos, se los revisa comparándolos con la [versión original en ingles](https://doc.rust-lang.org/stable/book/title-page.html)
+
+Una vez revisados y/o modificados se los compila mediante `mdbook` (Paso 2).
+
+Esto actualiza (o crea si no existe) la carpeta */book*, la cual contiene los archivos resultantes de la compilación, listos para renderizarse en el navegador.
+
+Se realiza el `push` a este repositorio incluyendo la carpeta */book*.
+
+Recuerde que la revisión está en proceso, así que pueden aparecer actualizaciones del contenido después que usted realizó la clonación de este repositorio. Le puede resultar útil revisar la fecha de los commits.
+
+Las modificaciones sustanciales siguen el orden de lo capítulos. 
+
+-------------------------------------------------------------------------
+
+### Paso 1
 
 Si ya tiene instalado rust y cargo, instale *mdbook* mediante:
 
@@ -14,7 +36,9 @@ $ cargo install mdbook --vers [version-num]
 
 Se usó la [versión](https://github.com/rust-lang/rust/blob/master/src/tools/rustbook/Cargo.toml) "0.4.21"
 
-*Si clonó este repositorio y no va a hacer modificaciones en los archivos .md puede obviar el siguiente paso pues ya contiene la carpeta /book.*
+---------------------------------------------------------------------------
+
+### Paso 2
 
 Para compilar, estando en la carpeta "./second-edition/es" ejecute:
 
@@ -24,6 +48,12 @@ $ mdbook build
 ```
 
 Esto creará la carpeta */book*, o la actualizará si ya existe, con los archivos .html, .css y .js listos para renderizarse en su navegador.
+
+--------------------------------------------------------------------------
+
+### Paso 3
+
+El resultado *renderizable* está en la carpeta /book
 
 Para ver el libro en el navegador ejecute:
 
@@ -46,6 +76,7 @@ $ start chrome.exe .\book\index.html            # Windows (Cmd)
 
 **Fin del Readme.md de Javier.**
 
+---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 
 
