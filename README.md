@@ -1,8 +1,10 @@
  ## Propósito
 
- Crear una versión en español de "The Rust Programming Language".
+ **Crear una versión en español de "The Rust Programming Language".**
 
- Si su intención no es modificar el contenido sino sólo verlo, vaya directamente al **paso 3**.
+ ### Aclaración previa
+
+> *Si su intención no es modificar el contenido sino sólo verlo, vaya directamente al **paso 3**.*
  
 
  ## Metodología de trabajo

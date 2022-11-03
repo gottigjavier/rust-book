@@ -2,8 +2,8 @@
 
 Todos los programadores se esfuerzan por hacer que su código sea fácil de
 entender, pero a veces una explicación adicional está justificada. En estos casos,
-los programadores dejan notas, o *comentarios*, en su código fuente que el compilador
-ignorará pero para la gente que lea el código fuente le puede ser útil.
+los programadores dejan *comentarios* en su código fuente, que el compilador
+ignorará, pero que a la gente que lo lea le puede ser útil.
 
 Aquí hay un comentario simple:
 
@@ -31,7 +31,7 @@ fn main() {
 }
 ```
 
-Pero con mayor frecuencia los verá usar en el siguiente formato, con el comentario
+Pero con mayor frecuencia los verá en el siguiente formato, con el comentario
 en un línea separada sobre el código que está anotando:
 
 <span class="filename">Filename: src/main.rs</span>
@@ -44,4 +44,4 @@ fn main() {
 ```
 
 Rust también tiene otro tipo de comentario, comentarios de documentación, que
-trataremos en el Capítulo 14.
+trataremos en la sección "Publicando una Crate en Crates.io" del Capítulo 14.

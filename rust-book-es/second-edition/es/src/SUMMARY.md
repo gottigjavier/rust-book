@@ -15,7 +15,7 @@
 - [Conceptos Comunes de Programación](ch03-00-common-programming-concepts.md)
     - [Variables y Mutabilidad](ch03-01-variables-and-mutability.md)
     - [Tipos de Datos](ch03-02-data-types.md)
-    - [Cómo Trabajan las Funciones](ch03-03-how-functions-work.md)
+    - [Funciones](ch03-03-how-functions-work.md)
     - [Comentarios](ch03-04-comments.md)
     - [Estructuras de Control](ch03-05-control-flow.md)
 
@@ -42,8 +42,8 @@
     - [Haciendo Referencia a Nombres en Distintos Módulos](ch07-03-importing-names-with-use.md)
 
 - [Colecciones Comunes](ch08-00-common-collections.md)
-    - [Vectores](ch08-01-vectors.md)
-    - [Strings](ch08-02-strings.md)
+    - [Almacenamiento de listas de valores con Vectores](ch08-01-vectors.md)
+    - [Almacenamiento de texto codificado en UTF-8 con Strings](ch08-02-strings.md)
     - [Mapas Hash](ch08-03-hash-maps.md)
 
 - [Manejo de Errores](ch09-00-error-handling.md)
