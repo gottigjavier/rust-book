@@ -25,6 +25,10 @@ Recuerde que la revisión está en proceso, así que pueden aparecer actualizaci
 
 Las modificaciones sustanciales siguen el orden de lo capítulos. 
 
+> Se ha decidido conservar algunas palabras o expresiones habituales en el mundo de la programación en el idioma original, generalmente realizando la traducción sólo en el primer uso.
+> Esto beneficia tanto a los lectores que ya manejan dichas palabras y expresiones, evitando hambigüedades que puedan llegar a presentarse, como a los que recién las descubren, dándoles la oportunidad de ejercitar su utilización.
+
+
 -------------------------------------------------------------------------
 
 ### Paso 1
