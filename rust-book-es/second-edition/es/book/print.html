@@ -2848,7 +2848,7 @@ préstamos (<em>borrowing</em>), rebanadas (<em>slices</em>), y cómo Rust estab
 <blockquote>
 <p>Nota del traductor:</p>
 <blockquote>
-<p>En la programación orientada a objetos es habitual el uso de la palabra <em>propiedad</em> como característica de un objeto. Esto puede llevar a cierta confusión debido a que en el idioma español, <em>propiedad</em> puede referirse tanto a una caracteríastica como a una posesión.</p>
+<p>En la programación orientada a objetos es habitual el uso de la palabra <em>propiedad</em> como característica de un objeto. Esto puede llevar a cierta confusión debido a que en el idioma español, <em>propiedad</em> puede referirse tanto a una característica como a una posesión.</p>
 <p>Se debe enfatizar entonces que en este capítulo <em><strong>propiedad = posesión</strong></em>.</p>
 </blockquote>
 </blockquote>
@@ -2864,13 +2864,12 @@ las características que hacen que Rust sea único. En este capítulo, aprender�
 <blockquote>
 <h3 id="la-pila-stack-y-el-montículo-heap"><a class="header" href="#la-pila-stack-y-el-montículo-heap">La pila (<em>Stack</em>) y el montículo (<em>Heap</em>).</a></h3>
 <p>En muchos lenguajes de programación, no tiene que pensar muy a menudo en <em>Stack</em> y <em>Heap</em>, pero en un lenguaje de programación de sistemas como Rust, que un valor esté en el <em>Stack</em> o el <em>Heap</em> tiene más de un efecto sobre cómo el lenguaje se comporta y por qué tiene que tomar ciertas decisiones. Partes de la <em>propiedad</em> se describirán en relación con <em>Stack</em> y <em>Heap</em> más adelante en este capítulo, por lo que aquí hay una breve explicación a modo de preparación.</p>
-<p>Tanto la pila como el montículo son partes de la memoria que está disponible para usar en su código en tiempo de ejecución, pero están estructurados de diferentes maneras. El <em>stack</em> almacena los valores en el orden en que los obtiene y elimina los valores en el orden opuesto. Esto se conoce como <em>last in, first out</em>, <em>LIFO</em>, (último en entrar, primero en salir). Piense en una pila de platos: cuando agrega más platos, los pone encima de la pila, y cuando necesita un plato, toma uno de la parte superior. Agregar o quitar platos del medio o abajo ¡no funcionaría tan bien! Agregar datos se llama <em>pushing onto the stack</em> (poniendo sobre la pila), y eliminar datos se llama <em>popping off the stack</em> (sacando de arriba de la pila).</p>
-<p>La pila es rápida debido a la forma en que accede a los datos: nunca tiene que buscar un lugar para poner nuevos datos o un lugar para obtener datos porque el lugar siempre es la parte superior de la pila. Otra característica que hace que la pila sea rápida es que todos los datos en la pila deben tener un tamaño conocido y fijo.</p>
-<p>Los datos con un tamaño desconocido en el momento de la compilación o un tamaño que podría cambiar deben ser almacenados en el <em>Heap</em>. El <em>Heap</em> está menos organizado: cuando pone datos en el <em>Heap</em>, pide una cierta cantidad de espacio. El asignador de memoria encuentra un lugar vacío en algún lugar del <em>Heap</em> que sea lo suficientemente grande, lo marca como que esta en uso, y devuelve un <em>puntero</em>, que es la dirección de esa ubicación. Este proceso se llama <em>allocating on the heap</em> (<em>asignando en el montículo</em>), a veces abreviado solo como “allocating” (insertar valores en el <em>stak</em> no se considera asignación). Debido a que el puntero es de un tamaño conocido y fijo, se puede almacenar el puntero en el <em>stack</em>, pero cuando quiere los datos reales, debe seguir el puntero.</p>
-<p>Piense en sentarse en un restaurante. Cuando ingresa, indica la cantidad de personas de su grupo, y el personal encuentra una mesa vacía que se adapta a todos y le lleva allí. Si alguien en su grupo llega tarde, pueden preguntar dónde ha estado sentado para encontrarle.</p>
-<p>Acceder a los datos en el <em>Heap</em> es más lento que acceder a los datos en el <em>stack</em> porque tiene que seguir un puntero para llegar allí. Los procesadores contemporáneos son más rápidos si saltan menos en la memoria. Continuando con la analogía, considere un camarero en un restaurante que recibe pedidos de muchas mesas. Es más eficiente obtener todos los pedidos en una mesa antes de pasar a la siguiente. Tomando una orden de la mesa A, luego una orden de la mesa B, luego  otra vez una de la mesa A, y entonces una más de la mesa B, sería un proceso mucho más lento. Por la misma razón, un procesador puede hacer su trabajo mejor si funciona con datos que están cerca de otros datos (como en el <em>stack</em>) en lugar de estar más lejos (como puede ser en el <em>heap</em>). Asignar una gran cantidad de espacio en el <em>heap</em> también puede llevar tiempo.</p>
-<p>Cuando su código llama a una función, los valores pasados a la función (incluidos, potencialmente, punteros a datos en el montículo) y las variables locales de la función se colocan en la pila. Cuando la función termina, esos valores se eliminan de la pila.</p>
-<p>Hacer un seguimiento de qué partes del código están usando qué datos en el montículo, minimizar la cantidad de datos duplicados en el montículo, limpiar datos sin usar en el montículo para que no se quede sin espacio, son todos problemas que aborda la <em>propiedad</em> (<em>ownership</em>). Una vez que comprenda la <em>propiedad</em>, no tendrá que pensar en la pila y el montículo con frecuencia, pero saber que el objetivo principal de la <em>propiedad</em> es administrar los datos del montículo puede ayudar a explicar por qué funciona de la manera en que lo hace.</p>
+<p>Tanto el <em>Stack</em> como el <em>Heap</em> son partes de la memoria que está disponible para usar en su código en tiempo de ejecución, pero están estructurados de diferentes maneras. El <em>stack</em> almacena los valores en el orden en que los obtiene y elimina los valores en el orden opuesto. Esto se conoce como <em>last in, first out</em>, <em>LIFO</em>, (último en entrar, primero en salir). Piense en una pila de platos: cuando agrega más platos, los pone encima de la pila, y cuando necesita un plato, toma uno de la parte superior. Agregar o quitar platos del medio o abajo ¡no funcionaría tan bien! Agregar datos se llama <em>pushing onto the stack</em> (~poniendo sobre la pila), y eliminar datos se llama <em>popping off the stack</em> (~sacando de arriba de la pila). Todos los datos almacenados en el <em>Stack</em> deben tener un tamaño conocido y fijo. Los datos con un tamaño desconocido en el momento de la compilación o cuyo tamaño podría cambiar deben ser almacenados en el <em>Heap</em>.</p>
+<p>El <em>Heap</em> está menos organizado: cuando pone datos en el <em>Heap</em>, pide una cierta cantidad de espacio, el asignador de memoria encuentra un lugar vacío en algún lugar del <em>Heap</em> que sea lo suficientemente grande, lo marca como que esta en uso, y devuelve un <em>puntero</em>, que es la dirección de esa ubicación. Este proceso se llama <em>allocating on the Heap</em> (<em>asignando en el montículo</em>), a veces abreviado solo como “allocating” (insertar valores en el <em>Stack</em> no se considera asignación). Debido a que el puntero es de un tamaño conocido y fijo, se puede almacenar el puntero en el <em>Stack</em>, pero cuando quiere los datos reales, debe seguir el puntero. Piense en sentarse en un restaurante. Cuando ingresa, indica la cantidad de personas de su grupo, y el personal encuentra una mesa vacía que se adapta a todos y le lleva allí. Si alguien en su grupo llega tarde, pueden preguntar dónde ha estado sentado para encontrarle.</p>
+<p>Colocar datos en el <em>Stack</em> es rápido debido a que el asignador de memoria nunca tiene que buscar un lugar para poner los nuevos datos: el lugar siempre es la parte superior de la pila. Comparativamente, asignar espacio en el <em>Heap</em> requiere más trabajo, porque el asignador primero debe encontrar un espacio lo suficientemente grande para mantener los datos, y luego realizar la contabilidad para prepararse para la siguiente asignación. </p>
+<p>Acceder a los datos en el <em>Heap</em> es más lento que acceder a los datos en el <em>Stack</em> porque tiene que seguir un puntero para llegar allí. Los procesadores contemporáneos son más rápidos si saltan menos en la memoria. Continuando con la analogía, considere un mesero en un restaurante que recibe pedidos de muchas mesas. Es más eficiente obtener todos los pedidos en una mesa antes de pasar a la siguiente. Tomar una orden de la mesa A, luego una orden de la mesa B, luego  otra vez una de la mesa A, y entonces una más de la mesa B, sería un proceso mucho más lento. Por la misma razón, un procesador puede hacer su trabajo mejor si funciona con datos que están cerca de otros datos (como en el <em>Stack</em>) en lugar de estar más lejos (como puede ser en el <em>Heap</em>).</p>
+<p>Cuando su código llama a una función, los valores pasados a la función (incluidos, potencialmente, punteros a datos en el <em>Heap</em>) y las variables locales de la función se colocan en el <em>Stack</em>. Cuando la función termina, esos valores se eliminan del <em>Stack</em>.</p>
+<p>Hacer un seguimiento de qué partes del código están usando qué datos en el <em>Heap</em>, minimizar la cantidad de datos duplicados en el <em>Heap</em>, limpiar datos sin usar en el <em>Heap</em> para que no se quede sin espacio, son todos problemas que aborda la <em>propiedad</em> (<em>ownership</em>). Una vez que comprenda la <em>propiedad</em>, no tendrá que pensar en el <em>Stack</em> y el <em>Heap</em> con frecuencia, pero saber que el objetivo principal de la <em>propiedad</em> es administrar los datos del <em>Heap</em> puede ayudar a explicar por qué funciona de la manera en que lo hace.</p>
 </blockquote>
 <h3 id="reglas-de-propiedad-ownership"><a class="header" href="#reglas-de-propiedad-ownership">Reglas de propiedad (<em>Ownership</em>)</a></h3>
 <p>Primero, echemos un vistazo a las reglas de propiedad. Tenga en cuenta estas reglas cuando trabaje a través de los ejemplos que los ilustran:</p>
@@ -3075,18 +3074,18 @@ quisiéramos evitar que <code>x</code> sea válida después de que creamos la va
 palabras, aquí no hay diferencia entre la copia profunda y la poco profunda, por lo que
 llamar a <code>clone</code> no haría nada diferente de la copia superficial normal y podemos omitirlo.</p>
 <p>Rust tiene una anotación especial llamada el <em>trait</em> <code>Copy</code> que podemos colocar en
-tipos como enteros que están almacenados en la pila (hablaremos más sobre los rasgos en el <a href="ch10-02-traits.html">Capítulo 10</a>). Si un tipo implementa el <em>trait</em> <code>Copy</code>, las variables que lo usan no son movidas, sino que se copian trivialmente, haciéndolas aún válidas después de la asignación a otra variable.</p>
+tipos como enteros que están almacenados en la pila (hablaremos más sobre los <em>traits</em> en el <a href="ch10-02-traits.html">Capítulo 10</a>). Si un tipo implementa el <em>trait</em> <code>Copy</code>, las variables que lo usan no son movidas, sino que se copian trivialmente, haciéndolas aún válidas después de la asignación a otra variable.</p>
 <p>Rust no nos permitirá anotar un tipo con <code>Copy</code> si el tipo, o cualquiera de sus partes, ha implementado el <em>trait</em> <code>Drop</code>. Si el tipo necesita que ocurra algo especial cuando el
 valor se sale del ámbito y agregamos la anotación <code>Copy</code> a ese tipo, obtendremos un error
 en tiempo de compilación. Para obtener información sobre cómo agregar la anotación <code>Copy</code>
-a su tipo para implementar el <em>trait</em>, consulte <a href="appendix-03-derivable-traits.html">“Rasgos derivables”</a> en el Apéndice C.</p>
+a su tipo para implementar el <em>trait</em>, consulte <a href="appendix-03-derivable-traits.html">&quot;Traits Derivables”</a> en el Apéndice C.</p>
 <p>Entonces, ¿qué tipos implementan el <em>trait</em> <code>Copy</code>? Puede verificar la documentación del tipo dado para asegurarse, pero como regla general, cualquier grupo de valores escalares simples puede ser <code>Copy</code>, y nada que requiera asignación o es alguna forma de recurso es <code>Copy</code>. Estos son algunos de los tipos que implementan <code>Copy</code>:</p>
 <ul>
 <li>Todos los tipos de enteros, como <code>u32</code>.</li>
 <li>El tipo booleano, <code>bool</code>, con los valores <code>true</code> y <code>false</code>.</li>
 <li>Todos los tipos de punto flotante, como <code>f64</code>.</li>
 <li>El tipo de carácter, <code>char</code>.</li>
-<li>Tuplas, pero solo si contienen tipos que también son <code>Copy</code>. Por ejemplo,
+<li>Tuplas, pero solo si contienen tipos que también implementan <code>Copy</code>. Por ejemplo,
 <code>(i32, i32)</code> implementa <code>Copy</code>, pero <code>(i32, String)</code> no lo hace.</li>
 </ul>
 <h3 id="propiedad-y-funciones"><a class="header" href="#propiedad-y-funciones">Propiedad y funciones</a></h3>
@@ -3186,7 +3185,7 @@ Afortunadamente para nosotros, Rust tiene una característica usar un valor sin 
 <div style="break-before: page; page-break-before: always;"></div><h2 id="referencias-y-préstamos-references-and-borrowing"><a class="header" href="#referencias-y-préstamos-references-and-borrowing">Referencias y préstamos (<em>References and Borrowing</em>)</a></h2>
 <p>El problema con el código de tupla en el Listado 4-5 es que tenemos que devolver
 el <code>String</code> a la función de llamada para que podamos seguir usando el <code>String</code>
-después de la llamada a <code>calculate_length</code>, porque el <code>String</code> se movió a <code>calculate_length</code>.</p>
+después de la llamada a <code>calculate_length</code>, porque el <code>String</code> se movió a <code>calculate_length</code>.  En su lugar, podemos proporcionar una referencia al valor del <code>String</code>. Una <em>referencia</em> es como un puntero en el sentido de que es una dirección que podemos seguir para acceder los datos almacenados en esa dirección; esos datos son propiedad de alguna otra variable. A diferencia de un puntero, se garantiza que una referencia apunte a un valor válido de un tipo particular durante la vida de esa referencia. </p>
 <p>Aquí se explica cómo definiría y usaría una función <code>calculate_length</code> que hace referencia a
 un objeto como parámetro en lugar de tomar posesión del valor:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
@@ -3204,14 +3203,13 @@ fn calculate_length(s: &amp;String) -&gt; usize {
 </code></pre></pre>
 <p>Primero, observe que todo el código de tupla en la declaración de la variable
 y el valor de retorno de la función han desaparecido. En segundo lugar, tenga
-en cuenta que pasamos <code>&amp;s1</code> en <code>calculate_length</code> y, en su definición, tomamos
-<code>&amp;String</code> en lugar de <code>String</code>.</p>
-<p>Estos <em>ampersands</em> son <em>referencias</em>, y le permiten referirse a algún valor sin
-tomar posesión de él. La figura 4-5 muestra un diagrama.</p>
+en cuenta que pasamos <code>&amp;s1</code> a <code>calculate_length</code> y, en su definición, tomamos
+<code>&amp;String</code> en lugar de <code>String</code>. Estos <em>ampersands</em> (<code>&amp;</code>) representan <em>referencias</em>, y le permiten referirse a algún valor sin tomar posesión de él. 
+La figura 4-5 muestra un diagrama.</p>
 <img alt="&String s pointing at String s1" src="img/trpl04-05.svg" class="center" />
-<p><span class="caption">Figure 4-5: Un diagrama de <code>&amp; String s</code> apuntando a <code>String s1</code></span></p>
+<p><span class="caption">Figure 4-5: Un diagrama de <code>&amp;String s</code> apuntando a <code>String s1</code></span></p>
 <blockquote>
-<p>Nota: lo contrario de hacer referencia usando <code>&amp;</code> es <em>dereferencing</em>, que se
+<p>Nota: lo contrario de <em>referenciar</em> usando <code>&amp;</code> es <em>desreferenciar</em>, que se
 logra con el operador de desreferencia, <code>*</code>. Veremos algunos usos del operador de
 desreferencia en el Capítulo 8 y discutiremos los detalles de desreferenciación en
 el Capítulo 15.</p>
@@ -3227,9 +3225,9 @@ el Capítulo 15.</p>
 let len = calculate_length(&amp;s1);
 <span class="boring">}
 </span></code></pre></pre>
-<p>La sintaxis <code>&amp;s1</code> nos permite crear una referencia que <em>se refiere</em> al valor de <code>s1</code>
-pero que no le pertenece. Como no es el propietario, el valor al que apunta no se eliminará
-cuando la referencia salga del alcance.</p>
+<p>La sintaxis <code>&amp;s1</code> nos permite crear una referencia que <em>referencia</em> al valor de <code>s1</code>
+pero no lo posee. Como no es el propietario, el valor al que apunta no se eliminará
+cuando la referencia deje de usarse.</p>
 <p>Del mismo modo, la firma de la función usa <code>&amp;</code> para indicar que el tipo del parámetro <code>s</code>
 es una referencia. Agreguemos algunas anotaciones explicativas:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
@@ -3240,14 +3238,10 @@ es una referencia. Agreguemos algunas anotaciones explicativas:</p>
   // no sucede nada.
 <span class="boring">}
 </span></code></pre></pre>
-<p>El ámbito en el que la variable <code>s</code> es válida es el mismo que el del parámetro de
-cualquier función, pero no descartamos los puntos de referencia cuando sale del alcance
-porque no tenemos la propiedad. Cuando las funciones tienen referencias como parámetros
-en lugar de los valores reales, no necesitaremos devolver los valores para devolver la
-propiedad, porque nunca tuvimos la propiedad.</p>
-<p>Llamamos tener referencias como parámetros de función <em>préstamos</em> (<em>borrowing</em>).
-Como en la vida real, si una persona posee algo, puede pedir prestado de ellos.
-Cuando hayas terminado, debes devolverlo.</p>
+<p>El ámbito en el que la variable <code>s</code> es válida es el mismo que el ámbito de cualquier parámetro de función, pero el valor al que apunta la referencia no se elimina cuando <code>s</code> deja de usarse porque <code>s</code> no tiene propiedad. Cuando las funciones tienen referencias como parámetros en lugar de los valores reales, no necesitaremos devolver los valores para devolver la propiedad, porque nunca tuvimos la propiedad.</p>
+<p>A la acción de crear una <em>referencia</em> la llamamos <em>préstamo</em> (<em>borrowing</em>).
+Como en la vida real, si una persona posee algo, se lo puede pedir prestado.
+Cuando haya terminado, debe devolverlo. No lo posee.</p>
 <p>Entonces, ¿qué sucede si tratamos de modificar algo que estamos pidiendo prestado?
 Pruebe el código en el Listado 4-6. Alerta de spoiler: ¡no funciona!</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
@@ -3263,18 +3257,23 @@ fn change(some_string: &amp;String) {
 </code></pre>
 <p><span class="caption">Listing 4-6: Intentando modificar un valor prestado</span></p>
 <p>Aquí está el error:</p>
-<pre><code class="language-text">error[E0596]: cannot borrow immutable borrowed content `*some_string` as mutable
- --&gt; error.rs:8:5
+<pre><code class="language-text">$ cargo run
+   Compiling ownership v0.1.0 (file:///projects/ownership)
+error[E0596]: cannot borrow `*some_string` as mutable, as it is behind a `&amp;` reference
+ --&gt; src/main.rs:8:5
   |
 7 | fn change(some_string: &amp;String) {
-  |                        ------- use `&amp;mut String` here to make mutable
+  |                        ------- help: consider changing this to be a mutable reference: `&amp;mut String`
 8 |     some_string.push_str(&quot;, world&quot;);
-  |     ^^^^^^^^^^^ cannot borrow as mutable
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `some_string` is a `&amp;` reference, so the data it refers to cannot be borrowed as mutable
+
+For more information about this error, try `rustc --explain E0596`.
+error: could not compile `ownership` due to previous error
 </code></pre>
 <p>Así como las variables son inmutables por defecto, también lo son las referencias.
-No podemos modificar algo a lo que tenemos referencia.</p>
+No se nos permite modificar algo a lo que tenemos una referencia.</p>
 <h3 id="referencias-mutables"><a class="header" href="#referencias-mutables">Referencias mutables</a></h3>
-<p>Podemos corregir el error en el código del Listado 4-6 con solo un pequeño ajuste:</p>
+<p>Podemos corregir el código del Listado 4-6 para permitirnos modificar un valor prestado con solo unos pequeños ajustes usando una referencia mutable:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let mut s = String::from(&quot;hello&quot;);
@@ -3286,31 +3285,36 @@ fn change(some_string: &amp;mut String) {
     some_string.push_str(&quot;, world&quot;);
 }
 </code></pre></pre>
-<p>Primero, tuvimos que cambiar <code>s</code> para que fuera <code>mut</code>. Luego tuvimos que crear
-una referencia mutable con <code>&amp;mut s</code> y aceptar una referencia mutable con
-<code>some_string: &amp;mut String</code>.</p>
-<p>Pero las referencias mutables tienen una gran restricción: puede tener solo una
-referencia mutable a una pieza particular de datos en un ámbito particular.
-Este código fallará:</p>
-<pre><code class="language-rust ignore">let mut s = String::from(&quot;hello&quot;);
+<p>Primero, cambiamos <code>s</code> para que sea <code>mut</code>. Luego creaamos una referencia mutable con <code>&amp;mut s</code> donde llamamos a la función <code>change</code> y actualizamos la firma de la función para aceptar una referencia mutable con <code>some_string: &amp;mut String</code>. Esto deja muy claro que la función <code>change</code> mutará el valor que toma prestado.</p>
+<p>Las referencias mutables tienen una gran restricción: si tiene una referencia mutable a un valor, no puede tener otras referencias a ese mismo valor. Este código que intenta crear dos referencias mutables a <code>s</code> fallará:</p>
+<pre><code class="language-rust ignore"><span class="boring">fn main() {
+</span>    let mut s = String::from(&quot;hello&quot;);
 
-let r1 = &amp;mut s;
-let r2 = &amp;mut s;
-</code></pre>
+    let r1 = &amp;mut s;
+    let r2 = &amp;mut s;
+
+    println!(&quot;{}, {}&quot;, r1, r2);
+<span class="boring">}
+</span></code></pre>
 <p>Aquí está el error:</p>
-<pre><code class="language-text">error[E0499]: cannot borrow `s` as mutable more than once at a time
- --&gt; borrow_twice.rs:5:19
+<pre><code class="language-text">$ cargo run
+   Compiling ownership v0.1.0 (file:///projects/ownership)
+error[E0499]: cannot borrow `s` as mutable more than once at a time
+ --&gt; src/main.rs:5:14
   |
 4 |     let r1 = &amp;mut s;
-  |                   - first mutable borrow occurs here
+  |              ------ first mutable borrow occurs here
 5 |     let r2 = &amp;mut s;
-  |                   ^ second mutable borrow occurs here
-6 | }
-  | - first borrow ends here
+  |              ^^^^^^ second mutable borrow occurs here
+6 | 
+7 |     println!(&quot;{}, {}&quot;, r1, r2);
+  |                        -- first borrow later used here
+
+For more information about this error, try `rustc --explain E0499`.
+error: could not compile `ownership` due to previous error
 </code></pre>
-<p>Esta restricción permite la mutación, pero de una manera muy controlada.
-Es algo con lo que los nuevos Rustaceos luchan, porque la mayoría de los
-lenguajes te permiten mutar cuando lo desees.</p>
+<p>Este error dice que este código no es válido porque no podemos tomar prestado <code>s</code> como mutable más de una vez al mismo tiempo. El primer préstamo mutable está en <code>r1</code> y debe durar hasta que se use en <code>println!</code>, pero entre la creación de esa referencia mutable y su uso, intentamos crear otra referencia mutable en <code>r2</code> que toma prestados los mismos datos que <code>r1</code>.</p>
+<p>Esta restricción que impide múltiples referencias mutables a los mismos datos al mismo tiempo permite la mutación pero de una manera muy controlada. Es algo con lo que los nuevos Rustáceos luchan, porque la mayoría de los lenguajes le permiten mutar cuando lo desee.</p>
 <p>El beneficio de tener esta restricción es que Rust puede evitar carreras de
 datos en tiempo de compilación. Una <em>data race</em> es similar a una condición de
 carrera y ocurre cuando se producen estos tres comportamientos:</p>
@@ -3321,62 +3325,75 @@ carrera y ocurre cuando se producen estos tres comportamientos:</p>
 </ul>
 <p>Las carreras de datos causan un comportamiento indefinido y pueden ser
 difíciles de diagnosticar y corregir cuando intenta rastrearlos en tiempo
-de ejecución; Rust evita que este problema ocurra porque ni siquiera compilará
+de ejecución. Rust evita que este problema ocurra porque se negará a compilar
 código con <em>data race</em>.</p>
-<p>Como siempre, podemos usar llaves para crear un nuevo alcance, permitiendo
+<p>Como siempre, podemos usar llaves para crear un nuevo ámbito, permitiendo
 múltiples referencias mutables, pero no <em>simultáneas</em>:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
 </span>let mut s = String::from(&quot;hello&quot;);
 
 {
     let r1 = &amp;mut s;
 
-} // r1 sale fuera del alcance aquí, por lo que podemos hacer una nueva referencia sin problemas.
+} // r1 queda fuera del ámbito aquí, por lo que podemos hacer una nueva referencia sin problemas.
 
 let r2 = &amp;mut s;
 <span class="boring">}
 </span></code></pre></pre>
-<p>Existe una regla similar para combinar referencias mutables e inmutables. Este
+<p>Rust aplica una regla similar para combinar referencias mutables e inmutables. Este
 código da como resultado un error:</p>
-<pre><code class="language-rust ignore">let mut s = String::from(&quot;hello&quot;);
+<pre><code class="language-rust ignore"><span class="boring">fn main() {
+</span>    let mut s = String::from(&quot;hello&quot;);
 
-let r1 = &amp;s; // no problem
-let r2 = &amp;s; // no problem
-let r3 = &amp;mut s; // BIG PROBLEM
-</code></pre>
+    let r1 = &amp;s; // no problem
+    let r2 = &amp;s; // no problem
+    let r3 = &amp;mut s; // BIG PROBLEM
+
+    println!(&quot;{}, {}, and {}&quot;, r1, r2, r3);
+<span class="boring">}
+</span></code></pre>
 <p>Aquí está el error:</p>
-<pre><code class="language-text">error[E0502]: cannot borrow `s` as mutable because it is also borrowed as
-immutable
- --&gt; borrow_thrice.rs:6:19
+<pre><code class="language-text">$ cargo run
+   Compiling ownership v0.1.0 (file:///projects/ownership)
+error[E0502]: cannot borrow `s` as mutable because it is also borrowed as immutable
+ --&gt; src/main.rs:6:14
   |
 4 |     let r1 = &amp;s; // no problem
-  |               - immutable borrow occurs here
+  |              -- immutable borrow occurs here
 5 |     let r2 = &amp;s; // no problem
 6 |     let r3 = &amp;mut s; // BIG PROBLEM
-  |                   ^ mutable borrow occurs here
-7 | }
-  | - immutable borrow ends here
+  |              ^^^^^^ mutable borrow occurs here
+7 | 
+8 |     println!(&quot;{}, {}, and {}&quot;, r1, r2, r3);
+  |                                -- immutable borrow later used here
+
+For more information about this error, try `rustc --explain E0502`.
+error: could not compile `ownership` due to previous error
 </code></pre>
-<p>¡Uf! Nosotros <em>tampoco</em> no podemos tener una referencia mutable mientras tengamos
-una referencia inmutable. Los usuarios de una referencia inmutable no esperan que
-los valores cambien repentinamente de debajo de ellos. Sin embargo, las referencias
-inmutables múltiples están bien porque nadie que solo está leyendo los datos tiene
-la capacidad de afectar la lectura de los datos de otra persona.</p>
+<p>¡Uf! <em>Tampoco</em> podemos tener una referencia mutable mientras tengamos
+una referencia inmutable al mismo valor.</p>
+<p>¡Los usuarios de una referencia inmutable no esperan que el valor cambie repentinamente debajo de ellos! Sin embargo, se permiten múltiples referencias inmutables porque nadie que solo esté leyendo los datos tiene la capacidad de afectar la lectura de los datos de otra persona.</p>
+<p>Tenga en cuenta que el ámbito de una referencia comienza desde donde se introdujo y continúa hasta la última vez que se usó esa referencia. Por ejemplo, este código se compilará porque el último uso de las referencias inmutables, <code>¡println!</code>, ocurre antes de que se introduzca la referencia mutable:</p>
+<pre><code class="language-rust ignore"><span class="boring">fn main() {
+</span>    let mut s = String::from(&quot;hello&quot;);
+
+    let r1 = &amp;s; // no problem
+    let r2 = &amp;s; // no problem
+    println!(&quot;{} and {}&quot;, r1, r2);
+    // variables r1 and r2 will not be used after this point
+
+    let r3 = &amp;mut s; // no problem
+    println!(&quot;{}&quot;, r3);
+<span class="boring">}
+</span></code></pre>
+<p>Los alcances de las referencias inmutables <code>r1</code> y <code>r2</code> terminan después de <code>println!</code>, donde se usaron por última vez, que es antes de que se cree la referencia mutable <code>r3</code>. Estos ámbitos no se superponen, por lo que este código está permitido. La capacidad del compilador para decir que una referencia ya no se usa en un punto antes del final del alcance se llama <em>Non-Lexical Lifetimes</em> (NLL para abreviar). Puede leer más sobre esto en <a href="https://blog.rust-lang.org/2018/12/06/Rust-1.31-and-rust-2018.html#non-lexical-lifetimes">The Edition Guide</a>.</p>
 <p>Aunque estos errores pueden ser frustrantes a veces, recuerde que es el compilador
 Rust el que señala un posible error anticipadamente (en tiempo de compilación en
 lugar de en tiempo de ejecución) y le muestra exactamente dónde está el problema.
-Entonces no tienes que rastrear por qué tus datos no son lo que pensabas que eran.</p>
+Entonces no tiene que rastrear por qué sus datos no son lo que pensaba que eran.</p>
 <h3 id="referencias-colgantes"><a class="header" href="#referencias-colgantes">Referencias colgantes</a></h3>
-<p>En lenguajes con punteros, es fácil crear erróneamente un <em>puntero colgando</em>,
-un puntero que hace referencia a una ubicación en la memoria que se le pudo
-haber dado a alguien más, liberando algo de memoria mientras se conserva un
-puntero a esa memoria. En Rust, por el contrario, el compilador garantiza que
-las referencias nunca serán referencias colgantes: si tiene una referencia
-a algunos datos, el compilador se asegurará de que los datos no salgan del
-alcance antes que la referencia a los datos.</p>
-<p>Intentemos crear una referencia colgante, que Rust evitará con un error en
-tiempo de compilación:</p>
+<p>En lenguajes con punteros, es fácil crear erróneamente un <em>puntero colgante</em> (un puntero que hace referencia a una ubicación en la memoria que se le puede haber dado a alguien más) al liberar algo de la memoria mientras se conserva un puntero a esa memoria. En Rust, por el contrario, el compilador garantiza que las referencias nunca serán referencias colgantes: si tiene una referencia a algunos datos, el compilador se asegurará de que los datos no queden fuera del alcance antes que lo haga la referencia a esos datos.</p>
+<p>Intentemos crear una referencia colgante para ver cómo Rust las previene con un error en tiempo de compilación: </p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn main() {
     let reference_to_nothing = dangle();
@@ -3389,15 +3406,22 @@ fn dangle() -&gt; &amp;String {
 }
 </code></pre>
 <p>Aquí está el error:</p>
-<pre><code class="language-text">error[E0106]: missing lifetime specifier
- --&gt; main.rs:5:16
+<pre><code class="language-text">$ cargo run
+   Compiling ownership v0.1.0 (file:///projects/ownership)
+error[E0106]: missing lifetime specifier
+ --&gt; src/main.rs:5:16
   |
 5 | fn dangle() -&gt; &amp;String {
-  |                ^ expected lifetime parameter
+  |                ^ expected named lifetime parameter
   |
-  = help: this function's return type contains a borrowed value, but there is
-  no value for it to be borrowed from
-  = help: consider giving it a 'static lifetime
+  = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime
+  |
+5 | fn dangle() -&gt; &amp;'static String {
+  |                ~~~~~~~~
+
+For more information about this error, try `rustc --explain E0106`.
+error: could not compile `ownership` due to previous error
 </code></pre>
 <p>Este mensaje de error se refiere a una función que aún no hemos cubierto: tiempos de vida.
 Analizaremos los tiempos de vida en detalle en el Capítulo 10. Pero, si ignora las partes
@@ -3413,14 +3437,14 @@ nuestro código <code>dangle</code>:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn dangle() -&gt; &amp;String { // dangle devuelve una referencia a un String
 
-    let s = String::from(&quot;hello&quot;); // s es una nuevo String
+    let s = String::from(&quot;hello&quot;); // s es un nuevo String
 
-    &amp;s // devolvemos una referencia a String, s
-} // ¡Toma! s sale del alcance y se descarta. Su memoria desaparece.
+    &amp;s // devolvemos una referencia al String s
+} // s sale del alcance y se descarta. Desaparece de la memoria.
   // ¡Peligro!
 </code></pre>
 <p>Debido a que <code>s</code> se crea dentro de <code>dangle</code>, cuando el código de <code>dangle</code>
-se termina,<code>s</code> será desasignado. Pero tratamos de devolverle una referencia.
+finaliza, <code>s</code> será desasignado. Pero tratamos de devolver una referencia a <code>s</code>.
 Eso significa que esta referencia estaría apuntando a un <code>String</code> inválido
 ¡Eso no es bueno! Rust no nos dejará hacer esto.</p>
 <p>La solución aquí es devolver el <code>String</code> directamente:</p>
@@ -3434,13 +3458,11 @@ Eso significa que esta referencia estaría apuntando a un <code>String</code> in
 <span class="boring">}
 </span></code></pre></pre>
 <p>Esto funciona sin ningún problema. La propiedad se trasladó y no se desasignó nada.</p>
-<h3 id="las-reglas-de-las-referencias"><a class="header" href="#las-reglas-de-las-referencias">Las reglas de las referencias</a></h3>
+<h3 id="las-reglas-de-las-referencias"><a class="header" href="#las-reglas-de-las-referencias">Las Reglas de las Referencias</a></h3>
 <p>Repasemos lo que hemos visto sobre las referencias:</p>
 <ul>
-<li>En cualquier momento dado, puede tener <em>cualquiera de los dos</em> 
-una referencia mutable <em>o</em>
-cualquier cantidad de referencias inmutables.</li>
-<li>Las referencias siempre deben ser válidas.</li>
+<li>En cualquier momento dado puede tener: <em>o</em> una referencia mutable, <em>o</em> cualquier cantidad de referencias inmutables.</li>
+<li>Las referencias deben ser siempre válidas.</li>
 </ul>
 <p>A continuación, veremos un tipo diferente de referencia: <em>slices</em>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="el-tipo-slice"><a class="header" href="#el-tipo-slice">El tipo Slice</a></h2>

@@ -7,6 +7,6 @@ capítulo, vamos a hablar sobre la propiedad, así como varias características 
 préstamos (*borrowing*), rebanadas (*slices*), y cómo Rust establece los datos en la memoria.
 
 > Nota del traductor:
->> En la programación orientada a objetos es habitual el uso de la palabra *propiedad* como característica de un objeto. Esto puede llevar a cierta confusión debido a que en el idioma español, *propiedad* puede referirse tanto a una caracteríastica como a una posesión.
+>> En la programación orientada a objetos es habitual el uso de la palabra *propiedad* como característica de un objeto. Esto puede llevar a cierta confusión debido a que en el idioma español, *propiedad* puede referirse tanto a una característica como a una posesión.
 >>
 >> Se debe enfatizar entonces que en este capítulo ***propiedad = posesión***.
