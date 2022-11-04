@@ -1,16 +1,15 @@
-## Flujo de control
+## Estructuras de control (control flow)
 
-Decidir si ejecutar o no algún código según si una condición es verdadera
-y decidir ejecutar algún código repetidamente mientras una condición es
-verdadera es básico en la construcción de bloques de codigo en la mayoría
-de los lenguajes de programación. Las construcciones más comunes que le permiten
-controlar el flujo de ejecución del código Rust son las expresiones `if` y los bucles.
+> Nota del traductor:
+>> La traducción literal de la expresión *control flow* es *flujo de control*, pero sería más acertado traducirlo como *control de flujo* ya que el tema se refiere a la manera de controlar el flujo de la ejecución del código.
+>> En español, cuando se trata el tema, se lo titula apelando a las estructuras que que ejercen ese control, llamadas *Estructuras de Control*. Este último es el enfoque que se utilizará.
+
+
+La capacidad de ejecutar algún código dependiendo de si una condición es verdadera, o ejecutar algún código repetidamente mientras una condición es verdadera, es básico en la construcción de bloques de codigo en la mayoría de los lenguajes de programación. Las construcciones más comunes que le permiten controlar el flujo de ejecución del código Rust son las expresiones `if` y los bucles.
 
 ### Expresiones `if`
 
-Una expresión `if` le permite bifurcar su código dependiendo de las condiciones. Usted
-proporcionará una condición, “Si se cumple esta condición, ejecute este bloque
-de código. Si la condición no se cumple, no ejecute este bloque de código”.
+Una expresión `if` le permite bifurcar su código dependiendo de las condiciones. Proporcione una condición y diga: “Si se cumple esta condición, ejecute este bloque de código; si la condición no se cumple, no ejecute este bloque de código”.
 
 Cree un nuevo proyecto llamado *branches* en su directorio *projects* para explorar
 la expresión `if`. En el archivo *src/main.rs*, ingrese lo siguiente:
@@ -31,13 +30,13 @@ fn main() {
 
 <!-- NEXT PARAGRAPH WRAPPED WEIRD INTENTIONALLY SEE #199 -->
 
-Todas las expresiones `if` comienzan con la palabra clave `if`, que es seguida por una
+Todas las expresiones `if` comienzan con la palabra clave `if` seguida por una
 condición. En este caso, la condición verifica si la variable `number` tiene un valor
 menor que 5. El bloque de código que queremos ejecutar si la condición es verdadera se
-coloca inmediatamente después de la condición dentro de las llaves.
+coloca inmediatamente después de la condición dentro de llaves.
 Los bloques de código asociados con las condiciones en las expresiones `if` son
-a veces llamados *brazos*, al igual que los brazos en expresiones `match` que
-tratamos en la sección “Comparación de la conjetura con el número secreto” del Capitulo 2.
+a veces llamados *brazos*, igual que los brazos en expresiones `match` que
+tratamos en la sección [“Comparando la conjetura con el número secreto”](ch02-00-guessing-game-tutorial.html#comparando-la-conjetura-con-el-n%C3%BAmero-secreto) del Capitulo 2.
 
 Opcionalmente, también podemos incluir una expresión `else`, que elegimos hacer aquí, para
 darle al programa un bloque de código alternativo que debería ejecutar si la condición
@@ -55,7 +54,7 @@ condition was true
 ```
 
 Probemos cambiando el valor de `number` a un valor que haga que la condición sea
-`falso` para ver qué sucede:
+`false` para ver qué sucede:
 
 ```rust,ignore
 let number = 7;
@@ -91,21 +90,22 @@ La condición `if` se evalúa a un valor de `3` esta vez, y Rust arroja un
 error:
 
 ```text
+$ cargo run
+   Compiling branches v0.1.0 (file:///projects/branches)
 error[E0308]: mismatched types
  --> src/main.rs:4:8
   |
 4 |     if number {
-  |        ^^^^^^ expected bool, found integral variable
-  |
-  = note: expected type `bool`
-             found type `{integer}`
+  |        ^^^^^^ expected `bool`, found integer
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `branches` due to previous error
 ```
 
-El error indica que Rust esperaba un `bool` pero obtuvo un número entero. diferente a
-lenguajes como Ruby y JavaScript, Rust no intentará convertir tipos no booleanos en booleanos.
-Debe ser explícito y siempre proporcionar `if` con un Booleano como su condición. 
+El error indica que Rust esperaba un `bool` pero obtuvo un número entero. A diferencia de lenguajes como Ruby y JavaScript, Rust no intentará convertir tipos no booleanos en booleanos.
+Debe ser explícito y siempre proporcionar `if` con un Booleano como condición. 
 Si queremos que se ejecute el bloque de código `if` solo cuando un número no es igual a `0`,
-por ejemplo, podemos cambiar el `if` expresión a lo siguiente:
+por ejemplo, podemos cambiar la expresión `if` a lo siguiente:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -144,7 +144,7 @@ fn main() {
 }
 ```
 
-Este programa tiene cuatro caminos posibles que puede tomar. Después de ejecutarlo, deberías
+Este programa tiene cuatro caminos posibles que puede tomar. Después de ejecutarlo, debería
 ver el siguiente resultado:
 
 ```text
@@ -162,9 +162,9 @@ vemos el texto `number is not divisible by 4, 3, or 2` del bloque `else`.
 Eso es porque Rust solo ejecuta el bloque para la primera condición verdadera, y
 una vez que encuentra una, ni siquiera comprueba el resto.
 
-Si usa demasiadas expresiones `else if` puede saturar su código, entonces si tiene más
-de una, es posible que desee refactorizar su código. El Capítulo 6 describe un poderoso
-construct de ramificación de Rust llamado `match` para estos casos.
+Si usa demasiadas expresiones `else if` puede saturar su código. Entonces si tiene más
+de una, es posible que desee refactorizar su código. El Capítulo 6 describe una poderosa
+estructura de ramificación de Rust llamado `match` para estos casos.
 
 #### Usando `if` en una declaración `let`
 
@@ -189,8 +189,7 @@ fn main() {
 <span class="caption">Listing 3-2: Asignando el resultado de una expresión `if`
 a una variable</span>
 
-La variable `number` se vinculará a un valor basado en el resultado del `if`
-expresión. Ejecute este código para ver qué sucede:
+La variable `number` se vinculará a un valor basado en el resultado de la expresión `if`. Ejecute este código para ver qué sucede:
 
 ```text
 $ cargo run
@@ -201,12 +200,7 @@ The value of number is: 5
 ```
 
 Recuerde que los bloques de código evalúan la última expresión en ellos, y
-los números en sí mismos también son expresiones. En este caso, el valor de la
-toda la expresión `if` depende de qué bloque de código se ejecute. Esto significa
-que los valores que tienen el potencial de ser resultados de cada brazo del `if` deben ser
-el mismo tipo; en el Listado 3-2, los resultados tanto del brazo `if` como del brazo `else`
-eran enteros `i32`. Si los tipos no coinciden, como en el siguiente
-ejemplo, obtendremos un error:
+los números en sí mismos también son expresiones. En este caso, el valor de toda la expresión `if` depende de qué bloque de código se ejecute. Esto significa que los valores que tienen el potencial de ser resultados de cada brazo del `if` deben ser del mismo tipo. En el Listado 3-2, los resultados tanto del brazo `if` como del brazo `else` eran enteros `i32`. Si los tipos no coinciden, como en el siguiente ejemplo, obtendremos un error:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -229,35 +223,32 @@ tienen tipos de valores que son incompatibles, y Rust indica exactamente dónde 
 encuentra el problema en el programa:
 
 ```text
-error[E0308]: if and else have incompatible types
- --> src/main.rs:4:18
+$ cargo run
+   Compiling branches v0.1.0 (file:///projects/branches)
+error[E0308]: `if` and `else` have incompatible types
+ --> src/main.rs:4:44
   |
-4 |       let number = if condition {
-  |  __________________^
-5 | |         5
-6 | |     } else {
-7 | |         "six"
-8 | |     };
-  | |_____^ expected integral variable, found &str
-  |
-  = note: expected type `{integer}`
-             found type `&str`
+4 |     let number = if condition { 5 } else { "six" };
+  |                                 -          ^^^^^ expected integer, found `&str`
+  |                                 |
+  |                                 expected because of this
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `branches` due to previous error
 ```
 
-La expresión en el bloque `if` se evalúa en un entero, y la expresión en
+La expresión en el bloque `if` se evalúa a un entero, y la expresión en
 el bloque `else` se evalúa como un *string*. Esto no funcionará porque las variables
-deben tener un solo tipo, Rust necesita saber en tiempo de compilación qué tipo es
-la variable `number`, definitivamente, para que pueda verificar en tiempo de
-compilación que su tipo es válido en cualquier lugar donde usemos `number`.
-Rust no podría hacer eso si el tipo de `number` solo se determina en tiempo de ejecución;
-el compilador sería más complejo y haría menos garantías sobre el código si tuviera
+deben tener un solo tipo. Rust necesita saber definitivamente en tiempo de compilación de qué tipo es la variable `number`. Conocer el tipo de `number` permite que el el compilador verifique que el tipo sea válido en todos los lugares donde usamos number.
+Rust no podría hacer eso si el tipo de `number` solo se determina en tiempo de ejecución.
+El compilador sería más complejo y daría menos garantías sobre el código si tuviera
 que realizar un seguimiento de múltiples tipos hipotéticos para cualquier variable.
 
 ### Repetición con bucles
 
 A menudo es útil ejecutar un bloque de código más de una vez. Para esta tarea,
 Rust proporciona varios *bucles*. Un bucle recorre el código dentro del cuerpo
-del bucle hasta el final y luego comienza de inmediato al principio. Para
+del bucle hasta el final y luego comienza de nuevo de inmediato al principio. Para
 experimentar con bucles, hagamos un nuevo proyecto llamado *loops*.
 
 Rust tiene tres tipos de bucles: `loop`,`while` y `for`. Probemos cada uno.
@@ -265,7 +256,7 @@ Rust tiene tres tipos de bucles: `loop`,`while` y `for`. Probemos cada uno.
 #### Repetición de código con `loop`
 
 La palabra clave `loop` le dice a Rust que ejecute un bloque de código una y otra vez
-por siempre o hasta que explícitamente le digas que se detenga.
+por siempre o hasta que explícitamente le diga que se detenga.
 
 Como ejemplo, cambie el archivo *loops* en su directorio *src/main.rs* para que
 se vea así:
@@ -280,10 +271,8 @@ fn main() {
 }
 ```
 
-Cuando ejecutemos este programa, veremos `again!` Impreso una y otra vez continuamente
-hasta que detengamos el programa manualmente. La mayoría de los terminales admiten un atajo de teclado,
-<span class = "keystroke">ctrl-c</span>, para detener un programa que está atorado en un
-bucle continuo. Darle una oportunidad:
+Cuando ejecutemos este programa, veremos `again!` impreso una y otra vez continuamente hasta que detengamos el programa manualmente. La mayoría de los terminales admiten un atajo de teclado, <span class = "keystroke">ctrl-c</span>, para detener un programa que está atorado en un
+bucle continuo. Démosle una oportunidad:
 
 ```text
 $ cargo run
@@ -297,27 +286,97 @@ again!
 ^Cagain!
 ```
 
-El símbolo `^C` representa donde presionaste <span class =" keystroke ">ctrl-c</span>
+El símbolo `^C` representa donde presionó <span class =" keystroke ">ctrl-c</span>
 Puede o no ver la palabra `again!` impresa después de `^C`,
 dependiendo de dónde estaba el código en el bucle cuando recibió la señal de detención.
 
 Afortunadamente, Rust ofrece otra forma más confiable de salir de un bucle.
 Puede colocar la palabra clave `break` dentro del ciclo para indicarle al programa cuándo
 dejar de ejecutar el ciclo. Recuerde que hicimos esto en el juego de adivinanzas en
-la sección “Abandonar después de una conjetura correcta” del Capítulo 2 para salir
+la sección [“Abandonar después de una conjetura correcta”](ch02-00-guessing-game-tutorial.html#abandonar-despu%C3%A9s-de-una-conjetura-correcta) del Capítulo 2 para salir
 del programa cuando el usuario ganó el juego adivinando el número correcto.
+
+También usamos `continue` en el juego de adivinanzas, que le dice al programa que omita cualquier código restante en esta iteración del bucle y vaya a la próxima iteración.
+
+
+#### Devolver valores desde Loops 
+
+Uno de los usos de un `loop` es reiterar una operación que sabe que podría fallar, como sería verificar si un hilo ha completado su trabajo. Es posible que también deba pasar el resultado de esa operación fuera del bucle al resto de su código. Para hacer esto, puede agregar el valor que desea devolver después de la expresión `break` que use para detener el bucle. Ese valor se devolverá fuera del bucle para que pueda usarlo, como se muestra aquí:
+
+```rust
+fn main() {
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    println!("The result is {result}");
+}
+```
+
+Antes del ciclo, declaramos una variable llamada `countere` y la inicializamos a `0`. Luego declaramos una variable llamada `result` que espera el valor devuelto por el bucle. En cada iteración del bucle, sumamos `1` a la variable `counter`, y luego verifica si el contador es igual a `10`. Cuando lo es, usamos la palabra clave `break` con el valor `counter * 2`. Después del bucle, usamos un punto y coma para finalizar la declaración que asigna el valor a `result`. Finalmente, imprimimos el valor en `result`, que en este caso es `20`.
+
+#### Etiquetas de bucle para desambiguar entre múltiples bucles
+
+Si tiene bucles dentro de bucles, `break` y `continue` se aplican al bucle más interno en ese punto. Opcionalmente, puede especificar una *etiqueta de bucle* en un bucle que luego se puede usar con `break` o `continue` para especificar que esas palabras clave se apliquen al bucle etiquetado en lugar del bucle más interno. Las etiquetas de bucle deben comenzar con una comilla simple. Aquí hay un ejemplo con dos bucles anidados:
+
+```rust
+fn main() {
+    let mut count = 0;
+    'counting_up: loop {
+        println!("count = {count}");
+        let mut remaining = 10;
+
+        loop {
+            println!("remaining = {remaining}");
+            if remaining == 9 {
+                break;
+            }
+            if count == 2 {
+                break 'counting_up;
+            }
+            remaining -= 1;
+        }
+
+        count += 1;
+    }
+    println!("End count = {count}");
+}
+```
+
+El bucle exterior tiene la etiqueta `'counting_up`, y contará de `0` a `2`. El bucle interior sin etiqueta cuenta hacia atrás de `10` a `9`. El primer `break`, que no especifica una etiqueta, solo saldrá del ciclo interno. La declaración `break 'counting_up;` saldrá del ciclo externo. Este código imprime:
+
+```text
+$ cargo run
+   Compiling loops v0.1.0 (file:///projects/loops)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.58s
+     Running `target/debug/loops`
+count = 0
+remaining = 10
+remaining = 9
+count = 1
+remaining = 10
+remaining = 9
+count = 2
+remaining = 10
+End count = 2
+```
 
 #### Bucles condicionales con `while`
 
-A menudo es útil para un programa evaluar una condición dentro de un ciclo. Mientras
-la condición es verdadera, el ciclo se ejecuta. Cuando la condición deja de ser cierta,
-el programa llama a `break`, deteniendo el ciclo. Este tipo de bucle podría implementarse
-usando una combinación de `loop`,`if`, `else`, y `break`; podrías intentar eso
+A menudo es útil para un programa evaluar una condición dentro de un bucle. Mientras
+la condición es verdadera, el ciclo se ejecuta. Cuando la condición deja de ser verdadera,
+el programa llama a `break`, deteniendo el bucle. Este tipo de bucle podría implementarse
+usando una combinación de `loop`,`if`, `else`, y `break`. Podría intentar eso
 ahora en un programa, si lo desea.
 
-Sin embargo, este patrón es tan común que Rust tiene una construcción en el lenguaje
-incorporado para ello, llamado un ciclo `while`. El listado 3-3 usa `while`: el
-programa se repite tres veces, contando hacia atras cada vez, y luego, después del ciclo,
+Sin embargo, este patrón es tan común que Rust tiene una estructura en el lenguaje
+incorporada para ello, llamada bucle `while`. El listado 3-3 utiliza `while` para que el código se ejecute tres veces, contando hacia atras cada vez. Luego, después del bucle,
 imprime otro mensaje y sale.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -339,14 +398,14 @@ fn main() {
 <span class="caption">Listing 3-3: Usando un ciclo `while` para ejecutar código mientras
 la condición es verdadera</span>
 
-Esta construcción elimina una gran cantidad de anidamiento que sería necesario si utilizó
-`loop`,` if`, `else`, y` break`, y está más claro. Mientras se cumple una condición,
-el código se ejecuta; de lo contrario, sale del bucle.
+Esta estructura elimina una gran cantidad de anidamiento que sería necesario si utilizó
+`loop`,` if`, `else` y `break`; y es más claro. Mientras se cumple una condición,
+el código dentro del bucle se ejecuta; de lo contrario, sale del bucle.
 
-#### Looping a través de una colección con `for`
+#### Looping a través de una Colección con `for`
 
-Podría usar la construcción `while` para recorrer los elementos de una colección,
-como una matriz. Por ejemplo, veamos el Listado 3-4.
+Podría usar la estructura `while` para recorrer los elementos de una colección,
+como un array. Por ejemplo, veamos el Listado 3-4.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -366,10 +425,10 @@ fn main() {
 <span class="caption">Listado 3-4: Looping a través de cada elemento de una colección
 usando un bucle `while`</span>
 
-Aquí, el código cuenta hacia arriba a través de los elementos en la matriz. Comienza en el índice
-`0`, y luego realiza un bucle hasta que alcanza el índice final en la matriz (es decir,
+Aquí, el código cuenta hacia arriba a través de los elementos en el array. Comienza en el índice
+`0`, y luego realiza un bucle hasta que alcanza el índice final en el array (es decir,
 cuando `index < 5` ya no es verdadero). Al ejecutar este código, se imprimirá cada elemento
-en la matriz:
+del array:
 
 ```text
 $ cargo run
@@ -383,17 +442,14 @@ the value is: 40
 the value is: 50
 ```
 
-Los cinco valores de la matriz aparecen en la terminal, como se esperaba. Aunque `index`
+Los cinco valores del array aparecen en la terminal, como se esperaba. Aunque `index`
 alcanzará un valor de `5` en algún punto, el ciclo deja de ejecutarse antes de intentar
-obtener un sexto valor en la matriz.
+obtener un sexto valor en el array.
 
-Pero este enfoque es propenso a errores; podríamos causar que el programa entrara en pánico si
-la longitud del índice es incorrecta. También es lento, porque el compilador agrega en tiempo
-de ejecución código para realizar la comprobación condicional en cada elemento en cada iteración
-a través del bucle.
+Sin embargo, este enfoque es propenso a errores; podríamos causar que el programa entrara en pánico si el valor del índice o la condición de prueba son incorrectos. Por ejemplo, si cambió la definición del array `a` para tener cuatro elementos, pero se olvidó de actualizar la condición a `while index < 4`, el código entraría en pánico. También es lento, porque el compilador agrega código de tiempo de ejecución para realizar la verificación condicional de si el index está dentro de los límites del array en cada iteración a través del ciclo.
 
 Como una alternativa más concisa, puede usar un bucle `for` y ejecutar algún código
-para cada artículo en una colección. Un bucle `for` se parece al código del Listado 3-5.
+para cada elemento en una colección. Un bucle `for` se parece al código del Listado 3-5.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -412,21 +468,13 @@ usando un bucle `for`</span>
 
 Cuando ejecutamos este código, veremos el mismo resultado que en el listado 3-4. Lo más
 importante, es que ahora hemos aumentado la seguridad del código y eliminado la
-posibilidad de errores que podrían resultar de ir más allá del final de la matriz o no
+posibilidad de errores que podrían resultar de ir más allá del final del array o no
 ir lo suficientemente lejos y perder algunos elementos.
 
-Por ejemplo, en el código del Listado 3-4, si eliminas un elemento de la matriz `a`
-pero se olvida de actualizar la condición a `while index < 4`, el código entraría en pánico.
-Usando el ciclo `for`, no necesitarías recordar cambiar cualquier otro código si modifica la
-cantidad de valores en la matriz.
+Utilizando el bucle `for`, no necesitaría recordar cambiar ningún otro código si cambió la cantidad de valores en el array, como lo haría con el método utilizado en el Listado 3-4. 
 
 La seguridad y la concisión de los bucles `for` los convierten en el bucle más utilizado
-en Rust. Incluso en situaciones en las que desea ejecutar algún código,
-cierto número de veces, como en el ejemplo de cuenta regresiva que usó un bucle 'while'
-en el Listado 3-3, la mayoría de los Rustaceans usaría un bucle `for`. La forma de hacerlo
-sería usar un `Range`, que es un tipo proporcionado por la biblioteca estándar
-que genera todos los números en secuencia a partir de un número y finalizando
-antes de otro número.
+en Rust. Incluso en situaciones en las que desea ejecutar algún código cierto número de veces, como en el ejemplo de cuenta regresiva que usó un bucle `while` en el Listado 3-3, la mayoría de los Rustáceos usaría un bucle `for`. La forma de hacerlo sería usar un `Range`, que es un tipo proporcionado por la biblioteca estándar que genera todos los números en secuencia a partir de un número y finalizando antes de otro número.
 
 Así es como se vería la cuenta atrás utilizando un ciclo `for` y otro método
 todavía no hemos hablado, `rev`, para invertir el rango:
@@ -446,15 +494,15 @@ Este código es un poco mejor, ¿no?
 
 ## Resumen
 
-¡Lo hiciste! Ese fue un capítulo considerable: aprendiste sobre variables, escalar
-y tipos de datos compuestos, funciones, comentarios, expresiones `if` y bucles.
-Si quieres practicar con los conceptos discutidos en este capítulo, intenta construir
+¡Lo hizo! Este fue un capítulo considerable: aprendió sobre variables, tipos de datos escalares
+y compuestos, funciones, comentarios, expresiones `if` y bucles.
+Si quiere practicar con los conceptos discutidos en este capítulo, intente construir
 programas para hacer lo siguiente:
 
-* Convierta las temperaturas entre Fahrenheit y Celsius.
-* Genera el enésimo número de Fibonacci.
-* Imprime la letra del villancico "Los Doce Días de Navidad"
+* Convertir temperaturas entre Fahrenheit y Celsius.
+* Generar el enésimo número de Fibonacci.
+* Imprimir la letra del villancico "Los Doce Días de Navidad"
    aprovechando la repetición en la canción.
 
 Cuando esté listo para seguir adelante, hablaremos de un concepto en Rust que *no*
-comúnmente existen en otros lenguajes de programación: *ownership* (propiedad).
+comúnmente existe en otros lenguajes de programación: propiedad (*ownership*).

@@ -1,6 +1,6 @@
 ## Hola, Cargo!
 
-Cargo es el sistema de compilación y el administrador de paquetes de Rust. La
+Cargo es el sistema de compilación y gestor de paquetes de Rust. La
 mayoría de los Rustáceos utilizan esta herramienta para administrar sus
 proyectos de Rust porque Cargo maneja muchas tareas por usted, como
 construir su código, descargar las bibliotecas de las que depende su código y

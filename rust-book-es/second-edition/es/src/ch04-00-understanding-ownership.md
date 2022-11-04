@@ -5,3 +5,8 @@ garantías en la seguridad de la memoria sin necesidad de un recolector de basur
 Por lo tanto, es importante entender cómo funciona la propiedad en Rust. En este
 capítulo, vamos a hablar sobre la propiedad, así como varias características relacionadas:
 préstamos (*borrowing*), rebanadas (*slices*), y cómo Rust establece los datos en la memoria.
+
+> Nota del traductor:
+>> En la programación orientada a objetos es habitual el uso de la palabra *propiedad* como característica de un objeto. Esto puede llevar a cierta confusión debido a que en el idioma español, *propiedad* puede referirse tanto a una caracteríastica como a una posesión.
+>>
+>> Se debe enfatizar entonces que en este capítulo ***propiedad = posesión***.

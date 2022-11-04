@@ -27,7 +27,7 @@
 - [Usando Structs para Estructurar Datos Relacionados](ch05-00-structs.md)
     - [Definiendo e Instanciando Structs](ch05-01-defining-structs.md)
     - [Un Programa Ejemplo Usando Structs](ch05-02-example-structs.md)
-    - [Sintáxis de lo Métodos](ch05-03-method-syntax.md)
+    - [Sintáxis del Método](ch05-03-method-syntax.md)
 
 - [Enums y Patrones de Concordancia](ch06-00-enums.md)
     - [Definiendo un Enum](ch06-01-defining-an-enum.md)
@@ -39,7 +39,7 @@
 - [Módulos](ch07-00-modules.md)
     - [`mod` y el Sistema de Archivos](ch07-01-mod-and-the-filesystem.md)
     - [Controlando la Visibilidad con `pub`](ch07-02-controlling-visibility-with-pub.md)
-    - [Haciendo Referencia a Nombres en Distintos Módulos](ch07-03-importing-names-with-use.md)
+    - [Rutas para hacer Referencia a un Elemento en el Árbol de Módulos](ch07-03-importing-names-with-use.md)
 
 - [Colecciones Comunes](ch08-00-common-collections.md)
     - [Almacenamiento de listas de valores con Vectores](ch08-01-vectors.md)

@@ -242,11 +242,7 @@ Si agrega un punto y coma al final de un expresión la convierte en una declarac
 
 Las funciones pueden devolver valores al código que las llama. No nombramos los valores
 de retorno, pero debemos declarar su tipo después de una flecha (`->`). En Rust, el retorno
-del valor de la función es sinónimo del valor de la expresión final en
-el bloque del cuerpo de una función. Puede adelantar la devolución de una función usando la
-palabra clave `return` y especificando un valor, pero la mayoría de las
-funciones vuelven la última expresión implícitamente. Aquí hay un ejemplo de una función
-que devuelve un valor:
+del valor de la función es sinónimo del valor de la expresión final en el bloque del cuerpo de una función. Se puede adelantar la devolución de una función usando la palabra clave `return` y especificando un valor, pero la mayoría de las funciones devuelven implícitamente la última expresión. Aquí hay un ejemplo de una función que devuelve un valor:
 
 <span class="filename">Filename: src/main.rs</span>
 
