@@ -5,7 +5,7 @@ funciones más importantes en el lenguaje: la función `main`, que es el punto
 de entrada de muchos programas. También ha visto la palabra clave `fn`, que le
 permite declarar nuevas funciones.
 
-El código de Rust usa *snake case* como estilo convencional para nombres de funciones y variables. En *snake case*, todas las letras son minúsculas y las palabras separadas se unen con un guión bajo. Aquí hay un programa que contiene una definición de función de ejemplo:
+El código de Rust usa *"snake case"* como estilo convencional para nombres de funciones y variables. En *snake case*, todas las letras son minúsculas y las palabras separadas se unen con un guión bajo. Aquí hay un programa que contiene una definición de función de ejemplo:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -83,12 +83,9 @@ $ cargo run
 The value of x is: 5
 ```
 
-La declaración de `another_function` tiene un parámetro llamado `x`. El tipo de
-`x` se especifica como `i32`. Cuando `5` se pasa a `another_function`, la
-macro `println!` inserta `5` donde estaban el par de llaves en formato
-*string*.
+La declaración de `another_function` tiene un parámetro llamado `x`. El tipo de `x` se especifica como `i32`. Cuando `5` se le pasa a `another_function`, la macro `println!` inserta `5` en formato *string* donde estaba el par de llaves que contenía a `x`.
 
-En las firmas de funciones, *debe* declarar el tipo de cada parámetro. Esta es una decisión deliberada en el diseño de Rust: requerir anotaciones de tipo en las definiciones de función significa que el compilador casi nunca necesita que las use en otra parte del código para averiguar a qué tipo se refiere. El compilador también puede dar mensajes de error más útiles si sabe qué tipos espera la función.
+En las firmas de funciones, *debe* declarar el tipo de cada parámetro. Esta es una decisión deliberada en el diseño de Rust: requerir *anotaciones de tipo* en las definiciones de función significa que el compilador casi nunca necesita que las use en otra parte del código para averiguar a qué tipo se refiere. El compilador también puede dar mensajes de error más útiles si sabe qué tipos espera la función.
 
 Cuando desee que una función tenga múltiples parámetros, separe las declaraciones
 de parámetros con comas, como esta:
@@ -121,17 +118,15 @@ The measurement is: 5h
 
 Llamamos a la función con `5` como el valor para `value` y `'h'` como el valor para `unit_label`, entonces la salida del programa contiene esos valores.
 
-### Declaraciones y expresiones
+### Sentencias y Expresiones
 
-Los cuerpos de funciones están formados por una serie de declaraciones que opcionalmente
-terminan en una expresión. Hasta ahora, las funciones que hemos cubierto no han incluido una expresión final, pero ya ha visto una expresión como parte de una declaración. Debido a que Rust es un lenguaje basado en expresiones, esta es una distinción importante de entender.
-Otros lenguajes no tienen las mismas distinciones, así que veamos qué son
-declaraciones y expresiones, y cómo sus diferencias afectan los cuerpos de las
-funciones.
+Los cuerpos de las funciones están formados por una serie de sentencias que opcionalmente
+terminan en una expresión. Hasta ahora, las funciones que hemos cubierto no han incluido una expresión final, pero ya ha visto una expresión como parte de una sentencias. Debido a que Rust es un lenguaje basado en expresiones, esta es una distinción importante de entender.
+Otros lenguajes no tienen las mismas distinciones, así que veamos qué son sentencias y expresiones, y cómo sus diferencias afectan los cuerpos de las funciones.
 
-Las *Declaraciones* son instrucciones que realizan alguna acción y no devuelven un valor. Las *Expresiones* se evalúan y arrojan un valor resultante. Veamos algunos ejemplos.
+Las *Sentencias* son instrucciones que realizan alguna acción y no devuelven un valor. Las *Expresiones* se evalúan y arrojan un valor resultante. Veamos algunos ejemplos.
 
-De hecho, ya hemos usado declaraciones y expresiones. Crear una variable y asignarle un valor con la palabra clave `let` es declaración. En el Listado 3-1, `let y = 6;` es una declaración.
+De hecho, ya hemos usado sentencias y expresiones. Crear una variable y asignarle un valor con la palabra clave `let` es una sentencia. En el Listado 3-1, `let y = 6;` es una sentencia.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -141,12 +136,12 @@ fn main() {
 }
 ```
 
-<span class="caption">Listing 3-1: La declaración de función `main` contiene una instrucción</span>
+<span class="caption">Listing 3-1: La declaración de función `main` contiene una sentencia</span>
 
-Las definiciones de funciones también son declaraciones; todo el ejemplo anterior es un
-declaración en sí misma.
+Las definiciones de las funciones también son sentencias; todo el ejemplo anterior es un
+sentencia en sí misma.
 
-Las declaraciones no devuelven valores. Por lo tanto, no puede asignar una instrucción `let`
+Las sentencias no devuelven valores. Por lo tanto, no puede asignar una sentencia `let`
 a otra variable, como intenta hacer el siguiente código; obtendrá un error:
 
 <span class="filename">Filename: src/main.rs</span>
@@ -196,17 +191,9 @@ warning: `functions` (bin "functions") generated 1 warning
 error: could not compile `functions` due to 2 previous errors; 1 warning emitted
 ```
 
-La instrucción `let y = 6` no devuelve un valor, por lo que no hay nada para
-vincular a `x`. Esto es diferente de lo que sucede en otros lenguajes, como
-C y Ruby, donde la asignación devuelve el valor de esa asignación. En esos
-lenguajes, puede escribir `x = y = 6` y tanto `x` como `y` tienen el valor
-`6`. Ese no es el caso en Rust.
+La sentencia `let y = 6` no devuelve un valor, por lo que no hay nada para vincular a `x`. Esto es diferente de lo que sucede en otros lenguajes, como C y Ruby, donde la asignación devuelve el valor de esa asignación. En esos lenguajes puede escribir `x = y = 6`, y tanto `x` como `y` tienen el valor `6`. Ese no es el caso en Rust.
 
-Las expresiones se evalúan como un valor y constituyen la mayor parte del resto del código que escribirá en Rust. Considere una operación matemática simple, como `5 + 6`, que
-es una expresión que evalúa al valor `11`. Las expresiones pueden ser parte de
-declaraciones: en el Listado 3-1, el `6` en la declaración ` let y = 6; `es una
-expresión que evalúa al valor `6`. Llamar a una función es una expresión. 
-Llamar a una macro es una expresión. El bloque `{}` que utilizamos para crear nuevos ámbitos, es una expresión, por ejemplo:
+Las expresiones se evalúan como un valor y constituyen la mayor parte del resto del código que escribirá en Rust. Considere una operación matemática simple, como `5 + 6`, que es una expresión que se evalúa como valor `11`. Las expresiones pueden ser parte de sentencias: en el Listado 3-1, el `6` en la sentencia ` let y = 6;` es una expresión que se evalúa como valor `6`. Llamar a una función es una expresión. Llamar a una macro es una expresión. El bloque `{}` que utilizamos para crear nuevos ámbitos, es una expresión, por ejemplo:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -232,13 +219,9 @@ Esta expresión:
 }
 ```
 
-es un bloque que, en este caso, se evalúa como `4`. Ese valor se vincula a `y`
-como parte de la declaración `let`. Tenga en cuenta que la línea `x + 1`
-no tiene un punto y coma en el final, a diferencia de la mayoría de las líneas
-que ha visto hasta ahora. Las expresiones no incluyen el punto y coma final.
-Si agrega un punto y coma al final de un expresión la convierte en una declaración, entonces no devolverá un valor. Tenga esto en cuenta mientras explora los valores devueltos por las funciones y las expresiones a continuación.
+es un bloque que, en este caso, se evalúa como `4`. Ese valor se vincula a `y` como parte de la sentencia `let`. Tenga en cuenta que la línea `x + 1` no tiene un punto y coma en el final, a diferencia de la mayoría de las líneas que ha visto hasta ahora. Las expresiones no incluyen el punto y coma final. Si agrega un punto y coma al final de una expresión la convierte en una sentencia, entonces no devolverá un valor. Tenga esto en cuenta mientras explora los valores devueltos por las funciones y las expresiones a continuación.
 
-### Funciones con valores de retorno
+### Funciones con Valores de Retorno
 
 Las funciones pueden devolver valores al código que las llama. No nombramos los valores
 de retorno, pero debemos declarar su tipo después de una flecha (`->`). En Rust, el retorno
@@ -258,8 +241,8 @@ fn main() {
 }
 ```
 
-No hay llamadas a función, macros, o incluso declaraciones `let` en la función `five`
-solo el número `5` en si mismo. Esa es una función perfectamente válida en Rust.
+No hay llamadas a funciones, macros, o incluso sentencias `let` en la función `five`,
+solo el número `5` por sí mismo. Esa es una función perfectamente válida en Rust.
 Tenga en cuenta que el tipo de retorno de la función también se especifica como `-> i32`.
 Trate ejecutando este código; la salida debería verse así:
 
@@ -282,7 +265,7 @@ esa línea es la misma que la siguiente:
 let x = 5;
 ```
 
-Segundo, la función `five` no tiene parámetros y define el tipo de valor de retorno, pero el cuerpo de la función es un `5` solitario sin punto y coma porque es una expresión cuyo valor queremos devolver.
+Segundo, la función `five` no tiene parámetros y define el tipo de valor de retorno, pero el cuerpo de la función es un `5` solitario sin punto y coma, porque es una expresión cuyo valor queremos devolver.
 
 Veamos otro ejemplo:
 
@@ -302,7 +285,7 @@ fn plus_one(x: i32) -> i32 {
 
 Al ejecutar este código se imprimirá `The value of x is: 6`. Pero si colocamos un
 punto y coma al final de la línea que contiene `x + 1`, cambiándola de una
-expresión a una declaración, obtendremos un error.
+expresión a una sentencia, obtendremos un error.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -337,10 +320,5 @@ For more information about this error, try `rustc --explain E0308`.
 error: could not compile `functions` due to previous error
 ```
 
-El mensaje de error principal, “mismatched types,” (tipos no coincidentes),
-revela el problema central con este código. La definición de la función `plus_one`
-dice que devolverá un `i32`, pero las declaraciones no evalúan a un valor, que
-se expresa por `()`, el tipo *unit*. Por lo tanto, no se devuelve nada, lo que
-contradice la definición de la función y resulta en un error. En esta salida,
-Rust proporciona un mensaje que posiblemente ayude a rectificar este problema:
+El mensaje de error principal, “mismatched types” (tipos no coincidentes), revela el problema central con este código. La definición de la función `plus_one` dice que devolverá un `i32`, pero las sentencias no se evalúan a un valor, lo que se expresa por `()`, el tipo *unit*. Por lo tanto, no se devuelve nada, lo que contradice la definición de la función y resulta en un error. En esta salida, Rust proporciona un mensaje que posiblemente ayude a rectificar este problema:
 sugiere eliminar el punto y coma, que arreglaría el error.

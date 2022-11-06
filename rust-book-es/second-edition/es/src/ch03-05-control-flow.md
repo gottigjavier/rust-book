@@ -40,7 +40,7 @@ tratamos en la sección [“Comparando la conjetura con el número secreto”](c
 
 Opcionalmente, también podemos incluir una expresión `else`, que elegimos hacer aquí, para
 darle al programa un bloque de código alternativo que debería ejecutar si la condición
-evalúa a falso. Si no proporciona una expresión `else` y la condición es falsa, el programa
+se evalúa como falsa. Si no proporciona una expresión `else` y la condición es falsa, el programa
 saltará el bloque `if` y continuará al siguiente código.
 
 Intente ejecutar este código; debería ver el siguiente resultado:
@@ -166,10 +166,9 @@ Si usa demasiadas expresiones `else if` puede saturar su código. Entonces si ti
 de una, es posible que desee refactorizar su código. El Capítulo 6 describe una poderosa
 estructura de ramificación de Rust llamado `match` para estos casos.
 
-#### Usando `if` en una declaración `let`
+#### Usando `if` en una Sentencia `let`
 
-Como `if` es una expresión, podemos usarla en el lado derecho de una declaración
-`let`, como en el Listado 3-2.
+Como `if` es una expresión, podemos usarla en el lado derecho de una sentencia `let`, como en el Listado 3-2.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -237,19 +236,16 @@ For more information about this error, try `rustc --explain E0308`.
 error: could not compile `branches` due to previous error
 ```
 
-La expresión en el bloque `if` se evalúa a un entero, y la expresión en
+La expresión en el bloque `if` se evalúa como un entero, y la expresión en
 el bloque `else` se evalúa como un *string*. Esto no funcionará porque las variables
 deben tener un solo tipo. Rust necesita saber definitivamente en tiempo de compilación de qué tipo es la variable `number`. Conocer el tipo de `number` permite que el el compilador verifique que el tipo sea válido en todos los lugares donde usamos number.
 Rust no podría hacer eso si el tipo de `number` solo se determina en tiempo de ejecución.
 El compilador sería más complejo y daría menos garantías sobre el código si tuviera
 que realizar un seguimiento de múltiples tipos hipotéticos para cualquier variable.
 
-### Repetición con bucles
+### Repetición con Bucles
 
-A menudo es útil ejecutar un bloque de código más de una vez. Para esta tarea,
-Rust proporciona varios *bucles*. Un bucle recorre el código dentro del cuerpo
-del bucle hasta el final y luego comienza de nuevo de inmediato al principio. Para
-experimentar con bucles, hagamos un nuevo proyecto llamado *loops*.
+Suele ser útil ejecutar un bloque de código más de una vez. Para esta tarea, Rust proporciona varios *bucles*, que se ejecutarán a través del código dentro del cuerpo del bucle hasta el final y luego volverán a empezar inmediatamente desde el principio. Para experimentar con bucles, hagamos un nuevo proyecto llamado *loops*.
 
 Rust tiene tres tipos de bucles: `loop`,`while` y `for`. Probemos cada uno.
 
@@ -299,7 +295,7 @@ del programa cuando el usuario ganó el juego adivinando el número correcto.
 También usamos `continue` en el juego de adivinanzas, que le dice al programa que omita cualquier código restante en esta iteración del bucle y vaya a la próxima iteración.
 
 
-#### Devolver valores desde Loops 
+#### Devolver Valores desde Loops 
 
 Uno de los usos de un `loop` es reiterar una operación que sabe que podría fallar, como sería verificar si un hilo ha completado su trabajo. Es posible que también deba pasar el resultado de esa operación fuera del bucle al resto de su código. Para hacer esto, puede agregar el valor que desea devolver después de la expresión `break` que use para detener el bucle. Ese valor se devolverá fuera del bucle para que pueda usarlo, como se muestra aquí:
 
@@ -319,9 +315,9 @@ fn main() {
 }
 ```
 
-Antes del ciclo, declaramos una variable llamada `countere` y la inicializamos a `0`. Luego declaramos una variable llamada `result` que espera el valor devuelto por el bucle. En cada iteración del bucle, sumamos `1` a la variable `counter`, y luego verifica si el contador es igual a `10`. Cuando lo es, usamos la palabra clave `break` con el valor `counter * 2`. Después del bucle, usamos un punto y coma para finalizar la declaración que asigna el valor a `result`. Finalmente, imprimimos el valor en `result`, que en este caso es `20`.
+Antes del ciclo, declaramos una variable llamada `countere` y la inicializamos a `0`. Luego declaramos una variable llamada `result` que espera el valor devuelto por el bucle. En cada iteración del bucle, sumamos `1` a la variable `counter`, y luego verifica si el contador es igual a `10`. Cuando lo es, usamos la palabra clave `break` con el valor `counter * 2`. Después del bucle, usamos un punto y coma para finalizar la sentencia que asigna el valor a `result`. Finalmente, imprimimos el valor en `result`, que en este caso es `20`.
 
-#### Etiquetas de bucle para desambiguar entre múltiples bucles
+#### Etiquetas de Bucle para Desambiguar entre Múltiples Bucles
 
 Si tiene bucles dentro de bucles, `break` y `continue` se aplican al bucle más interno en ese punto. Opcionalmente, puede especificar una *etiqueta de bucle* en un bucle que luego se puede usar con `break` o `continue` para especificar que esas palabras clave se apliquen al bucle etiquetado en lugar del bucle más interno. Las etiquetas de bucle deben comenzar con una comilla simple. Aquí hay un ejemplo con dos bucles anidados:
 
@@ -367,7 +363,7 @@ remaining = 10
 End count = 2
 ```
 
-#### Bucles condicionales con `while`
+#### Bucles Condicionales con `while`
 
 A menudo es útil para un programa evaluar una condición dentro de un bucle. Mientras
 la condición es verdadera, el ciclo se ejecuta. Cuando la condición deja de ser verdadera,

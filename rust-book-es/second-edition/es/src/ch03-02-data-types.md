@@ -1,8 +1,6 @@
 ## Tipos de Datos
 
-Cada valor en Rust es de un cierto *tipo de dato*, que le informa a Rust qué
-tipo de dato se está especificando para que sepa cómo trabajar con ese dato.
-Veremos dos subconjuntos de tipos de datos: escalares y compuestos.
+Cada valor en Rust es de un determinado tipo de datos, lo que le dice a Rust qué tipo de datos se especifica para que sepa cómo trabajar con esos datos. Veremos dos subconjuntos de tipos de datos: escalares y compuestos.
 
 Tenga en cuenta que Rust es un lenguaje *estáticamente tipado*, lo que
 significa que debe conocer los tipos de todas las variables en tiempo de
@@ -19,7 +17,7 @@ let guess: u32 = "42".parse().expect("Not a number!");
 # }
 ```
 
-Si no agregamos la anotación de tipo `:u32` anterior, Rust mostrará el siguiente error, lo que significa que el compilador necesita más información de parte nuestra para saber qué tipo queremos usar:
+Si no agregamos la anotación de tipo `:u32` antes, Rust mostrará el siguiente error, lo que significa que el compilador necesita más información de parte nuestra para saber qué tipo queremos usar:
 
 ```text
 $ cargo build
@@ -159,7 +157,7 @@ fn main() {
 Cada expresión en estas declaraciones usa un operador matemático y la evalúa a un
 solo valor, que luego se vincula a una variable. El [Apéndice B](appendix-02-operators.html) contiene una lista de todos los operadores que Rust proporciona.
 
-#### El tipo *booleano* (*Boolean*)
+#### El Tipo *Booleano* (*Boolean*)
 
 Como en la mayoría de los demás lenguajes de programación, un tipo *booleano* en Rust tiene dos valores posibles: `true` y `false`. Los booleanos tienen un tamaño de un byte. El tipo *booleano* en Rust se especifica con `bool`. Por ejemplo:
 
@@ -189,18 +187,18 @@ fn main() {
 }
 ```
 
-Tenga en cuenta que el literal `char` se especifica con comillas simples, a diferencia de los literales *strings*, que usan comillas dobles. El tipo `char` de Rust tiene un tamaño de cuatro bytes y representa un valor escalar Unicode, lo que significa que puede representar mucho más que solo ASCII. Letras acentuadas; Caracteres chinos, japoneses y coreanos; emoji; y los *espacios de ancho cero* son todos valores `char` válidos en Rust. Los valores escalares Unicode van desde `U + 0000` a `U + D7FF` y `U + E000` a `U + 10FFFF` inclusive. Sin embargo, un “carácter” no es realmente un concepto en Unicode, por lo que su intuición humana para lo que es un “carácter” puede no coincidir con lo que es un `char` en Rust. Discutiremos este tema en detalle en [“Almacenamiento de texto codificado en UTF-8 con Strings”](ch08-02-strings.html) en el Capítulo 8.
+Tenga en cuenta que el literal `char` se especifica con comillas simples, a diferencia de los literales *strings*, que usan comillas dobles. El tipo `char` de Rust tiene un tamaño de cuatro bytes y representa un valor escalar Unicode, lo que significa que puede representar mucho más que solo ASCII. Letras acentuadas; caracteres chinos, japoneses y coreanos; emoji; y los *espacios de ancho cero* son todos valores `char` válidos en Rust. Los valores escalares Unicode van desde `U + 0000` a `U + D7FF` y `U + E000` a `U + 10FFFF` inclusive. Sin embargo, un “caracter” no es realmente un concepto en Unicode, por lo que su intuición humana para lo que es un “caracter” puede no coincidir con lo que es un `char` en Rust. Discutiremos este tema en detalle en [“Almacenamiento de texto codificado en UTF-8 con Strings”](ch08-02-strings.html) en el Capítulo 8.
 
 ### Tipos Compuestos
 
 *Los tipos compuestos* pueden agrupar múltiples valores en un tipo. Rust tiene
-dos tipos de compuestos primitivos: tuplas y matrices.
+dos tipos de compuestos primitivos: tuplas y arrays.
 
 #### El tipo *Tupla* (*Tuple*)
 
-Una tupla es una forma general de agrupar un número de valores con una variedad de tipos dentro de un tipo compuesto. Las tuplas tienen una longitud fija: una vez declaradas, no pueden crecer ni encogerse de tamaño.
+Una tupla es una forma general de agrupar juntos un número de valores con una variedad de tipos dentro de un tipo compuesto. Las tuplas tienen una longitud fija: una vez declaradas, no pueden crecer ni encogerse de tamaño.
 
-Creamos una tupla escribiendo una lista de valores separados por comas dentro paréntesis. Cada posición en la tupla tiene un tipo, y los tipos de los diferentes valores en la tupla no tienen que ser iguales. Agregamos anotaciones de tipo opcionales en este ejemplo:
+Creamos una tupla escribiendo una lista de valores separados por comas dentro de un paréntesis. Cada posición en la tupla tiene un tipo, y los tipos de los diferentes valores en la tupla no tienen que ser iguales. Agregamos anotaciones de tipo opcionales en este ejemplo:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -285,7 +283,7 @@ let months = ["January", "February", "March", "April", "May", "June", "July",
 # }
 ```
 
-Escriba el tipo de una matriz usando corchetes con el tipo de cada elemento, un punto y coma y luego la cantidad de elementos en la matriz, así:
+Escriba el tipo de un array usando corchetes con el tipo de cada elemento, un punto y coma, y luego la cantidad de elementos en la matriz, así:
 
 ```rust
 # #![allow(unused)]
@@ -296,7 +294,7 @@ let a: [i32; 5] = [1, 2, 3, 4, 5];
 
 Aquí, `i32` es el tipo de cada elemento. Después del punto y coma, el número `5` indica que el array contiene cinco elementos.
 
-También puede inicializar un array para que contenga el mismo valor para cada elemento especificando el valor inicial, seguido de un punto y coma, y luego la longitud del array entre corchetes, como se muestra aquí:
+También puede inicializar un array para que contenga el mismo valor para cada elemento especificando entre corchetes: el valor inicial, seguido de un punto y coma, y luego la longitud del array, como se muestra aquí:
 
 ```rust
 # #![allow(unused)]
@@ -305,7 +303,7 @@ let a = [3; 5];
 # }
 ```
 
-El array llamado `a` contendrá 5 elementos que se establecerán inicialmente en el valor `3`. Esto es lo mismo que escribir `let a = [3, 3, 3, 3, 3];` pero de una manera más concisa.
+El array llamado `a` contendrá 5 elementos que se inicalizarán en el valor `3`. Esto es lo mismo que escribir `let a = [3, 3, 3, 3, 3];` pero de una manera más concisa.
 
 ##### Acceso a los Elementos del Array
 
@@ -323,8 +321,8 @@ fn main() {
 ```
 
 En este ejemplo, la variable llamada `first` obtendrá el valor `1`, porque ese
-es el valor en el índice `[0]` en el array. La variable llamada `second`
-obtendrá el valor `2` del índice `[1]` en el array.
+es el valor en el índice `[0]` del array. La variable llamada `second`
+obtendrá el valor `2` del índice `[1]` del array.
 
 ##### Acceso a Elementos no válidos de un Array 
 
@@ -357,7 +355,7 @@ fn main() {
 }
 ```
 
-Este código se compila correctamente. Si ejecuta este código usando `cargo run` e ingresa 0, 1, 2, 3 o 4, el programa imprimirá el valor correspondiente a ese índice en el array. Si, en cambio, ingresa un número después del final del array, como `10`, verá un resultado como este: 
+Este código se compila correctamente. Si ejecuta este código usando `cargo run` e ingresa 0, 1, 2, 3 o 4, el programa imprimirá el valor correspondiente a ese índice en el array. Si, en cambio, ingresa un número de índice después del final del array, como `10`, verá un resultado como este: 
 
 ```text
 thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 10', src/main.rs:19:19

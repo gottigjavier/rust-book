@@ -1826,9 +1826,7 @@ error: could not compile `variables` due to previous error
 <p>Ahora que hemos explorado cómo funcionan las variables, veamos qué más tipos de
 datos pueden haber.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="tipos-de-datos"><a class="header" href="#tipos-de-datos">Tipos de Datos</a></h2>
-<p>Cada valor en Rust es de un cierto <em>tipo de dato</em>, que le informa a Rust qué
-tipo de dato se está especificando para que sepa cómo trabajar con ese dato.
-Veremos dos subconjuntos de tipos de datos: escalares y compuestos.</p>
+<p>Cada valor en Rust es de un determinado tipo de datos, lo que le dice a Rust qué tipo de datos se especifica para que sepa cómo trabajar con esos datos. Veremos dos subconjuntos de tipos de datos: escalares y compuestos.</p>
 <p>Tenga en cuenta que Rust es un lenguaje <em>estáticamente tipado</em>, lo que
 significa que debe conocer los tipos de todas las variables en tiempo de
 compilación. El compilador generalmente puede inferir qué tipo queremos usar
@@ -1841,7 +1839,7 @@ Capítulo 2, debemos agregar una <em>anotación de tipo</em> (<em>type annotatio
 </span>let guess: u32 = &quot;42&quot;.parse().expect(&quot;Not a number!&quot;);
 <span class="boring">}
 </span></code></pre></pre>
-<p>Si no agregamos la anotación de tipo <code>:u32</code> anterior, Rust mostrará el siguiente error, lo que significa que el compilador necesita más información de parte nuestra para saber qué tipo queremos usar:</p>
+<p>Si no agregamos la anotación de tipo <code>:u32</code> antes, Rust mostrará el siguiente error, lo que significa que el compilador necesita más información de parte nuestra para saber qué tipo queremos usar:</p>
 <pre><code class="language-text">$ cargo build
    Compiling no_type_annotations v0.1.0 (file:///projects/no_type_annotations)
 error[E0282]: type annotations needed
@@ -1948,7 +1946,7 @@ tipos de números: adición, sustracción, multiplicación, división y residuo 
 </code></pre></pre>
 <p>Cada expresión en estas declaraciones usa un operador matemático y la evalúa a un
 solo valor, que luego se vincula a una variable. El <a href="appendix-02-operators.html">Apéndice B</a> contiene una lista de todos los operadores que Rust proporciona.</p>
-<h4 id="el-tipo-booleano-boolean"><a class="header" href="#el-tipo-booleano-boolean">El tipo <em>booleano</em> (<em>Boolean</em>)</a></h4>
+<h4 id="el-tipo-booleano-boolean"><a class="header" href="#el-tipo-booleano-boolean">El Tipo <em>Booleano</em> (<em>Boolean</em>)</a></h4>
 <p>Como en la mayoría de los demás lenguajes de programación, un tipo <em>booleano</em> en Rust tiene dos valores posibles: <code>true</code> y <code>false</code>. Los booleanos tienen un tamaño de un byte. El tipo <em>booleano</em> en Rust se especifica con <code>bool</code>. Por ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
@@ -1967,13 +1965,13 @@ solo valor, que luego se vincula a una variable. El <a href="appendix-02-operato
     let heart_eyed_cat = '😻';
 }
 </code></pre></pre>
-<p>Tenga en cuenta que el literal <code>char</code> se especifica con comillas simples, a diferencia de los literales <em>strings</em>, que usan comillas dobles. El tipo <code>char</code> de Rust tiene un tamaño de cuatro bytes y representa un valor escalar Unicode, lo que significa que puede representar mucho más que solo ASCII. Letras acentuadas; Caracteres chinos, japoneses y coreanos; emoji; y los <em>espacios de ancho cero</em> son todos valores <code>char</code> válidos en Rust. Los valores escalares Unicode van desde <code>U + 0000</code> a <code>U + D7FF</code> y <code>U + E000</code> a <code>U + 10FFFF</code> inclusive. Sin embargo, un “carácter” no es realmente un concepto en Unicode, por lo que su intuición humana para lo que es un “carácter” puede no coincidir con lo que es un <code>char</code> en Rust. Discutiremos este tema en detalle en <a href="ch08-02-strings.html">“Almacenamiento de texto codificado en UTF-8 con Strings”</a> en el Capítulo 8.</p>
+<p>Tenga en cuenta que el literal <code>char</code> se especifica con comillas simples, a diferencia de los literales <em>strings</em>, que usan comillas dobles. El tipo <code>char</code> de Rust tiene un tamaño de cuatro bytes y representa un valor escalar Unicode, lo que significa que puede representar mucho más que solo ASCII. Letras acentuadas; caracteres chinos, japoneses y coreanos; emoji; y los <em>espacios de ancho cero</em> son todos valores <code>char</code> válidos en Rust. Los valores escalares Unicode van desde <code>U + 0000</code> a <code>U + D7FF</code> y <code>U + E000</code> a <code>U + 10FFFF</code> inclusive. Sin embargo, un “caracter” no es realmente un concepto en Unicode, por lo que su intuición humana para lo que es un “caracter” puede no coincidir con lo que es un <code>char</code> en Rust. Discutiremos este tema en detalle en <a href="ch08-02-strings.html">“Almacenamiento de texto codificado en UTF-8 con Strings”</a> en el Capítulo 8.</p>
 <h3 id="tipos-compuestos"><a class="header" href="#tipos-compuestos">Tipos Compuestos</a></h3>
 <p><em>Los tipos compuestos</em> pueden agrupar múltiples valores en un tipo. Rust tiene
-dos tipos de compuestos primitivos: tuplas y matrices.</p>
+dos tipos de compuestos primitivos: tuplas y arrays.</p>
 <h4 id="el-tipo-tupla-tuple"><a class="header" href="#el-tipo-tupla-tuple">El tipo <em>Tupla</em> (<em>Tuple</em>)</a></h4>
-<p>Una tupla es una forma general de agrupar un número de valores con una variedad de tipos dentro de un tipo compuesto. Las tuplas tienen una longitud fija: una vez declaradas, no pueden crecer ni encogerse de tamaño.</p>
-<p>Creamos una tupla escribiendo una lista de valores separados por comas dentro paréntesis. Cada posición en la tupla tiene un tipo, y los tipos de los diferentes valores en la tupla no tienen que ser iguales. Agregamos anotaciones de tipo opcionales en este ejemplo:</p>
+<p>Una tupla es una forma general de agrupar juntos un número de valores con una variedad de tipos dentro de un tipo compuesto. Las tuplas tienen una longitud fija: una vez declaradas, no pueden crecer ni encogerse de tamaño.</p>
+<p>Creamos una tupla escribiendo una lista de valores separados por comas dentro de un paréntesis. Cada posición en la tupla tiene un tipo, y los tipos de los diferentes valores en la tupla no tienen que ser iguales. Agregamos anotaciones de tipo opcionales en este ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let tup: (i32, f64, u8) = (500, 6.4, 1);
@@ -2033,20 +2031,20 @@ discute los vectores con más detalle.</p>
               &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;];
 <span class="boring">}
 </span></code></pre></pre>
-<p>Escriba el tipo de una matriz usando corchetes con el tipo de cada elemento, un punto y coma y luego la cantidad de elementos en la matriz, así:</p>
+<p>Escriba el tipo de un array usando corchetes con el tipo de cada elemento, un punto y coma, y luego la cantidad de elementos en la matriz, así:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let a: [i32; 5] = [1, 2, 3, 4, 5];
 <span class="boring">}
 </span></code></pre></pre>
 <p>Aquí, <code>i32</code> es el tipo de cada elemento. Después del punto y coma, el número <code>5</code> indica que el array contiene cinco elementos.</p>
-<p>También puede inicializar un array para que contenga el mismo valor para cada elemento especificando el valor inicial, seguido de un punto y coma, y luego la longitud del array entre corchetes, como se muestra aquí:</p>
+<p>También puede inicializar un array para que contenga el mismo valor para cada elemento especificando entre corchetes: el valor inicial, seguido de un punto y coma, y luego la longitud del array, como se muestra aquí:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let a = [3; 5];
 <span class="boring">}
 </span></code></pre></pre>
-<p>El array llamado <code>a</code> contendrá 5 elementos que se establecerán inicialmente en el valor <code>3</code>. Esto es lo mismo que escribir <code>let a = [3, 3, 3, 3, 3];</code> pero de una manera más concisa.</p>
+<p>El array llamado <code>a</code> contendrá 5 elementos que se inicalizarán en el valor <code>3</code>. Esto es lo mismo que escribir <code>let a = [3, 3, 3, 3, 3];</code> pero de una manera más concisa.</p>
 <h5 id="acceso-a-los-elementos-del-array"><a class="header" href="#acceso-a-los-elementos-del-array">Acceso a los Elementos del Array</a></h5>
 <p>Un array es un fragmento único de memoria, de tamaño fijo conocido, que se puede asignar al <em>Stack</em>. Puede acceder a los elementos de un array mediante la indexación, así:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
@@ -2058,8 +2056,8 @@ discute los vectores con más detalle.</p>
 }
 </code></pre></pre>
 <p>En este ejemplo, la variable llamada <code>first</code> obtendrá el valor <code>1</code>, porque ese
-es el valor en el índice <code>[0]</code> en el array. La variable llamada <code>second</code>
-obtendrá el valor <code>2</code> del índice <code>[1]</code> en el array.</p>
+es el valor en el índice <code>[0]</code> del array. La variable llamada <code>second</code>
+obtendrá el valor <code>2</code> del índice <code>[1]</code> del array.</p>
 <h5 id="acceso-a-elementos-no-válidos-de-un-array"><a class="header" href="#acceso-a-elementos-no-válidos-de-un-array">Acceso a Elementos no válidos de un Array</a></h5>
 <p>Veamos qué sucede si intenta acceder a un elemento de un array que está más allá del final del array. Supongamos que ejecuta este código, similar al juego de adivinanzas del Capítulo 2, para obtener del usuario un índice del array: </p>
 <p><span class="filename">Filename: src/main.rs</span></p>
@@ -2086,7 +2084,7 @@ fn main() {
     println!(&quot;The value of the element at index {index} is: {element}&quot;);
 }
 </code></pre>
-<p>Este código se compila correctamente. Si ejecuta este código usando <code>cargo run</code> e ingresa 0, 1, 2, 3 o 4, el programa imprimirá el valor correspondiente a ese índice en el array. Si, en cambio, ingresa un número después del final del array, como <code>10</code>, verá un resultado como este: </p>
+<p>Este código se compila correctamente. Si ejecuta este código usando <code>cargo run</code> e ingresa 0, 1, 2, 3 o 4, el programa imprimirá el valor correspondiente a ese índice en el array. Si, en cambio, ingresa un número de índice después del final del array, como <code>10</code>, verá un resultado como este: </p>
 <pre><code class="language-text">thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 10', src/main.rs:19:19
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 </code></pre>
@@ -2097,7 +2095,7 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 funciones más importantes en el lenguaje: la función <code>main</code>, que es el punto
 de entrada de muchos programas. También ha visto la palabra clave <code>fn</code>, que le
 permite declarar nuevas funciones.</p>
-<p>El código de Rust usa <em>snake case</em> como estilo convencional para nombres de funciones y variables. En <em>snake case</em>, todas las letras son minúsculas y las palabras separadas se unen con un guión bajo. Aquí hay un programa que contiene una definición de función de ejemplo:</p>
+<p>El código de Rust usa <em>&quot;snake case&quot;</em> como estilo convencional para nombres de funciones y variables. En <em>snake case</em>, todas las letras son minúsculas y las palabras separadas se unen con un guión bajo. Aquí hay un programa que contiene una definición de función de ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     println!(&quot;Hello, world!&quot;);
@@ -2156,11 +2154,8 @@ fn another_function(x: i32) {
      Running `target/debug/functions`
 The value of x is: 5
 </code></pre>
-<p>La declaración de <code>another_function</code> tiene un parámetro llamado <code>x</code>. El tipo de
-<code>x</code> se especifica como <code>i32</code>. Cuando <code>5</code> se pasa a <code>another_function</code>, la
-macro <code>println!</code> inserta <code>5</code> donde estaban el par de llaves en formato
-<em>string</em>.</p>
-<p>En las firmas de funciones, <em>debe</em> declarar el tipo de cada parámetro. Esta es una decisión deliberada en el diseño de Rust: requerir anotaciones de tipo en las definiciones de función significa que el compilador casi nunca necesita que las use en otra parte del código para averiguar a qué tipo se refiere. El compilador también puede dar mensajes de error más útiles si sabe qué tipos espera la función.</p>
+<p>La declaración de <code>another_function</code> tiene un parámetro llamado <code>x</code>. El tipo de <code>x</code> se especifica como <code>i32</code>. Cuando <code>5</code> se le pasa a <code>another_function</code>, la macro <code>println!</code> inserta <code>5</code> en formato <em>string</em> donde estaba el par de llaves que contenía a <code>x</code>.</p>
+<p>En las firmas de funciones, <em>debe</em> declarar el tipo de cada parámetro. Esta es una decisión deliberada en el diseño de Rust: requerir <em>anotaciones de tipo</em> en las definiciones de función significa que el compilador casi nunca necesita que las use en otra parte del código para averiguar a qué tipo se refiere. El compilador también puede dar mensajes de error más útiles si sabe qué tipos espera la función.</p>
 <p>Cuando desee que una función tenga múltiples parámetros, separe las declaraciones
 de parámetros con comas, como esta:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
@@ -2182,23 +2177,21 @@ fn print_labeled_measurement(value: i32, unit_label: char) {
 The measurement is: 5h
 </code></pre>
 <p>Llamamos a la función con <code>5</code> como el valor para <code>value</code> y <code>'h'</code> como el valor para <code>unit_label</code>, entonces la salida del programa contiene esos valores.</p>
-<h3 id="declaraciones-y-expresiones"><a class="header" href="#declaraciones-y-expresiones">Declaraciones y expresiones</a></h3>
-<p>Los cuerpos de funciones están formados por una serie de declaraciones que opcionalmente
-terminan en una expresión. Hasta ahora, las funciones que hemos cubierto no han incluido una expresión final, pero ya ha visto una expresión como parte de una declaración. Debido a que Rust es un lenguaje basado en expresiones, esta es una distinción importante de entender.
-Otros lenguajes no tienen las mismas distinciones, así que veamos qué son
-declaraciones y expresiones, y cómo sus diferencias afectan los cuerpos de las
-funciones.</p>
-<p>Las <em>Declaraciones</em> son instrucciones que realizan alguna acción y no devuelven un valor. Las <em>Expresiones</em> se evalúan y arrojan un valor resultante. Veamos algunos ejemplos.</p>
-<p>De hecho, ya hemos usado declaraciones y expresiones. Crear una variable y asignarle un valor con la palabra clave <code>let</code> es declaración. En el Listado 3-1, <code>let y = 6;</code> es una declaración.</p>
+<h3 id="sentencias-y-expresiones"><a class="header" href="#sentencias-y-expresiones">Sentencias y Expresiones</a></h3>
+<p>Los cuerpos de las funciones están formados por una serie de sentencias que opcionalmente
+terminan en una expresión. Hasta ahora, las funciones que hemos cubierto no han incluido una expresión final, pero ya ha visto una expresión como parte de una sentencias. Debido a que Rust es un lenguaje basado en expresiones, esta es una distinción importante de entender.
+Otros lenguajes no tienen las mismas distinciones, así que veamos qué son sentencias y expresiones, y cómo sus diferencias afectan los cuerpos de las funciones.</p>
+<p>Las <em>Sentencias</em> son instrucciones que realizan alguna acción y no devuelven un valor. Las <em>Expresiones</em> se evalúan y arrojan un valor resultante. Veamos algunos ejemplos.</p>
+<p>De hecho, ya hemos usado sentencias y expresiones. Crear una variable y asignarle un valor con la palabra clave <code>let</code> es una sentencia. En el Listado 3-1, <code>let y = 6;</code> es una sentencia.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let y = 6;
 }
 </code></pre></pre>
-<p><span class="caption">Listing 3-1: La declaración de función <code>main</code> contiene una instrucción</span></p>
-<p>Las definiciones de funciones también son declaraciones; todo el ejemplo anterior es un
-declaración en sí misma.</p>
-<p>Las declaraciones no devuelven valores. Por lo tanto, no puede asignar una instrucción <code>let</code>
+<p><span class="caption">Listing 3-1: La declaración de función <code>main</code> contiene una sentencia</span></p>
+<p>Las definiciones de las funciones también son sentencias; todo el ejemplo anterior es un
+sentencia en sí misma.</p>
+<p>Las sentencias no devuelven valores. Por lo tanto, no puede asignar una sentencia <code>let</code>
 a otra variable, como intenta hacer el siguiente código; obtendrá un error:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn main() {
@@ -2241,16 +2234,8 @@ For more information about this error, try `rustc --explain E0658`.
 warning: `functions` (bin &quot;functions&quot;) generated 1 warning
 error: could not compile `functions` due to 2 previous errors; 1 warning emitted
 </code></pre>
-<p>La instrucción <code>let y = 6</code> no devuelve un valor, por lo que no hay nada para
-vincular a <code>x</code>. Esto es diferente de lo que sucede en otros lenguajes, como
-C y Ruby, donde la asignación devuelve el valor de esa asignación. En esos
-lenguajes, puede escribir <code>x = y = 6</code> y tanto <code>x</code> como <code>y</code> tienen el valor
-<code>6</code>. Ese no es el caso en Rust.</p>
-<p>Las expresiones se evalúan como un valor y constituyen la mayor parte del resto del código que escribirá en Rust. Considere una operación matemática simple, como <code>5 + 6</code>, que
-es una expresión que evalúa al valor <code>11</code>. Las expresiones pueden ser parte de
-declaraciones: en el Listado 3-1, el <code>6</code> en la declaración <code>let y = 6;</code>es una
-expresión que evalúa al valor <code>6</code>. Llamar a una función es una expresión. 
-Llamar a una macro es una expresión. El bloque <code>{}</code> que utilizamos para crear nuevos ámbitos, es una expresión, por ejemplo:</p>
+<p>La sentencia <code>let y = 6</code> no devuelve un valor, por lo que no hay nada para vincular a <code>x</code>. Esto es diferente de lo que sucede en otros lenguajes, como C y Ruby, donde la asignación devuelve el valor de esa asignación. En esos lenguajes puede escribir <code>x = y = 6</code>, y tanto <code>x</code> como <code>y</code> tienen el valor <code>6</code>. Ese no es el caso en Rust.</p>
+<p>Las expresiones se evalúan como un valor y constituyen la mayor parte del resto del código que escribirá en Rust. Considere una operación matemática simple, como <code>5 + 6</code>, que es una expresión que se evalúa como valor <code>11</code>. Las expresiones pueden ser parte de sentencias: en el Listado 3-1, el <code>6</code> en la sentencia <code> let y = 6;</code> es una expresión que se evalúa como valor <code>6</code>. Llamar a una función es una expresión. Llamar a una macro es una expresión. El bloque <code>{}</code> que utilizamos para crear nuevos ámbitos, es una expresión, por ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let x = 5;
@@ -2269,12 +2254,8 @@ Llamar a una macro es una expresión. El bloque <code>{}</code> que utilizamos p
     x + 1
 }
 </code></pre>
-<p>es un bloque que, en este caso, se evalúa como <code>4</code>. Ese valor se vincula a <code>y</code>
-como parte de la declaración <code>let</code>. Tenga en cuenta que la línea <code>x + 1</code>
-no tiene un punto y coma en el final, a diferencia de la mayoría de las líneas
-que ha visto hasta ahora. Las expresiones no incluyen el punto y coma final.
-Si agrega un punto y coma al final de un expresión la convierte en una declaración, entonces no devolverá un valor. Tenga esto en cuenta mientras explora los valores devueltos por las funciones y las expresiones a continuación.</p>
-<h3 id="funciones-con-valores-de-retorno"><a class="header" href="#funciones-con-valores-de-retorno">Funciones con valores de retorno</a></h3>
+<p>es un bloque que, en este caso, se evalúa como <code>4</code>. Ese valor se vincula a <code>y</code> como parte de la sentencia <code>let</code>. Tenga en cuenta que la línea <code>x + 1</code> no tiene un punto y coma en el final, a diferencia de la mayoría de las líneas que ha visto hasta ahora. Las expresiones no incluyen el punto y coma final. Si agrega un punto y coma al final de una expresión la convierte en una sentencia, entonces no devolverá un valor. Tenga esto en cuenta mientras explora los valores devueltos por las funciones y las expresiones a continuación.</p>
+<h3 id="funciones-con-valores-de-retorno"><a class="header" href="#funciones-con-valores-de-retorno">Funciones con Valores de Retorno</a></h3>
 <p>Las funciones pueden devolver valores al código que las llama. No nombramos los valores
 de retorno, pero debemos declarar su tipo después de una flecha (<code>-&gt;</code>). En Rust, el retorno
 del valor de la función es sinónimo del valor de la expresión final en el bloque del cuerpo de una función. Se puede adelantar la devolución de una función usando la palabra clave <code>return</code> y especificando un valor, pero la mayoría de las funciones devuelven implícitamente la última expresión. Aquí hay un ejemplo de una función que devuelve un valor:</p>
@@ -2289,8 +2270,8 @@ fn main() {
     println!(&quot;The value of x is: {}&quot;, x);
 }
 </code></pre></pre>
-<p>No hay llamadas a función, macros, o incluso declaraciones <code>let</code> en la función <code>five</code>
-solo el número <code>5</code> en si mismo. Esa es una función perfectamente válida en Rust.
+<p>No hay llamadas a funciones, macros, o incluso sentencias <code>let</code> en la función <code>five</code>,
+solo el número <code>5</code> por sí mismo. Esa es una función perfectamente válida en Rust.
 Tenga en cuenta que el tipo de retorno de la función también se especifica como <code>-&gt; i32</code>.
 Trate ejecutando este código; la salida debería verse así:</p>
 <pre><code class="language-text">$ cargo run
@@ -2309,7 +2290,7 @@ esa línea es la misma que la siguiente:</p>
 </span>let x = 5;
 <span class="boring">}
 </span></code></pre></pre>
-<p>Segundo, la función <code>five</code> no tiene parámetros y define el tipo de valor de retorno, pero el cuerpo de la función es un <code>5</code> solitario sin punto y coma porque es una expresión cuyo valor queremos devolver.</p>
+<p>Segundo, la función <code>five</code> no tiene parámetros y define el tipo de valor de retorno, pero el cuerpo de la función es un <code>5</code> solitario sin punto y coma, porque es una expresión cuyo valor queremos devolver.</p>
 <p>Veamos otro ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
@@ -2324,7 +2305,7 @@ fn plus_one(x: i32) -&gt; i32 {
 </code></pre></pre>
 <p>Al ejecutar este código se imprimirá <code>The value of x is: 6</code>. Pero si colocamos un
 punto y coma al final de la línea que contiene <code>x + 1</code>, cambiándola de una
-expresión a una declaración, obtendremos un error.</p>
+expresión a una sentencia, obtendremos un error.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn main() {
     let x = plus_one(5);
@@ -2352,12 +2333,7 @@ error[E0308]: mismatched types
 For more information about this error, try `rustc --explain E0308`.
 error: could not compile `functions` due to previous error
 </code></pre>
-<p>El mensaje de error principal, “mismatched types,” (tipos no coincidentes),
-revela el problema central con este código. La definición de la función <code>plus_one</code>
-dice que devolverá un <code>i32</code>, pero las declaraciones no evalúan a un valor, que
-se expresa por <code>()</code>, el tipo <em>unit</em>. Por lo tanto, no se devuelve nada, lo que
-contradice la definición de la función y resulta en un error. En esta salida,
-Rust proporciona un mensaje que posiblemente ayude a rectificar este problema:
+<p>El mensaje de error principal, “mismatched types” (tipos no coincidentes), revela el problema central con este código. La definición de la función <code>plus_one</code> dice que devolverá un <code>i32</code>, pero las sentencias no se evalúan a un valor, lo que se expresa por <code>()</code>, el tipo <em>unit</em>. Por lo tanto, no se devuelve nada, lo que contradice la definición de la función y resulta en un error. En esta salida, Rust proporciona un mensaje que posiblemente ayude a rectificar este problema:
 sugiere eliminar el punto y coma, que arreglaría el error.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="comentarios"><a class="header" href="#comentarios">Comentarios</a></h2>
 <p>Todos los programadores se esfuerzan por hacer que su código sea fácil de
@@ -2430,7 +2406,7 @@ a veces llamados <em>brazos</em>, igual que los brazos en expresiones <code>matc
 tratamos en la sección <a href="ch02-00-guessing-game-tutorial.html#comparando-la-conjetura-con-el-n%C3%BAmero-secreto">“Comparando la conjetura con el número secreto”</a> del Capitulo 2.</p>
 <p>Opcionalmente, también podemos incluir una expresión <code>else</code>, que elegimos hacer aquí, para
 darle al programa un bloque de código alternativo que debería ejecutar si la condición
-evalúa a falso. Si no proporciona una expresión <code>else</code> y la condición es falsa, el programa
+se evalúa como falsa. Si no proporciona una expresión <code>else</code> y la condición es falsa, el programa
 saltará el bloque <code>if</code> y continuará al siguiente código.</p>
 <p>Intente ejecutar este código; debería ver el siguiente resultado:</p>
 <pre><code class="language-text">$ cargo run
@@ -2524,9 +2500,8 @@ una vez que encuentra una, ni siquiera comprueba el resto.</p>
 <p>Si usa demasiadas expresiones <code>else if</code> puede saturar su código. Entonces si tiene más
 de una, es posible que desee refactorizar su código. El Capítulo 6 describe una poderosa
 estructura de ramificación de Rust llamado <code>match</code> para estos casos.</p>
-<h4 id="usando-if-en-una-declaración-let"><a class="header" href="#usando-if-en-una-declaración-let">Usando <code>if</code> en una declaración <code>let</code></a></h4>
-<p>Como <code>if</code> es una expresión, podemos usarla en el lado derecho de una declaración
-<code>let</code>, como en el Listado 3-2.</p>
+<h4 id="usando-if-en-una-sentencia-let"><a class="header" href="#usando-if-en-una-sentencia-let">Usando <code>if</code> en una Sentencia <code>let</code></a></h4>
+<p>Como <code>if</code> es una expresión, podemos usarla en el lado derecho de una sentencia <code>let</code>, como en el Listado 3-2.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let condition = true;
@@ -2579,17 +2554,14 @@ error[E0308]: `if` and `else` have incompatible types
 For more information about this error, try `rustc --explain E0308`.
 error: could not compile `branches` due to previous error
 </code></pre>
-<p>La expresión en el bloque <code>if</code> se evalúa a un entero, y la expresión en
+<p>La expresión en el bloque <code>if</code> se evalúa como un entero, y la expresión en
 el bloque <code>else</code> se evalúa como un <em>string</em>. Esto no funcionará porque las variables
 deben tener un solo tipo. Rust necesita saber definitivamente en tiempo de compilación de qué tipo es la variable <code>number</code>. Conocer el tipo de <code>number</code> permite que el el compilador verifique que el tipo sea válido en todos los lugares donde usamos number.
 Rust no podría hacer eso si el tipo de <code>number</code> solo se determina en tiempo de ejecución.
 El compilador sería más complejo y daría menos garantías sobre el código si tuviera
 que realizar un seguimiento de múltiples tipos hipotéticos para cualquier variable.</p>
-<h3 id="repetición-con-bucles"><a class="header" href="#repetición-con-bucles">Repetición con bucles</a></h3>
-<p>A menudo es útil ejecutar un bloque de código más de una vez. Para esta tarea,
-Rust proporciona varios <em>bucles</em>. Un bucle recorre el código dentro del cuerpo
-del bucle hasta el final y luego comienza de nuevo de inmediato al principio. Para
-experimentar con bucles, hagamos un nuevo proyecto llamado <em>loops</em>.</p>
+<h3 id="repetición-con-bucles"><a class="header" href="#repetición-con-bucles">Repetición con Bucles</a></h3>
+<p>Suele ser útil ejecutar un bloque de código más de una vez. Para esta tarea, Rust proporciona varios <em>bucles</em>, que se ejecutarán a través del código dentro del cuerpo del bucle hasta el final y luego volverán a empezar inmediatamente desde el principio. Para experimentar con bucles, hagamos un nuevo proyecto llamado <em>loops</em>.</p>
 <p>Rust tiene tres tipos de bucles: <code>loop</code>,<code>while</code> y <code>for</code>. Probemos cada uno.</p>
 <h4 id="repetición-de-código-con-loop"><a class="header" href="#repetición-de-código-con-loop">Repetición de código con <code>loop</code></a></h4>
 <p>La palabra clave <code>loop</code> le dice a Rust que ejecute un bloque de código una y otra vez
@@ -2624,7 +2596,7 @@ dejar de ejecutar el ciclo. Recuerde que hicimos esto en el juego de adivinanzas
 la sección <a href="ch02-00-guessing-game-tutorial.html#abandonar-despu%C3%A9s-de-una-conjetura-correcta">“Abandonar después de una conjetura correcta”</a> del Capítulo 2 para salir
 del programa cuando el usuario ganó el juego adivinando el número correcto.</p>
 <p>También usamos <code>continue</code> en el juego de adivinanzas, que le dice al programa que omita cualquier código restante en esta iteración del bucle y vaya a la próxima iteración.</p>
-<h4 id="devolver-valores-desde-loops"><a class="header" href="#devolver-valores-desde-loops">Devolver valores desde Loops</a></h4>
+<h4 id="devolver-valores-desde-loops"><a class="header" href="#devolver-valores-desde-loops">Devolver Valores desde Loops</a></h4>
 <p>Uno de los usos de un <code>loop</code> es reiterar una operación que sabe que podría fallar, como sería verificar si un hilo ha completado su trabajo. Es posible que también deba pasar el resultado de esa operación fuera del bucle al resto de su código. Para hacer esto, puede agregar el valor que desea devolver después de la expresión <code>break</code> que use para detener el bucle. Ese valor se devolverá fuera del bucle para que pueda usarlo, como se muestra aquí:</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let mut counter = 0;
@@ -2640,8 +2612,8 @@ del programa cuando el usuario ganó el juego adivinando el número correcto.</p
     println!(&quot;The result is {result}&quot;);
 }
 </code></pre></pre>
-<p>Antes del ciclo, declaramos una variable llamada <code>countere</code> y la inicializamos a <code>0</code>. Luego declaramos una variable llamada <code>result</code> que espera el valor devuelto por el bucle. En cada iteración del bucle, sumamos <code>1</code> a la variable <code>counter</code>, y luego verifica si el contador es igual a <code>10</code>. Cuando lo es, usamos la palabra clave <code>break</code> con el valor <code>counter * 2</code>. Después del bucle, usamos un punto y coma para finalizar la declaración que asigna el valor a <code>result</code>. Finalmente, imprimimos el valor en <code>result</code>, que en este caso es <code>20</code>.</p>
-<h4 id="etiquetas-de-bucle-para-desambiguar-entre-múltiples-bucles"><a class="header" href="#etiquetas-de-bucle-para-desambiguar-entre-múltiples-bucles">Etiquetas de bucle para desambiguar entre múltiples bucles</a></h4>
+<p>Antes del ciclo, declaramos una variable llamada <code>countere</code> y la inicializamos a <code>0</code>. Luego declaramos una variable llamada <code>result</code> que espera el valor devuelto por el bucle. En cada iteración del bucle, sumamos <code>1</code> a la variable <code>counter</code>, y luego verifica si el contador es igual a <code>10</code>. Cuando lo es, usamos la palabra clave <code>break</code> con el valor <code>counter * 2</code>. Después del bucle, usamos un punto y coma para finalizar la sentencia que asigna el valor a <code>result</code>. Finalmente, imprimimos el valor en <code>result</code>, que en este caso es <code>20</code>.</p>
+<h4 id="etiquetas-de-bucle-para-desambiguar-entre-múltiples-bucles"><a class="header" href="#etiquetas-de-bucle-para-desambiguar-entre-múltiples-bucles">Etiquetas de Bucle para Desambiguar entre Múltiples Bucles</a></h4>
 <p>Si tiene bucles dentro de bucles, <code>break</code> y <code>continue</code> se aplican al bucle más interno en ese punto. Opcionalmente, puede especificar una <em>etiqueta de bucle</em> en un bucle que luego se puede usar con <code>break</code> o <code>continue</code> para especificar que esas palabras clave se apliquen al bucle etiquetado en lugar del bucle más interno. Las etiquetas de bucle deben comenzar con una comilla simple. Aquí hay un ejemplo con dos bucles anidados:</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let mut count = 0;
@@ -2680,7 +2652,7 @@ count = 2
 remaining = 10
 End count = 2
 </code></pre>
-<h4 id="bucles-condicionales-con-while"><a class="header" href="#bucles-condicionales-con-while">Bucles condicionales con <code>while</code></a></h4>
+<h4 id="bucles-condicionales-con-while"><a class="header" href="#bucles-condicionales-con-while">Bucles Condicionales con <code>while</code></a></h4>
 <p>A menudo es útil para un programa evaluar una condición dentro de un bucle. Mientras
 la condición es verdadera, el ciclo se ejecuta. Cuando la condición deja de ser verdadera,
 el programa llama a <code>break</code>, deteniendo el bucle. Este tipo de bucle podría implementarse

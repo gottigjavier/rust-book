@@ -147,7 +147,7 @@
 funciones más importantes en el lenguaje: la función <code>main</code>, que es el punto
 de entrada de muchos programas. También ha visto la palabra clave <code>fn</code>, que le
 permite declarar nuevas funciones.</p>
-<p>El código de Rust usa <em>snake case</em> como estilo convencional para nombres de funciones y variables. En <em>snake case</em>, todas las letras son minúsculas y las palabras separadas se unen con un guión bajo. Aquí hay un programa que contiene una definición de función de ejemplo:</p>
+<p>El código de Rust usa <em>&quot;snake case&quot;</em> como estilo convencional para nombres de funciones y variables. En <em>snake case</em>, todas las letras son minúsculas y las palabras separadas se unen con un guión bajo. Aquí hay un programa que contiene una definición de función de ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     println!(&quot;Hello, world!&quot;);
@@ -206,11 +206,8 @@ fn another_function(x: i32) {
      Running `target/debug/functions`
 The value of x is: 5
 </code></pre>
-<p>La declaración de <code>another_function</code> tiene un parámetro llamado <code>x</code>. El tipo de
-<code>x</code> se especifica como <code>i32</code>. Cuando <code>5</code> se pasa a <code>another_function</code>, la
-macro <code>println!</code> inserta <code>5</code> donde estaban el par de llaves en formato
-<em>string</em>.</p>
-<p>En las firmas de funciones, <em>debe</em> declarar el tipo de cada parámetro. Esta es una decisión deliberada en el diseño de Rust: requerir anotaciones de tipo en las definiciones de función significa que el compilador casi nunca necesita que las use en otra parte del código para averiguar a qué tipo se refiere. El compilador también puede dar mensajes de error más útiles si sabe qué tipos espera la función.</p>
+<p>La declaración de <code>another_function</code> tiene un parámetro llamado <code>x</code>. El tipo de <code>x</code> se especifica como <code>i32</code>. Cuando <code>5</code> se le pasa a <code>another_function</code>, la macro <code>println!</code> inserta <code>5</code> en formato <em>string</em> donde estaba el par de llaves que contenía a <code>x</code>.</p>
+<p>En las firmas de funciones, <em>debe</em> declarar el tipo de cada parámetro. Esta es una decisión deliberada en el diseño de Rust: requerir <em>anotaciones de tipo</em> en las definiciones de función significa que el compilador casi nunca necesita que las use en otra parte del código para averiguar a qué tipo se refiere. El compilador también puede dar mensajes de error más útiles si sabe qué tipos espera la función.</p>
 <p>Cuando desee que una función tenga múltiples parámetros, separe las declaraciones
 de parámetros con comas, como esta:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
@@ -232,23 +229,21 @@ fn print_labeled_measurement(value: i32, unit_label: char) {
 The measurement is: 5h
 </code></pre>
 <p>Llamamos a la función con <code>5</code> como el valor para <code>value</code> y <code>'h'</code> como el valor para <code>unit_label</code>, entonces la salida del programa contiene esos valores.</p>
-<h3 id="declaraciones-y-expresiones"><a class="header" href="#declaraciones-y-expresiones">Declaraciones y expresiones</a></h3>
-<p>Los cuerpos de funciones están formados por una serie de declaraciones que opcionalmente
-terminan en una expresión. Hasta ahora, las funciones que hemos cubierto no han incluido una expresión final, pero ya ha visto una expresión como parte de una declaración. Debido a que Rust es un lenguaje basado en expresiones, esta es una distinción importante de entender.
-Otros lenguajes no tienen las mismas distinciones, así que veamos qué son
-declaraciones y expresiones, y cómo sus diferencias afectan los cuerpos de las
-funciones.</p>
-<p>Las <em>Declaraciones</em> son instrucciones que realizan alguna acción y no devuelven un valor. Las <em>Expresiones</em> se evalúan y arrojan un valor resultante. Veamos algunos ejemplos.</p>
-<p>De hecho, ya hemos usado declaraciones y expresiones. Crear una variable y asignarle un valor con la palabra clave <code>let</code> es declaración. En el Listado 3-1, <code>let y = 6;</code> es una declaración.</p>
+<h3 id="sentencias-y-expresiones"><a class="header" href="#sentencias-y-expresiones">Sentencias y Expresiones</a></h3>
+<p>Los cuerpos de las funciones están formados por una serie de sentencias que opcionalmente
+terminan en una expresión. Hasta ahora, las funciones que hemos cubierto no han incluido una expresión final, pero ya ha visto una expresión como parte de una sentencias. Debido a que Rust es un lenguaje basado en expresiones, esta es una distinción importante de entender.
+Otros lenguajes no tienen las mismas distinciones, así que veamos qué son sentencias y expresiones, y cómo sus diferencias afectan los cuerpos de las funciones.</p>
+<p>Las <em>Sentencias</em> son instrucciones que realizan alguna acción y no devuelven un valor. Las <em>Expresiones</em> se evalúan y arrojan un valor resultante. Veamos algunos ejemplos.</p>
+<p>De hecho, ya hemos usado sentencias y expresiones. Crear una variable y asignarle un valor con la palabra clave <code>let</code> es una sentencia. En el Listado 3-1, <code>let y = 6;</code> es una sentencia.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let y = 6;
 }
 </code></pre></pre>
-<p><span class="caption">Listing 3-1: La declaración de función <code>main</code> contiene una instrucción</span></p>
-<p>Las definiciones de funciones también son declaraciones; todo el ejemplo anterior es un
-declaración en sí misma.</p>
-<p>Las declaraciones no devuelven valores. Por lo tanto, no puede asignar una instrucción <code>let</code>
+<p><span class="caption">Listing 3-1: La declaración de función <code>main</code> contiene una sentencia</span></p>
+<p>Las definiciones de las funciones también son sentencias; todo el ejemplo anterior es un
+sentencia en sí misma.</p>
+<p>Las sentencias no devuelven valores. Por lo tanto, no puede asignar una sentencia <code>let</code>
 a otra variable, como intenta hacer el siguiente código; obtendrá un error:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn main() {
@@ -291,16 +286,8 @@ For more information about this error, try `rustc --explain E0658`.
 warning: `functions` (bin &quot;functions&quot;) generated 1 warning
 error: could not compile `functions` due to 2 previous errors; 1 warning emitted
 </code></pre>
-<p>La instrucción <code>let y = 6</code> no devuelve un valor, por lo que no hay nada para
-vincular a <code>x</code>. Esto es diferente de lo que sucede en otros lenguajes, como
-C y Ruby, donde la asignación devuelve el valor de esa asignación. En esos
-lenguajes, puede escribir <code>x = y = 6</code> y tanto <code>x</code> como <code>y</code> tienen el valor
-<code>6</code>. Ese no es el caso en Rust.</p>
-<p>Las expresiones se evalúan como un valor y constituyen la mayor parte del resto del código que escribirá en Rust. Considere una operación matemática simple, como <code>5 + 6</code>, que
-es una expresión que evalúa al valor <code>11</code>. Las expresiones pueden ser parte de
-declaraciones: en el Listado 3-1, el <code>6</code> en la declaración <code>let y = 6;</code>es una
-expresión que evalúa al valor <code>6</code>. Llamar a una función es una expresión. 
-Llamar a una macro es una expresión. El bloque <code>{}</code> que utilizamos para crear nuevos ámbitos, es una expresión, por ejemplo:</p>
+<p>La sentencia <code>let y = 6</code> no devuelve un valor, por lo que no hay nada para vincular a <code>x</code>. Esto es diferente de lo que sucede en otros lenguajes, como C y Ruby, donde la asignación devuelve el valor de esa asignación. En esos lenguajes puede escribir <code>x = y = 6</code>, y tanto <code>x</code> como <code>y</code> tienen el valor <code>6</code>. Ese no es el caso en Rust.</p>
+<p>Las expresiones se evalúan como un valor y constituyen la mayor parte del resto del código que escribirá en Rust. Considere una operación matemática simple, como <code>5 + 6</code>, que es una expresión que se evalúa como valor <code>11</code>. Las expresiones pueden ser parte de sentencias: en el Listado 3-1, el <code>6</code> en la sentencia <code> let y = 6;</code> es una expresión que se evalúa como valor <code>6</code>. Llamar a una función es una expresión. Llamar a una macro es una expresión. El bloque <code>{}</code> que utilizamos para crear nuevos ámbitos, es una expresión, por ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let x = 5;
@@ -319,12 +306,8 @@ Llamar a una macro es una expresión. El bloque <code>{}</code> que utilizamos p
     x + 1
 }
 </code></pre>
-<p>es un bloque que, en este caso, se evalúa como <code>4</code>. Ese valor se vincula a <code>y</code>
-como parte de la declaración <code>let</code>. Tenga en cuenta que la línea <code>x + 1</code>
-no tiene un punto y coma en el final, a diferencia de la mayoría de las líneas
-que ha visto hasta ahora. Las expresiones no incluyen el punto y coma final.
-Si agrega un punto y coma al final de un expresión la convierte en una declaración, entonces no devolverá un valor. Tenga esto en cuenta mientras explora los valores devueltos por las funciones y las expresiones a continuación.</p>
-<h3 id="funciones-con-valores-de-retorno"><a class="header" href="#funciones-con-valores-de-retorno">Funciones con valores de retorno</a></h3>
+<p>es un bloque que, en este caso, se evalúa como <code>4</code>. Ese valor se vincula a <code>y</code> como parte de la sentencia <code>let</code>. Tenga en cuenta que la línea <code>x + 1</code> no tiene un punto y coma en el final, a diferencia de la mayoría de las líneas que ha visto hasta ahora. Las expresiones no incluyen el punto y coma final. Si agrega un punto y coma al final de una expresión la convierte en una sentencia, entonces no devolverá un valor. Tenga esto en cuenta mientras explora los valores devueltos por las funciones y las expresiones a continuación.</p>
+<h3 id="funciones-con-valores-de-retorno"><a class="header" href="#funciones-con-valores-de-retorno">Funciones con Valores de Retorno</a></h3>
 <p>Las funciones pueden devolver valores al código que las llama. No nombramos los valores
 de retorno, pero debemos declarar su tipo después de una flecha (<code>-&gt;</code>). En Rust, el retorno
 del valor de la función es sinónimo del valor de la expresión final en el bloque del cuerpo de una función. Se puede adelantar la devolución de una función usando la palabra clave <code>return</code> y especificando un valor, pero la mayoría de las funciones devuelven implícitamente la última expresión. Aquí hay un ejemplo de una función que devuelve un valor:</p>
@@ -339,8 +322,8 @@ fn main() {
     println!(&quot;The value of x is: {}&quot;, x);
 }
 </code></pre></pre>
-<p>No hay llamadas a función, macros, o incluso declaraciones <code>let</code> en la función <code>five</code>
-solo el número <code>5</code> en si mismo. Esa es una función perfectamente válida en Rust.
+<p>No hay llamadas a funciones, macros, o incluso sentencias <code>let</code> en la función <code>five</code>,
+solo el número <code>5</code> por sí mismo. Esa es una función perfectamente válida en Rust.
 Tenga en cuenta que el tipo de retorno de la función también se especifica como <code>-&gt; i32</code>.
 Trate ejecutando este código; la salida debería verse así:</p>
 <pre><code class="language-text">$ cargo run
@@ -359,7 +342,7 @@ esa línea es la misma que la siguiente:</p>
 </span>let x = 5;
 <span class="boring">}
 </span></code></pre></pre>
-<p>Segundo, la función <code>five</code> no tiene parámetros y define el tipo de valor de retorno, pero el cuerpo de la función es un <code>5</code> solitario sin punto y coma porque es una expresión cuyo valor queremos devolver.</p>
+<p>Segundo, la función <code>five</code> no tiene parámetros y define el tipo de valor de retorno, pero el cuerpo de la función es un <code>5</code> solitario sin punto y coma, porque es una expresión cuyo valor queremos devolver.</p>
 <p>Veamos otro ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
@@ -374,7 +357,7 @@ fn plus_one(x: i32) -&gt; i32 {
 </code></pre></pre>
 <p>Al ejecutar este código se imprimirá <code>The value of x is: 6</code>. Pero si colocamos un
 punto y coma al final de la línea que contiene <code>x + 1</code>, cambiándola de una
-expresión a una declaración, obtendremos un error.</p>
+expresión a una sentencia, obtendremos un error.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn main() {
     let x = plus_one(5);
@@ -402,12 +385,7 @@ error[E0308]: mismatched types
 For more information about this error, try `rustc --explain E0308`.
 error: could not compile `functions` due to previous error
 </code></pre>
-<p>El mensaje de error principal, “mismatched types,” (tipos no coincidentes),
-revela el problema central con este código. La definición de la función <code>plus_one</code>
-dice que devolverá un <code>i32</code>, pero las declaraciones no evalúan a un valor, que
-se expresa por <code>()</code>, el tipo <em>unit</em>. Por lo tanto, no se devuelve nada, lo que
-contradice la definición de la función y resulta en un error. En esta salida,
-Rust proporciona un mensaje que posiblemente ayude a rectificar este problema:
+<p>El mensaje de error principal, “mismatched types” (tipos no coincidentes), revela el problema central con este código. La definición de la función <code>plus_one</code> dice que devolverá un <code>i32</code>, pero las sentencias no se evalúan a un valor, lo que se expresa por <code>()</code>, el tipo <em>unit</em>. Por lo tanto, no se devuelve nada, lo que contradice la definición de la función y resulta en un error. En esta salida, Rust proporciona un mensaje que posiblemente ayude a rectificar este problema:
 sugiere eliminar el punto y coma, que arreglaría el error.</p>
 
                     </main>

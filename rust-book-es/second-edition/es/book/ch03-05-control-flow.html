@@ -176,7 +176,7 @@ a veces llamados <em>brazos</em>, igual que los brazos en expresiones <code>matc
 tratamos en la sección <a href="ch02-00-guessing-game-tutorial.html#comparando-la-conjetura-con-el-n%C3%BAmero-secreto">“Comparando la conjetura con el número secreto”</a> del Capitulo 2.</p>
 <p>Opcionalmente, también podemos incluir una expresión <code>else</code>, que elegimos hacer aquí, para
 darle al programa un bloque de código alternativo que debería ejecutar si la condición
-evalúa a falso. Si no proporciona una expresión <code>else</code> y la condición es falsa, el programa
+se evalúa como falsa. Si no proporciona una expresión <code>else</code> y la condición es falsa, el programa
 saltará el bloque <code>if</code> y continuará al siguiente código.</p>
 <p>Intente ejecutar este código; debería ver el siguiente resultado:</p>
 <pre><code class="language-text">$ cargo run
@@ -270,9 +270,8 @@ una vez que encuentra una, ni siquiera comprueba el resto.</p>
 <p>Si usa demasiadas expresiones <code>else if</code> puede saturar su código. Entonces si tiene más
 de una, es posible que desee refactorizar su código. El Capítulo 6 describe una poderosa
 estructura de ramificación de Rust llamado <code>match</code> para estos casos.</p>
-<h4 id="usando-if-en-una-declaración-let"><a class="header" href="#usando-if-en-una-declaración-let">Usando <code>if</code> en una declaración <code>let</code></a></h4>
-<p>Como <code>if</code> es una expresión, podemos usarla en el lado derecho de una declaración
-<code>let</code>, como en el Listado 3-2.</p>
+<h4 id="usando-if-en-una-sentencia-let"><a class="header" href="#usando-if-en-una-sentencia-let">Usando <code>if</code> en una Sentencia <code>let</code></a></h4>
+<p>Como <code>if</code> es una expresión, podemos usarla en el lado derecho de una sentencia <code>let</code>, como en el Listado 3-2.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let condition = true;
@@ -325,17 +324,14 @@ error[E0308]: `if` and `else` have incompatible types
 For more information about this error, try `rustc --explain E0308`.
 error: could not compile `branches` due to previous error
 </code></pre>
-<p>La expresión en el bloque <code>if</code> se evalúa a un entero, y la expresión en
+<p>La expresión en el bloque <code>if</code> se evalúa como un entero, y la expresión en
 el bloque <code>else</code> se evalúa como un <em>string</em>. Esto no funcionará porque las variables
 deben tener un solo tipo. Rust necesita saber definitivamente en tiempo de compilación de qué tipo es la variable <code>number</code>. Conocer el tipo de <code>number</code> permite que el el compilador verifique que el tipo sea válido en todos los lugares donde usamos number.
 Rust no podría hacer eso si el tipo de <code>number</code> solo se determina en tiempo de ejecución.
 El compilador sería más complejo y daría menos garantías sobre el código si tuviera
 que realizar un seguimiento de múltiples tipos hipotéticos para cualquier variable.</p>
-<h3 id="repetición-con-bucles"><a class="header" href="#repetición-con-bucles">Repetición con bucles</a></h3>
-<p>A menudo es útil ejecutar un bloque de código más de una vez. Para esta tarea,
-Rust proporciona varios <em>bucles</em>. Un bucle recorre el código dentro del cuerpo
-del bucle hasta el final y luego comienza de nuevo de inmediato al principio. Para
-experimentar con bucles, hagamos un nuevo proyecto llamado <em>loops</em>.</p>
+<h3 id="repetición-con-bucles"><a class="header" href="#repetición-con-bucles">Repetición con Bucles</a></h3>
+<p>Suele ser útil ejecutar un bloque de código más de una vez. Para esta tarea, Rust proporciona varios <em>bucles</em>, que se ejecutarán a través del código dentro del cuerpo del bucle hasta el final y luego volverán a empezar inmediatamente desde el principio. Para experimentar con bucles, hagamos un nuevo proyecto llamado <em>loops</em>.</p>
 <p>Rust tiene tres tipos de bucles: <code>loop</code>,<code>while</code> y <code>for</code>. Probemos cada uno.</p>
 <h4 id="repetición-de-código-con-loop"><a class="header" href="#repetición-de-código-con-loop">Repetición de código con <code>loop</code></a></h4>
 <p>La palabra clave <code>loop</code> le dice a Rust que ejecute un bloque de código una y otra vez
@@ -370,7 +366,7 @@ dejar de ejecutar el ciclo. Recuerde que hicimos esto en el juego de adivinanzas
 la sección <a href="ch02-00-guessing-game-tutorial.html#abandonar-despu%C3%A9s-de-una-conjetura-correcta">“Abandonar después de una conjetura correcta”</a> del Capítulo 2 para salir
 del programa cuando el usuario ganó el juego adivinando el número correcto.</p>
 <p>También usamos <code>continue</code> en el juego de adivinanzas, que le dice al programa que omita cualquier código restante en esta iteración del bucle y vaya a la próxima iteración.</p>
-<h4 id="devolver-valores-desde-loops"><a class="header" href="#devolver-valores-desde-loops">Devolver valores desde Loops</a></h4>
+<h4 id="devolver-valores-desde-loops"><a class="header" href="#devolver-valores-desde-loops">Devolver Valores desde Loops</a></h4>
 <p>Uno de los usos de un <code>loop</code> es reiterar una operación que sabe que podría fallar, como sería verificar si un hilo ha completado su trabajo. Es posible que también deba pasar el resultado de esa operación fuera del bucle al resto de su código. Para hacer esto, puede agregar el valor que desea devolver después de la expresión <code>break</code> que use para detener el bucle. Ese valor se devolverá fuera del bucle para que pueda usarlo, como se muestra aquí:</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let mut counter = 0;
@@ -386,8 +382,8 @@ del programa cuando el usuario ganó el juego adivinando el número correcto.</p
     println!(&quot;The result is {result}&quot;);
 }
 </code></pre></pre>
-<p>Antes del ciclo, declaramos una variable llamada <code>countere</code> y la inicializamos a <code>0</code>. Luego declaramos una variable llamada <code>result</code> que espera el valor devuelto por el bucle. En cada iteración del bucle, sumamos <code>1</code> a la variable <code>counter</code>, y luego verifica si el contador es igual a <code>10</code>. Cuando lo es, usamos la palabra clave <code>break</code> con el valor <code>counter * 2</code>. Después del bucle, usamos un punto y coma para finalizar la declaración que asigna el valor a <code>result</code>. Finalmente, imprimimos el valor en <code>result</code>, que en este caso es <code>20</code>.</p>
-<h4 id="etiquetas-de-bucle-para-desambiguar-entre-múltiples-bucles"><a class="header" href="#etiquetas-de-bucle-para-desambiguar-entre-múltiples-bucles">Etiquetas de bucle para desambiguar entre múltiples bucles</a></h4>
+<p>Antes del ciclo, declaramos una variable llamada <code>countere</code> y la inicializamos a <code>0</code>. Luego declaramos una variable llamada <code>result</code> que espera el valor devuelto por el bucle. En cada iteración del bucle, sumamos <code>1</code> a la variable <code>counter</code>, y luego verifica si el contador es igual a <code>10</code>. Cuando lo es, usamos la palabra clave <code>break</code> con el valor <code>counter * 2</code>. Después del bucle, usamos un punto y coma para finalizar la sentencia que asigna el valor a <code>result</code>. Finalmente, imprimimos el valor en <code>result</code>, que en este caso es <code>20</code>.</p>
+<h4 id="etiquetas-de-bucle-para-desambiguar-entre-múltiples-bucles"><a class="header" href="#etiquetas-de-bucle-para-desambiguar-entre-múltiples-bucles">Etiquetas de Bucle para Desambiguar entre Múltiples Bucles</a></h4>
 <p>Si tiene bucles dentro de bucles, <code>break</code> y <code>continue</code> se aplican al bucle más interno en ese punto. Opcionalmente, puede especificar una <em>etiqueta de bucle</em> en un bucle que luego se puede usar con <code>break</code> o <code>continue</code> para especificar que esas palabras clave se apliquen al bucle etiquetado en lugar del bucle más interno. Las etiquetas de bucle deben comenzar con una comilla simple. Aquí hay un ejemplo con dos bucles anidados:</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let mut count = 0;
@@ -426,7 +422,7 @@ count = 2
 remaining = 10
 End count = 2
 </code></pre>
-<h4 id="bucles-condicionales-con-while"><a class="header" href="#bucles-condicionales-con-while">Bucles condicionales con <code>while</code></a></h4>
+<h4 id="bucles-condicionales-con-while"><a class="header" href="#bucles-condicionales-con-while">Bucles Condicionales con <code>while</code></a></h4>
 <p>A menudo es útil para un programa evaluar una condición dentro de un bucle. Mientras
 la condición es verdadera, el ciclo se ejecuta. Cuando la condición deja de ser verdadera,
 el programa llama a <code>break</code>, deteniendo el bucle. Este tipo de bucle podría implementarse

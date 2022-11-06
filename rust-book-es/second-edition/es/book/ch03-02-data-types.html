@@ -143,9 +143,7 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="tipos-de-datos"><a class="header" href="#tipos-de-datos">Tipos de Datos</a></h2>
-<p>Cada valor en Rust es de un cierto <em>tipo de dato</em>, que le informa a Rust qué
-tipo de dato se está especificando para que sepa cómo trabajar con ese dato.
-Veremos dos subconjuntos de tipos de datos: escalares y compuestos.</p>
+<p>Cada valor en Rust es de un determinado tipo de datos, lo que le dice a Rust qué tipo de datos se especifica para que sepa cómo trabajar con esos datos. Veremos dos subconjuntos de tipos de datos: escalares y compuestos.</p>
 <p>Tenga en cuenta que Rust es un lenguaje <em>estáticamente tipado</em>, lo que
 significa que debe conocer los tipos de todas las variables en tiempo de
 compilación. El compilador generalmente puede inferir qué tipo queremos usar
@@ -158,7 +156,7 @@ Capítulo 2, debemos agregar una <em>anotación de tipo</em> (<em>type annotatio
 </span>let guess: u32 = &quot;42&quot;.parse().expect(&quot;Not a number!&quot;);
 <span class="boring">}
 </span></code></pre></pre>
-<p>Si no agregamos la anotación de tipo <code>:u32</code> anterior, Rust mostrará el siguiente error, lo que significa que el compilador necesita más información de parte nuestra para saber qué tipo queremos usar:</p>
+<p>Si no agregamos la anotación de tipo <code>:u32</code> antes, Rust mostrará el siguiente error, lo que significa que el compilador necesita más información de parte nuestra para saber qué tipo queremos usar:</p>
 <pre><code class="language-text">$ cargo build
    Compiling no_type_annotations v0.1.0 (file:///projects/no_type_annotations)
 error[E0282]: type annotations needed
@@ -265,7 +263,7 @@ tipos de números: adición, sustracción, multiplicación, división y residuo 
 </code></pre></pre>
 <p>Cada expresión en estas declaraciones usa un operador matemático y la evalúa a un
 solo valor, que luego se vincula a una variable. El <a href="appendix-02-operators.html">Apéndice B</a> contiene una lista de todos los operadores que Rust proporciona.</p>
-<h4 id="el-tipo-booleano-boolean"><a class="header" href="#el-tipo-booleano-boolean">El tipo <em>booleano</em> (<em>Boolean</em>)</a></h4>
+<h4 id="el-tipo-booleano-boolean"><a class="header" href="#el-tipo-booleano-boolean">El Tipo <em>Booleano</em> (<em>Boolean</em>)</a></h4>
 <p>Como en la mayoría de los demás lenguajes de programación, un tipo <em>booleano</em> en Rust tiene dos valores posibles: <code>true</code> y <code>false</code>. Los booleanos tienen un tamaño de un byte. El tipo <em>booleano</em> en Rust se especifica con <code>bool</code>. Por ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
@@ -284,13 +282,13 @@ solo valor, que luego se vincula a una variable. El <a href="appendix-02-operato
     let heart_eyed_cat = '😻';
 }
 </code></pre></pre>
-<p>Tenga en cuenta que el literal <code>char</code> se especifica con comillas simples, a diferencia de los literales <em>strings</em>, que usan comillas dobles. El tipo <code>char</code> de Rust tiene un tamaño de cuatro bytes y representa un valor escalar Unicode, lo que significa que puede representar mucho más que solo ASCII. Letras acentuadas; Caracteres chinos, japoneses y coreanos; emoji; y los <em>espacios de ancho cero</em> son todos valores <code>char</code> válidos en Rust. Los valores escalares Unicode van desde <code>U + 0000</code> a <code>U + D7FF</code> y <code>U + E000</code> a <code>U + 10FFFF</code> inclusive. Sin embargo, un “carácter” no es realmente un concepto en Unicode, por lo que su intuición humana para lo que es un “carácter” puede no coincidir con lo que es un <code>char</code> en Rust. Discutiremos este tema en detalle en <a href="ch08-02-strings.html">“Almacenamiento de texto codificado en UTF-8 con Strings”</a> en el Capítulo 8.</p>
+<p>Tenga en cuenta que el literal <code>char</code> se especifica con comillas simples, a diferencia de los literales <em>strings</em>, que usan comillas dobles. El tipo <code>char</code> de Rust tiene un tamaño de cuatro bytes y representa un valor escalar Unicode, lo que significa que puede representar mucho más que solo ASCII. Letras acentuadas; caracteres chinos, japoneses y coreanos; emoji; y los <em>espacios de ancho cero</em> son todos valores <code>char</code> válidos en Rust. Los valores escalares Unicode van desde <code>U + 0000</code> a <code>U + D7FF</code> y <code>U + E000</code> a <code>U + 10FFFF</code> inclusive. Sin embargo, un “caracter” no es realmente un concepto en Unicode, por lo que su intuición humana para lo que es un “caracter” puede no coincidir con lo que es un <code>char</code> en Rust. Discutiremos este tema en detalle en <a href="ch08-02-strings.html">“Almacenamiento de texto codificado en UTF-8 con Strings”</a> en el Capítulo 8.</p>
 <h3 id="tipos-compuestos"><a class="header" href="#tipos-compuestos">Tipos Compuestos</a></h3>
 <p><em>Los tipos compuestos</em> pueden agrupar múltiples valores en un tipo. Rust tiene
-dos tipos de compuestos primitivos: tuplas y matrices.</p>
+dos tipos de compuestos primitivos: tuplas y arrays.</p>
 <h4 id="el-tipo-tupla-tuple"><a class="header" href="#el-tipo-tupla-tuple">El tipo <em>Tupla</em> (<em>Tuple</em>)</a></h4>
-<p>Una tupla es una forma general de agrupar un número de valores con una variedad de tipos dentro de un tipo compuesto. Las tuplas tienen una longitud fija: una vez declaradas, no pueden crecer ni encogerse de tamaño.</p>
-<p>Creamos una tupla escribiendo una lista de valores separados por comas dentro paréntesis. Cada posición en la tupla tiene un tipo, y los tipos de los diferentes valores en la tupla no tienen que ser iguales. Agregamos anotaciones de tipo opcionales en este ejemplo:</p>
+<p>Una tupla es una forma general de agrupar juntos un número de valores con una variedad de tipos dentro de un tipo compuesto. Las tuplas tienen una longitud fija: una vez declaradas, no pueden crecer ni encogerse de tamaño.</p>
+<p>Creamos una tupla escribiendo una lista de valores separados por comas dentro de un paréntesis. Cada posición en la tupla tiene un tipo, y los tipos de los diferentes valores en la tupla no tienen que ser iguales. Agregamos anotaciones de tipo opcionales en este ejemplo:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let tup: (i32, f64, u8) = (500, 6.4, 1);
@@ -350,20 +348,20 @@ discute los vectores con más detalle.</p>
               &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;];
 <span class="boring">}
 </span></code></pre></pre>
-<p>Escriba el tipo de una matriz usando corchetes con el tipo de cada elemento, un punto y coma y luego la cantidad de elementos en la matriz, así:</p>
+<p>Escriba el tipo de un array usando corchetes con el tipo de cada elemento, un punto y coma, y luego la cantidad de elementos en la matriz, así:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let a: [i32; 5] = [1, 2, 3, 4, 5];
 <span class="boring">}
 </span></code></pre></pre>
 <p>Aquí, <code>i32</code> es el tipo de cada elemento. Después del punto y coma, el número <code>5</code> indica que el array contiene cinco elementos.</p>
-<p>También puede inicializar un array para que contenga el mismo valor para cada elemento especificando el valor inicial, seguido de un punto y coma, y luego la longitud del array entre corchetes, como se muestra aquí:</p>
+<p>También puede inicializar un array para que contenga el mismo valor para cada elemento especificando entre corchetes: el valor inicial, seguido de un punto y coma, y luego la longitud del array, como se muestra aquí:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let a = [3; 5];
 <span class="boring">}
 </span></code></pre></pre>
-<p>El array llamado <code>a</code> contendrá 5 elementos que se establecerán inicialmente en el valor <code>3</code>. Esto es lo mismo que escribir <code>let a = [3, 3, 3, 3, 3];</code> pero de una manera más concisa.</p>
+<p>El array llamado <code>a</code> contendrá 5 elementos que se inicalizarán en el valor <code>3</code>. Esto es lo mismo que escribir <code>let a = [3, 3, 3, 3, 3];</code> pero de una manera más concisa.</p>
 <h5 id="acceso-a-los-elementos-del-array"><a class="header" href="#acceso-a-los-elementos-del-array">Acceso a los Elementos del Array</a></h5>
 <p>Un array es un fragmento único de memoria, de tamaño fijo conocido, que se puede asignar al <em>Stack</em>. Puede acceder a los elementos de un array mediante la indexación, así:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
@@ -375,8 +373,8 @@ discute los vectores con más detalle.</p>
 }
 </code></pre></pre>
 <p>En este ejemplo, la variable llamada <code>first</code> obtendrá el valor <code>1</code>, porque ese
-es el valor en el índice <code>[0]</code> en el array. La variable llamada <code>second</code>
-obtendrá el valor <code>2</code> del índice <code>[1]</code> en el array.</p>
+es el valor en el índice <code>[0]</code> del array. La variable llamada <code>second</code>
+obtendrá el valor <code>2</code> del índice <code>[1]</code> del array.</p>
 <h5 id="acceso-a-elementos-no-válidos-de-un-array"><a class="header" href="#acceso-a-elementos-no-válidos-de-un-array">Acceso a Elementos no válidos de un Array</a></h5>
 <p>Veamos qué sucede si intenta acceder a un elemento de un array que está más allá del final del array. Supongamos que ejecuta este código, similar al juego de adivinanzas del Capítulo 2, para obtener del usuario un índice del array: </p>
 <p><span class="filename">Filename: src/main.rs</span></p>
@@ -403,7 +401,7 @@ fn main() {
     println!(&quot;The value of the element at index {index} is: {element}&quot;);
 }
 </code></pre>
-<p>Este código se compila correctamente. Si ejecuta este código usando <code>cargo run</code> e ingresa 0, 1, 2, 3 o 4, el programa imprimirá el valor correspondiente a ese índice en el array. Si, en cambio, ingresa un número después del final del array, como <code>10</code>, verá un resultado como este: </p>
+<p>Este código se compila correctamente. Si ejecuta este código usando <code>cargo run</code> e ingresa 0, 1, 2, 3 o 4, el programa imprimirá el valor correspondiente a ese índice en el array. Si, en cambio, ingresa un número de índice después del final del array, como <code>10</code>, verá un resultado como este: </p>
 <pre><code class="language-text">thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 10', src/main.rs:19:19
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 </code></pre>
