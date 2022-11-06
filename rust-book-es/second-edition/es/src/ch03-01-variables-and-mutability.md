@@ -31,42 +31,35 @@ Guarde y ejecute el programa usando `cargo run`. Debería recibir un mensaje
 de error, como se muestra en este resultado:
 
 ```text
+$ cargo run
+   Compiling variables v0.1.0 (file:///projects/variables)
 error[E0384]: cannot assign twice to immutable variable `x`
  --> src/main.rs:4:5
   |
 2 |     let x = 5;
-  |         - first assignment to `x`
-3 |     println!("The value of x is: {}", x);
+  |         -
+  |         |
+  |         first assignment to `x`
+  |         help: consider making this binding mutable: `mut x`
+3 |     println!("The value of x is: {x}");
 4 |     x = 6;
   |     ^^^^^ cannot assign twice to immutable variable
+
+For more information about this error, try `rustc --explain E0384`.
+error: could not compile `variables` due to previous error
 ```
 
-Este ejemplo muestra cómo el compilador lo ayuda a encontrar errores en sus
-programas. Aunque los errores del compilador pueden ser frustrantes, solo se
-refieren a que su programa todavía no está haciendo lo que quiere hacer de
-manera segura; ello *no* significan, ¡que no es un buen programador! Los
-*Rustáceos* experimentados aún tienen errores de compilación.
+Este ejemplo muestra cómo el compilador lo ayuda a encontrar errores en sus programas. Aunque los errores del compilador pueden ser frustrantes, solo se refieren a que su programa todavía no está haciendo lo que quiere hacer de manera segura; ello *no* significan, ¡que no es un buen programador! Los *Rustáceos* experimentados aún tienen errores de compilación.
 
-El mensaje de error indica que la causa del error es que `no puede
-asignar dos veces a la variable inmutable x`, porque trató de asignar un
-segundo valor a la variable inmutable `x`.
+El mensaje de error indica que la causa del error es que `no puede asignar dos veces a la variable inmutable 'x'`, porque trató de asignar un segundo valor a la variable inmutable `x`.
 
-Es importante que obtengamos errores de tiempo de compilación cuando
-intentamos cambiar un valor que previamente hemos designado como inmutable
-porque esta misma situación puede conducir a errores. Si una parte de nuestro
-código opera bajo el supuesto de que el valor nunca cambiará y otra parte de
-nuestro código cambia ese valor, es posible que la primera parte del código
-no haga lo que estaba diseñado para hacer. La causa de este tipo de error
-puede ser difícil de rastrear después del hecho, especialmente cuando la
-segunda parte del código cambia el valor solo *algunas veces*.
+Es importante que obtengamos errores de tiempo de compilación cuando intentamos cambiar un valor que previamente hemos designado como inmutable porque esta misma situación puede conducir a fallas. Si una parte de nuestro código opera bajo el supuesto de que el valor nunca cambiará y otra parte de nuestro código cambia ese valor, es posible que la primera parte del código
+no haga lo que estaba diseñado para hacer. La causa de este tipo de error puede ser difícil de rastrear después del hecho, especialmente cuando la segunda parte del código cambia el valor solo *algunas veces*.
 
-En Rust, el compilador garantiza que cuando declara que un valor no cambiará,
-realmente no cambiará. Eso significa que cuando está leyendo y escribiendo
-código, no es necesario que realice un seguimiento de cómo y dónde puede
-cambiar un valor. Su codigo es así más fácil de razonar.
+En Rust, el compilador garantiza que cuando declara que un valor no cambiará, realmente no cambiará. Eso significa que cuando está leyendo y escribiendo código, no es necesario que realice un seguimiento de cómo y dónde puede cambiar un valor. Su codigo es así más fácil de razonar.
 
 Pero la mutabilidad puede ser muy útil. Las variables son inmutables solo por
-defecto; como lo hizo en el Capítulo 2, puede hacer que sean mutables
+defecto. Como lo hizo en el Capítulo 2, puede hacer que sean mutables
 añadiendo `mut` delante del nombre de la variable. Además de permitir que
 este valor cambie, `mut` transmite intención para los futuros lectores del
 código al indicar que en otras partes del código esta variable cambiará de valor.
@@ -95,42 +88,18 @@ The value of x is: 5
 The value of x is: 6
 ```
 
-Se nos permite cambiar el valor al que `x` se une, de `5` a `6`, cuando se usa
-`mut`. En algunos casos, querrá hacer una variable mutable porque hace que el
-código sea más cómodo de escribir que si solo tuviera variables inmutables.
+Podemos cambiar el valor vinculado a `x` de `5` a `6` cuando se usa `mut`. En última instancia, decidir si usar la mutabilidad o no depende de usted y depende de lo que crea que es más claro en esa situación particular.
 
-Existen múltiples compensaciones que se deben considerar además de la
-prevención de errores. Por ejemplo, en los casos en que está utilizando
-estructuras de datos grandes, mutar una instancia en su lugar puede ser más
-rápido que copiar y devolver instancias recientemente asignadas. Con
-estructuras de datos más pequeñas, crear nuevas instancias y escribir en un
-estilo de programación más funcional puede ser más fácil de pensar, por lo
-que un rendimiento inferior podría ser una penalización que valga la pena para
-obtener esa claridad.
+### Constantes
 
-### Diferencias entre variables y constantes
-
-No poder cambiar el valor de una variable podría haberle recordado otro
-concepto de programación que la mayoría de los demás lenguajes tienen:
-*constantes*. Al igual que las variables inmutables, las constantes son
-valores que están vinculados a un nombre y no pueden cambiar, pero existen
-algunas diferencias entre las constantes y las variables.
+Al igual que las variables inmutables, las *constantes* son valores que están vinculados a un nombre y no se les permite cambiar, pero existen algunas diferencias entre las constantes y las variables.
 
 Primero, no está permitido usar `mut` con constantes. Las constantes no son
-solo inmutables por defecto, siempre son inmutables.
+solo inmutables por defecto, siempre son inmutables. Usted declara constantes usando la palabra clave `const` en lugar de la palabra clave `let`, y el tipo del valor *debe* ser anotado. Estamos a punto de cubrir *types* (tipos) y *type annotations* (anotaciones de tipo) en la siguiente sección, ["Tipos de datos"](ch03-02-data-types.html), así que no se preocupe por los detalles en este momento. Solo debe saber que siempre debe anotar el tipo.
 
-Usted declara constantes usando la palabra clave `const` en lugar de la
-palabra clave `let`, y el tipo del valor *debe* ser anotado. Estamos a punto
-de cubrir *types* y *type annotations* en la siguiente sección, ["Tipos de
-datos"](ch03-02-data-types.html), así que no se preocupe por los detalles en este momento. Solo debe saber que siempre debe anotar el tipo.
+Las constantes se pueden declarar en cualquier ámbito, incluido el ámbito global, lo que las hace útiles para valores que muchas partes del código necesitan conocer.
 
-Las constantes se pueden declarar en cualquier ámbito, incluido el alcance
-global, lo que las hace útiles para valores que muchas partes del código
-deben conocer.
-
-La última diferencia es que las constantes se pueden establecer solo en una
-expresión constante, no en el resultado de una llamada a función o cualquier
-otro valor que solo se pueda calcular en tiempo de ejecución.
+La última diferencia es que las constantes pueden establecerse sólo de una expresión constante, no como el resultado de un valor que solo podría calcularse en tiempo de ejecución.
 
 Aquí hay un ejemplo de una declaración constante:
 
@@ -139,25 +108,13 @@ const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
 ```
 El nombre de la constante es `THREE_HOURS_IN_SECONDS` y su valor se establece en el resultado de multiplicar 60 (el número de segundos en un minuto) por 60 (el número de minutos en una hora) por 3 (el número de horas que queremos contar en este programa). La convención de nomenclatura de Rust para las constantes es usar todo en mayúsculas con guiones bajos entre palabras. El compilador puede evaluar un conjunto limitado de operaciones en tiempo de compilación, lo que nos permite optar por escribir este valor en un manera que sea más fácil de entender y verificar, en lugar de establecer esta constante al valor 10.800. Consulte la sección de [Rust Reference sobre "Evaluación Constante" (en inglés)](https://doc.rust-lang.org/stable/reference/const_eval.html) para obtener más información sobre qué operaciones se pueden utilizar al declarar constantes. 
 
-Las constantes son válidas durante todo el tiempo que se ejecuta un programa,
-dentro del alcance en el que fueron declaradas, lo que las convierte en una
-opción útil para los valores en su dominio de aplicación que varias partes
-del programa podrían necesitar conocer, como la cantidad máxima de puntos que
-cualquier jugador de un juego puede ganar o la velocidad de la luz.
+Las constantes son válidas durante todo el tiempo que se ejecuta un programa, dentro del alcance en el que fueron declaradas, lo que las convierte en una opción útil para los valores en su dominio de aplicación que varias partes del programa podrían necesitar conocer, como la cantidad máxima de puntos que cualquier jugador de un juego puede ganar o la velocidad de la luz.
 
-Nombrar los valores codificados usados a lo largo de su programa como
-constantes es útil para transmitir el significado de ese valor a los futuros
-mantenedores del código. También ayuda tener solo un lugar en el código que
-necesitaría cambiar si el valor codificado debe actualizarse en el futuro.
+Nombrar como constantes a los valores codificados usados a lo largo de su programa es útil para transmitir el significado de ese valor a los futuros mantenedores del código. También ayuda tener solo un lugar en el código que necesitaría cambiar si el valor codificado debe actualizarse en el futuro.
 
 ### *Sombreado* (*Shadowing*)
 
-Como se vio en el [Capítulo 2](ch02-00-guessing-game-tutorial.html), puede declarar una
-nueva variable con el mismo nombre que una variable anterior. Los Rustáceos dicen que la primera
-variable es *sombreada* por la segunda, lo que significa que el valor de la
-segunda variable es lo que el compilador verá cuando se use el nombre de la variable. Podemos
-sombrear una variable usando el mismo nombre de variable y repitiendo el uso
-de la palabra clave `let` de la siguiente manera:
+Como se vio en el [Capítulo 2](ch02-00-guessing-game-tutorial.html), puede declarar una nueva variable con el mismo nombre que una variable anterior. Los Rustáceos dicen que la primera variable es *sombreada* por la segunda, lo que significa que el valor de la segunda variable es lo que el compilador verá cuando se use el nombre de la variable. En efecto, la segunda variable *sombrea* a la primera, tomando cualquier uso del nombre de la variable para sí misma hasta que *es oscurecida* de nuevo o finaliza su ámbito. Podemos sombrear una variable usando el mismo nombre de variable y repitiendo el uso de la palabra clave `let` de la siguiente manera:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -176,7 +133,7 @@ fn main() {
 }
 ```
 
-Este programa primero enlaza `x` al valor `5`. Luego crea una nueva variable `x` repitiendo `let x =`, tomando el valor original y sumándole `1`. Entonces ahora el valor de `x` es `6`. Luego, dentro de un ámbito interno creado por las llaves, el tercer `let` también sombrea `x` y crea una nueva variable, multiplicando el valor previo por `2`, dando a `x` un valor de `12`. Cuando ese alcance termina, el sombreado interno también termina y `x` vuelve a ser `6`. Cuando ejecutamos este programa, arrojará lo siguiente: 
+Este programa primero enlaza `x` al valor `5`. Luego crea una nueva variable `x` repitiendo `let x =`, tomando el valor original y sumándole `1`, así que ahora el valor de `x` es `6`. Luego, dentro de un ámbito interno creado por las llaves, el tercer `let` también sombrea `x` y crea una nueva variable, multiplicando el valor previo por `2`, dando a `x` un valor de `12`. Cuando ese alcance termina, el sombreado interno también termina y `x` vuelve a ser `6`. Cuando ejecutamos este programa, arrojará lo siguiente: 
 
 ```text
 $ cargo run
@@ -202,13 +159,14 @@ muestre cuántos espacios quiere entre algunos textos ingresando caracteres
 de espacio en blanco, pero realmente queremos almacenar esa entrada como un número:
 
 ```rust
-let spaces = "   ";
-let spaces = spaces.len();
+# fn main() {
+    let spaces = "   ";
+    let spaces = spaces.len();
+# }
 ```
 
-La primera variable `spaces` es de tipo de *string* y la segunda variable `spaces`, que es una nueva variable que pasa a tener el mismo nombre que la primera, es de tipo de *número*. El
-sombreado nos ahorra tener que pensar en diferentes nombres, como `spaces_str` y `spaces_num`. En su lugar, podemos reutilizar el nombre de `spaces`, lo que lo hace más simple.
-Sin embargo, si tratamos de usar `mut` para esto, como se muestra aquí, obtendremos un error en tiempo de compilación:
+La primera variable `spaces` es un tipo *string* y la segunda variable `spaces`, que es una nueva variable que pasa a tener el mismo nombre que la primera, es un tipo *número*. El
+sombreado nos ahorra tener que pensar en diferentes nombres, como `spaces_str` y `spaces_num`. En su lugar, podemos reutilizar simplemente el nombre de `spaces`. Sin embargo, si tratamos de usar `mut` para esto, como se muestra aquí, obtendremos un error en tiempo de compilación:
 
 ```rust,ignore
 let mut spaces = "   ";
@@ -218,15 +176,19 @@ spaces = spaces.len();
 El error dice que no podemos cambiar el tipo de una variable:
 
 ```text
+$ cargo run
+   Compiling variables v0.1.0 (file:///projects/variables)
 error[E0308]: mismatched types
  --> src/main.rs:3:14
   |
+2 |     let mut spaces = "   ";
+  |                      ----- expected due to this value
 3 |     spaces = spaces.len();
-  |              ^^^^^^^^^^^^ expected &str, found usize
-  |
-  = note: expected type `&str`
-             found type `usize`
+  |              ^^^^^^^^^^^^ expected `&str`, found `usize`
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `variables` due to previous error
 ```
 
-Ahora que hemos explorado cómo funcionan las variables, veamos más tipos de
-datos que pueden haber.
+Ahora que hemos explorado cómo funcionan las variables, veamos qué más tipos de
+datos pueden haber.

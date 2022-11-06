@@ -22,7 +22,7 @@
 - [Comprendiendo la Propiedad (posesión)](ch04-00-understanding-ownership.md)
     - [Qué es la Propiedad?](ch04-01-what-is-ownership.md)
     - [Referencias y Préstamos](ch04-02-references-and-borrowing.md)
-    - [Partes (Slices)](ch04-03-slices.md)
+    - [Segmentos (Slices)](ch04-03-slices.md)
 
 - [Usando Structs para Estructurar Datos Relacionados](ch05-00-structs.md)
     - [Definiendo e Instanciando Structs](ch05-01-defining-structs.md)
@@ -86,7 +86,7 @@
 
 - [Punteros Inteligentes](ch15-00-smart-pointers.md)
     - [`Box<T>` apunta a datos en el Heap y tiene un tamaño conocido](ch15-01-box.md)
-    - [`Deref Trait`: Acceso a los Datos a través de una Referencia](ch15-02-deref.md)
+    - [`Tratamiento de Punteros Inteligentes como Referencias Regulares con el trait Deref`](ch15-02-deref.md)
     - [El `Drop Trait` Ejecuta el Código durante la Limpieza](ch15-03-drop.md)
     - [`Rc<T>`, Puntero Inteligente con Conteo de Referencias](ch15-04-rc.md)
     - [`RefCell<T>` y el Patrón de Mutabilidad Interior](ch15-05-interior-mutability.md)

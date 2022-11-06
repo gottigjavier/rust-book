@@ -1,4 +1,4 @@
-## Tipos de datos
+## Tipos de Datos
 
 Cada valor en Rust es de un cierto *tipo de dato*, que le informa a Rust qué
 tipo de dato se está especificando para que sepa cómo trabajar con ese dato.
@@ -13,42 +13,43 @@ muchos tipos, como cuando convertimos un `String` a un tipo numérico usando
 Capítulo 2, debemos agregar una *anotación de tipo* (*type annotation*), como esta :
 
 ```rust
+# #![allow(unused)]
+# fn main() {
 let guess: u32 = "42".parse().expect("Not a number!");
+# }
 ```
 
-Si no agregamos la anotación de tipo aquí, Rust mostrará el siguiente error,
-lo que significa que el compilador necesita más información de nosotros para
-saber qué tipo queremos usar:
+Si no agregamos la anotación de tipo `:u32` anterior, Rust mostrará el siguiente error, lo que significa que el compilador necesita más información de parte nuestra para saber qué tipo queremos usar:
 
 ```text
+$ cargo build
+   Compiling no_type_annotations v0.1.0 (file:///projects/no_type_annotations)
 error[E0282]: type annotations needed
  --> src/main.rs:2:9
   |
 2 |     let guess = "42".parse().expect("Not a number!");
-  |         ^^^^^
-  |         |
-  |         cannot infer type for `_`
-  |         consider giving `guess` a type
+  |         ^^^^^ consider giving `guess` a type
+
+For more information about this error, try `rustc --explain E0282`.
+error: could not compile `no_type_annotations` due to previous error
 ```
 
-Verá anotaciones de tipos diferentes para otros tipos de datos.
+Verá anotaciones de tipo diferentes para otros tipos de datos.
 
-### Tipos escalares
+### Tipos Escalares
 
 Un tipo *escalar* representa un solo valor. Rust tiene cuatro tipos escalares
-principales: enteros, números de coma flotante, booleanos y caracteres. Puede
+básicos: enteros, números de punto flotante, booleanos y caracteres. Puede
 reconocer estos de otros lenguajes de programación. Veamos cómo funcionan en
 Rust.
 
-#### Tipos *enteros* (*Integer*)
+#### Tipos *Enteros* (*Integer*)
 
 Un *entero* es un número sin un componente fraccionario. Usamos un tipo entero
 en el Capítulo 2, el tipo `u32`. Esta declaración de tipo indica que el valor
 con el que está asociado debe ser un entero sin signo (los tipos enteros con
 signo comienzan con `i`, en lugar de `u`) que ocupan 32 bits de espacio. La
-Tabla 3-1 muestra los tipos enteros integrados en Rust. Cada variante en las
-columnas *Con signo* y *Sin signo* (por ejemplo, `i16`) se puede usar para declarar
-el tipo de un valor entero.
+Tabla 3-1 muestra los tipos enteros incorporados en Rust. Podemos usar cualquiera de estas variantes para declarar el tipo de un valor entero.
 
 <span class="caption">Tabla 3-1: Tipos enteros en Rust</span>
 
@@ -60,12 +61,7 @@ el tipo de un valor entero.
 | 64-bit | `i64`   | `u64`    |
 | arch   | `isize` | `usize`  |
 
-Cada variante puede ser "con signo" o "sin signo" y tiene un tamaño explícito.
-*Con signo* (*Signed*) se refiere a si es posible que el número sea negativo o positivo; en otras palabras, si el número debe tener un signo con él.
-Si solo será positivo puede ser representado *sin signo* (*Unsigned*). Es como escribir números en papel: cuando el signo importa, se muestra un número con un signo más o un
-signo menos; sin embargo, cuando es seguro suponer que el número es positivo,
-se muestra sin signo. Los números *con signo* se almacenan usando la
-representación [complemento a dos](https://es.wikipedia.org/wiki/Complemento_a_dos).
+Cada variante puede ser "con signo" o "sin signo" y tiene un tamaño explícito. *Con signo* y *sin signo* se refieren a si es posible que el número sea negativo; en otras palabras, si el número debe tener un signo con él (*Signed*) o si solo será positivo y, por lo tanto, puede representarse sin signo (*Unsigned*). Es como escribir números en un papel: cuando el signo importa, un número se muestra con un signo más o un signo menos; sin embargo, cuando es seguro asumir que el número es positivo, se muestra *sin signo*. Los números *con signo* se almacenan usando la representación [complemento a dos](https://es.wikipedia.org/wiki/Complemento_a_dos).
 
 Cada variante *con signo* puede almacenar números de -(2<sup>n - 1</sup>) a
 2<sup>n - 1</sup> - 1 inclusive, donde *n* es el número de bits que utiliza la
@@ -78,10 +74,8 @@ Además, los tipos `isize` y `usize` dependen del tipo de computadora en la que
 se ejecute el programa: 64 bits si está en una arquitectura de 64 bits y 32
 bits si está en una arquitectura de 32 bits.
 
-Puede escribir literales enteros en cualquiera de las formas que se muestran
-en la Tabla 3-2. Tenga en cuenta que todos los literales numéricos excepto el
-byte literal permiten un sufijo de tipo, como `57u8`, y `_` como un separador
-visual, como `1_000`.
+Puede escribir literales enteros en cualquiera de las formas que se muestran en la tabla 3-2. Tenga en cuenta que los literales numéricos que pueden ser varios tipos numéricos permiten un sufijo de tipo, como `57u8`, para designar el tipo. Los literales numéricos también pueden usar `_` como separador visual para que el número sea más fácil de leer, como `1_000`, que tendrá el mismo valor que si hubiera especificado `1000`.
+
 
 <span class="caption">Tabla 3-2: Literales enteros en Rust</span>
 
@@ -93,36 +87,35 @@ visual, como `1_000`.
 | Binary           | `0b1111_0000` |
 | Byte (`u8` only) | `b'A'`        |
 
-Entonces, ¿cómo saber qué tipo de número entero usar? Si no está seguro, los
-valores predeterminados de Rust generalmente son buenas opciones, como los tipos predeterminados para enteros: `i32`. Este tipo es generalmente el más rápido, incluso en sistemas de 64 bits. La situación principal en la que usaría `isize` o `usize` es cuando se indexa algún tipo de colección.
+Entonces, ¿cómo saber qué tipo de número entero usar? Si no está seguro, los valores predeterminados de Rust generalmente son buenas opciones. El tipo predeterminado para enteros es `i32`. La situación principal en la que usaría `isize` o `usize` es al indexar algún tipo de colección.
 
-> **Desbordamiento de enteros**
+> **Desbordamiento de Enteros**
 >
-> Digamos que tiene una variable de tipo `u8`que puede contener valores entre 0 y 255. 
+> Digamos que tiene una variable de tipo `u8` que puede contener valores entre 0 y 255. 
 > Si intenta cambiar la variable a un valor fuera de ese rango, como como 256, ocurrirá un *desbordamiento de enteros*, lo que puede resultar en uno de dos comportamientos.
 >
-> Cuando está compilando en modo de depuración, Rust incluye controles de desbordamiento de enteros que hacen que su programa entre en *pánico* en tiempo de ejecución si ocurre este comportamiento. Rust usa el término entrar en pánico cuando un programa sale por un error. Discutiremos los *pánicos* con más profundidad en la sección ["Errores irrecuperables con panic!”](ch09-01-unrecoverable-errors-with-panic.html) del capítulo 9.
+> Cuando está compilando en modo de depuración, Rust incluye verificaciones de desbordamiento de enteros que hacen que su programa entre en *pánico* en tiempo de ejecución si ocurre este comportamiento. Rust usa el término entrar en pánico cuando un programa se cierra por un error. Discutiremos los *pánicos* con más profundidad en la sección ["Errores Irrecuperables con panic!”](ch09-01-unrecoverable-errors-with-panic.html) del capítulo 9.
 >
-> Cuando esté compilando en modo de lanzamiento con la bandera `--release`, Rust no incluye comprobaciones de desbordamiento de enteros que causen pánico. En cambio, si se produce un desbordamiento, Rust realiza el ajuste de complemento a dos. En resumen, los valores mayores que el valor máximo que el tipo puede contener "envuelven" al mínimo de los valores que el tipo puede contener. En el caso de un `u8`, el valor 256 se convierte en 0, el valor 257 se convierte en 1, y así sucesivamente. El programa no entrará en pánico, pero la variable tendrá un valor que probablemente no sea el que esperaba tener. Confiar en el comportamiento de ajuste del desbordamiento de enteros se considera un error.
+> Cuando esté compilando en modo de lanzamiento con la bandera `--release`, Rust no incluye comprobaciones de desbordamiento de enteros que causen pánico. En cambio, si se produce un desbordamiento, Rust realiza el ajuste de complemento a dos. En resumen, los valores mayores que el valor máximo que el tipo puede contener "ajustan" al mínimo de los valores que el tipo puede contener. En el caso de un `u8`, el valor 256 se convierte en 0, el valor 257 se convierte en 1, y así sucesivamente. El programa no entrará en pánico, pero la variable tendrá un valor que probablemente no sea el que esperaba tener. Confiar en el comportamiento de ajuste del desbordamiento de enteros se considera un error.
 >
-> Para manejar explícitamente la posibilidad de desbordamiento, puede usar estas familias de métodos proporcionados por la biblioteca estándar para tipos numéricos primitivos:
+> Para manejar explícitamente la posibilidad de desbordamiento, puede usar estas familias de métodos proporcionadas por la biblioteca estándar para tipos numéricos primitivos:
 >
-> - Envuelva en todos los modos con los métodos `wrapping_*`, tales como `wrapping_add`
+> - Restrinja en todos los modos con los métodos `wrapping_*`, tales como `wrapping_add`
 > - Devuelva el valor `None` si hay desbordamiento con los métodos `checked_*`
 > - Devuelva el valor y un booleano que indica si hubo desbordamiento con los métodos `overflowing_*`
 > - Sature en los valores mínimo o máximo del valor con métodos `saturating_*`
 >
 
 
-#### Tipos de punto flotante
+#### Tipos de Punto Flotante
 
 Rust también tiene dos tipos primitivos para *números de punto flotante*, que
-son números con puntos decimales. Los tipos de punto flotante de Rust son
+son números con cifras decimales. Los tipos de punto flotante de Rust son
 `f32` y `f64`, que son de 32 bits y 64 bits de tamaño, respectivamente. El
 tipo predeterminado es `f64` porque en las CPU modernas se trata con más o menos la
 misma velocidad que `f32`, pero es capaz de obtener más precisión. Todos los tipos de punto flotante son *con signo*.
 
-Aquí hay un ejemplo que muestra los números de coma flotante en acción:
+Aquí hay un ejemplo que muestra los números de punto flotante en acción:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -134,13 +127,13 @@ fn main() {
 }
 ```
 
-Los números de coma flotante se representan según el estándar IEEE-754. El
+Los números de punto flotante se representan según el estándar IEEE-754. El
 tipo `f32` es un *float* de precisión simple, y `f64` tiene doble precisión.
 
 #### Operaciones Numéricas
 
-Rust admite las operaciones matemáticas básicas que esperaría para todos los
-tipos de números: suma, resta, multiplicación, división y resto. La división de enteros se redondea al entero inferior más próximo. El siguiente código muestra cómo usaría cada uno en una declaración `let`:
+Rust soporta las operaciones matemáticas básicas que esperaría para todos los
+tipos de números: adición, sustracción, multiplicación, división y residuo (resto de la división entera). La división de enteros se redondea al entero inferior más próximo. El siguiente código muestra cómo usaría cada uno en una declaración `let`:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -168,9 +161,7 @@ solo valor, que luego se vincula a una variable. El [Apéndice B](appendix-02-op
 
 #### El tipo *booleano* (*Boolean*)
 
-Como en la mayoría de los demás lenguajes de programación, un tipo *booleano* en
-Rust tiene dos valores posibles: `true` y `false`. El tipo *booleano* en Rust se
-especifica con `bool`. Por ejemplo:
+Como en la mayoría de los demás lenguajes de programación, un tipo *booleano* en Rust tiene dos valores posibles: `true` y `false`. Los booleanos tienen un tamaño de un byte. El tipo *booleano* en Rust se especifica con `bool`. Por ejemplo:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -178,44 +169,38 @@ especifica con `bool`. Por ejemplo:
 fn main() {
     let t = true;
 
-    let f: bool = false; // with explicit type annotation
+    let f: bool = false; // con "anotación de tipo" explícita
 }
 ```
 
-La forma principal de usar valores *booleanos* es mediante condicionales, como
-una expresión `if`. Cubriremos cómo funcionan las expresiones `if` en Rust en
-la sección [“Estructuras de Control”](ch03-05-control-flow.html).
+La forma principal de usar valores *booleanos* es mediante condicionales, como una expresión `if`. Cubriremos cómo funcionan las expresiones `if` en Rust en la sección [“Estructuras de Control”](ch03-05-control-flow.html).
 
-#### El tipo carácter
+#### El Tipo Caracter
 
-Hasta ahora solo hemos trabajado con números, pero Rust también admite letras.
-El tipo `char` de Rust es el tipo alfabético más primitivo del lenguaje. He aquí uno ejemplos de cómo declararlo:
+El tipo `char` de Rust es el tipo alfabético más primitivo del lenguaje. Aquí hay algunos ejemplos de cómo declarar valores `char`:
 
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
 fn main() {
     let c = 'z';
-    let z = 'ℤ';
+    let z: char = 'ℤ'; // con "anotación de tipo" explícita
     let heart_eyed_cat = '😻';
 }
 ```
 
-Tenga en cuenta que el literal `char` se especifica con comillas simples, a diferencia de los literales *strings*, que usan comillas dobles. El tipo `char` de Rust tiene un tamaño de cuatro bytes y representa un valor escalar Unicode, lo que significa que puede representar mucho más que solo ASCII. Letras acentuadas; Caracteres chinos, japoneses y coreanos; emoji; y los *espacios de ancho cero* son todos valores `char` válidos en Rust. Los valores escalares Unicode van desde `U + 0000` a `U + D7FF` y `U + E000` a `U + 10FFFF` inclusive. Sin
-embargo, un “carácter” no es realmente un concepto en Unicode, por lo que su
-intuición humana para lo que es un “carácter” puede no coincidir con lo que es
-un `char` en Rust. Discutiremos este tema en detalle en [“Almacenamiento de texto codificado en UTF-8 con Strings”](ch08-02-strings.html) en el Capítulo 8.
+Tenga en cuenta que el literal `char` se especifica con comillas simples, a diferencia de los literales *strings*, que usan comillas dobles. El tipo `char` de Rust tiene un tamaño de cuatro bytes y representa un valor escalar Unicode, lo que significa que puede representar mucho más que solo ASCII. Letras acentuadas; Caracteres chinos, japoneses y coreanos; emoji; y los *espacios de ancho cero* son todos valores `char` válidos en Rust. Los valores escalares Unicode van desde `U + 0000` a `U + D7FF` y `U + E000` a `U + 10FFFF` inclusive. Sin embargo, un “carácter” no es realmente un concepto en Unicode, por lo que su intuición humana para lo que es un “carácter” puede no coincidir con lo que es un `char` en Rust. Discutiremos este tema en detalle en [“Almacenamiento de texto codificado en UTF-8 con Strings”](ch08-02-strings.html) en el Capítulo 8.
 
-### Tipos de compuestos
+### Tipos Compuestos
 
 *Los tipos compuestos* pueden agrupar múltiples valores en un tipo. Rust tiene
 dos tipos de compuestos primitivos: tuplas y matrices.
 
-#### El tipo de *tupla* (*Tuple*)
+#### El tipo *Tupla* (*Tuple*)
 
 Una tupla es una forma general de agrupar un número de valores con una variedad de tipos dentro de un tipo compuesto. Las tuplas tienen una longitud fija: una vez declaradas, no pueden crecer ni encogerse de tamaño.
 
-Creamos una tupla escribiendo una lista de valores separados por comas dentro paréntesis. Cada posición en la tupla tiene un tipo, y los tipos de los diferentes valores en la tupla no tienen que ser iguales.  Agregamos anotaciones de tipo opcionales en este ejemplo:
+Creamos una tupla escribiendo una lista de valores separados por comas dentro paréntesis. Cada posición en la tupla tiene un tipo, y los tipos de los diferentes valores en la tupla no tienen que ser iguales. Agregamos anotaciones de tipo opcionales en este ejemplo:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -225,7 +210,7 @@ fn main() {
 }
 ```
 
-La variable `tup` se une a la tupla completa, porque una tupla se considera un
+La variable `tup` se vincula a la tupla completa, porque una tupla se considera un
 solo elemento compuesto. Para obtener los valores individuales de una tupla,
 podemos usar la coincidencia de patrones para desestructurar un valor de tupla
 como este:
@@ -248,9 +233,7 @@ separadas, `x`, `y`, y `z`. Esto se llama *desestructuración*, porque divide
 la tupla individual en tres partes. Finalmente, el programa imprime el valor
 de `y`, que es `6.4`.
 
-Además de la desestructuración mediante la coincidencia de patrones, podemos
-acceder directamente a un elemento de tupla usando un punto (`.`) seguido del
-índice del valor al que queremos acceder. Por ejemplo:
+También podemos acceder a un elemento de tupla directamente usando un punto (`.`) seguido del índice del valor al que queremos acceder. Por ejemplo:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -272,14 +255,11 @@ programación, el primer índice en una tupla es 0.
 
 La tupla sin ningún valor tiene un nombre especial: *unidad*. Este valor y su correspondiente tipo se escriben `()` y representan un valor vacío o un tipo de retorno vacío. Las expresiones devuelven implícitamente el valor *unidad* si no devuelven cualquier otro valor. 
 
-#### El tipo *matriz* (*Array*)
+#### El tipo *Array* (*Arreglo o Matriz*)
 
-Otra forma de tener una colección de valores múltiples es con un *array*. A
-diferencia de una tupla, cada elemento de un *array* debe tener el mismo tipo.
-A diferencia de algunos otros lenguajes, los *arrays* en Rust tienen una longitud fija: una vez declarados, no pueden crecer o reducirse de tamaño.
+Otra forma de tener una colección de valores múltiples es con un *Array*. A diferencia de una tupla, cada elemento de un *array* debe tener el mismo tipo. A diferencia de algunos otros lenguajes, los *arrays* en Rust tienen una longitud fija: una vez declarados, no pueden crecer o reducirse de tamaño.
 
-En Rust, los valores en un *array* se escriben como una lista
-separada por comas, entre corchetes:
+En Rust, los valores en un *array* se escriben como una lista separada por comas, entre corchetes:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -289,26 +269,47 @@ fn main() {
 }
 ```
 
-Los arrays son útiles cuando quiere que sus datos se asignen en la pila en
-lugar de en el montículo (discutiremos más sobre la pila y el montículo en el
-[Capítulo 4](ch04-01-what-is-ownership.html#la-pila-stack-y-el-mont%C3%ADculo-heap)) o cuando quiera asegurarse de tener siempre una cantidad fija de elementos. Sin embargo, un array no es tan flexible como el tipo de vector. Un vector es un tipo de colección similar provisto por la biblioteca estándar *que* puede crecer o reducir su tamaño. Si no está seguro de utilizar un
+Los arrays son útiles cuando quiere que sus datos se asignen en el *Stack* en
+lugar de en el *Heap* (discutiremos más sobre *Stack* y *Heap* en el
+[Capítulo 4](ch04-01-what-is-ownership.html#la-pila-stack-y-el-mont%C3%ADculo-heap)) o cuando quiera asegurarse de tener siempre una cantidad fija de elementos. Sin embargo, un array no es tan flexible como el tipo vector. Un vector es un tipo de colección similar provisto por la biblioteca estándar *que* puede crecer o reducir su tamaño. Si no está seguro de utilizar un
 array o un vector, probablemente debería usar un vector. El [Capítulo 8](ch08-01-vectors.html)
 discute los vectores con más detalle.
 
-Un ejemplo de cuándo puede querer usar un array en lugar de un vector es un
-programa que necesita saber los nombres de los meses del año. Es muy poco
-probable que dicho programa necesite agregar o eliminar meses, por lo que
-puede usar un array porque sabe que siempre contendrá 12 elementos:
+Sin embargo, los arrays son más útiles cuando sabe que no será necesario cambiar la cantidad de elementos. Por ejemplo, si estuviera usando los nombres de los meses en un programa, probablemente usaría un array en lugar de un vector porque sabe que siempre contendrá 12 elementos:
 
 ```rust
+# #![allow(unused)]
+# fn main() {
 let months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
+# }
 ```
 
-##### Accediendo a elementos de un array
+Escriba el tipo de una matriz usando corchetes con el tipo de cada elemento, un punto y coma y luego la cantidad de elementos en la matriz, así:
 
-Un array es un solo trozo de memoria asignado en la pila. Puede acceder a
-los elementos de un array mediante indexación:
+```rust
+# #![allow(unused)]
+# fn main() {
+let a: [i32; 5] = [1, 2, 3, 4, 5];
+# }
+```
+
+Aquí, `i32` es el tipo de cada elemento. Después del punto y coma, el número `5` indica que el array contiene cinco elementos.
+
+También puede inicializar un array para que contenga el mismo valor para cada elemento especificando el valor inicial, seguido de un punto y coma, y luego la longitud del array entre corchetes, como se muestra aquí:
+
+```rust
+# #![allow(unused)]
+# fn main() {
+let a = [3; 5];
+# }
+```
+
+El array llamado `a` contendrá 5 elementos que se establecerán inicialmente en el valor `3`. Esto es lo mismo que escribir `let a = [3, 3, 3, 3, 3];` pero de una manera más concisa.
+
+##### Acceso a los Elementos del Array
+
+Un array es un fragmento único de memoria, de tamaño fijo conocido, que se puede asignar al *Stack*. Puede acceder a los elementos de un array mediante la indexación, así:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -325,10 +326,9 @@ En este ejemplo, la variable llamada `first` obtendrá el valor `1`, porque ese
 es el valor en el índice `[0]` en el array. La variable llamada `second`
 obtendrá el valor `2` del índice `[1]` en el array.
 
-##### Acceso a elementos no válidos de un array 
+##### Acceso a Elementos no válidos de un Array 
 
-¿Qué sucede si intenta acceder a un elemento de un array que está más allá
-del final del array?. Supongamos que ejecuta este código, similar al juego de adivinanzas en Capítulo 2, haciendo que el usuario ingrese el índice del array: 
+Veamos qué sucede si intenta acceder a un elemento de un array que está más allá del final del array. Supongamos que ejecuta este código, similar al juego de adivinanzas del Capítulo 2, para obtener del usuario un índice del array: 
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -357,13 +357,13 @@ fn main() {
 }
 ```
 
-Este código se compila correctamente. Si ejecuta este código usando `cargo run` e ingresa 0, 1, 2, 3 o 4, el programa imprimirá el valor correspondiente a ese índice en el array. Si, en cambio, ingresa un número después del final del array, como 10, verá un resultado como este: 
+Este código se compila correctamente. Si ejecuta este código usando `cargo run` e ingresa 0, 1, 2, 3 o 4, el programa imprimirá el valor correspondiente a ese índice en el array. Si, en cambio, ingresa un número después del final del array, como `10`, verá un resultado como este: 
 
 ```text
 thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 10', src/main.rs:19:19
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
 
-El programa resultó en un *error de tiempo de ejecución* al momento de usar un valor no válido en la operación de indexación. El programa salió con un mensaje de error y no ejecutó la declaración final `println!`. Cuando intenta acceder a un elemento utilizando la indexación, Rust comprobará que el índice que ha especificado es menor que la longitud del array. Si el índice es mayor o igual que la longitud, Rust entrará en pánico. Esta verificación tiene que ocurrir en tiempo de ejecución, especialmente en este caso, porque el compilador no puede saber qué valor ingresará un usuario cuando se ejecute el código más tarde.
+El programa resultó en un *error en tiempo de ejecución* al momento de usar un valor no válido en la operación de indexación. El programa salió con un mensaje de error y no ejecutó la declaración final `println!`. Cuando intenta acceder a un elemento utilizando la indexación, Rust comprobará que el índice que ha especificado es menor que la longitud del array. Si el índice es mayor o igual que la longitud, Rust entrará en pánico. Esta verificación tiene que ocurrir en tiempo de ejecución, especialmente en este caso, porque el compilador no puede saber qué valor ingresará un usuario cuando se ejecute el código más tarde.
 
 Este es un ejemplo de los principios de seguridad de la memoria de Rust en acción. En muchos lenguajes de bajo nivel, este tipo de verificación no se realiza, y cuando proporciona un índice incorrecto, se puede acceder a memoria no válida. Rust le protege contra este tipo de error al salir inmediatamente en lugar de permitir el acceso a la memoria y continuar. El Capítulo 9 analiza más sobre el manejo de errores de Rust y cómo puede escribir un código legible y seguro que no entre en pánico ni permita el acceso no válido a la memoria.

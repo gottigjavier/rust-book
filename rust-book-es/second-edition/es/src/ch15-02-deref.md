@@ -228,7 +228,7 @@ un `*` en nuestro código. Debido a que la sustitución del operador `*` no se
 repite infinitamente, terminamos con datos del tipo `i32`, que coincide con
 `5` en `assert_eq!` En el Listado 15-9.
 
-### Implicaciones *Deref* implícitas con funciones y métodos
+### Deref Coercions Implícitas con Funciones y Métodos
 
 *Deref coercion* es una conveniencia que Rust realiza en argumentos a
 funciones y métodos. *Deref* coercion convierte una referencia a un tipo que
