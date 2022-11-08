@@ -4,8 +4,7 @@ El primer paso es instalar Rust. Descargaremos Rust a través de `rustup`, una
 herramienta de línea de comando para administrar las versiones de Rust y las
 herramientas asociadas. Necesitará una conexión a Internet para la descarga.
 
-> Nota: si prefiere no usar `rustup` por algún motivo, consulte
-> [la página de instalación de Rust](https://www.rust-lang.org/install.html) > para ver otras opciones.
+> Nota: si prefiere no usar `rustup` por algún motivo, consulte [la página de instalación de Rust](https://www.rust-lang.org/install.html) para ver otras opciones.
 
 Los siguientes pasos instalan la última versión estable del compilador Rust.
 Todos los ejemplos y resultados de este libro usan Rust 1.21.0 estable. Las
@@ -78,7 +77,7 @@ las instrucciones para instalar Rust. En algún momento de la instalación,
 recibirá un mensaje explicando que también necesitará las herramientas de
 compilación de C ++ para Visual Studio 2013 o posterior. La forma más fácil
 de adquirir las herramientas de compilación es instalar
-[Build Tools for Visual Studio 2017][visualstudio]. Las herramientas se
+[Build Tools for Visual Studio][visualstudio]. Las herramientas se
 encuentran en la sección Otras herramientas y marcos.
 
 [instalar]: https://www.rust-lang.org/install.html

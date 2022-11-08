@@ -1,7 +1,7 @@
 ## Estructuras de control (control flow)
 
 > Nota del traductor:
->> La traducción literal de la expresión *control flow* es *flujo de control*, pero sería más acertado traducirlo como *control de flujo* ya que el tema se refiere a la manera de controlar el flujo de la ejecución del código.
+>> La traducción literal del enunciado *control flow* es *flujo de control*, pero sería más acertado traducirlo como *control de flujo* ya que la expresión se refiere a la manera de controlar el flujo de la ejecución del código.
 >> En español, cuando se trata el tema, se lo titula apelando a las estructuras que que ejercen ese control, llamadas *Estructuras de Control*. Este último es el enfoque que se utilizará.
 
 

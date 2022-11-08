@@ -1,0 +1,797 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Traits Avanzados - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Prefacio</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introducción</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Comenzando</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Instalación</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hola, Mundo!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hola, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programando un Juego de Adivinanzas</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Conceptos Comunes de Programación</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables y Mutabilidad</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Tipos de Datos</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Funciones</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comentarios</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Estructuras de Control</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Comprendiendo la Propiedad (posesión)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Qué es la Propiedad?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Referencias y Préstamos</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Segmentos (Slices)</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Usando Structs para Estructurar Datos Relacionados</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Definiendo e Instanciando Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Un Programa Ejemplo Usando Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Sintáxis del Método</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums y Patrones de Concordancia</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Definiendo un Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> El Operador de Estructuras de Control match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Estructura de Control concisa con if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Módulos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod y el Sistema de Archivos</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlando la Visibilidad con pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Rutas para hacer Referencia a un Elemento en el Árbol de Módulos</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Colecciones Comunes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Almacenamiento de listas de valores con Vectores</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Almacenamiento de texto codificado en UTF-8 con Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Mapas Hash</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Manejo de Errores</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Errores Irrecuperables con panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Errores Recuperables con Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> Con panic! o Sin panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Tipos genéricos, Traits y Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Tipos de Datos Genéricos</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Definición del Comportamiento Compartido</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validando Referencias con Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Escribiendo Tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Corriendo Tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Organización de los Tests</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Un Proyecto I/O: Creando un Programa de Línea de Comandos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Aceptando Argumentos de Línea de Comandos</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Leyendo un Archivo</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactorizando para mejorar la Modularidad y el Manejo de Errores</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Desarrollando la Funcionalidad de la Biblioteca con Desarrollo Basado en Pruebas (Test-driven development (TDD))</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Trabajando con Variables de Entorno</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Escribiendo Mensajes de Error en "Error Estándar" en lugar de "Salida Estándar"</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Características del Lenguaje Funcional: Iterators y Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Funciones Anónimas que pueden Capturar su Entorno</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Procesando una Serie de Elementos con Iteradores</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Mejorando Nuestro Proyecto de I/O</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparación de Rendimiento: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Más Acerca de Cargo y Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Personalizando Compilaciones con Perfiles de Lanzamiento</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publicando un Crate en Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Espacios de Trabajo de Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Instalando Binarios desde Crates.io con cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Ampliando Cargo con Comandos Personalizados</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Punteros Inteligentes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; apunta a datos en el Heap y tiene un tamaño conocido</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Tratamiento de Punteros Inteligentes como Referencias Regulares con el trait Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> El Drop Trait Ejecuta el Código durante la Limpieza</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, Puntero Inteligente con Conteo de Referencias</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; y el Patrón de Mutabilidad Interior</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creación de Ciclos de Referencia y la Seguridad en la Fuga de Memoria</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Concurrencia sin Miedo</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Hilos (Threads)</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Paso de Mensajes</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Estado Compartido</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Concurrencia Extensible: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Características de Programación Orientada a Objetos de Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Características de los Lenguajes Orientados a Objetos</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Uso de Objetos Trait que permiten Valores de Diferentes Tipos</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementación de un Patrón de Diseño Orientado a Objetos</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patrones Coinciden con la Estructura de Valores</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> Todos los patrones de lugares pueden ser utilizados</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutabilidad: si un Patrón podría No Coincidir</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> Toda la Sintaxis de Patrones</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Características Avanzadas</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Rust en Modo Inseguro</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-traits.html" class="active"><strong aria-hidden="true">19.2.</strong> Traits Avanzados</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Tipos Avanzados</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Funciones Avanzadas y Closures</a></li><li class="chapter-item expanded "><a href="ch19-05-macros.html"><strong aria-hidden="true">19.5.</strong> Macros</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Proyecto Final: Construcción de un Servidor web Multiprocesos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Un Servidor Web de un solo Proceso</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Transformando nuestro Servidor de un solo Proceso a un Servidor Multiprocesos</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Apagado y Limpieza Elegantes</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Apéndice</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Palabras Claves</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operadores y Símbolos</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Traits Derivables</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Herramientas Útiles de Desarrollo</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Ediciones</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Traducciones</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - Cómo se hace Rust y “Nightly Rust”</a></li><li class="chapter-item expanded "><a href="appendix-08-advanced-lifetimes.html"><strong aria-hidden="true">21.8.</strong> H - Lifetimes Avanzados</a></li><li class="chapter-item expanded "><a href="appendix-09-newest-features.html"><strong aria-hidden="true">21.9.</strong> I - Características más Recientes (previous version)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="advanced-traits"><a class="header" href="#advanced-traits">Advanced Traits</a></h2>
+<p>Primero cubrimos los <em>traits</em> en la sección “Traits: Definición del
+comportamiento compartido” del Capítulo 10, pero al igual que en los
+<em>lifetimes</em>, no discutimos los detalles más avanzados. Ahora que sabes más
+sobre Rust, podemos entrar en detalles.</p>
+<h3 id="especificación-de-tipos-de-marcadores-de-posición-en-definiciones-de-trait-con-tipos-asociados"><a class="header" href="#especificación-de-tipos-de-marcadores-de-posición-en-definiciones-de-trait-con-tipos-asociados">Especificación de tipos de marcadores de posición en definiciones de <em>trait</em> con tipos asociados</a></h3>
+<p><em>Associated types</em> (<em>Tipos asociados</em>) conectan un <em>placeholder</em> (<em>marcador
+de posición</em>) de tipo con un <em>trait</em> tal que las definiciones del método del
+<em>trait</em> pueden usar estos tipos de marcadores en sus firmas. El implementador
+de un <em>trait</em> especificará el tipo concreto que se utilizará en el lugar de
+este tipo para la implementación particular. De esta forma, podemos definir un <em>trait</em> que usa algunos tipos sin necesidad de saber exactamente qué tipos
+son hasta que se implemente el <em>trait</em>.</p>
+<p>Hemos descrito la mayoría de las características avanzadas de este capítulo
+como raramente necesarias. Los tipos asociados están en algún punto
+intermedio: se usan con más raramente que las funciones explicadas en el
+resto del libro, pero más comúnmente que muchas de las otras características
+que se analizan en este capítulo.</p>
+<p>Un ejemplo de un <em>trait</em> con un tipo asociado es el <em>trait</em> <code>Iterator</code> que
+proporciona la biblioteca estándar. El tipo asociado se denomina <code>Item</code> y
+representa el tipo de valores sobre los que se está iterando el tipo que
+implementa el atributo <code>Iterator</code>. En la sección &quot;El <em>trait</em> de <code>Iterator</code> y
+método <code>next</code>” del Capítulo 13, mencionamos que la definición del <em>trait</em> de
+<code>Iterator</code> es como se muestra en el Listado 19-20.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Iterator {
+    type Item;
+
+    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt;;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 19-20: La definición del *trait <code>Iterator</code> que
+tiene un tipo asociado <code>Item</code></span></p>
+<p>El tipo <code>Item</code> es un tipo de marcador de posición, y la definición del método
+<code>next</code> muestra que devolverá valores de tipo <code>Option&lt;Self::Item&gt;</code>. Los
+implementadores del <em>trait</em> <code>Iterator</code> especificarán el tipo concreto
+para <code>Item</code>, y el método <code>next</code> devolverá un <code>Option</code> que contiene un valor
+de ese tipo concreto.</p>
+<p>Los tipos asociados pueden parecer un concepto similar a los genéricos, ya
+que estos últimos nos permiten definir una función sin especificar qué tipos
+puede manejar. Entonces, ¿por qué usar tipos asociados?.</p>
+<p>Examinemos la diferencia entre los dos conceptos con un ejemplo del Capítulo 13 que implementa el <em>trait</em> <code>Iterator</code> en la estructura <code>Counter</code>. En el
+listado 13-21, especificamos que el tipo <code>Item</code> era <code>u32</code>:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt; {
+        // --snip--
+</code></pre>
+<p>Esta sintaxis parece comparable a la de los genéricos. Entonces, ¿por qué no
+simplemente definir el <em>trait</em> <code>Iterator</code> con genéricos, como se muestra en
+el Listado 19-21?</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Iterator&lt;T&gt; {
+    fn next(&amp;mut self) -&gt; Option&lt;T&gt;;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 19-21: Definición hipotética del <em>trait</em>
+<code>Iterator</code> usando genéricos</span></p>
+<p>La diferencia es que al usar genéricos, como en el listado 19-21, debemos
+anotar los tipos en cada implementación; porque también podemos implementar
+<code>Iterator&lt;String&gt; for Counter</code> o cualquier otro tipo, podríamos tener
+múltiples implementaciones de <code>Iterator</code> para <code>Counter</code>. En otras palabras,
+cuando un <em>trait</em> tiene un parámetro genérico, puede implementarse para un
+tipo varias veces, cambiando los tipos concretos de los parámetros de tipo
+genérico cada vez. Cuando utilizamos el método <code>next</code> en <code>Counter</code>,
+deberíamos proporcionar anotaciones tipo para indicar qué implementación de
+<code>Iterator</code> queremos usar.</p>
+<p>Con los tipos asociados, no necesitamos anotar tipos porque no podemos
+implementar un <em>trait</em> en un tipo varias veces. En el listado 19-20 con la
+definición que usa tipos asociados, solo podemos elegir cuál será el tipo de
+<code>Item</code> una vez, porque solo puede haber un <code>impl Iterator for Counter</code>. No es
+necesario que especifiquemos que queremos un iterador de valores <code>u32</code> en
+todas partes que llamemos <code>next</code> en <code>Counter</code>.</p>
+<h3 id="parámetros-genéricos-predeterminados-y-sobrecarga-del-operador"><a class="header" href="#parámetros-genéricos-predeterminados-y-sobrecarga-del-operador">Parámetros genéricos predeterminados y sobrecarga del operador</a></h3>
+<p>Cuando usamos parámetros genéricos, podemos especificar un tipo concreto
+predeterminado para el tipo genérico. Esto elimina la necesidad de que los
+implementadores del <em>trait</em> especifiquen un tipo concreto si el tipo
+predeterminado funciona. La sintaxis para especificar un tipo predeterminado
+para un tipo genérico es <code>&lt;PlaceholderType=ConcreteType&gt;</code> cuando se declara
+el tipo genérico.</p>
+<p>Un gran ejemplo de una situación donde esta técnica es útil es con la
+sobrecarga del operador. <em>Sobrecarga del operador</em> (<em>Operator overloading</em>)
+es la personalización del comportamiento de un operador (como <code>+</code>) en
+situaciones particulares.</p>
+<p>Rust no le permite crear sus propios operadores ni sobrecargar operadores
+arbitrarios. Pero puede sobrecargar las operaciones y los <em>trait</em>
+correspondientes listados en <code>std::ops</code> implementando los <em>trait</em>  asociados
+con el operador. Por ejemplo, en el listado 19-22 sobrecargamos el operador
+<code>+</code> para agregar dos instancias <code>Point</code> juntas. Hacemos esto implementando el
+<em>trait</em>  <code>Add</code> en una estructura <code>Point</code>:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">use std::ops::Add;
+
+#[derive(Debug, PartialEq)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+impl Add for Point {
+    type Output = Point;
+
+    fn add(self, other: Point) -&gt; Point {
+        Point {
+            x: self.x + other.x,
+            y: self.y + other.y,
+        }
+    }
+}
+
+fn main() {
+    assert_eq!(Point { x: 1, y: 0 } + Point { x: 2, y: 3 },
+               Point { x: 3, y: 3 });
+}
+</code></pre></pre>
+<p><span class="caption">Listado 19-22: Implementando el <em>trait</em> <code>Add</code> para
+sobrecargar el operador <code>+</code> para instancias <code>Point</code></span></p>
+<p>El método <code>add</code> agrega los valores <code>x</code> de dos instancias <code>Point</code> y los
+valores <code>y</code> de dos instancias <code>Point</code> para crear un <code>Point</code> nuevo. El <em>trait</em>
+<code>Add</code> tiene un tipo asociado llamado <code>Output</code> que determina el tipo devuelto
+por el método <code>add</code>.</p>
+<p>El tipo genérico predeterminado en este código está dentro del <em>trait</em>
+<code>Add</code>. Aquí está su definición:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>trait Add&lt;RHS=Self&gt; {
+    type Output;
+
+    fn add(self, rhs: RHS) -&gt; Self::Output;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Este código debería parecer generalmente familiar: un <em>trait</em> con un método y
+un tipo asociado. La parte nueva es <code>RHS=Self</code>: esta sintaxis se llama
+<em>parámetros de tipo por defecto</em>. El parámetro de tipo genérico <code>RHS</code>
+(abreviatura de “right hand side”) define el tipo del parámetro <code>rhs</code> en el
+método <code>add</code>. Si no especificamos un tipo concreto para <code>RHS</code> cuando
+implementamos el <em>trait</em> <code>Add</code>, el tipo de <code>RHS</code> cambiará automáticamente a
+<code>Self</code>, que será del tipo en el que estamos implementando <code>Add</code>.</p>
+<p>Cuando implementamos <code>Add</code> para <code>Point</code>, usamos el valor predeterminado para
+<code>RHS</code> porque queríamos agregar dos instancias <code>Point</code>. Veamos un ejemplo de
+implementación del <em>trait</em> <code>Add</code> donde queremos personalizar el tipo <code>RHS</code> en
+lugar de usar el predeterminado.</p>
+<p>Tenemos dos estructuras, <code>Millimeters</code> y <code>Meters</code>, que contienen valores en
+diferentes unidades. Queremos agregar valores en milímetros a valores en
+metros y hacer que la implementación de <code>Add</code> haga la conversión
+correctamente. Podemos implementar <code>Add</code> para <code>Millimeters</code> con <code>Meters</code> como
+<code>RHS</code>, como se muestra en el Listado 19-23.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::ops::Add;
+
+struct Millimeters(u32);
+struct Meters(u32);
+
+impl Add&lt;Meters&gt; for Millimeters {
+    type Output = Millimeters;
+
+    fn add(self, other: Meters) -&gt; Millimeters {
+        Millimeters(self.0 + (other.0 * 1000))
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 19-23: Implementando el <em>trait</em> <code>Add</code> en
+<code>Millimeters</code> para agregar <code>Millimeters</code> a <code>Meters</code></span></p>
+<p>Para agregar <code>Millimeters</code> y <code>Meters</code>, especificamos <code>impl Add&lt;Meters&gt;</code> para
+establecer el valor del parámetro de tipo <code>RHS</code> en lugar de usar el valor
+predeterminado de <code>Self</code>.</p>
+<p>Utilizará parámetros de tipo predeterminados de dos formas principales:</p>
+<ul>
+<li>Para extender un tipo sin romper el código existente</li>
+<li>Para permitir la personalización en casos específicos, la mayoría de los
+usuarios no necesitarán</li>
+</ul>
+<p>El <em>trait</em> <code>Add</code> de la biblioteca estándar es un ejemplo del segundo
+propósito: generalmente, agregará dos tipos similares, pero el <em>trait</em> <code>Add</code>
+proporciona la capacidad de personalizar más allá de eso. El uso de un
+parámetro de tipo predeterminado en la definición del  <em>trait</em> <code>Add</code>
+significa que no tiene que especificar el parámetro extra la mayor parte del
+tiempo. En otras palabras, no se necesita un poco de texto repetitivo de
+implementación, lo que facilita el uso del <em>trait</em>.</p>
+<p>El primer propósito es similar al segundo pero a la inversa: si desea agregar
+un parámetro de tipo a un <em>trait</em> existente, puede otorgarle un valor
+predeterminado para permitir la extensión de la funcionalidad del <em>trait</em> sin
+romper el código de implementación existente.</p>
+<h3 id="sintaxis-totalmente-calificada-para-desambiguación-métodos-de-llamada-con-el-mismo-nombre"><a class="header" href="#sintaxis-totalmente-calificada-para-desambiguación-métodos-de-llamada-con-el-mismo-nombre">Sintaxis totalmente calificada para desambiguación: métodos de llamada con el mismo nombre</a></h3>
+<p>Nada en Rust impide que un <em>trait</em> tenga un método con el mismo nombre que el
+de otro <em>trait</em>, ni Rust le impide implementar ambos <em>traits</em> en un solo
+tipo. También es posible implementar un método directamente en el tipo con el
+mismo nombre que los métodos de los <em>traits</em>.</p>
+<p>Cuando llame a métodos con el mismo nombre, tendrá que decirle a Rust cuál
+quiere usar. Considere el código en el listado 19-24 donde hemos definido dos
+<em>traits</em>, <code>Pilot</code> y <code>Wizard</code>, que tienen un método llamado <code>fly</code>. Luego
+implementamos ambos <em>traits</em> en un tipo <code>Human</code> que ya tiene implementado un método llamado <code>fly</code>. Cada método <code>fly</code> hace algo diferente.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>trait Pilot {
+    fn fly(&amp;self);
+}
+
+trait Wizard {
+    fn fly(&amp;self);
+}
+
+struct Human;
+
+impl Pilot for Human {
+    fn fly(&amp;self) {
+        println!(&quot;This is your captain speaking.&quot;);
+    }
+}
+
+impl Wizard for Human {
+    fn fly(&amp;self) {
+        println!(&quot;Up!&quot;);
+    }
+}
+
+impl Human {
+    fn fly(&amp;self) {
+        println!(&quot;*waving arms furiously*&quot;);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 19-24: Dos <em>traits</em> se definen para tener un
+método <code>fly</code> y se implementan en el tipo <code>Human</code>, y un método <code>fly</code> que se
+implementa en <code>Human</code> directamente</span></p>
+<p>Cuando llamamos <code>fly</code> en una instancia de <code>Human</code>, el compilador establece de
+manera predeterminada el método que se implementa directamente en el tipo,
+como se muestra en el Listado 19-25.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">trait Pilot {
+</span><span class="boring">    fn fly(&amp;self);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">trait Wizard {
+</span><span class="boring">    fn fly(&amp;self);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">struct Human;
+</span><span class="boring">
+</span><span class="boring">impl Pilot for Human {
+</span><span class="boring">    fn fly(&amp;self) {
+</span><span class="boring">        println!(&quot;This is your captain speaking.&quot;);
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Wizard for Human {
+</span><span class="boring">    fn fly(&amp;self) {
+</span><span class="boring">        println!(&quot;Up!&quot;);
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Human {
+</span><span class="boring">    fn fly(&amp;self) {
+</span><span class="boring">        println!(&quot;*waving arms furiously*&quot;);
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn main() {
+    let person = Human;
+    person.fly();
+}
+</code></pre></pre>
+<p><span class="caption">Listado 19-25: Llamar a <code>fly</code> en una instancia de
+<code>Human</code></span></p>
+<p>Al ejecutar este código se imprimirá <code>*waving arms furiously*</code>, mostrando que
+Rust llamó directamente al método <code>fly</code> implementado en <code>Human</code>.</p>
+<p>Para llamar a los métodos <code>fly</code> desde el <em>trait</em> <code>Pilot</code> o el <em>trait</em>
+<code>Wizard</code>, necesitamos usar una sintaxis más explícita para especificar a qué
+método <code>fly</code> nos referimos. El listado 19-26 demuestra esta sintaxis.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">trait Pilot {
+</span><span class="boring">    fn fly(&amp;self);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">trait Wizard {
+</span><span class="boring">    fn fly(&amp;self);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">struct Human;
+</span><span class="boring">
+</span><span class="boring">impl Pilot for Human {
+</span><span class="boring">    fn fly(&amp;self) {
+</span><span class="boring">        println!(&quot;This is your captain speaking.&quot;);
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Wizard for Human {
+</span><span class="boring">    fn fly(&amp;self) {
+</span><span class="boring">        println!(&quot;Up!&quot;);
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Human {
+</span><span class="boring">    fn fly(&amp;self) {
+</span><span class="boring">        println!(&quot;*waving arms furiously*&quot;);
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn main() {
+    let person = Human;
+    Pilot::fly(&amp;person);
+    Wizard::fly(&amp;person);
+    person.fly();
+}
+</code></pre></pre>
+<p><span class="caption">Listado 19-26: Especificando el método <code>fly</code> de ese
+<em>trait</em> que queremos llamar</span></p>
+<p>Especificando el nombre del <em>trait</em> antes de que el nombre del método aclare
+a Rust qué implementación de <code>fly</code> queremos llamar. También podríamos
+escribir <code>Human::fly(&amp;person)</code>, que es equivalente a <code>person.fly()</code> que
+usamos en el listado 19-26, pero esto es un poco más largo de escribir si no
+necesitamos desambiguar.</p>
+<p>Al ejecutar este código, se imprime lo siguiente:</p>
+<pre><code class="language-text">This is your captain speaking.
+Up!
+*waving arms furiously*
+</code></pre>
+<p>Debido a que el método <code>fly</code> toma un parámetro <code>self</code>, si tuviéramos dos
+<em>tipos</em> que implementaran un <em>trait</em>, Rust podría averiguar qué
+implementación de un <em>trait</em> utilizar en función del tipo de <code>self</code>.</p>
+<p>Sin embargo, las funciones asociadas que son parte de <em>trait</em> no tienen un
+parámetro <code>self</code>. Cuando dos tipos en el mismo ámbito implementan ese <em>trait</em>
+Rust no puede determinar a qué tipo se refiere a menos que use la
+<em>sintaxis completa</em>. Por ejemplo, el <em>trait</em> <code>Animal</code> en el Listado 19-27
+tiene la función asociada <code>baby_name</code>, la implementación de <code>Animal</code> para la
+estructura <code>Dog</code>, y la función asociada <code>baby_name</code> definida en <code>Dog</code>
+directamente.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">trait Animal {
+    fn baby_name() -&gt; String;
+}
+
+struct Dog;
+
+impl Dog {
+    fn baby_name() -&gt; String {
+        String::from(&quot;Spot&quot;)
+    }
+}
+
+impl Animal for Dog {
+    fn baby_name() -&gt; String {
+        String::from(&quot;puppy&quot;)
+    }
+}
+
+fn main() {
+    println!(&quot;A baby dog is called a {}&quot;, Dog::baby_name());
+}
+</code></pre></pre>
+<p><span class="caption">Listado 19-27: Un <em>trait</em> con una función asociada y un
+tipo con una función asociada del mismo nombre que también implementa el
+<em>trait</em></span></p>
+<p>Este código es para un refugio de animales que quiere nombrar a todos los
+cachorros <em>Spot</em>, que se implementa en la función asociada <code>baby_name</code> que se
+define en <code>Dog</code>. El tipo <code>Dog</code> también implementa el <em>trait</em> <code>Animal</code>, que
+describe las características que tienen todos los animales. Los perros bebé
+se llaman cachorros, y eso se expresa en la implementación del <em>trait</em>
+<code>Animal</code> en <code>Dog</code> en la función <code>baby_name</code> asociada con el <em>trait</em> <code>Animal</code>.</p>
+<p>En <code>main</code>, llamamos a la función <code>Dog::baby_name</code>, que llama directamente a
+la función asociada definida en <code>Dog</code>. Este código imprime lo siguiente:</p>
+<pre><code class="language-text">A baby dog is called a Spot
+</code></pre>
+<p>Este resultado no es lo que queríamos. Queremos llamar a la función
+<code>baby_name</code> que forma parte del <em>trait</em> <code>Animal</code> que implementamos en <code>Dog</code>,
+por lo que el código se imprime <code>A baby dog is called a puppy</code>. La técnica de
+especificar el nombre del <em>trait</em> que utilizamos en el listado 19-26 no ayuda
+aquí; si cambiamos <code>main</code> al código en el Listado 19-28, obtendremos un error
+de compilación.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">fn main() {
+    println!(&quot;A baby dog is called a {}&quot;, Animal::baby_name());
+}
+</code></pre>
+<p><span class="caption">Listado 19-28: Intentando llamar a la función
+<code>baby_name</code> del <em>trait</em> <code>Animal</code>, pero Rust no sabe qué implementación
+usar</span></p>
+<p>Como <code>Animal::baby_name</code> es una función asociada más que un método, y por lo
+tanto no tiene un parámetro <code>self</code>, Rust no puede determinar qué
+implementación de <code>Animal::baby_name</code> queremos. Obtendremos este error de
+compilación:</p>
+<pre><code class="language-text">error[E0283]: type annotations required: cannot resolve `_: Animal`
+  --&gt; src/main.rs:20:43
+   |
+20 |     println!(&quot;A baby dog is called a {}&quot;, Animal::baby_name());
+   |                                           ^^^^^^^^^^^^^^^^^
+   |
+   = note: required by `Animal::baby_name`
+</code></pre>
+<p>Para desambiguar y decirle a Rust que queremos usar la implementación de
+<code>Animal</code> para <code>Dog</code>, necesitamos usar una sintaxis totalmente calificada. El
+listado 19-29 demuestra cómo utilizar la sintaxis totalmente calificada.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">trait Animal {
+</span><span class="boring">    fn baby_name() -&gt; String;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">struct Dog;
+</span><span class="boring">
+</span><span class="boring">impl Dog {
+</span><span class="boring">    fn baby_name() -&gt; String {
+</span><span class="boring">        String::from(&quot;Spot&quot;)
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Animal for Dog {
+</span><span class="boring">    fn baby_name() -&gt; String {
+</span><span class="boring">        String::from(&quot;puppy&quot;)
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn main() {
+    println!(&quot;A baby dog is called a {}&quot;, &lt;Dog as Animal&gt;::baby_name());
+}
+</code></pre></pre>
+<p><span class="caption">Listado 19-29: Usar la sintaxis totalmente calificada
+para especificar que queremos llamar a la función <code>baby_name</code> del <em>trait</em>
+<code>Animal</code> tal como se implementó en <code>Dog</code></span></p>
+<p>Le proporcionamos a Rust una anotación de tipo dentro de los corchetes
+angulares, lo que indica que queremos llamar al método <code>baby_name</code> del
+<em>trait</em> <code>Animal</code> implementado en <code>Dog</code> diciendo que queremos tratar el tipo
+<code>Dog</code> como un <code>Animal</code> para esta llamada de función. Este código ahora
+imprimirá lo que queremos:</p>
+<pre><code class="language-text">A baby dog is called a puppy
+</code></pre>
+<p>En general, la sintaxis totalmente calificada se define de la siguiente
+manera:</p>
+<pre><code class="language-rust ignore">&lt;Type as Trait&gt;::function(receiver_if_method, next_arg, ...);
+</code></pre>
+<p>Para las funciones asociadas, no habría un <code>receiver</code>: solo habría una lista
+de otros argumentos. Puede usar sintaxis totalmente calificada en todas
+partes a las que llame funciones o métodos. Sin embargo, puede omitir
+cualquier parte de esta sintaxis que Rust pueda deducir de otra información
+en el programa. Solo necesita usar esta sintaxis más detallada en los casos
+en que hay varias implementaciones que usan el mismo nombre y Rust necesita
+ayuda para identificar a qué implementación desea llamar.</p>
+<h3 id="usar-supertraits-para-exigir-la-funcionalidad-de-un-trait-dentro-de-otro-trait"><a class="header" href="#usar-supertraits-para-exigir-la-funcionalidad-de-un-trait-dentro-de-otro-trait">Usar <em>Supertraits</em> para exigir la funcionalidad de un <em>Trait</em> dentro de otro <em>Trait</em></a></h3>
+<p>Algunas veces, puede necesitar un <em>trait</em> para usar la funcionalidad de otro
+<em>trait</em>. En este caso, debe confiar en que los <em>traits</em> dependientes también
+se están implementando. El <em>trait</em> en el que confía es un <em>supertrait</em> del
+<em>trait</em> que está implementando.</p>
+<p>Por ejemplo, supongamos que queremos crear un <em>trait</em> <code>OutlinePrint</code> con un
+método <code>outline_print</code> que imprimirá un valor enmarcado en asteriscos. Es
+decir, dada una estructura <code>Point</code> que implementa <code>Display</code> para dar como
+resultado <code>(x, y)</code>, cuando llamamos a <code>outline_print</code> en una instancia
+<code>Point</code> que tiene <code>1</code> para <code>x</code> y <code>3</code> para <code>y</code>, debe imprimir lo siguiente:</p>
+<pre><code class="language-text">**********
+*        *
+* (1, 3) *
+*        *
+**********
+</code></pre>
+<p>En la implementación de <code>outline_print</code>, queremos usar la funcionalidad del
+<em>trait</em> <code>Display</code>. Por lo tanto, debemos especificar que el <em>trait</em>
+<code>OutlinePrint</code> solo funcionará para los tipos que también implementen
+<code>Display</code> y proporcionen la funcionalidad que <code>OutlinePrint</code> necesita.
+Podemos hacer eso en la definición de <em>trait</em> especificando
+<code>OutlinePrint: Display</code>. Esta técnica es similar a agregar un <em>trait</em> ligado
+al <em>trait</em>. El listado 19-30 muestra una implementación del <em>trait</em>
+<code>OutlinePrint</code>.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::fmt;
+
+trait OutlinePrint: fmt::Display {
+    fn outline_print(&amp;self) {
+        let output = self.to_string();
+        let len = output.len();
+        println!(&quot;{}&quot;, &quot;*&quot;.repeat(len + 4));
+        println!(&quot;*{}*&quot;, &quot; &quot;.repeat(len + 2));
+        println!(&quot;* {} *&quot;, output);
+        println!(&quot;*{}*&quot;, &quot; &quot;.repeat(len + 2));
+        println!(&quot;{}&quot;, &quot;*&quot;.repeat(len + 4));
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 19-30: Implementando el <em>trait</em> <code>OutlinePrint</code>
+que requiere la funcionalidad de <code>Display</code></span></p>
+<p>Debido a que hemos especificado que <code>OutlinePrint</code> requiere el <em>trait</em>
+<code>Display</code>, podemos usar la función <code>to_string</code> que se implementa
+automáticamente para cualquier tipo que implemente <code>Display</code>. Si intentamos
+usar <code>to_string</code> sin agregar dos puntos y especificando el <em>trait</em> <code>Display</code>
+después del nombre del <em>trait</em>, obtendríamos un error al decir que no se
+encontró ningún método llamado <code>to_string</code> para el tipo <code>&amp;Self</code> en el alcance
+actual .</p>
+<p>Veamos qué sucede cuando tratamos de implementar <code>OutlinePrint</code> en un tipo
+que no implementa <code>Display</code>, como la estructura <code>Point</code>:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">trait OutlinePrint {}
+</span>struct Point {
+    x: i32,
+    y: i32,
+}
+
+impl OutlinePrint for Point {}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Recibimos un error al decir que <code>Display</code> es obligatorio pero no implementado:</p>
+<pre><code class="language-text">error[E0277]: the trait bound `Point: std::fmt::Display` is not satisfied
+  --&gt; src/main.rs:20:6
+   |
+20 | impl OutlinePrint for Point {}
+   |      ^^^^^^^^^^^^ `Point` cannot be formatted with the default formatter;
+try using `:?` instead if you are using a format string
+   |
+   = help: the trait `std::fmt::Display` is not implemented for `Point`
+</code></pre>
+<p>Para solucionar esto, implementamos <code>Display</code> en <code>Point</code> y satisfacemos la
+restricción que <code>OutlinePrint</code> requiere, así:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">struct Point {
+</span><span class="boring">    x: i32,
+</span><span class="boring">    y: i32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>use std::fmt;
+
+impl fmt::Display for Point {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        write!(f, &quot;({}, {})&quot;, self.x, self.y)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Luego, la implementación del <em>trait</em> <code>OutlinePrint</code> en <code>Point</code> se compilará
+correctamente, y podemos llamar <code>outline_print</code> en una instancia <code>Point</code> para
+mostrarlo dentro de un contorno de asteriscos.</p>
+<h3 id="uso-del-patrón-newtype-para-implementar-rasgos-externos-en-tipos-externos"><a class="header" href="#uso-del-patrón-newtype-para-implementar-rasgos-externos-en-tipos-externos">Uso del patrón <em>Newtype</em> para implementar rasgos externos en tipos externos</a></h3>
+<p>En el Capítulo 10 en la sección “Implementación de un <em>trait</em> en un tipo”,
+mencionamos la regla huérfana que establece que podemos implementar un
+<em>trait</em> en un tipo, siempre que el <em>trait</em> o el tipo sean locales para
+nuestro <em>crate</em>. Es posible sortear esta restricción usando el
+<em>newtype pattern</em>, que implica la creación de un nuevo tipo en una estructura
+tuple. (Cubrimos las estructuras de tuplas en la sección “Usar estructuras
+<em>Tuple</em> sin <em>Named Fields</em> para crear diferentes tipos” del Capítulo 5). La
+estructura de tuplas tendrá un campo y será un envoltorio del tipo para el
+que queremos implementar un <em>trait</em>. Entonces el tipo de envoltura es local
+para nuestro <em>crate</em>, y podemos implementar el <em>trait</em> en el envoltorio.
+<em>Newtype</em> es un término que se origina del lenguaje de programación Haskell.
+No hay penalización de rendimiento en el tiempo de ejecución para usar este
+patrón, y el tipo de envoltura se elimina en el momento de la compilación.</p>
+<p>Como ejemplo, digamos que queremos implementar <code>Display</code> en <code>Vec&lt;T&gt;</code>, que la
+regla huérfana nos impide hacer directamente porque el <em>trait</em> <code>Display</code> y el
+tipo <code>Vec&lt;T&gt;</code> se definen fuera de nuestro <em>crate</em> . Podemos hacer una
+estructura <code>Wrapper</code> que contenga una instancia de <code>Vec&lt;T&gt;</code>; luego podemos
+implementar <code>Display</code> en <code>Wrapper</code> y usar el valor <code>Vec&lt;T&gt;</code>, como se muestra
+en el Listado 19-31.</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">use std::fmt;
+
+struct Wrapper(Vec&lt;String&gt;);
+
+impl fmt::Display for Wrapper {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        write!(f, &quot;[{}]&quot;, self.0.join(&quot;, &quot;))
+    }
+}
+
+fn main() {
+    let w = Wrapper(vec![String::from(&quot;hello&quot;), String::from(&quot;world&quot;)]);
+    println!(&quot;w = {}&quot;, w);
+}
+</code></pre></pre>
+<p><span class="caption">Listado 19-31: Crear un tipo <code>Wrapper</code> alrededor d
+<code>Vec&lt;String&gt;</code> para implementar <code>Display</code></span></p>
+<p>La implementación de <code>Display</code> usa <code>self.0</code> para acceder al <code>Vec&lt;T&gt;</code> interno,
+porque <code>Wrapper</code> es una estructura <em>tuple</em> y <code>Vec&lt;T&gt;</code>es el ítem en el índice
+0 en la tupla. Entonces podemos usar la funcionalidad del tipo <code>Display</code> en
+<code>Wrapper</code>.</p>
+<p>La desventaja de usar esta técnica es que <code>Wrapper</code> es un tipo nuevo, por lo
+que no tiene los métodos del valor que tiene. Tendríamos que implementar
+todos los métodos de <code>Vec&lt;T&gt;</code> directamente en <code>Wrapper</code> de manera que los
+métodos deleguen en <code>self.0</code>, lo que nos permitiría tratar <code>Wrapper</code>
+exactamente como <code>Vec&lt;T&gt;</code>. Si quisiéramos que el nuevo tipo tuviera todos los
+métodos del tipo interno, implementando el <em>trait</em> <code>Deref</code> (discutido en el
+Capítulo 15 en la sección “Tratar punteros inteligentes como referencias
+regulares con el <em>Trait</em> <code>Deref</code>”) en el <code>Wrapper</code> para devolver el tipo
+interno sería una solución. Si no queremos que el tipo <code>Wrapper</code> tenga todos
+los métodos del tipo interno, por ejemplo, para restringir el comportamiento
+del tipo <code>Wrapper</code>, tendríamos que implementar solo los métodos que queremos
+manualmente.</p>
+<p>Ahora ya sabes cómo se usa el patrón de tipo nuevo en relación con los
+<em>traits</em>; también es un patrón útil incluso cuando los <em>traits</em> no están
+involucrados. Cambiemos el enfoque y veamos algunas formas avanzadas de
+interactuar con el sistema de tipos de Rust.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch19-01-unsafe-rust.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch19-03-advanced-types.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch19-01-unsafe-rust.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch19-03-advanced-types.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

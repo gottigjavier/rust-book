@@ -131,68 +131,28 @@ que desee saltar el Capítulo 2 e ir directamente al Capítulo 3, volviendo al
 Capítulo 2 cuando le gustaría trabajar en un proyecto aplicando los detalles
 que ha aprendido.
 
-El Capítulo 5 discute las estructuras y los métodos, y el Capítulo 6 cubre
-las enumeraciones, las expresiones `match` y la construcción de flujo de
-control `if let`. Utilizará structs y enumeraciones para hacer tipos
-personalizados en Rust.
+El Capítulo 5 discute los `struct` y los métodos, y el Capítulo 6 cubre
+las `enum`, las expresiones `match` y la construcción de la estructura de
+control `if let`. Utilizará `struct` y `enum` para hacer tipos personalizados en Rust.
 
-En el Capítulo 7, aprenderá sobre el sistema de módulos de Rust y sobre las
-reglas de privacidad para organizar su código y su Interfaz de Programación
-de Aplicaciones (API) pública. El Capítulo 8 analiza algunas estructuras de
-datos de recopilación comunes que proporciona la biblioteca estándar, como
-vectores, *string* y mapas hash. El Capítulo 9 explora la filosofía y las
-técnicas de manejo de errores de Rust.
+En el Capítulo 7, aprenderá sobre el sistema de módulos de Rust y sobre las reglas de privacidad para organizar su código y su Interfaz de Programación de Aplicaciones (API) pública. El Capítulo 8 analiza algunas colecciones de estructuras de datos comunes que proporciona la biblioteca estándar, como vectores, cadenas y mapas hash. El Capítulo 9 explora la filosofía y las técnicas de manejo de errores de Rust.
 
-El Capítulo 10 explora los genéricos, los *traits* y los *lifetimes*, que le
-dan la capacidad de definir el código que se aplica a múltiples tipos. El
-Capítulo 11 trata sobre pruebas, que incluso con las garantías de seguridad
-de Rust es necesario para garantizar que la lógica de su programa sea
-correcta. En el Capítulo 12, construiremos nuestra propia implementación de
-un subconjunto de funcionalidades desde la herramienta de línea de comandos
-`grep` que busca texto dentro de los archivos. Para esto, usaremos muchos de
-los conceptos que discutimos en los capítulos anteriores.
+El Capítulo 10 explora los genéricos, los *traits* y los *lifetimes*, que le dan la capacidad de definir el código que se aplica a múltiples tipos. El Capítulo 11 trata sobre pruebas, que incluso con las garantías de seguridad de Rust es necesario para garantizar que la lógica de su programa sea correcta. En el Capítulo 12, construiremos nuestra propia implementación de un subconjunto de funcionalidades desde la herramienta de línea de comandos `grep` que busca texto dentro de los archivos. Para esto, usaremos muchos de los conceptos que discutimos en los capítulos anteriores.
 
-El Capítulo 13 explora *closures* e iteradores: características de Rust que
-provienen de lenguajes de programación funcionales. En el Capítulo 14,
-examinaremos Cargo con más profundidad y hablaremos sobre las mejores
-prácticas para compartir sus bibliotecas con otras personas. El Capítulo 15
-analiza los *smart pointers* que proporciona la biblioteca estándar y los
-*traits* que permiten su funcionalidad.
+El Capítulo 13 explora *closures* e iteradores: características de Rust que provienen de lenguajes de programación funcionales. En el Capítulo 14, examinaremos Cargo con más profundidad y hablaremos sobre las mejores prácticas para compartir sus bibliotecas con otras personas. El Capítulo 15 analiza los *smart pointers* que proporciona la biblioteca estándar y los *traits* que permiten su funcionalidad.
 
-En el Capítulo 16, analizaremos diferentes modelos de programación
-concurrente y hablaremos sobre cómo Rust le ayuda a programar en múltiples
-*hilos* (*threads*) sin miedo. El Capítulo 17 analiza cómo los modismos de
-Rust se comparan con los principios de programación orientada a objetos con
-los que puede estar familiarizado.
+En el Capítulo 16, analizaremos diferentes modelos de programación concurrente y hablaremos sobre cómo Rust le ayuda a programar en múltiples *hilos* (*threads*) sin miedo. El Capítulo 17 analiza cómo los modismos de Rust se comparan con los principios de programación orientada a objetos con los que puede estar familiarizado.
 
-El Capítulo 18 es una referencia sobre patrones y concordancia de patrones,
-que son formas poderosas de expresar ideas a través de los programas de Rust.
-El Capítulo 19 contiene una mezcla heterogénea de temas de interés avanzados,
-incluido Rust *unsafe* y más *lifetimes*, *traits*, tipos, funciones y
-*closures*.
+El Capítulo 18 es una referencia sobre patrones y concordancia de patrones, que son formas poderosas de expresar ideas a través de los programas de Rust. El Capítulo 19 contiene una mezcla heterogénea de temas de interés avanzados, incluido Rust *unsafe* y más *lifetimes*, *traits*, tipos, funciones y *closures*.
 
-En el Capítulo 20, completaremos un proyecto en el que implementaremos un
-servidor web *multithreaded* de bajo nivel.
+En el Capítulo 20, completaremos un proyecto en el que implementaremos un servidor web *multithreaded* de bajo nivel.
 
-Finalmente, algunos apéndices contienen información útil sobre el lenguaje en
-un formato más similar a una referencia. El Apéndice A cubre las palabras
-clave de Rust, el Apéndice B cubre los operadores y símbolos de Rust, el
-Apéndice C cubre los *traits* derivables proporcionados por la biblioteca
-estándar, y el Apéndice D cubre las macros.
+Finalmente, algunos apéndices contienen información útil sobre el lenguaje en un formato más similar a una referencia. El Apéndice A cubre las palabras clave de Rust, el Apéndice B cubre los operadores y símbolos de Rust, el Apéndice C cubre los *traits* derivables proporcionados por la biblioteca estándar, y el Apéndice D cubre las macros.
 
-No hay una manera incorrecta de leer este libro: si quiere saltarse,
-¡adelante! es posible que deba volver a los capítulos anteriores si
-experimenta alguna confusión. Pero haga lo que sea que funcione para usted.
+No hay una manera incorrecta de leer este libro: si quiere saltarse, ¡adelante! es posible que deba volver a los capítulos anteriores si experimenta alguna confusión. Pero haga lo que sea que funcione para usted.
 
-Una parte importante del proceso de aprendizaje de Rust es aprender a leer
-los mensajes de error que muestra el compilador: estos lo guiarán hacia el
-*working code*. Como tal, proporcionaremos muchos ejemplos de código que
-no se compila junto con el mensaje de error que el compilador le mostrará en
-cada situación. ¡Sepa que si ingresa y ejecuta un ejemplo al azar, es posible
-que no compile! Asegúrese de leer el texto que lo rodea para ver si el
-ejemplo que intenta ejecutar está destinado a error. En la mayoría de las
-situaciones, lo guiaremos a la versión correcta de cualquier código que no
-compile.
+Una parte importante del proceso de aprendizaje de Rust es aprender a leer los mensajes de error que muestra el compilador: estos lo guiarán hacia el *working code*. Como tal, proporcionaremos muchos ejemplos de código que no se compila junto con el mensaje de error que el compilador le mostrará en cada situación. ¡Sepa que si ingresa y ejecuta un ejemplo al azar, es posible
+que no compile! Asegúrese de leer el texto que lo rodea para ver si el ejemplo que intenta ejecutar está destinado a error. En la mayoría de las situaciones, lo guiaremos a la versión correcta de cualquier código que no compile.
 
 ## Código fuente
 

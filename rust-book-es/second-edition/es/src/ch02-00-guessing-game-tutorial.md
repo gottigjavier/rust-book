@@ -1,33 +1,27 @@
-# Programando un juego de Adivinación
+# Programando un Juego de Adivinanzas
 
-¡Saltemos a Rust trabajando juntos en un proyecto práctico!. En este
-capítulo, le presentamos algunos conceptos comunes de Rust mostrándole cómo
-usarlos en un programa real. Aprenderá sobre `let`, `match`, métodos,
-funciones asociadas, *crates* externos y más. Los siguientes capítulos
-explorarán estas ideas con más detalle. En este capítulo, practicará los
-fundamentos.
+¡Saltemos a Rust trabajando juntos en un proyecto práctico!. En este capítulo, le presentamos algunos conceptos comunes de Rust mostrándole cómo usarlos en un programa real. Aprenderá sobre `let`, `match`, métodos, funciones asociadas, *crates* externos y más. Los siguientes capítulos
+explorarán estas ideas con más detalle. En este capítulo, practicará los fundamentos.
 
 Implementaremos un problema clásico de programación para principiantes: un
 juego de adivinanzas. Así es como funciona: el programa generará un entero
-aleatorio entre 1 y 100. Luego pedirá al jugador que ingrese una suposición.
-Después de ingresar una suposición, el programa indicará si la suposición es
-demasiado baja o demasiado alta. Si la suposición es correcta, el juego
+aleatorio entre 1 y 100. Luego pedirá al jugador que ingrese una conjetura.
+Después de ingresar una conjetura, el programa indicará si la conjetura es
+demasiado baja o demasiado alta. Si la conjetura es correcta, el juego
 imprimirá un mensaje de felicitación y saldrá.
 
-## Configuración de un nuevo proyecto
+## Configuración de un Nuevo Proyecto
 
 Para configurar un nuevo proyecto, vaya al directorio *projects* que creó en
 el Capítulo 1 y cree un nuevo proyecto utilizando Cargo, de la siguiente
 manera:
 
-```text
+```bash
 $ cargo new guessing_game
 $ cd guessing_game
 ```
 
-El primer comando, `cargo new`, toma el nombre del proyecto
-(`guessing_game`) como primer argumento.
-El segundo comando cambia al directorio del nuevo proyecto.
+El primer comando, `cargo new`, toma el nombre del proyecto (`guessing_game`) como primer argumento. El segundo comando cambia al directorio del nuevo proyecto.
 
 Mire el archivo generado *Cargo.toml*:
 
@@ -43,7 +37,7 @@ edition = "2021"
 ```
 
 
-Como vio en el Capítulo 1, `cargo new` genera un programa “Hello, world!” para usted. Mira el archivo *src/main.rs*:
+Como vio en el Capítulo 1, `cargo new` genera un programa “Hello, world!” para usted. Mire el archivo *src/main.rs*:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -53,10 +47,9 @@ fn main() {
 }
 ```
 
-Ahora compilemos este programa “Hello, world!” y ejecutémoslo en el mismo paso
-usando el comando `cargo run`:
+Ahora compilemos este programa “Hello, world!” y ejecutémoslo en el mismo paso usando el comando `cargo run`:
 
-```text
+```toml
 $ cargo run
    Compiling guessing_game v0.1.0 (file:///projects/guessing_game)
     Finished dev [unoptimized + debuginfo] target(s) in 1.50 secs
@@ -64,19 +57,13 @@ $ cargo run
 Hello, world!
 ```
 
-El comando `run` es útil cuando necesita iterar rápidamente en un proyecto,
-como lo haremos en este juego, probando rápidamente cada iteración antes de
-pasar a la siguiente.
+El comando `run` es útil cuando necesita iterar rápidamente en un proyecto, como lo haremos en este juego, probando rápidamente cada iteración antes de pasar a la siguiente.
 
-Vuelva a abrir el archivo *src/main.rs*. Estará escribiendo todo el código
-en este archivo.
+Vuelva a abrir el archivo *src/main.rs*. Estará escribiendo todo el código en este archivo.
 
-## Procesando una conjetura
+## Procesando una Conjetura
 
-La primera parte del programa del juego de adivinación pedirá la entrada del
-usuario, procesará esa entrada y verificará que la entrada esté en el formato
-esperado. Para comenzar, le permitiremos al jugador ingresar una suposición.
-Ingrese el código en el listado 2-1 en *src/main.rs*.
+La primera parte del programa del juego de adivinación pedirá la entrada del usuario, procesará esa entrada y verificará que la entrada esté en el formato esperado. Para comenzar, le permitiremos al jugador ingresar una conjetura. Ingrese el código en el listado 2-1 en *src/main.rs*.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -97,143 +84,159 @@ fn main() {
 }
 ```
 
-<span class="caption">Listado 2-1: Código que obtiene una suposición del
+<span class="caption">Listado 2-1: Código que obtiene una conjetura del
 usuario y la imprime</span>
 
-Este código contiene mucha información, así que vamos a revisarlo línea por
-línea. Para obtener la entrada del usuario y luego imprimir el resultado
-como salida, tenemos que traer la biblioteca `io` (*input/output*),(*entrada/salida*)
-al *alcance o ámbito* (*scope*). La biblioteca `io` proviene de la biblioteca
-estándar (que se conoce como `std`):
+Este código contiene mucha información, así que vamos a revisarlo línea por línea. Para obtener la entrada del usuario y luego imprimir el resultado como salida, tenemos que traer la biblioteca `io` (*input/output*),(*entrada/salida*) al *alcance o ámbito* (*scope*). La biblioteca `io` proviene de la biblioteca estándar (que se conoce como `std`):
 
 ```rust,ignore
 use std::io;
+#   
+# fn main() {
+#     println!("Guess the number!");
+#
+#     println!("Please input your guess.");
+#
+#     let mut guess = String::new();
+#
+#     io::stdin()
+#         .read_line(&mut guess)
+#         .expect("Failed to read line");
+#
+#     println!("You guessed: {guess}");
+# }
 ```
 
-Por defecto, Rust solo tiene un conjunto de elementos definidos en la biblioteca estándar que trae al ámbito de cada programa. Este conjunto de elementos se llama
-[*preludio*][prelude] <!-- ignore -->. 
-Si un tipo que desea utilizar no está en el preludio, debe traer ese tipo al ámbito explícitamente con una instrucción `use`.
-El uso de la biblioteca `std::io` proporciona varias funciones útiles, incluida la capacidad de aceptar las entradas del usuario.
+Por defecto, Rust solo tiene un conjunto de elementos definidos en la biblioteca estándar que trae al ámbito de cada programa. Este conjunto se llama el preludio, y puede ver todo lo que contiene en la [documentación de la biblioteca estándar](https://doc.rust-lang.org/std/prelude/index.html).
 
-[prelude]: ../../std/prelude/index.html
+Si un tipo que desea utilizar no está en el preludio, debe traer ese tipo al ámbito explícitamente con una instrucción `use`. El uso de la biblioteca `std::io` proporciona varias funciones útiles, incluida la capacidad de aceptar las entradas del usuario.
 
-Como se vio en el Capítulo 1, la función `main` es el punto de entrada al
-programa:
+Como se vio en el Capítulo 1, la función `main` es el punto de entrada al programa:
 
 ```rust,ignore
+# use std::io;
+#
 fn main() {
+#     println!("Guess the number!");
+#
+#     println!("Please input your guess.");
+#
+#     let mut guess = String::new();
+#
+#     io::stdin()
+#         .read_line(&mut guess)
+#         .expect("Failed to read line");
+#
+#     println!("You guessed: {guess}");
+# }
 ```
 
-La sintaxis `fn` declara una nueva función, los paréntesis (vacíos) `()` indican
-que no hay parámetros, y la llave `{` inicia el cuerpo de la función.
+La sintaxis `fn` declara una nueva función, los paréntesis (vacíos) `()` indican que no hay parámetros, y la llave `{` inicia el cuerpo de la función.
 
 Como también aprendió en el Capítulo 1, `println!` Es una macro que imprime
 un *string* en la pantalla:
 
 ```rust,ignore
-println!("Guess the number!");
+# use std::io;
+#
+# fn main() {
+    println!("Guess the number!");
 
-println!("Please input your guess.");
+    println!("Please input your guess.");
+#
+#     let mut guess = String::new();
+#
+#     io::stdin()
+#         .read_line(&mut guess)
+#         .expect("Failed to read line");
+#
+#     println!("You guessed: {guess}");
+# }
 ```
 
-Este código está imprimiendo un mensaje indicando qué es el juego y
-solicitando la opción del usuario.
+Este código está imprimiendo un mensaje indicando qué es el juego y solicitando la opción del usuario.
 
-### Almacenamiento de valores con variables
+### Almacenando Valores con Variables
 
-A continuación, crearemos un lugar para almacenar la entrada del usuario,
-así:
+A continuación, crearemos una varable para almacenar la entrada del usuario, así:
 
 ```rust,ignore
-let mut guess = String::new();
+# use std::io;
+#
+# fn main() {
+#     println!("Guess the number!");
+#
+#     println!("Please input your guess.");
+#
+        let mut guess = String::new();
+#
+#     io::stdin()
+#         .read_line(&mut guess)
+#         .expect("Failed to read line");
+#
+#     println!("You guessed: {guess}");
+# }
 ```
 
-¡Ahora el programa se está poniendo interesante!. Están sucediendo muchas
-cosas en esta pequeña línea. Usamos la instrucción `let` crear la *variable*.
-Aquí hay otro ejemplo:
+¡Ahora el programa se está poniendo interesante!. Están sucediendo muchas cosas en esta pequeña línea. Usamos la sentencia `let` crear la *variable*. Aquí hay otro ejemplo:
 
 ```rust,ignore
-let foo = 5;
+let apples = 5;
 ```
 
-Esta línea crea una nueva variable llamada `foo` y la vincula al valor
-`5`. En Rust, las variables son inmutables por defecto. Discutiremos este
-concepto en detalle en la sección “Variables y mutabilidad” del Capítulo 3. 
-El siguiente ejemplo muestra cómo usar `mut` antes del nombre de la
-variable para hacer que una variable sea mutable:
+Esta línea crea una nueva variable llamada `apples` y la vincula al valor `5`. En Rust, las variables son inmutables de forma predeterminada, lo que significa que una vez que le damos un valor a la variable, el valor no cambiará. Discutiremos este concepto en detalle en la sección ["Variables y Mutabilidad"](ch03-01-variables-and-mutability.html#variables-y-mutabilidad) en el Capítulo 3. Para hacer que una variable sea mutable, agregamos `mut` antes del nombre de la variable:
 
 ```rust,ignore
-let foo = 5; // immutable
-let mut bar = 5; // mutable
+let apples = 5; // immutable
+let mut bananas = 5; // mutable
 ```
 
-> Nota: La sintaxis `//` inicia un comentario que continúa hasta el final de
-> la línea. Rust ignora todo en los comentarios, que se tratan con más
-> detalle en el Capítulo 3.
+> Nota: La sintaxis `//` inicia un comentario que continúa hasta el final de la línea. Rust ignora todo en los comentarios, que se tratan con más detalle en el [Capítulo 3](ch03-04-comments.html#comentarios).
 
-Regresemos al programa de adivinanzas. Ahora sabe que `let mut guess`
-introducirá una variable mutable llamada `guess`. A la derecha del signo
-igual (`=`) está el valor al que `guess` está vinculado, que es el resultado
-de llamar a `String::new()`, una función que devuelve una nueva instancia vacía de tipo
-`String`. [`String`][string] <!-- ignore --> es un tipo de *string* proporcionado por la biblioteca estándar que es un fragmento de texto codificado en UTF-8 que puede crecer.
+Regresemos al programa de adivinanzas. Ahora sabe que `let mut guess` introducirá una variable mutable llamada `guess`. A la derecha del signo igual (`=`) está el valor al que `guess` está vinculado, que es el resultado de llamar a `String::new()`, una función que devuelve una nueva instancia vacía de tipo `String`. [`String`][string] <!-- ignore --> es un tipo de *string* proporcionado por la biblioteca estándar que es un fragmento de texto codificado en UTF-8 que puede crecer.
 
-> Nota del traductor: no dejar pasar que `String` no es un tipo de dato primitivo como podría 
-> serlo en otros lenguajes sino que forma parte de la biblioteca estandar de Rust.
-> Para más información visite [Struct std::string::String](https://doc.rust-lang.org/std/string/struct.String.html).
+> Nota del traductor: no pasar por alto que `String` no es un tipo de dato primitivo como podría serlo en otros lenguajes sino que forma parte de la biblioteca estandar de Rust. Para más información visite [Struct std::string::String](https://doc.rust-lang.org/std/string/struct.String.html).
 
 [string]: ch08-02-strings.md
 
-La sintaxis `::` en la línea `::new()` indica que `new()` es una
-*función asociada* del tipo `String`. Una [`función asociada`](ch05-03-method-syntax.md#funciones-asociadas) es una función que se implementa en un tipo, en este caso un `String`, 
-y no en una instancia particular de ese tipo, como lo haría un método. 
-Algunos lenguajes llaman a esto un *método estático*.
+La sintaxis `::` en la línea `::new()` indica que `new()` es una *función asociada* del tipo `String`. Una [`función asociada`](ch05-03-method-syntax.md#funciones-asociadas) es una función que se implementa en un tipo, en este caso un `String`, y no en una instancia particular de ese tipo, como lo haría un método. Algunos lenguajes llaman a esto un *método estático*.
 
-Esta función `new()` crea un nuevo *string* vacío. Encontrará una función
-`new()` en muchos tipos, porque es un nombre común para darle una función asociada que crea
-un nuevo valor de algún tipo.
+Esta función `new()` crea un nuevo *string* vacío. Encontrará una función `new()` en muchos tipos, porque es un nombre común para darle una función asociada que crea un nuevo valor de algún tipo.
 
-En resumen, la línea `let mut guess = String::new();` ha creado una variable
-mutable que actualmente está vinculada a una nueva instancia vacía de
-`String`. ¡Uf!
+En resumen, la línea `let mut guess = String::new();` ha creado una variable mutable que actualmente está vinculada a una nueva instancia vacía de `String`. ¡Uf!
 
-Recuerde que incluimos la funcionalidad de *entrada/salida* de la biblioteca
-estándar con `use std::io;` en la primera línea del programa. Ahora
-llamaremos a una función asociada, `stdin`, en `io`:
+### Recibiendo la Entrada del Usuario
+
+Recuerde que incluimos la funcionalidad de *entrada/salida* de la biblioteca estándar con `use std::io;` en la primera línea del programa. Ahora llamaremos a la función asociada `stdin` del módulo `io`, que nos permitirá manejar la entrada del usuario:
 
 ```rust,ignore
-io::stdin().read_line(&mut guess)
-    .expect("Failed to read line");
+# use std::io;
+#
+# fn main() {
+#     println!("Guess the number!");
+#
+#     println!("Please input your guess.");
+#
+#         let mut guess = String::new();
+#
+    io::stdin()
+        .read_line(&mut guess)
+#         .expect("Failed to read line");
+#
+#     println!("You guessed: {guess}");
+# }
 ```
 
-Si no hubiésemos enumerado la línea `use std::io` al comienzo del programa,
-podríamos haber escrito esta llamada de función como `std::io::stdin`. La
-función `stdin` devuelve una instancia de
-[`std::io::Stdin`][iostdin] <!-- ignore -->, que es un tipo que representa
-un *handle (manejador)* de la entrada estándar para su terminal.
+Si no hubiésemos enumerado la línea `use std::io` al comienzo del programa, podríamos haber escrito esta llamada de función como `std::io::stdin`. La función `stdin` devuelve una instancia de [`std::io::Stdin`][iostdin] <!-- ignore -->, que es un tipo que representa un *manejador* de la entrada estándar para su terminal.
 
 [iostdin]: https://doc.rust-lang.org/stable/std/io/struct.Stdin.html
 
-La siguiente parte del código, `.read_line(&mut guess)`, llama al método
-[`read_line`][read_line] <!-- ignore --> en el identificador de entrada
-estándar para obtener la entrada del usuario. También estamos pasando un
-argumento a `read_line`:`&mut guess`.
+A continuación, la línea `.read_line(&mut guess)`, llama al método [`read_line`][read_line] <!-- ignore --> en el controlador de entrada estándar para obtener la entrada del usuario. También estamos pasando `&mut guess` como argumento a `read_line` para decirle qué *string* almacenar la entrada del usuario. El trabajo completo de `read_line` es tomar lo que el usuario escriba en la entrada estándar y agregarlo a un *string* (sin sobrescribir su contenido ), por lo que pasamos ese *string* como argumento. El argumento *string* debe ser mutable para que el método pueda cambiar el contenido del *string*.
 
 [read_line]: https://doc.rust-lang.org/stable/std/io/struct.Stdin.html#method.read_line
 
-El trabajo de `read_line` es tomar lo que el usuario escriba en la entrada
-estándar y colocarlo en un *string*, por lo que toma ese *string* como
-argumento. El argumento de *string* debe ser mutable para que el método
-pueda cambiar el contenido del *string* al agregar la entrada del usuario.
-
-El `&` indica que este argumento es una *referencia*, que le permite dejar
-que varias partes de su código accedan a un dato sin necesidad de copiar
-esos datos en la memoria varias veces. Las referencias son una
-característica compleja, y una de las principales ventajas de Rust es la
-seguridad y facilidad de uso de las referencias. No necesita saber muchos de
-esos detalles para finalizar este programa. Por ahora, todo lo que necesita
-saber es que, al igual que las variables, las referencias son inmutables por
-defecto. Por lo tanto, debe escribir `&mut guess`en lugar de `&guess` para
-hacerlo mutable. (El Capítulo 4 explicará las referencias más a fondo).
+El `&` indica que este argumento es una *referencia*, que le permite dejar que varias partes de su código accedan a una parte de los datos sin necesidad de copiar esos datos en la memoria varias veces. Las referencias son una característica compleja, y una de las principales ventajas de Rust es la seguridad y facilidad de uso de las referencias. No necesita saber muchos de
+esos detalles para finalizar este programa. Por ahora, todo lo que necesita saber es que, al igual que las variables, las referencias son inmutables por defecto. Por lo tanto, debe escribir `&mut guess`en lugar de `&guess` para que sea mutable. (El Capítulo 4 explicará las referencias más a fondo).
 
 ### Manejando la falla potencial con el tipo `Result`
 

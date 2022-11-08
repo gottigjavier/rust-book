@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>D - Herramientas Útiles de Desarrollo - The Rust Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Prefacio</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introducción</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Comenzando</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Instalación</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hola, Mundo!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hola, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programando un Juego de Adivinanzas</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Conceptos Comunes de Programación</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables y Mutabilidad</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Tipos de Datos</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Funciones</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comentarios</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Estructuras de Control</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Comprendiendo la Propiedad (posesión)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Qué es la Propiedad?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Referencias y Préstamos</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Segmentos (Slices)</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Usando Structs para Estructurar Datos Relacionados</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Definiendo e Instanciando Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Un Programa Ejemplo Usando Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Sintáxis del Método</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums y Patrones de Concordancia</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Definiendo un Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> El Operador de Estructuras de Control match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Estructura de Control concisa con if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Módulos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod y el Sistema de Archivos</a></li><li class="chapter-item expanded "><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlando la Visibilidad con pub</a></li><li class="chapter-item expanded "><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Rutas para hacer Referencia a un Elemento en el Árbol de Módulos</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Colecciones Comunes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Almacenamiento de listas de valores con Vectores</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Almacenamiento de texto codificado en UTF-8 con Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Mapas Hash</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Manejo de Errores</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Errores Irrecuperables con panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Errores Recuperables con Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> Con panic! o Sin panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Tipos genéricos, Traits y Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Tipos de Datos Genéricos</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Definición del Comportamiento Compartido</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validando Referencias con Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Escribiendo Tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Corriendo Tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Organización de los Tests</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Un Proyecto I/O: Creando un Programa de Línea de Comandos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Aceptando Argumentos de Línea de Comandos</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Leyendo un Archivo</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactorizando para mejorar la Modularidad y el Manejo de Errores</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Desarrollando la Funcionalidad de la Biblioteca con Desarrollo Basado en Pruebas (Test-driven development (TDD))</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Trabajando con Variables de Entorno</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Escribiendo Mensajes de Error en "Error Estándar" en lugar de "Salida Estándar"</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Características del Lenguaje Funcional: Iterators y Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Funciones Anónimas que pueden Capturar su Entorno</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Procesando una Serie de Elementos con Iteradores</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Mejorando Nuestro Proyecto de I/O</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparación de Rendimiento: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Más Acerca de Cargo y Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Personalizando Compilaciones con Perfiles de Lanzamiento</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publicando un Crate en Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Espacios de Trabajo de Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Instalando Binarios desde Crates.io con cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Ampliando Cargo con Comandos Personalizados</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Punteros Inteligentes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; apunta a datos en el Heap y tiene un tamaño conocido</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Tratamiento de Punteros Inteligentes como Referencias Regulares con el trait Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> El Drop Trait Ejecuta el Código durante la Limpieza</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, Puntero Inteligente con Conteo de Referencias</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; y el Patrón de Mutabilidad Interior</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creación de Ciclos de Referencia y la Seguridad en la Fuga de Memoria</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Concurrencia sin Miedo</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Hilos (Threads)</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Paso de Mensajes</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Estado Compartido</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Concurrencia Extensible: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Características de Programación Orientada a Objetos de Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Características de los Lenguajes Orientados a Objetos</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Uso de Objetos Trait que permiten Valores de Diferentes Tipos</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementación de un Patrón de Diseño Orientado a Objetos</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patrones Coinciden con la Estructura de Valores</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> Todos los patrones de lugares pueden ser utilizados</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutabilidad: si un Patrón podría No Coincidir</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> Toda la Sintaxis de Patrones</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Características Avanzadas</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Rust en Modo Inseguro</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Traits Avanzados</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Tipos Avanzados</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Funciones Avanzadas y Closures</a></li><li class="chapter-item expanded "><a href="ch19-05-macros.html"><strong aria-hidden="true">19.5.</strong> Macros</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Proyecto Final: Construcción de un Servidor web Multiprocesos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Un Servidor Web de un solo Proceso</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Transformando nuestro Servidor de un solo Proceso a un Servidor Multiprocesos</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Apagado y Limpieza Elegantes</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Apéndice</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Palabras Claves</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operadores y Símbolos</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Traits Derivables</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html" class="active"><strong aria-hidden="true">21.4.</strong> D - Herramientas Útiles de Desarrollo</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Ediciones</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Traducciones</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - Cómo se hace Rust y “Nightly Rust”</a></li><li class="chapter-item expanded "><a href="appendix-08-advanced-lifetimes.html"><strong aria-hidden="true">21.8.</strong> H - Lifetimes Avanzados</a></li><li class="chapter-item expanded "><a href="appendix-09-newest-features.html"><strong aria-hidden="true">21.9.</strong> I - Características más Recientes (previous version)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="apéndice-d---herramientas-Útiles-de-desarrollo"><a class="header" href="#apéndice-d---herramientas-Útiles-de-desarrollo">Apéndice D - Herramientas Útiles de Desarrollo</a></h2>
+<p>En este apéndice, hablamos de algunas herramientas de desarrollo útiles que el proyecto Rust proporciona. Veremos el formato automático, formas rápidas de aplicar correcciones de  advertencia, un linter e integración con IDEs. </p>
+<h3 id="formateo-automático-con-rustfmt"><a class="header" href="#formateo-automático-con-rustfmt">Formateo Automático con <em>rustfmt</em></a></h3>
+<p>La herramienta <code>rustfmt</code> reformatea su código de acuerdo con el estilo de código de la comunidad. Muchos proyectos colaborativos usan <code>rustfmt</code> para evitar discusiones sobre qué estilo usar al escribir Rust: todos formatean su código usando la herramienta.</p>
+<p>Para instalar <code>rustfmt</code> ingrese lo siguiente:</p>
+<pre><code class="language-text">$ rustup component add rustfmt
+</code></pre>
+<p>Este comando le proporciona <code>rustfmt</code> y <code>cargo-fmt</code>, similar a como Rust te da tanto <code>rustc</code> como <code>cargo</code>. Para dar formato a cualquier proyecto Cargo, ingrese lo siguiente:</p>
+<pre><code class="language-text">$ cargo fmt
+</code></pre>
+<p>Ejecutar este comando reformatea todo el código de Rust en el <em>crate</em> actual. Esto solo debería cambiar el estilo del código, no la semántica del código. Para obtener más información sobre <code>rustfmt</code>, consulte <a href="https://github.com/rust-lang/rustfmt">su documentación</a>.</p>
+<h3 id="corrija-tu-código-con-rustfix"><a class="header" href="#corrija-tu-código-con-rustfix">Corrija tu código con rustfix</a></h3>
+<p>La herramienta <em>rustfix</em> se incluye con las instalaciones de Rust y puede corregir automáticamente las advertencias del compilador que tienen una forma clara de corregir el problema que probablemente sea lo que desea. Es probable que haya visto advertencias del compilador antes. Por ejemplo, considere este código:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn do_something() {}
+
+fn main() {
+    for i in 0..100 {
+        do_something();
+    }
+}
+</code></pre></pre>
+<p>Aquí llamamos a la función <code>do_something</code> 100 veces, pero nunca usamos la variable <code>i</code> en el cuerpo del bucle <code>for</code>. Rust nos advierte sobre eso:</p>
+<pre><code class="language-text">$ cargo build
+   Compiling myprogram v0.1.0 (file:///projects/myprogram)
+warning: unused variable: `i`
+ --&gt; src/main.rs:4:9
+  |
+4 |     for i in 0..100 {
+  |         ^ help: consider using `_i` instead
+  |
+  = note: #[warn(unused_variables)] on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.50s
+</code></pre>
+<p>La advertencia sugiere que usemos <code>_i</code> en su lugar: el guión bajo indica que tenemos la intención de que esta variable no se use. Podemos aplicar automáticamente esa sugerencia usando la herramienta <code>rustfix</code> ejecutando el comando <code>cargo fix</code>:</p>
+<pre><code class="language-text">$ cargo fix
+    Checking myprogram v0.1.0 (file:///projects/myprogram)
+      Fixing src/main.rs (1 fix)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.59s
+</code></pre>
+<p>Cuando volvamos a mirar <em>src/main.rs</em>, veremos que <code>cargo fix</code> ha cambiado el código:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn do_something() {}
+
+fn main() {
+    for _i in 0..100 {
+        do_something();
+    }
+}
+</code></pre></pre>
+<p>La variable de bucle <code>for</code> ahora se llama <code>_i</code> y ya no aparece la advertencia.</p>
+<p>También puede usar el comando <code>cargo fix</code> para hacer la transición de su código entre diferentes ediciones de Rust. Las ediciones están cubiertas en el Apéndice E.</p>
+<h3 id="más-lints-con-clippy"><a class="header" href="#más-lints-con-clippy">Más Lints con Clippy</a></h3>
+<p>La herramienta Clippy es una colección de lints para analizar su código, poder detectar errores comunes y mejorar su código Rust.</p>
+<p>Para instalar Clippy, ingrese lo siguiente:</p>
+<pre><code class="language-text">$ rustup component add clippy
+</code></pre>
+<p>Para ejecutar los lints de Clippy en cualquier proyecto de Cargo, ingrese lo siguiente:</p>
+<pre><code class="language-text">$ cargo clippy
+</code></pre>
+<p>Por ejemplo, supongamos que escribe un programa que usa una aproximación de una constante matemática, como <em>pi</em>, como lo hace este programa:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let x = 3.1415;
+    let r = 8.0;
+    println!(&quot;the area of the circle is {}&quot;, x * r * r);
+}
+</code></pre></pre>
+<p>Ejecutar <code>cargo clippy</code> en este proyecto da como resultado este error:</p>
+<pre><code class="language-text">error: approximate value of `f{32, 64}::consts::PI` found. Consider using it directly
+ --&gt; src/main.rs:2:13
+  |
+2 |     let x = 3.1415;
+  |             ^^^^^^
+  |
+  = note: #[deny(clippy::approx_constant)] on by default
+  = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/master/index.html#approx_constant
+</code></pre>
+<p>Este error le permite saber que Rust ya tiene definida una constante <code>PI</code> más precisa, y que su programa sería más correcto si usara la constante en su lugar. Usted cambiaría entonces su código para usar la constante <code>PI</code>. El siguiente código no genera ningún error o advertencia de Clippy:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let x = std::f64::consts::PI;
+    let r = 8.0;
+    println!(&quot;the area of the circle is {}&quot;, x * r * r);
+}
+</code></pre></pre>
+<p>Para más información sobre Clippy, vea <a href="https://github.com/rust-lang/rust-clippy">esta documentación</a>.</p>
+<h3 id="integración-ide-usando-rust-analyzer"><a class="header" href="#integración-ide-usando-rust-analyzer">Integración IDE usando <em>rust-analyzer</em></a></h3>
+<p>Para ayudar a la integración de IDE, la comunidad de Rust recomienda usar <a href="https://rust-analyzer.github.io/"><code>rust-analyzer</code></a>. Esta herramienta es un conjunto de utilidades centradas en compiladores que habla el <a href="https://langserver.org/">Protocolo del Servidor de Idiomas</a>, que es una especificación para que los IDEs y los lenguajes de programación se comuniquen entre sí. Diferentes clientes pueden usar <code>rust-analyzer</code>, como el <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer">complemento Rust Analyzer para Visual Studio Code</a>.</p>
+<p>Visite la <a href="https://rust-analyzer.github.io/">página de inicio</a> del proyecto <code>rust-analyzer</code> para obtener instrucciones de instalación, luego instale el soporte del servidor de idiomas en su IDE particular. Su IDE obtendrá capacidades como autocompletado, salto a definición y errores en línea de código.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="appendix-03-derivable-traits.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="appendix-05-editions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="appendix-03-derivable-traits.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="appendix-05-editions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
