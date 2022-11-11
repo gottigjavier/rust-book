@@ -2,13 +2,7 @@
 
 Cada valor en Rust es de un determinado tipo de datos, lo que le dice a Rust qué tipo de datos se especifica para que sepa cómo trabajar con esos datos. Veremos dos subconjuntos de tipos de datos: escalares y compuestos.
 
-Tenga en cuenta que Rust es un lenguaje *estáticamente tipado*, lo que
-significa que debe conocer los tipos de todas las variables en tiempo de
-compilación. El compilador generalmente puede inferir qué tipo queremos usar
-en función del valor y cómo lo usamos. En los casos en que son posibles
-muchos tipos, como cuando convertimos un `String` a un tipo numérico usando
-`parse` en la sección [“Comparando la conjetura con el número secreto”](ch02-00-guessing-game-tutorial.html#comparando-la-conjetura-con-el-n%C3%BAmero-secreto) en el
-Capítulo 2, debemos agregar una *anotación de tipo* (*type annotation*), como esta :
+Tenga en cuenta que Rust es un lenguaje *estáticamente tipado*, lo que significa que debe conocer los tipos de todas las variables en tiempo de compilación. El compilador generalmente puede inferir qué tipo queremos usar en función del valor y cómo lo usamos. En los casos en que son posibles muchos tipos, como cuando convertimos un `String` a un tipo numérico usando `parse` en la sección [“Comparando la conjetura con el número secreto”](ch02-00-guessing-game-tutorial.html#comparando-la-conjetura-con-el-n%C3%BAmero-secreto) en el Capítulo 2, debemos agregar una *anotación de tipo* (*type annotation*), como esta :
 
 ```rust
 # #![allow(unused)]
@@ -36,18 +30,11 @@ Verá anotaciones de tipo diferentes para otros tipos de datos.
 
 ### Tipos Escalares
 
-Un tipo *escalar* representa un solo valor. Rust tiene cuatro tipos escalares
-básicos: enteros, números de punto flotante, booleanos y caracteres. Puede
-reconocer estos de otros lenguajes de programación. Veamos cómo funcionan en
-Rust.
+Un tipo *escalar* representa un solo valor. Rust tiene cuatro tipos escalares básicos: enteros, números de punto flotante, booleanos y caracteres. Puede reconocer estos de otros lenguajes de programación. Veamos cómo funcionan en Rust.
 
 #### Tipos *Enteros* (*Integer*)
 
-Un *entero* es un número sin un componente fraccionario. Usamos un tipo entero
-en el Capítulo 2, el tipo `u32`. Esta declaración de tipo indica que el valor
-con el que está asociado debe ser un entero sin signo (los tipos enteros con
-signo comienzan con `i`, en lugar de `u`) que ocupan 32 bits de espacio. La
-Tabla 3-1 muestra los tipos enteros incorporados en Rust. Podemos usar cualquiera de estas variantes para declarar el tipo de un valor entero.
+Un *entero* es un número sin un componente fraccionario. Usamos un tipo entero en el Capítulo 2, el tipo `u32`. Esta declaración de tipo indica que el valor con el que está asociado debe ser un entero sin signo (los tipos enteros con signo comienzan con `i`, en lugar de `u`) que ocupan 32 bits de espacio. La Tabla 3-1 muestra los tipos enteros incorporados en Rust. Podemos usar cualquiera de estas variantes para declarar el tipo de un valor entero.
 
 <span class="caption">Tabla 3-1: Tipos enteros en Rust</span>
 
@@ -68,9 +55,7 @@ variante. Entonces, un `i8` puede almacenar números de -(2<sup>7</sup>) a
 pueden almacenar números de 0 al 2<sup>n</sup> - 1, por lo que un `u8` puede
 almacenar números de 0 a 2<sup>8</sup> - 1, es decir, de 0 a 255.
 
-Además, los tipos `isize` y `usize` dependen del tipo de computadora en la que
-se ejecute el programa: 64 bits si está en una arquitectura de 64 bits y 32
-bits si está en una arquitectura de 32 bits.
+Además, los tipos `isize` y `usize` dependen del tipo de computadora en la que se ejecute el programa: 64 bits si está en una arquitectura de 64 bits y 32 bits si está en una arquitectura de 32 bits.
 
 Puede escribir literales enteros en cualquiera de las formas que se muestran en la tabla 3-2. Tenga en cuenta que los literales numéricos que pueden ser varios tipos numéricos permiten un sufijo de tipo, como `57u8`, para designar el tipo. Los literales numéricos también pueden usar `_` como separador visual para que el número sea más fácil de leer, como `1_000`, que tendrá el mismo valor que si hubiera especificado `1000`.
 
@@ -107,11 +92,7 @@ Entonces, ¿cómo saber qué tipo de número entero usar? Si no está seguro, lo
 
 #### Tipos de Punto Flotante
 
-Rust también tiene dos tipos primitivos para *números de punto flotante*, que
-son números con cifras decimales. Los tipos de punto flotante de Rust son
-`f32` y `f64`, que son de 32 bits y 64 bits de tamaño, respectivamente. El
-tipo predeterminado es `f64` porque en las CPU modernas se trata con más o menos la
-misma velocidad que `f32`, pero es capaz de obtener más precisión. Todos los tipos de punto flotante son *con signo*.
+Rust también tiene dos tipos primitivos para *números de punto flotante*, que son números con cifras decimales. Los tipos de punto flotante de Rust son `f32` y `f64`, que son de 32 bits y 64 bits de tamaño, respectivamente. El tipo predeterminado es `f64` porque en las CPU modernas se trata con más o menos la misma velocidad que `f32`, pero es capaz de obtener más precisión. Todos los tipos de punto flotante son *con signo*.
 
 Aquí hay un ejemplo que muestra los números de punto flotante en acción:
 
@@ -125,37 +106,34 @@ fn main() {
 }
 ```
 
-Los números de punto flotante se representan según el estándar IEEE-754. El
-tipo `f32` es un *float* de precisión simple, y `f64` tiene doble precisión.
+Los números de punto flotante se representan según el estándar IEEE-754. El tipo `f32` es un *float* de precisión simple, y `f64` tiene doble precisión.
 
 #### Operaciones Numéricas
 
-Rust soporta las operaciones matemáticas básicas que esperaría para todos los
-tipos de números: adición, sustracción, multiplicación, división y residuo (resto de la división entera). La división de enteros se redondea al entero inferior más próximo. El siguiente código muestra cómo usaría cada uno en una declaración `let`:
+Rust soporta las operaciones matemáticas básicas que esperaría para todos los tipos de números: adición, sustracción, multiplicación, división y residuo (resto de la división entera). La división de enteros se redondea al entero inferior más próximo. El siguiente código muestra cómo usaría cada uno en una declaración `let`:
 
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
 fn main() {
     // addition
-    let sum = 5 + 10;
+    let sum = 5 + 10; // 15
 
     // subtraction
-    let difference = 95.5 - 4.3;
+    let difference = 95.5 - 4.3; // 91.2
 
     // multiplication
-    let product = 4 * 30;
+    let product = 4 * 30; // 120
 
     // division
-    let quotient = 56.7 / 32.2;
+    let quotient = 56.7 / 32.2; // 1.7608695652173911
 
     // remainder
-    let remainder = 43 % 5;
+    let remainder = 43 % 5; // 3
 }
 ```
 
-Cada expresión en estas declaraciones usa un operador matemático y la evalúa a un
-solo valor, que luego se vincula a una variable. El [Apéndice B](appendix-02-operators.html) contiene una lista de todos los operadores que Rust proporciona.
+Cada expresión en estas declaraciones usa un operador matemático y la evalúa a un solo valor, que luego se vincula a una variable. El [Apéndice B](appendix-02-operators.html) contiene una lista de todos los operadores que Rust proporciona.
 
 #### El Tipo *Booleano* (*Boolean*)
 
@@ -191,10 +169,9 @@ Tenga en cuenta que el literal `char` se especifica con comillas simples, a dife
 
 ### Tipos Compuestos
 
-*Los tipos compuestos* pueden agrupar múltiples valores en un tipo. Rust tiene
-dos tipos de compuestos primitivos: tuplas y arrays.
+*Los tipos compuestos* pueden agrupar múltiples valores en un tipo. Rust tiene dos tipos de compuestos primitivos: tuplas y arrays.
 
-#### El tipo *Tupla* (*Tuple*)
+#### El Tipo *Tupla* (*Tuple*)
 
 Una tupla es una forma general de agrupar juntos un número de valores con una variedad de tipos dentro de un tipo compuesto. Las tuplas tienen una longitud fija: una vez declaradas, no pueden crecer ni encogerse de tamaño.
 
@@ -208,10 +185,7 @@ fn main() {
 }
 ```
 
-La variable `tup` se vincula a la tupla completa, porque una tupla se considera un
-solo elemento compuesto. Para obtener los valores individuales de una tupla,
-podemos usar la coincidencia de patrones para desestructurar un valor de tupla
-como este:
+La variable `tup` se vincula a la tupla completa, porque una tupla se considera un solo elemento compuesto. Para obtener los valores individuales de una tupla, podemos usar la coincidencia de patrones para desestructurar un valor de tupla como este:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -225,11 +199,7 @@ fn main() {
 }
 ```
 
-Este programa crea primero una tupla y la vincula a la variable `tup`. Luego
-usa un patrón con `let` para tomar `tup` y convertirlo en tres variables
-separadas, `x`, `y`, y `z`. Esto se llama *desestructuración*, porque divide
-la tupla individual en tres partes. Finalmente, el programa imprime el valor
-de `y`, que es `6.4`.
+Este programa crea primero una tupla y la vincula a la variable `tup`. Luego usa un patrón con `let` para tomar `tup` y convertirlo en tres variables separadas, `x`, `y`, y `z`. Esto se llama *desestructuración*, porque divide la tupla individual en tres partes. Finalmente, el programa imprime el valor de `y`, que es `6.4`.
 
 También podemos acceder a un elemento de tupla directamente usando un punto (`.`) seguido del índice del valor al que queremos acceder. Por ejemplo:
 
@@ -247,13 +217,11 @@ fn main() {
 }
 ```
 
-Este programa crea la tupla, `x`, y luego crea nuevas variables para cada
-elemento usando su índice. Como con la mayoría de los lenguajes de
-programación, el primer índice en una tupla es 0.
+Este programa crea la tupla, `x`, y luego crea nuevas variables para cada elemento usando su índice. Como con la mayoría de los lenguajes de programación, el primer índice en una tupla es 0.
 
 La tupla sin ningún valor tiene un nombre especial: *unidad*. Este valor y su correspondiente tipo se escriben `()` y representan un valor vacío o un tipo de retorno vacío. Las expresiones devuelven implícitamente el valor *unidad* si no devuelven cualquier otro valor. 
 
-#### El tipo *Array* (*Arreglo o Matriz*)
+#### El Tipo *Array* (*Arreglo o Matriz*)
 
 Otra forma de tener una colección de valores múltiples es con un *Array*. A diferencia de una tupla, cada elemento de un *array* debe tener el mismo tipo. A diferencia de algunos otros lenguajes, los *arrays* en Rust tienen una longitud fija: una vez declarados, no pueden crecer o reducirse de tamaño.
 
@@ -267,11 +235,7 @@ fn main() {
 }
 ```
 
-Los arrays son útiles cuando quiere que sus datos se asignen en el *Stack* en
-lugar de en el *Heap* (discutiremos más sobre *Stack* y *Heap* en el
-[Capítulo 4](ch04-01-what-is-ownership.html#la-pila-stack-y-el-mont%C3%ADculo-heap)) o cuando quiera asegurarse de tener siempre una cantidad fija de elementos. Sin embargo, un array no es tan flexible como el tipo vector. Un vector es un tipo de colección similar provisto por la biblioteca estándar *que* puede crecer o reducir su tamaño. Si no está seguro de utilizar un
-array o un vector, probablemente debería usar un vector. El [Capítulo 8](ch08-01-vectors.html)
-discute los vectores con más detalle.
+Los arrays son útiles cuando quiere que sus datos se asignen en el *Stack* en lugar de en el *Heap* (discutiremos más sobre *Stack* y *Heap* en el [Capítulo 4](ch04-01-what-is-ownership.html#la-pila-stack-y-el-mont%C3%ADculo-heap)) o cuando quiera asegurarse de tener siempre una cantidad fija de elementos. Sin embargo, un array no es tan flexible como el tipo vector. Un vector es un tipo de colección similar provisto por la biblioteca estándar *que* puede crecer o reducir su tamaño. Si no está seguro de utilizar un array o un vector, probablemente debería usar un vector. El [Capítulo 8](ch08-01-vectors.html) discute los vectores con más detalle.
 
 Sin embargo, los arrays son más útiles cuando sabe que no será necesario cambiar la cantidad de elementos. Por ejemplo, si estuviera usando los nombres de los meses en un programa, probablemente usaría un array en lugar de un vector porque sabe que siempre contendrá 12 elementos:
 
@@ -320,11 +284,9 @@ fn main() {
 }
 ```
 
-En este ejemplo, la variable llamada `first` obtendrá el valor `1`, porque ese
-es el valor en el índice `[0]` del array. La variable llamada `second`
-obtendrá el valor `2` del índice `[1]` del array.
+En este ejemplo, la variable llamada `first` obtendrá el valor `1`, porque ese es el valor en el índice `[0]` del array. La variable llamada `second` obtendrá el valor `2` del índice `[1]` del array.
 
-##### Acceso a Elementos no válidos de un Array 
+##### Acceso a Elementos *no válidos* de un Array 
 
 Veamos qué sucede si intenta acceder a un elemento de un array que está más allá del final del array. Supongamos que ejecuta este código, similar al juego de adivinanzas del Capítulo 2, para obtener del usuario un índice del array: 
 

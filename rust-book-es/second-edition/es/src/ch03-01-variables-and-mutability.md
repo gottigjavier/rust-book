@@ -1,17 +1,8 @@
-## Variables y mutabilidad
+## Variables y Mutabilidad
 
-Como se mencionó en el Capítulo 2, las variables son, por defecto,
-inmutables. Este es uno de los muchos empujones que Rust le brinda para
-escribir su código de una manera que aproveche la seguridad y la
-fácil concurrencia que ofrece Rust. Sin embargo, todavía tiene la opción de
-hacer que sus variables sean mutables. Exploremos cómo y por qué Rust lo
-anima a elegir la inmutabilidad y por qué a veces es posible que desee
-no optar por ella.
+Como se mencionó en la sección ["Almacenando Valores con Variables"](ch02-00-guessing-game-tutorial.html#almacenando-valores-con-variables), las variables por defecto son inmutables. Este es uno de los muchos empujones que Rust le da para escribir su código de una manera que aproveche la seguridad y la fácil concurrencia que ofrece Rust. Sin embargo, todavía tiene la opción de hacer que sus variables sean mutables. Exploremos cómo y por qué Rust lo anima a elegir la inmutabilidad y por qué a veces es posible que desee no optar por ella.
 
-Cuando una variable es inmutable, una vez que un valor está vinculado a un
-nombre, no puede cambiar ese valor. Para ilustrar esto, generemos un nuevo
-proyecto llamado *variables* en su directorio *projects* usando
-`cargo new variables`.
+Cuando una variable es inmutable, una vez que un valor está vinculado a un nombre, no puede cambiar ese valor. Para ilustrar esto, generemos un nuevo proyecto llamado *variables* en su directorio *projects* usando `cargo new variables`.
 
 Luego, en su nuevo directorio *variables*, abra *src/main.rs* y reemplace su
 código con el siguiente código que no se compilará aún:
@@ -49,7 +40,7 @@ For more information about this error, try `rustc --explain E0384`.
 error: could not compile `variables` due to previous error
 ```
 
-Este ejemplo muestra cómo el compilador lo ayuda a encontrar errores en sus programas. Aunque los errores del compilador pueden ser frustrantes, solo se refieren a que su programa todavía no está haciendo lo que quiere hacer de manera segura; ello *no* significan, ¡que no es un buen programador! Los *Rustáceos* experimentados aún tienen errores de compilación.
+Este ejemplo muestra cómo el compilador le ayuda a encontrar errores en sus programas. Aunque los errores del compilador pueden ser frustrantes, solo se refieren a que su programa todavía no está haciendo lo que quiere hacer de manera segura; ello *no* significan, ¡que no es un buen programador! Los *Rustáceos* experimentados aún tienen errores de compilación.
 
 El mensaje de error indica que la causa del error es que `no puede asignar dos veces a la variable inmutable 'x'`, porque trató de asignar un segundo valor a la variable inmutable `x`.
 

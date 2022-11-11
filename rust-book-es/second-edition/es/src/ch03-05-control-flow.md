@@ -57,7 +57,15 @@ Probemos cambiando el valor de `number` a un valor que haga que la condición se
 `false` para ver qué sucede:
 
 ```rust,ignore
-let number = 7;
+# fn main() {
+    let number = 7;
+#
+#     if number < 5 {
+#         println!("condition was true");
+#     } else {
+#         println!("condition was false");
+#     }
+# }
 ```
 
 Ejecute el programa nuevamente y observe el resultado:
@@ -315,7 +323,7 @@ fn main() {
 }
 ```
 
-Antes del ciclo, declaramos una variable llamada `countere` y la inicializamos a `0`. Luego declaramos una variable llamada `result` que espera el valor devuelto por el bucle. En cada iteración del bucle, sumamos `1` a la variable `counter`, y luego verifica si el contador es igual a `10`. Cuando lo es, usamos la palabra clave `break` con el valor `counter * 2`. Después del bucle, usamos un punto y coma para finalizar la sentencia que asigna el valor a `result`. Finalmente, imprimimos el valor en `result`, que en este caso es `20`.
+Antes del ciclo, declaramos una variable llamada `counter` y la inicializamos a `0`. Luego declaramos una variable llamada `result` que espera el valor devuelto por el bucle. En cada iteración del bucle, sumamos `1` a la variable `counter`, y luego verifica si el contador es igual a `10`. Cuando lo es, usamos la palabra clave `break` con el valor `counter * 2`. Después del bucle, usamos un punto y coma para finalizar la sentencia que asigna el valor a `result`. Finalmente, imprimimos el valor en `result`, que en este caso es `20`.
 
 #### Etiquetas de Bucle para Desambiguar entre Múltiples Bucles
 
@@ -345,7 +353,7 @@ fn main() {
 }
 ```
 
-El bucle exterior tiene la etiqueta `'counting_up`, y contará de `0` a `2`. El bucle interior sin etiqueta cuenta hacia atrás de `10` a `9`. El primer `break`, que no especifica una etiqueta, solo saldrá del ciclo interno. La declaración `break 'counting_up;` saldrá del ciclo externo. Este código imprime:
+El bucle externo tiene la etiqueta `'counting_up`, y contará de `0` a `2`. El bucle interno sin etiqueta cuenta hacia atrás de `10` a `9`. El primer `break`, que no especifica una etiqueta, solo saldrá del ciclo interno. La declaración `break 'counting_up;` saldrá del ciclo externo. Este código imprime:
 
 ```text
 $ cargo run

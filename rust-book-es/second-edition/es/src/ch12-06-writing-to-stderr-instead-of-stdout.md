@@ -1,4 +1,4 @@
-## Escribir mensajes de error a *Standard Error* en lugar de *Standard Output*
+## Escribiendo Mensajes de Error en "Standard Error" en lugar de "Standard Output"
 
 Por el momento, estamos escribiendo toda nuestra salida al terminal usando la
 función `println!`. La mayoría de los terminales proporcionan dos tipos de

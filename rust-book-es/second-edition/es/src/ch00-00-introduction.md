@@ -154,6 +154,10 @@ No hay una manera incorrecta de leer este libro: si quiere saltarse, ¡adelante!
 Una parte importante del proceso de aprendizaje de Rust es aprender a leer los mensajes de error que muestra el compilador: estos lo guiarán hacia el *working code*. Como tal, proporcionaremos muchos ejemplos de código que no se compila junto con el mensaje de error que el compilador le mostrará en cada situación. ¡Sepa que si ingresa y ejecuta un ejemplo al azar, es posible
 que no compile! Asegúrese de leer el texto que lo rodea para ver si el ejemplo que intenta ejecutar está destinado a error. En la mayoría de las situaciones, lo guiaremos a la versión correcta de cualquier código que no compile.
 
+> Nota del Traductor:
+>
+>> Algunos conceptos en el mundo de la programación están muy ligados a una palabra o expresión en el idioma inglés y/o son de uso muy habitual. En esos casos se ha decidido realizar una traducción de la mejor manera posible y sólo en los primeros usos. Esto, además de evitar hambigüedades, beneficia tanto a los lectores que ya manejan dichos conceptos, como a los que recién los descubren, dándoles la oportunidad de incorporar su utilización.
+
 ## Código fuente
 
 *Los archivos de origen de los que se genera este libro se pueden encontrar en (versión original ingles)*

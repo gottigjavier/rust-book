@@ -121,7 +121,7 @@ Llamamos a la función con `5` como el valor para `value` y `'h'` como el valor 
 ### Sentencias y Expresiones
 
 Los cuerpos de las funciones están formados por una serie de sentencias que opcionalmente
-terminan en una expresión. Hasta ahora, las funciones que hemos cubierto no han incluido una expresión final, pero ya ha visto una expresión como parte de una sentencias. Debido a que Rust es un lenguaje basado en expresiones, esta es una distinción importante de entender.
+terminan en una expresión. Hasta ahora, las funciones que hemos cubierto no han incluido una expresión final, pero ya ha visto una expresión como parte de una sentencia. Debido a que Rust es un lenguaje basado en expresiones, esta es una distinción importante de entender.
 Otros lenguajes no tienen las mismas distinciones, así que veamos qué son sentencias y expresiones, y cómo sus diferencias afectan los cuerpos de las funciones.
 
 Las *Sentencias* son instrucciones que realizan alguna acción y no devuelven un valor. Las *Expresiones* se evalúan y arrojan un valor resultante. Veamos algunos ejemplos.

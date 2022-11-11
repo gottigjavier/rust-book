@@ -1,4 +1,4 @@
-## El tipo Slice (Segmento)
+## El Tipo Slice (Segmento)
 
 Los *Slices* le permiten hacer referencia a un secuencia contigua de elementos en una colección en lugar de toda la colección. Un *Slice* es una especie de referencia, por lo que no tiene la propiedad.
 
@@ -10,10 +10,7 @@ Analicemos cómo escribiríamos la firma de esta función sin usar *Slices*, par
 fn first_word(s: &String) -> ?
 ```
 
-La función `first_word` tiene un `&String` como parámetro. No queremos
-la *propiedad*, así que eso está bien. Pero, ¿qué deberíamos devolver?
-Realmente no tenemos una forma de hablar sobre *parte* de un *string*. Sin embargo,
-podríamos devolver el índice del final de la palabra, indicado por un espacio. Probemos eso, como se muestra en el Listado 4-7.
+La función `first_word` tiene un `&String` como parámetro. No queremos la *propiedad*, así que eso está bien. Pero, ¿qué deberíamos devolver? Realmente no tenemos una forma de hablar sobre *parte* de un *string*. Sin embargo, podríamos devolver el índice del final de la palabra, indicado por un espacio. Probemos eso, como se muestra en el Listado 4-7.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -29,24 +26,49 @@ fn first_word(s: &String) -> usize {
 
     s.len()
 }
+
+# fn main() {}
 ```
 
-<span class="caption">Listing 4-7: La función `first_word` que devuelve un valor de
-índice de byte en el parámetro `String`</span>
+<span class="caption">Listing 4-7: La función `first_word` que devuelve un valor de índice de byte en el parámetro `String`</span>
 
 Debido a que necesitamos recorrer el `String` elemento por elemento y comprobar si un valor es un espacio, convertiremos nuestro `String` a un array de bytes utilizando el método `as_bytes`:
 
 ```rust,ignore
-let bytes = s.as_bytes();
+# fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
+#
+#     for (i, &item) in bytes.iter().enumerate() {
+#         if item == b' ' {
+#             return i;
+#         }
+#     }
+#
+#     s.len()
+# }
+#
+# fn main() {}
 ```
 
 A continuación, creamos un iterador sobre el array de bytes utilizando el método `iter`:
 
 ```rust,ignore
-for (i, &item) in bytes.iter().enumerate() {
+# fn first_word(s: &String) -> usize {
+#     let bytes = s.as_bytes();
+#
+    for (i, &item) in bytes.iter().enumerate() {
+#         if item == b' ' {
+#             return i;
+#         }
+#     }
+#
+#     s.len()
+# }
+#
+# fn main() {}
 ```
 
-Analizaremos iteradores con más detalle en el [Capítulo 13](ch13-02-iterators.html). Por ahora, sepa que `iter` es un método que devuelve cada elemento de una colección y que `enumerate` adapta el resultado de `iter` y en su lugar devuelve cada elemento como parte de un tupla. El primer elemento de la tupla devuelta de `enumerate` es el índice, y el segundo elemento es una referencia al elemento. Esto es un poco más conveniente que calcular el índice nosotros mismos.
+Analizaremos iteradores con más detalle en el [Capítulo 13](ch13-02-iterators.html). Por ahora, sepa que `iter` es un método que devuelve cada elemento de una colección y que `enumerate` adapta el resultado de `iter` y en su lugar devuelve cada elemento como parte de una tupla. El primer elemento de la tupla devuelta de `enumerate` es el índice, y el segundo elemento es una referencia al elemento. Esto es un poco más conveniente que calcular el índice nosotros mismos.
 
 Debido a que el método `enumerate` devuelve una tupla, podemos usar patrones
 para desestructurar esa tupla. Hablaremos más sobre los patrones en el [Capítulo 6](ch06-02-match.html). En el bucle `for`, especificamos un patrón que tiene `i` para el
@@ -138,7 +160,7 @@ Un *string slice* es una referencia a parte de un `String`, y se ve así:
 # }
 ```
 
-En lugar de una referencia a todo el `String`, `hello` es una referencia a una parte del `String`, especificado en el agregado extra [0..5]. Creamos segmentos usando un rango entre corchetes especificando `[índice_inicial..índice_final]`, donde el `índice_inicial` es la primera posición en el segmento y el `índice_final` es uno más que la última posición en el segmento. Internamente, la estructura de datos del segmento almacena la posición inicial y la longitud del segmento, que corresponde al `índice_final` menos el `índice_inicial`. Entonces, en el caso de `let world = &s[6..11];`, `world` sería un segmento que contiene un puntero al byte con índice 6 de `s`, con un valor de longitud 5.
+En lugar de una referencia a todo el `String`, `hello` es una referencia a una parte del `String`, especificado en el agregado extra `[0..5]`. Creamos segmentos usando un rango entre corchetes especificando `[índice_inicial..índice_final]`, donde el `índice_inicial` es la primera posición en el segmento y el `índice_final` es uno más que la última posición en el segmento. Internamente, la estructura de datos del segmento almacena la posición inicial y la longitud del segmento, que corresponde al `índice_final` menos el `índice_inicial`. Entonces, en el caso de `let world = &s[6..11];`, `world` sería un segmento que contiene un puntero al byte con índice 6 de `s`, con un valor de longitud 5.
 
 La figura 4-6 muestra esto en un diagrama.
 
@@ -190,7 +212,7 @@ Entonces estos son iguales:
 # }
 ```
 
-> Nota: Los índices de rango de *string slice* deben darse en límites de caracteres UTF-8 válidos. Si intenta crear un *string slice* en el medio de un caracter multibyte, su programa se cerrará con un error. A los efectos de introducir *string slices*, estamos asumiendo sólo ASCII en esta sección. Una discusión más detallada del manejo de UTF-8 se encuentra en la sección [“Almacenamiento de texto codificado en UTF-8 con Strings”](ch08-02-strings.html) del Capítulo 8.
+> Nota: Los índices de rango de *string slice* deben darse en límites válidos de caracteres UTF-8. Si intenta crear un *string slice* en el medio de un caracter multibyte, su programa se cerrará con un error. A los efectos de introducir *string slices*, estamos asumiendo sólo ASCII en esta sección. Una discusión más detallada del manejo de UTF-8 se encuentra en la sección [“Almacenamiento de texto codificado en UTF-8 con Strings”](ch08-02-strings.html) del Capítulo 8.
 
 Con toda esta información en mente, reescribamos `first_word` para devolver un
 *slice*. El tipo indicado para “string slice” se escribe como `&str`:
@@ -209,13 +231,13 @@ fn first_word(s: &String) -> &str {
 
     &s[..]
 }
+
+# fn main() {}
 ```
 
 Obtenemos el índice para el final de la palabra de la misma manera que lo hicimos en el Listado 4-7, buscando la primera aparición de un espacio. Cuando encontramos un espacio, devolvemos un *string slice* usando el inicio del *string* y el índice del espacio como los índices inicial y final.
 
-Ahora, cuando llamamos a `first_word`, obtenemos un valor único que está
-vinculado a los datos subyacentes. El valor se compone de una referencia al
-punto inicial del segmento (*slice*) y el número de elementos en ese segmento.
+Ahora, cuando llamamos a `first_word`, obtenemos un valor único que está vinculado a los datos subyacentes. El valor se compone de una referencia al punto inicial del segmento (*slice*) y el número de elementos en ese segmento.
 
 Devolver un segmento también funcionaría para una función `second_word`:
 
@@ -228,18 +250,18 @@ Ahora tenemos una API sencilla que es mucho más difícil de estropear, porque e
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust,ignore
-fn first_word(s: &String) -> &str {
-    let bytes = s.as_bytes();
-
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[0..i];
-        }
-    }
-
-    &s[..]
-}
-
+# fn first_word(s: &String) -> &str {
+#     let bytes = s.as_bytes();
+#
+#     for (i, &item) in bytes.iter().enumerate() {
+#         if item == b' ' {
+#             return &s[0..i];
+#         }
+#     }
+#
+#     &s[..]
+# }
+#
 fn main() {
     let mut s = String::from("hello world");
 
@@ -279,7 +301,10 @@ Recuerde de las reglas de préstamo que: si tenemos una referencia inmutable a a
 Recordemos que hablamos sobre *string literales* (*cadenas literales*) que se almacenan dentro del binario. Ahora que sabemos acerca de *slices*, podemos entender correctamente los *string literales*:
 
 ```rust
+# #![allow(unused)]
+# fn main() {
 let s = "Hello, world!";
+# }
 ```
 
 El tipo de `s` aquí es `&str`: es un *slice* que apunta a ese punto específico del
@@ -299,6 +324,37 @@ Un *Rustáceo* más experimentado escribiría la firma que se muestra en el List
 
 ```rust,ignore
 fn first_word(s: &str) -> &str {
+#     let bytes = s.as_bytes();
+#
+#     for (i, &item) in bytes.iter().enumerate() {
+#         if item == b' ' {
+#             return &s[0..i];
+#         }
+#     }
+#
+#     &s[..]
+# }
+#
+# fn main() {
+#     let my_string = String::from("hello world");
+#
+#     // `first_word` works on slices of `String`s, whether partial or whole
+#     let word = first_word(&my_string[0..6]);
+#     let word = first_word(&my_string[..]);
+#     // `first_word` also works on references to `String`s, which are equivalent
+#     // to whole slices of `String`s
+#     let word = first_word(&my_string);
+#
+#     let my_string_literal = "hello world";
+#
+#     // `first_word` works on slices of string literals, whether partial or whole
+#     let word = first_word(&my_string_literal[0..6]);
+#     let word = first_word(&my_string_literal[..]);
+#
+#     // Because string literals *are* string slices already,
+#     // this works too, without the slice syntax!
+#     let word = first_word(my_string_literal);
+# }
 ```
 
 <span class="caption">Listing 4-9: Mejorando la función `first_word` usando un *slice string*
@@ -320,7 +376,7 @@ Si tenemos un *string slice*, podemos pasarlo directamente. Si tenemos un `Strin
 # 
 #     &s[..]
 # }
-
+#
 fn main() {
     let my_string = String::from("hello world");
 
@@ -348,15 +404,16 @@ fn main() {
 
 ### Otros Slices
 
-String slices, como puedes imaginar, son específicas de los *strings*.
-Pero también hay un tipo de *slice* más general. Considera este array:
+String slices, como puedes imaginar, son específicas de los *strings*. Pero también hay un tipo de *slice* más general. Considera este array:
 
 ```rust
+# #![allow(unused)]
+# fn main() {
 let a = [1, 2, 3, 4, 5];
+# }
 ```
 
-Del mismo modo que podríamos querer referirnos a una parte de un *string*,
-es posible que deseemos referirnos a parte de un array. Lo haríamos así:
+Del mismo modo que podríamos querer referirnos a una parte de un *string*, es posible que deseemos referirnos a parte de un array. Lo haríamos así:
 
 ```rust
 # #![allow(unused)]

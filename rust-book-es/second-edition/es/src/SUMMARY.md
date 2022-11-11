@@ -67,7 +67,7 @@
     - [Refactorizando para mejorar la Modularidad y el Manejo de Errores](ch12-03-improving-error-handling-and-modularity.md)
     - [Desarrollando la Funcionalidad de la Biblioteca con Desarrollo Basado en Pruebas (Test-driven development (TDD))](ch12-04-testing-the-librarys-functionality.md)
     - [Trabajando con Variables de Entorno](ch12-05-working-with-environment-variables.md)
-    - [Escribiendo Mensajes de Error en "Error Estándar" en lugar de "Salida Estándar"](ch12-06-writing-to-stderr-instead-of-stdout.md)
+    - [Escribiendo Mensajes de Error en "Standard Error" en lugar de "Standard Output"](ch12-06-writing-to-stderr-instead-of-stdout.md)
 
 ## Pensando en Rust
 

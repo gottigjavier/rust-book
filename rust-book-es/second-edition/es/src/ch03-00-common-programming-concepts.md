@@ -1,16 +1,10 @@
-# Conceptos comunes de programación
+# Conceptos Comunes de Programación
 
-Este capítulo cubre conceptos que aparecen en casi todos los lenguajes de
-programación, y cómo funcionan en Rust. Muchos lenguajes de programación
-tienen mucho en común en su núcleo. Ninguno de los conceptos presentados en
-este capítulo son exclusivos de Rust, pero los discutiremos en el contexto de
-Rust y explicaremos las convenciones sobre el uso de estos conceptos.
+Este capítulo cubre conceptos que aparecen en casi todos los lenguajes de programación, y cómo funcionan en Rust. Muchos lenguajes de programación tienen mucho en común en su núcleo. Ninguno de los conceptos presentados en este capítulo son exclusivos de Rust, pero los discutiremos en el contexto de Rust y explicaremos las convenciones sobre el uso de estos conceptos.
 
-Específicamente, aprenderá sobre variables, tipos básicos, funciones,
-comentarios y estructuras de control (*control flow*). Estos fundamentos estarán en cada programa de
-Rust, y aprenderlas temprano le dará un núcleo fuerte para empezar.
+Específicamente, aprenderá sobre variables, tipos básicos, funciones, comentarios y estructuras de control (*control flow*). Estos fundamentos estarán en cada programa de Rust, y aprenderlos temprano le dará un núcleo fuerte para empezar.
 
-> ### Palabras clave
+> ### Palabras Clave
 >
 > El lenguaje Rust tiene un conjunto de *palabras clave* que están reservadas
 > para el uso exclusivo del lenguaje, al igual que en otros lenguajes. Tenga
