@@ -3835,17 +3835,10 @@ fn main() {
 <p>Nuestra función <code>area</code> es muy específica: solo calcula el área de los rectángulos. Sería útil relacionar este comportamiento más estrechamente con nuestro <em>struct</em> <code>Rectangle</code>, porque no funcionará con ningún otro tipo. Veamos cómo podemos continuar refactorizando este código convirtiendo la función <code>area</code> en un <em>método</em> <code>area</code> definido en nuestro tipo <code>Rectangle</code>.</p>
 <p></br></br></br></br></p>
 <p><small><sup class="footnote-reference"><a href="#1">1</a></sup> Nota del traductor: se tradujo el texto conservando su sentido en forma literal. El texto <em>(en inglés)</em> infiere que la propiedad del contenido de <code>rect1</code> también es propiedad de la función <code>main</code>. Difiero en este concepto. La función <code>main</code> provee un <em>scope</em> (ámbito) donde <code>rect1</code> es propietaria del contenido, pero la función <code>main</code> no es propietaria del contenido en sí. Cuando se transfiere la propiedad a través de los parámetros de una función, no es la función la que recibe la propiedad, sino que ésta provee un <em>scope</em> donde son los parámetros los que adquieren la propiedad.</small></p>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="sintaxis-del-método"><a class="header" href="#sintaxis-del-método">Sintaxis del método</a></h2>
-<p><em>Los métodos</em> son similares a las funciones: se declaran con la palabra clave <code>fn</code> y su nombre,
-pueden tener parámetros y un valor de retorno, y contienen algún código que se ejecuta cuando
-se llaman desde otro lugar. Sin embargo, los métodos son diferentes de las funciones en que están
-definidos dentro del contexto de una estructura (o un objeto enum o un <em>trait</em>, que cubrimos en los
-Capítulos 6 y 17, respectivamente), y su primer parámetro es siempre <code>self</code>, que representa la
-instancia de la estructura a la que se llama el método.</p>
-<h3 id="definición-de-métodos"><a class="header" href="#definición-de-métodos">Definición de métodos</a></h3>
-<p>Cambiemos la función <code>area</code> que tiene una instancia <code>Rectangle</code> como parámetro y,
-en su lugar, hagamos que un método <code>area</code> se defina en la estructura <code>Rectangle</code>,
-como se muestra en el Listado 5-13.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="sintaxis-del-método-method-syntax"><a class="header" href="#sintaxis-del-método-method-syntax">Sintaxis del Método <em>Method Syntax</em></a></h2>
+<p>Los <em>métodos</em> son similares a las funciones: los declaramos con la palabra clave <code>fn</code> y un nombre, pueden tener parámetros y un valor de retorno, y contienen algún código que se ejecuta cuando el método es llamado desde otro lugar. A diferencia de las finciones, los métodos se definen dentro del contexto de un <em>struct</em> (o en un <em>enum</em> o un objeto <em>trait</em>, que cubrimos en los Capítulos 6 y 17, respectivamente), y su primer parámetro es siempre <code>self</code>, que representa la instancia del <em>struct</em> de la cual el método es llamado.</p>
+<h3 id="definición-de-métodos"><a class="header" href="#definición-de-métodos">Definición de Métodos</a></h3>
+<p>Cambiemos la función <code>area</code> que tiene una instancia <code>Rectangle</code> como parámetro y, en su lugar, hagamos que un método <code>area</code> se defina en el <em>struct</em> <code>Rectangle</code>, como se muestra en el Listado 5-13.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">#[derive(Debug)]
 struct Rectangle {
@@ -3860,57 +3853,56 @@ impl Rectangle {
 }
 
 fn main() {
-    let rect1 = Rectangle { width: 30, height: 50 };
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
 
     println!(
-        &quot;El área del rectángulo es {} píxeles cuadrados.&quot;,
+        &quot;El área del rectángulo es {} [píxeles cuadrados].&quot;,
         rect1.area()
     );
 }
 </code></pre></pre>
-<p><span class="caption">Listing 5-13: Definir un método <code>area</code> en la estructura
-<code>Rectangle</code></span></p>
-<p>Para definir la función dentro del contexto de <code>Rectangle</code>, comenzamos un bloque <code>impl</code>
-(implementación). Luego movemos la función <code>area</code> dentro de las llaves de <code>impl</code>
-y cambiar el primer parámetro (y en este caso, solo) a ser <code>self</code> en la firma y
-en todas partes dentro del cuerpo. En <code>main</code>, donde llamó a la función <code>area</code> y
-pasó <code>rect1</code> como argumento, podemos en su lugar usar <em>method syntax</em> para llamar
-al método <code>area</code> en nuestra instancia <code>Rectangle</code>.
-La sintaxis del método va después de una instancia: agregamos un punto seguido por el método
-nombre, paréntesis y cualquier argumento.</p>
-<p>En la firma de <code>area</code>, usamos <code>&amp;self</code> en lugar de <code>rectangle: &amp;Rectangle</code>
-porque Rust sabe que el tipo de <code>self</code> es <code>Rectangle</code> debido a que este método es
-dentro del contexto <code>impl Rectangle</code>. Tenga en cuenta que todavía necesitamos usar el <code>&amp;</code>
-antes de <code>self</code>, tal como lo hicimos en <code>&amp;Rectangle</code>. Los métodos pueden tomar posesión de
-<code>self</code>, tomar <code>self</code> inmutablemente como lo hemos hecho aquí, o tomar <code>self</code> mutable,
-al igual que cualquier otro parámetro.</p>
-<p>Hemos elegido <code>&amp;self</code> aquí por la misma razón que usamos <code>&amp;Rectangle</code> en
-versión de función: no queremos tomar posesión, y solo queremos leer el
-datos en la estructura, no escribir en ella. Si quisiéramos cambiar la instancia que
-llamamos al método como parte de lo que hace el método, usamos <code>&amp;mut self</code>
-como el primer parámetro. Tener un método que tome posesión del
-instancia usando solo <code>self</code> ya que el primer parámetro es raro; esta técnica se usa generalmente
-cuando el método se transforma <code>self</code> en otra cosa y quieres
-para evitar que la persona que llama use la instancia original después de la transformación.</p>
-<p>El principal beneficio de usar métodos en lugar de funciones, además de usar
-sintaxis del método y no tener que repetir el tipo de <code>self</code> en cada método
-firma, es para la organización. Hemos puesto todas las cosas que podemos hacer con una
-instancia de un tipo en un bloque <code>impl</code> en lugar de hacer que los futuros usuarios de nuestro
-código busquen las capacidades de <code>Rectangle</code> en varios lugares de la biblioteca
-que proporcionamos.</p>
+<p><span class="caption">Listing 5-13: Definir un método <code>area</code> en el <em>struct</em> <code>Rectangle</code></span></p>
+<p>Para definir la función dentro del contexto de <code>Rectangle</code>, comenzamos un bloque <code>impl</code> (implementación) para <code>Rectangle</code>. Todo lo que se encuentre dentro de este bloque <code>impl</code> se asociará con el tipo <code>Rectangle</code>. Luego movemos la función <code>area</code> dentro de las llaves de <code>impl</code> y cambiamos el primer (y en este caso, el único) parámetro para que sea <code>self</code> en la firma y en todas partes dentro del cuerpo. En <code>main</code>, donde llamamos a la función <code>area</code> y pasamos <code>rect1</code> como un argumento, podemos en su lugar usar la <em>sintaxis del método</em> para llamar al método <code>area</code> en nuestra instancia <code>Rectangle</code>. La <em>sintaxis del método</em> va después de una instancia: añadimos un punto, seguido del nombre del método, paréntesis y cualquier argumento.</p>
+<p>En la firma de <code>area</code>, usamos <code>&amp;self</code> en lugar de <code>rectangle: &amp;Rectangle</code>. El <code>&amp;self</code> es en realidad la abreviatura de <code>self: &amp;Self</code>. Dentro de un bloque <code>impl</code>, el tipo <code>Self</code> es un <em>alias</em> del tipo al cual se asocia el bloque <code>impl</code>. Los métodos deben tener un parámetro llamado <code>self</code> de tipo <code>Self</code> como su primer parámetro, así que Rust le permite abreviar esto solo con el nombre <code>self</code>. Tenga en cuenta que aún necesitamos usar <code>&amp;</code> delante de la abreviatura <code>self</code> para indicar que este método toma prestada la instancia <code>Self</code>, tal como lo hicimos en <code>rectangle: &amp;Rectangle</code>. Los métodos pueden tomar la propiedad (<em>ownership</em>) de <code>self</code>, tomar prestado <code>self</code> inmutable como lo hemos hecho aquí, o tomar prestado <code>self</code> mutable, tal como pueden hacerlo con cualquier otro parámetro.</p>
+<p>Hemos elegido <code>&amp;self</code> aquí por la misma razón que usamos <code>&amp;Rectangle</code> en versión de función: no queremos tener la propiedad, y solo queremos leer los datos en el <em>struct</em>, no escribir en él. Si quisiéramos cambiar la instancia en la que llamamos al método como parte de lo que hace el método, usaríamos <code>&amp;mut self</code> como el primer parámetro. Tener un método que tome posesión de la
+instancia usando solo <code>self</code> como el primer parámetro es raro; esta técnica se suele usar
+cuando el método transforma <code>self</code> en otra cosa y quiere evitar que quien llama utilice la instancia original después de la transformación.</p>
+<p>La principal razón para usar métodos en lugar de funciones, además de proporcionar la <em>sintaxis del método</em> y no tener que repetir el tipo de <code>self</code> en la firma de cada método, es por motivos de organización. Hemos puesto todas las cosas que podemos hacer con una instancia de un tipo en un bloque <code>impl</code>, en lugar de hacer que los futuros usuarios de nuestro código busquen capacidades de <code>Rectangle</code> en varios lugares de la biblioteca que proporcionamos.</p>
+<p>Tenga en cuenta que podemos optar por dar a un método el mismo nombre que uno de los campos del <em>struct</em>. Por ejemplo, podemos definir un método en <code>Rectangle</code> también llamado <code>width</code>:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#[derive(Debug)]
+</span><span class="boring">struct Rectangle {
+</span><span class="boring">    width: u32,
+</span><span class="boring">    height: u32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Rectangle {
+    fn width(&amp;self) -&gt; bool {
+        self.width &gt; 0
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    if rect1.width() {
+        println!(&quot;The rectangle has a nonzero width; it is {}&quot;, rect1.width);
+    }
+}
+</code></pre></pre>
+<p>Aquí, elegimos hacer que el método <code>width</code> devuelva <code>true</code> si el valor en el campo <code>width</code> de la instancia es mayor que 0, y <code>false</code> si el valor es 0: podemos usar un campo dentro de un método del mismo nombre para cualquier propósito. En general, cuando seguimos <code>rect1.width</code> de paréntesis, Rust sabe que nos referimos al método <code>width</code>. Cuando no usamos paréntesis, Rust sabe que nos referimos al campo <code>width</code>.</p>
+<p>A menudo, pero no siempre, cuando proporcionamos métodos con el mismo nombre que un campo, queremos que solo devuelva el valor en ese campo y no haga nada más. Los métodos como este se denominan <em>getters</em>, y Rust no los implementa automáticamente para los campos de <em>structs</em> como lo hacen otros lenguajes. Los <em>getters</em> son útiles porque se puede hacer que el campo sea privado pero el método sea público y, por lo tanto, permitir el acceso de &quot;solo lectura&quot; a ese campo como parte de la API pública del tipo. Discutiremos qué son &quot;público&quot; y &quot;privado&quot; y cómo designar un campo o método como &quot;público&quot; o &quot;privado&quot; en el capítulo 7.</p>
 <blockquote>
 <h3 id="dónde-está-el-operador--"><a class="header" href="#dónde-está-el-operador--">¿Dónde está el operador <code>-&gt;</code>?</a></h3>
-<p>En C y C ++, se utilizan dos operadores diferentes para los métodos de llamada: utiliza <code>.</code>
-si está llamando directamente a un método en el objeto y <code>-&gt; </code> si llama al método en un puntero al objeto
-y necesita para desreferenciar el puntero primero. En otras palabras, si <code>object</code> es un puntero,
-<code>object-&gt; something()</code> es similar a <code>(* object).something () </code>.</p>
-<p>Rust no tiene un equivalente al operador <code>-&gt;</code>; en cambio, Rust tiene una característica llamada
-<em>automatic referencing and dereferencing</em> (<em>referencia automática y eliminación de referencias</em>).
-Los métodos de llamada son uno de los pocos
-lugares en Rust que tienen este comportamiento.</p>
-<p>Así es como funciona: cuando llamas a un método con <code>object.something ()</code>,
-Rust automáticamente agrega <code>&amp;</code>, <code>&amp;mut</code>, o <code>*</code>para que <code>object</code> coincida con
-la firma del método. En otras palabras, los siguientes son los mismos:</p>
+<p>En C y C++, se utilizan dos operadores diferentes para llamar a los métodos: se utiliza <code>.</code> si está llamando directamente a un método en el objeto y <code>-&gt;</code> si está llamando al método en un puntero al objeto y necesita <em>desreferenciar</em> (eliminar la referencia) el puntero primero. En otras palabras, si <code>object</code> es un puntero, <code>object-&gt;algo()</code> es similar a <code>(*object).algo()</code>.</p>
+<p>Rust no tiene un equivalente al operador <code>-&gt;</code>; en cambio, Rust tiene una característica llamada <em>automatic referencing and dereferencing</em> (<em>referenciado y desreferenciado automáticos</em>). La llamada a métodos es uno de los pocos lugares en Rust que tienen este comportamiento.</p>
+<p>Así es como funciona: cuando llama a un método con <code>object.algo()</code>, Rust automáticamente agrega <code>&amp;</code>, <code>&amp;mut</code>, o <code>*</code> para que <code>object</code> coincida con la firma del método. En otras palabras, los siguientes son los mismos:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span><span class="boring">#[derive(Debug,Copy,Clone)]
@@ -3933,23 +3925,24 @@ la firma del método. En otras palabras, los siguientes son los mismos:</p>
 (&amp;p1).distance(&amp;p2);
 <span class="boring">}
 </span></code></pre></pre>
-<p>El primero parece mucho más limpio. Este comportamiento de referencia automática funciona porque
-los métodos tienen un receptor claro, el tipo de <code>self</code>. Dado el receptor y el nombre de un método,
-Rust puede determinar definitivamente si el método es la lectura (<code>&amp; self</code>), la mutación (<code>&amp;mut self</code>),
-o el consumo (<code>self</code>). El hecho de que Rust haga que los préstamos sean implícitos para los receptores
-de métodos es una gran parte de hacer que la propiedad sea ergonómica en la práctica.</p>
+<p>El primero se ve mucho más limpio. Este comportamiento de referencia automática funciona porque los métodos tienen un receptor claro: el tipo de <code>self</code>. Dado el receptor y el nombre de un método, Rust puede determinar definitivamente si el método está leyendo (<code>&amp;self</code>), mutando (<code>&amp;mut self</code>), o consumiendo (<code>self</code>). El hecho de que Rust haga que el préstamo sea implícito para los receptores de métodos es una gran parte de hacer que la propiedad sea ergonómica en la práctica.</p>
 </blockquote>
-<h3 id="métodos-con-más-parámetros"><a class="header" href="#métodos-con-más-parámetros">Métodos con más parámetros</a></h3>
-<p>Practiquemos el uso de métodos implementando un segundo método en la estructura <code>Rectangle</code>.
-Esta vez, queremos una instancia de <code>Rectangle</code> para tomar otra instancia de <code>Rectangle</code> y
-devolver <code>true</code> si el segundo <code>Rectangle</code> puede caber completamente dentro de <code>self</code>; de lo
-contrario, debería devolver <code>false</code>. Es decir, queremos poder escribir el programa que se
-muestra en el listado 5-14, una vez que hayamos definido el método <code>can_hold</code>.</p>
+<h3 id="métodos-con-más-parámetros"><a class="header" href="#métodos-con-más-parámetros">Métodos con Más Parámetros</a></h3>
+<p>Practiquemos el uso de métodos implementando un segundo método en el <em>struct</em> <code>Rectangle</code>. Esta vez, queremos que una instancia de <code>Rectangle</code> tome otra instancia de <code>Rectangle</code> y devuelva <code>true</code> si el segundo <code>Rectangle</code> puede caber completamente dentro de <code>self</code> (el primer <code>Rectangle</code>); de lo contrario, debería devolver <code>false</code>. Es decir, una vez que hayamos definido el método <code>can_hold</code>, queremos poder escribir el programa que se muestra en el Listado 5-14.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn main() {
-    let rect1 = Rectangle { width: 30, height: 50 };
-    let rect2 = Rectangle { width: 10, height: 40 };
-    let rect3 = Rectangle { width: 60, height: 45 };
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
 
     println!(&quot;Can rect1 hold rect2? {}&quot;, rect1.can_hold(&amp;rect2));
     println!(&quot;Can rect1 hold rect3? {}&quot;, rect1.can_hold(&amp;rect3));
@@ -3964,19 +3957,17 @@ Can rect1 hold rect3? false
 <p>Sabemos que queremos definir un método, por lo que estará dentro del bloque <code>impl Rectangle</code>.
 El nombre del método será <code>can_hold</code>, y tomará un préstamo inmutable de otro <code>Rectangle</code> como parámetro.
 Podemos decir cuál será el tipo de parámetro mirando el código que llama al método:
-<code>rect1.can_hold(&amp;rect2)</code> pasa en <code>&amp;rect2</code>, que es un préstamo inmutable a <code>rect2</code>,
+<code>rect1.can_hold(&amp;rect2)</code> le pasa <code>&amp;rect2</code>, que es un préstamo inmutable de <code>rect2</code>,
 una instancia de <code>Rectangle</code>. Esto tiene sentido porque solo necesitamos leer <code>rect2</code>
 (en lugar de escribir, lo que significaría que necesitaríamos un préstamo mutable),
-y queremos que <code>main</code> retenga la propiedad de <code>rect2</code> para que podamos usarlo
+y queremos que <code>main</code> conserve la propiedad de <code>rect2</code> para poder usarlo
 nuevamente después de llamar el método <code>can_hold</code>. El valor de retorno de <code>can_hold</code>
-será un booleano, y la implementación comprobará si el ancho y la altura de <code>self</code>
-son mayores que el ancho y el alto del otro <code>Rectangle</code>, respectivamente.
+será un Booleano, y la implementación comprobará si el ancho y la altura de <code>self</code>
+son mayores que el ancho y la altura del otro <code>Rectangle</code>, respectivamente.
 Agreguemos el nuevo método <code>can_hold</code> al bloque <code>impl</code> del Listado 5-13,
 que se muestra en el Listado 5-15.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">#[derive(Debug)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#[derive(Debug)]
 </span><span class="boring">struct Rectangle {
 </span><span class="boring">    width: u32,
 </span><span class="boring">    height: u32,
@@ -3991,56 +3982,64 @@ que se muestra en el Listado 5-15.</p>
         self.width &gt; other.width &amp;&amp; self.height &gt; other.height
     }
 }
-<span class="boring">}
+<span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    let rect1 = Rectangle {
+</span><span class="boring">        width: 30,
+</span><span class="boring">        height: 50,
+</span><span class="boring">    };
+</span><span class="boring">    let rect2 = Rectangle {
+</span><span class="boring">        width: 10,
+</span><span class="boring">        height: 40,
+</span><span class="boring">    };
+</span><span class="boring">    let rect3 = Rectangle {
+</span><span class="boring">        width: 60,
+</span><span class="boring">        height: 45,
+</span><span class="boring">    };
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;Can rect1 hold rect2? {}&quot;, rect1.can_hold(&amp;rect2));
+</span><span class="boring">    println!(&quot;Can rect1 hold rect3? {}&quot;, rect1.can_hold(&amp;rect3));
+</span><span class="boring">}
 </span></code></pre></pre>
 <p><span class="caption">Listing 5-15: Implementando el método <code>can_hold</code> en <code>Rectangle</code>
 que toma otra instancia <code>Rectangle</code> como parámetro</span></p>
 <p>Cuando ejecutamos este código con la función <code>main</code> en el listado 5-14,
 obtendremos nuestro resultado deseado. Los métodos pueden tomar múltiples
-parámetros que agregamos a la firma después del parámetro <code>self</code>, y esos parámetros
+parámetros, que agregamos a la firma después del parámetro <code>self</code>, y esos parámetros
 funcionan igual que los parámetros en las funciones.</p>
-<h3 id="funciones-asociadas"><a class="header" href="#funciones-asociadas">Funciones asociadas</a></h3>
-<p>Otra característica útil de los bloques <code>impl</code> es que podemos definir funciones
-dentro de bloques <code>impl</code> que <em>no</em> tomen <code>self</code> como parámetro. Estas se llaman
-<em>funciones asociadas</em> porque están asociadas con la estructura. Siguen siendo funciones,
-no métodos, porque no tienen una instancia de la estructura con la que trabajar. Ya has
-usado la función asociada <code>String::from</code>.</p>
-<p>Las funciones asociadas se utilizan a menudo para los constructores que devolverán
-una nueva instancia de la estructura. Por ejemplo, podríamos proporcionar una función
-asociada que tuviera un parámetro de una dimensión y usarla como ancho y alto, lo que
-facilitaría la creación de un cuadrado <code>Rectangle</code> en lugar de tener que especificar el
-mismo valor dos veces:</p>
+<h3 id="funciones-asociadas"><a class="header" href="#funciones-asociadas">Funciones Asociadas</a></h3>
+<p>Todas las funciones definidas dentro de un bloque <code>impl</code> se denominan <em>funciones asociadas</em> porque están asociadas con el tipo que lleva el nombre de <code>impl</code>. Podemos definir funciones asociadas que no tienen <code>self</code> como su primer parámetro (y por lo tanto no son métodos) porque no necesitan una instancia del tipo para trabajar. Ya hemos usado una función como esta: la función <code>String::from</code> que está definida en el tipo <code>String</code>.</p>
+<p>Las funciones asociadas que no son métodos a menudo se usan para constructores que devolverán una nueva instancia del <em>struct</em>. Estas a menudo se nombran <code>new</code>, pero <code>new</code> no es un nombre especial y no está integrado en el lenguaje. Por ejemplo, podríamos optar por proporcionar una función asociada llamada <code>square</code> que tendría un parámetro de dimensión y usarlo tanto como ancho y como altura, lo que facilitaría la creación de un <code>Rectangle</code> cuadrado en lugar de tener que especificar el mismo valor dos veces:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">#[derive(Debug)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#[derive(Debug)]
 </span><span class="boring">struct Rectangle {
 </span><span class="boring">    width: u32,
 </span><span class="boring">    height: u32,
 </span><span class="boring">}
 </span><span class="boring">
 </span>impl Rectangle {
-    fn square(size: u32) -&gt; Rectangle {
-        Rectangle { width: size, height: size }
+    fn square(size: u32) -&gt; Self {
+        Self {
+            width: size,
+            height: size,
+        }
     }
 }
-<span class="boring">}
-</span></code></pre></pre>
-<p>Para llamar a esta función asociada, usamos la sintaxis <code>::</code> con el nombre de la estructura;
-<code>let sq = Rectangle::square(3);</code> es un ejemplo. Esta función tiene el espacio de nombres
-asignado por la estructura: la sintaxis <code>::</code> se usa para las funciones asociadas y los espacios
-de nombres creados por los módulos. Discutiremos los módulos en el Capítulo 7.</p>
-<h3 id="múltiples-bloques-impl"><a class="header" href="#múltiples-bloques-impl">Múltiples bloques <code>impl</code></a></h3>
-<p>Cada estructura puede tener múltiples bloques <code>impl</code>. Por ejemplo, el
-Listado 5-15 es equivalente al código que se muestra en el Listado 5-16,
-que tiene cada método en su propio bloque <code>impl</code>.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<span class="boring">
 </span><span class="boring">fn main() {
-</span><span class="boring">#[derive(Debug)]
+</span><span class="boring">    let sq = Rectangle::square(3);
+</span><span class="boring">}
+</span></code></pre></pre>
+<p>Las palabras clave <code>Self</code> en el tipo de devolución y en el cuerpo de la función son alias para el tipo que aparece después de la palabra clave <code>impl</code>, que en este caso es <code>Rectangle</code>.</p>
+<p>Para llamar a esta función asociada, usamos la sintaxis <code>::</code> con el nombre del <em>struct</em>; <code>let sq = Rectangle::square(3);</code> es un ejemplo. Esta función se nombró en el espacio de nombres (<a href="https://doc.rust-lang.org/reference/names/namespaces.html">namespaced</a>) del <em>struct</em>: la sintaxis <code>::</code> se usa tanto para las funciones asociadas y como para los espacios de nombres creados por los módulos. Discutiremos los módulos en el Capítulo 7.</p>
+<h3 id="múltiples-bloques-impl"><a class="header" href="#múltiples-bloques-impl">Múltiples Bloques <code>impl</code></a></h3>
+<p>Cada estructura puede tener múltiples bloques <code>impl</code>. Por ejemplo, el Listado 5-15 es equivalente al código que se muestra en el Listado 5-16, que tiene cada método en su propio bloque <code>impl</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#[derive(Debug)]
 </span><span class="boring">struct Rectangle {
 </span><span class="boring">    width: u32,
 </span><span class="boring">    height: u32,
 </span><span class="boring">}
+</span><span class="boring">
 </span><span class="boring">
 </span>impl Rectangle {
     fn area(&amp;self) -&gt; u32 {
@@ -4053,22 +4052,30 @@ impl Rectangle {
         self.width &gt; other.width &amp;&amp; self.height &gt; other.height
     }
 }
-<span class="boring">}
+<span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    let rect1 = Rectangle {
+</span><span class="boring">        width: 30,
+</span><span class="boring">        height: 50,
+</span><span class="boring">    };
+</span><span class="boring">    let rect2 = Rectangle {
+</span><span class="boring">        width: 10,
+</span><span class="boring">        height: 40,
+</span><span class="boring">    };
+</span><span class="boring">    let rect3 = Rectangle {
+</span><span class="boring">        width: 60,
+</span><span class="boring">        height: 45,
+</span><span class="boring">    };
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;Can rect1 hold rect2? {}&quot;, rect1.can_hold(&amp;rect2));
+</span><span class="boring">    println!(&quot;Can rect1 hold rect3? {}&quot;, rect1.can_hold(&amp;rect3));
+</span><span class="boring">}
 </span></code></pre></pre>
-<p><span class="caption">Listing 5-16: Reescribiendo el Listado 5-15 usando múltiples
-bloques <code>impl</code></span></p>
-<p>No hay ninguna razón para separar estos métodos en múltiples bloques <code>impl</code> aquí,
-pero esta es una sintaxis válida. Veremos un caso en el que varios bloques <code>impl</code>
-son útiles en el Capítulo 10, donde discutimos los tipos genéricos y <em>traits</em>.</p>
+<p><span class="caption">Listing 5-16: Reescribiendo el Listado 5-15 usando múltiples bloques <code>impl</code></span></p>
+<p>No hay ninguna razón para separar estos métodos en múltiples bloques <code>impl</code> aquí, pero esta es una sintaxis válida. Veremos un caso en el que varios bloques <code>impl</code> son útiles en el Capítulo 10, donde discutimos tipos genéricos y <em>traits</em>.</p>
 <h2 id="resumen-4"><a class="header" href="#resumen-4">Resumen</a></h2>
-<p>Las estructuras le permiten crear tipos personalizados que son significativos para
-su dominio. Mediante el uso de estructuras, puede mantener las piezas asociadas de
-datos conectadas entre sí y el nombre de cada pieza para hacer que su código sea claro.
-Los métodos le permiten especificar el comportamiento que tienen las instancias de sus
-estructuras, y las funciones asociadas le permiten una funcionalidad de espacio de nombres
-que es particular de su estructura sin tener una instancia disponible.</p>
-<p>Pero las estructuras no son la única forma en que puede crear tipos personalizados:
-pasemos a la función enum de Rust para agregar otra herramienta a su caja de herramientas.</p>
+<p>Los <em>structs</em> le permiten crear tipos personalizados que son significativos para su dominio. Mediante el uso de <em>structs</em>, puede mantener partes de datos asociadas conectadas entre sí y nombrar cada parte para que su código quede claro. En bloques <code>impl</code>, puede definir funciones que están asociadas con su tipo, y los métodos son un tipo de función asociada que le permite especificar el comportamiento que tienen las instancias de sus <em>structs</em>.</p>
+<p>Pero los <em>structs</em> no son la única forma en que puede crear tipos personalizados: pasemos a la característica <em>enum</em> de Rust para agregar otra herramienta a su caja de herramientas.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="enums-y-patrones-de-concordancias-"><a class="header" href="#enums-y-patrones-de-concordancias-">Enums y patrones de *concordancias *</a></h1>
 <p>En este capítulo veremos <em>enumerations</em> (<em>enumeraciones</em>), también conocidas como <em>enums</em>.
 Los enumeraciones le permiten definir un tipo enumerando sus posibles valores.
