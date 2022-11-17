@@ -197,7 +197,7 @@ Este enum tiene cuatro variantes con diferentes tipos:
 
 * `Quit` no tiene datos asociados a ella en absoluto.
 * `Move` tiene campos con nombre como lo hace un struct.
-* `Write` incluye un solo `String`.
+* `Write` incluye solo un `String`.
 * `ChangeColor` incluye tres valores `i32`.
 
 Definir un enum con variantes como las del Listado 6-2 es similar a
@@ -297,7 +297,7 @@ El tipo de `some_number` es `Option<i32>`. El tipo de `some_char` es `Option<cha
 
 Cuando tenemos un valor `Some`, sabemos que un valor está presente y el valor se mantiene dentro de `Some`. Cuando tenemos un valor `None`, en cierto sentido, significa lo mismo que null: no tenemos un valor válido. Entonces, ¿por qué es mejor tener `Option<T>` que tener null?
 
-En resumen, debido a que `Option<T>` y `T` (donde `T` puede ser de cualquier tipo) son tipos diferentes, el compilador no nos permitirá usar un valor de `Option<T>` como si definitivamente fuera un valor válido. Por ejemplo, este código no se compilará porque está intentando agregar un `i8` a un `Option<i8>`:
+En resumen, debido a que `Option<T>` y `T` (donde `T` puede ser de cualquier tipo) son tipos diferentes, el compilador no nos permitirá usar un valor de `Option<T>` como si definitivamente fuera un valor válido. Por ejemplo, este código no se compilará porque está intentando sumar un `i8` a un `Option<i8>`:
 
 ```rust,ignore
 # fn main() {
@@ -344,7 +344,7 @@ nulo antes de usar ese valor. Solo cuando tenemos un `Opción<i8>`
 la posibilidad de no tener un valor, y el compilador se asegurará de que manejemos ese
 caso antes de usar el valor.
 
-En otras palabras, debe convertir un `Opción<T>` a un `T` antes de poder realizar operaciones `T` con él. Generalmente, esto ayuda a detectar uno de los problemas más comunes con *null*: asumir que algo no es nulo cuando en realidad lo es.
+En otras palabras, debe convertir un `Opción<T>` a un `T` antes de poder realizar operaciones de `T` con él. Generalmente, esto ayuda a detectar uno de los problemas más comunes con *null*: asumir que algo no es nulo cuando en realidad lo es.
 
 Eliminar el riesgo de asumir incorrectamente un valor no nulo lo ayuda a tener más confianza en su código. Para tener un valor que posiblemente sea nulo, debe optar explícitamente haciendo que el tipo de ese valor sea `Option<T>`. Luego, cuando usa ese valor, debe manejar explícitamente el caso cuando el valor es nulo. Siempre que un valor tenga un tipo que no sea `Option<T>`, puede suponer con seguridad que el valor no es nulo. Esta fue una decisión de diseño deliberada de Rust para limitar la omnipresencia de *null* y aumentar la seguridad del código Rust.
 

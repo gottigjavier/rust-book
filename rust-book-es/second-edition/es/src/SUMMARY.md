@@ -31,7 +31,7 @@
 
 - [Enums y Patrones de Concordancia](ch06-00-enums.md)
     - [Definiendo un Enum](ch06-01-defining-an-enum.md)
-    - [El Operador de Estructuras de Control `match`](ch06-02-match.md)
+    - [Estructura de Control *match*](ch06-02-match.md)
     - [Estructura de Control concisa con `if let`](ch06-03-if-let.md)
 
 ## Basic Rust Literacy
@@ -105,7 +105,7 @@
 
 ## Temas Avanzados
 
-- [Patrones Coinciden con la Estructura de Valores](ch18-00-patterns.md)
+- [Patrones y Coincidencias](ch18-00-patterns.md)
     - [Todos los patrones de lugares pueden ser utilizados](ch18-01-all-the-places-for-patterns.md)
     - [Refutabilidad: si un Patrón podría No Coincidir](ch18-02-refutability.md)
     - [Toda la Sintaxis de Patrones](ch18-03-pattern-syntax.md)
