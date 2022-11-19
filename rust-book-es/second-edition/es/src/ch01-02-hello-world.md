@@ -14,7 +14,7 @@ mismo aquí!
 > ha centrado en permitir un excelente soporte de IDE a través de, por ejemplo, `rust-analyzer`,
 > ¡y se ha avanzado rápidamente en ese frente!
 
-### Crear un directorio de proyectos
+### Crear un Directorio de Proyectos
 
 Comenzará haciendo un directorio para almacenar su código Rust. A Rust no le
 importa dónde vive su código, pero para los ejercicios y proyectos de este
@@ -52,7 +52,7 @@ Para Windows PowerShell, ingrese esto:
 > cd hello_world
 ```
 
-### Escribir y ejecutar un programa en Rust
+### Escribir y Ejecutar un Programa en Rust
 
 A continuación, cree un nuevo archivo fuente y llámelo *main.rs*. Los
 archivos Rust siempre terminan con la extensión *.rs*. Si usa más de una
@@ -98,7 +98,7 @@ Si `Hello, world!` se imprimió, ¡felicitaciones! Usted ha escrito
 oficialmente un programa de Rust. Eso le convierte en un programador de Rust,
 ¡bienvenido!
 
-### Anatomía de un programa de Rust
+### Anatomía de un Programa de Rust
 
 Repasemos en detalle lo que acaba de suceder en su programa *Hello, world!*.
 Aquí está la primera pieza del rompecabezas:

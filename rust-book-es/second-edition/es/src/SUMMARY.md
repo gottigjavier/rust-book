@@ -36,9 +36,9 @@
 
 ## Basic Rust Literacy
 
-- [Módulos](ch07-00-modules.md)
-    - [`mod` y el Sistema de Archivos](ch07-01-mod-and-the-filesystem.md)
-    - [Controlando la Visibilidad con `pub`](ch07-02-controlling-visibility-with-pub.md)
+- [Gestión de Proyectos en Crecimiento con Packages, Crates y Modules](ch07-00-modules.md)
+    - [Packages y Crates](ch07-01-packages-and-crates.md)
+    - [Definiendo Módulos para Controlar el Scope y la Privacidad](ch07-02-defining-modules-to-control-scope-and-privacy.md)
     - [Rutas para hacer Referencia a un Elemento en el Árbol de Módulos](ch07-03-importing-names-with-use.md)
 
 - [Colecciones Comunes](ch08-00-common-collections.md)
