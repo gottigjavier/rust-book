@@ -11,7 +11,7 @@
 
 Se clonó el repositorio [ManRR](https://github.com/ManRR/rust-book-es.git), el cual es un fork del original a fecha de 18 de Mayo de la segunda edición del libro "The Rust Programming Language".
 
-En "./second-edition/es/src/" se encuentran los archivos en formato .md -markdown- en versión español.
+En "./rust-book-ES/edition-2022/src/" se encuentran los archivos en formato .md -markdown- en versión español.
 
 Tomando como base el contenido de estos archivos, se los revisa comparándolos con la [versión original en inglés](https://doc.rust-lang.org/book/title-page.html)
 
