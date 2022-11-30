@@ -36,10 +36,12 @@
 
 ## Basic Rust Literacy
 
-- [Gestión de Proyectos en Crecimiento con Packages, Crates y Modules](ch07-00-modules.md)
+- [Gestión de Proyectos en Crecimiento con Packages, Crates y Modules](ch07-00-packages-crates-modules.md)
     - [Packages y Crates](ch07-01-packages-and-crates.md)
     - [Definiendo Módulos para Controlar el Scope y la Privacidad](ch07-02-defining-modules-to-control-scope-and-privacy.md)
-    - [Rutas para hacer Referencia a un Elemento en el Árbol de Módulos](ch07-03-importing-names-with-use.md)
+    - [Rutas para hacer Referencia a un Elemento en el Árbol de Módulos](ch07-03-paths-for-referring-to-an-item-in-the-module-tree.md)
+    - [Llevando Rutas al Scope con la Palabra Clave use](ch07-04-bringing-paths-into-scope-with-the-use-keyword.md)
+    - [Separación de Módulos en Diferentes Archivos](ch07-05-separating-modules-into-different-files.md)
 
 - [Colecciones Comunes](ch08-00-common-collections.md)
     - [Almacenamiento de listas de valores con Vectores](ch08-01-vectors.md)

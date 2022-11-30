@@ -93,4 +93,4 @@ En la mayoría de las situaciones, lo guiaremos a la versión correcta de cualqu
 Versión en español:
 [GitHub][book-es].
 
-[book-es]: https://github.com/gottigjavier/rust-book/tree/master/rust-book-es/second-edition/es/src
+[book-es]: https://github.com/gottigjavier/rust-book/tree/master/edition-2022/src

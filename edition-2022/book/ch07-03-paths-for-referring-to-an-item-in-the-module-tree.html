@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rutas para hacer Referencia a un Elemento en el Árbol de Módulos - El Lenguaje de Programación Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="ferris.css">
+        <link rel="stylesheet" href="theme/2018-edition.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="foreword.html">Prefacio</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introducción</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Comenzando</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Instalación</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hola, Mundo!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hola, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Programando un Juego de Adivinanzas</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Conceptos Comunes de Programación</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables y Mutabilidad</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Tipos de Datos</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Funciones</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comentarios</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Estructuras de Control</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Comprendiendo la Propiedad (posesión)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Qué es la Propiedad?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Referencias y Préstamos</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Segmentos (Slices)</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Usando Structs para Estructurar Datos Relacionados</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Definiendo e Instanciando Structs</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Un Programa Ejemplo Usando Structs</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Sintáxis del Método</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums y Patrones de Concordancia</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Definiendo un Enum</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> Estructura de Control match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Estructura de Control concisa con if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-packages-crates-modules.html"><strong aria-hidden="true">7.</strong> Gestión de Proyectos en Crecimiento con Packages, Crates y Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-packages-and-crates.html"><strong aria-hidden="true">7.1.</strong> Packages y Crates</a></li><li class="chapter-item expanded "><a href="ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">7.2.</strong> Definiendo Módulos para Controlar el Scope y la Privacidad</a></li><li class="chapter-item expanded "><a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html" class="active"><strong aria-hidden="true">7.3.</strong> Rutas para hacer Referencia a un Elemento en el Árbol de Módulos</a></li><li class="chapter-item expanded "><a href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">7.4.</strong> Llevando Rutas al Scope con la Palabra Clave use</a></li><li class="chapter-item expanded "><a href="ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">7.5.</strong> Separación de Módulos en Diferentes Archivos</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Colecciones Comunes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Almacenamiento de listas de valores con Vectores</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Almacenamiento de texto codificado en UTF-8 con Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Mapas Hash</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Manejo de Errores</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Errores Irrecuperables con panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Errores Recuperables con Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> Con panic! o Sin panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Tipos genéricos, Traits y Lifetimes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Tipos de Datos Genéricos</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Definición del Comportamiento Compartido</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validando Referencias con Lifetimes</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Escribiendo Tests</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Corriendo Tests</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Organización de los Tests</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Un Proyecto I/O: Creando un Programa de Línea de Comandos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Aceptando Argumentos de Línea de Comandos</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Leyendo un Archivo</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactorizando para mejorar la Modularidad y el Manejo de Errores</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Desarrollando la Funcionalidad de la Biblioteca con Desarrollo Basado en Pruebas (Test-driven development (TDD))</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Trabajando con Variables de Entorno</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Escribiendo Mensajes de Error en "Standard Error" en lugar de "Standard Output"</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Características del Lenguaje Funcional: Iterators y Closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Funciones Anónimas que pueden Capturar su Entorno</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Procesando una Serie de Elementos con Iteradores</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Mejorando Nuestro Proyecto de I/O</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparación de Rendimiento: Loops vs. Iterators</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Más Acerca de Cargo y Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Personalizando Compilaciones con Perfiles de Lanzamiento</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publicando un Crate en Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Espacios de Trabajo de Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Instalando Binarios desde Crates.io con cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Ampliando Cargo con Comandos Personalizados</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Punteros Inteligentes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box&lt;T&gt; apunta a datos en el Heap y tiene un tamaño conocido</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Tratamiento de Punteros Inteligentes como Referencias Regulares con el trait Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> El Drop Trait Ejecuta el Código durante la Limpieza</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, Puntero Inteligente con Conteo de Referencias</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; y el Patrón de Mutabilidad Interior</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creación de Ciclos de Referencia y la Seguridad en la Fuga de Memoria</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Concurrencia sin Miedo</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Hilos (Threads)</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Paso de Mensajes</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Estado Compartido</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Concurrencia Extensible: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Características de Programación Orientada a Objetos de Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> Características de los Lenguajes Orientados a Objetos</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Uso de Objetos Trait que permiten Valores de Diferentes Tipos</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Implementación de un Patrón de Diseño Orientado a Objetos</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patrones y Coincidencias</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> Todos los patrones de lugares pueden ser utilizados</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutabilidad: si un Patrón podría No Coincidir</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> Toda la Sintaxis de Patrones</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Características Avanzadas</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Rust en Modo Inseguro</a></li><li class="chapter-item expanded "><a href="ch19-02-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Traits Avanzados</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Tipos Avanzados</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Funciones Avanzadas y Closures</a></li><li class="chapter-item expanded "><a href="ch19-05-macros.html"><strong aria-hidden="true">19.5.</strong> Macros</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Proyecto Final: Construcción de un Servidor web Multiprocesos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Un Servidor Web de un solo Proceso</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Transformando nuestro Servidor de un solo Proceso a un Servidor Multiprocesos</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Apagado y Limpieza Elegantes</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Apéndice</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Palabras Claves</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operadores y Símbolos</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Traits Derivables</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Herramientas Útiles de Desarrollo</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Ediciones</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Traducciones</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - Cómo se hace Rust y “Nightly Rust”</a></li><li class="chapter-item expanded "><a href="appendix-08-advanced-lifetimes.html"><strong aria-hidden="true">21.8.</strong> H - Lifetimes Avanzados</a></li><li class="chapter-item expanded "><a href="appendix-09-newest-features.html"><strong aria-hidden="true">21.9.</strong> I - Características más Recientes (previous version)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">El Lenguaje de Programación Rust</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="rutas-para-hecer-referencia-a-un-elemento-en-el-Árbol-de-módulos"><a class="header" href="#rutas-para-hecer-referencia-a-un-elemento-en-el-Árbol-de-módulos">Rutas para hecer Referencia a un Elemento en el Árbol de Módulos</a></h2>
+<p>Para mostrarle a Rust dónde encontrar un elemento en un árbol de módulos, usamos una ruta de la misma manera que usamos una ruta cuando navegamos por un sistema de archivos. Para llamar a una función, necesitamos conocer su ruta.</p>
+<p>Una ruta puede tomar dos formas:</p>
+<ul>
+<li>Una <em>ruta absoluta</em> es la ruta completa a partir de un crate raíz. Para el código de un crate externo, la ruta absoluta comienza con el nombre del crate, y para el código del crate actual, comienza con el literal <code>crate</code>.</li>
+<li>Una <em>ruta relativa</em> comienza desde el módulo actual y usa <code>self</code>, <code>super</code> o un identificador en el módulo actual.</li>
+</ul>
+<p>Tanto las rutas absolutas como las relativas van seguidas de uno o más identificadores separados por dos puntos dobles (<code>::</code>).</p>
+<p>Volviendo al Listado 7-1, digamos que queremos llamar a la función <code>add_to_waitlist</code>. Esto es lo mismo que preguntar: ¿cuál es la ruta de la función <code>add_to_waitlist</code>? El Listado 7-3 contiene el Listado 7-1 con algunos de los módulos y funciones eliminados.</p>
+<p>Mostraremos dos formas de llamar a la función <code>add_to_waitlist</code> desde una nueva función <code>eat_at_restaurant</code> definida en el crate raíz. Estas rutas son correctas, pero queda otro problema que evitará que este ejemplo se compile tal como está. Explicaremos por qué en un momento.</p>
+<p>La función <code>eat_at_restaurant</code> es parte de la API pública de nuestro crate librería, por lo que la marcamos con la palabra clave <code>pub</code>. En la sección <a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html#exponiendo-rutas-con-la-palabra-clave-pub">&quot;Exponiendo Rutas con la Palabra Clave <code>pub</code>&quot;</a>, entraremos en más detalles sobre <code>pub</code>.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><code class="language-rust ignore">mod front_of_house {
+    mod hosting {
+        fn add_to_waitlist() {}
+    }
+}
+
+pub fn eat_at_restaurant() {
+    // Absolute path
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // Relative path
+    front_of_house::hosting::add_to_waitlist();
+}
+</code></pre>
+<p><span class="caption">Listado 7-3: Llamar a la función <code>add_to_waitlist</code> usando rutas absolutas y relativas</span></p>
+<p>La primera vez que llamamos a la función <code>add_to_waitlist</code> en <code>eat_at_restaurant</code>, usamos una ruta absoluta. La función <code>add_to_waitlist</code> se define en el mismo crate que <code>eat_at_restaurant</code>, lo que significa que podemos usar la palabra clave <code>crate</code> para iniciar una ruta absoluta. Luego incluimos cada uno de los módulos sucesivos hasta llegar a <code>add_to_waitlist</code>. Puede imaginar un sistema de archivos con la misma estructura: especificaríamos la ruta <code>/front_of_house/hosting/add_to_waitlist</code> para ejecutar el programa <code>add_to_waitlist</code>; usar el nombre <code>crate</code> para comenzar desde el crate raíz es como usar <code>/</code> para comenzar desde la raíz del sistema de archivos en su shell.</p>
+<p>La segunda vez que llamamos a <code>add_to_waitlist</code> en <code>eat_at_restaurant</code>, usamos una ruta relativa. La ruta comienza con <code>front_of_house</code>, el nombre del módulo definido en el mismo nivel del árbol de módulos que <code>eat_at_restaurant</code>. Aquí, el equivalente del sistema de archivos sería usar la ruta <code>front_of_house/hosting/add_to_waitlist</code>. Comenzar con un nombre de módulo significa que la ruta es relativa.</p>
+<p>Elegir si usar una ruta relativa o absoluta es una decisión que tomará en función de su proyecto y depende de si es más probable que mueva el código de definición del elemento por separado o junto con el código que usa el elemento. Por ejemplo, si movemos el módulo <code>front_of_house</code> y la función <code>eat_at_restaurant</code> a un módulo llamado <code>customer_experience</code>, necesitaríamos actualizar la ruta absoluta a <code>add_to_waitlist</code>, pero la ruta relativa seguiría siendo válida. Sin embargo, si moviéramos la función <code>eat_at_restaurant</code> por separado a un módulo llamado <code>dining</code>, la ruta absoluta a la llamada <code>add_to_waitlist</code> permanecería igual, pero la ruta relativa tendría que actualizarse. Nuestra preferencia en general es especificar rutas absolutas porque es más probable que queramos mover las definiciones de código y las llamadas a elementos de forma independiente.</p>
+<p>¡Intentemos compilar el Listado 7-3 y averiguar por qué no se compila todavía! El error que obtenemos se muestra en el Listado 7-4.</p>
+<pre><code class="language-text">$ cargo build
+   Compiling restaurant v0.1.0 (file:///projects/restaurant)
+error[E0603]: module `hosting` is private
+ --&gt; src/lib.rs:9:28
+  |
+9 |     crate::front_of_house::hosting::add_to_waitlist();
+  |                            ^^^^^^^ private module
+  |
+note: the module `hosting` is defined here
+ --&gt; src/lib.rs:2:5
+  |
+2 |     mod hosting {
+  |     ^^^^^^^^^^^
+
+error[E0603]: module `hosting` is private
+  --&gt; src/lib.rs:12:21
+   |
+12 |     front_of_house::hosting::add_to_waitlist();
+   |                     ^^^^^^^ private module
+   |
+note: the module `hosting` is defined here
+  --&gt; src/lib.rs:2:5
+   |
+2  |     mod hosting {
+   |     ^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0603`.
+error: could not compile `restaurant` due to 2 previous errors
+</code></pre>
+<p><span class="caption">Listado 7-4: Errores del compilador al construir el código en el Listado 7-3</span></p>
+<p>Los mensajes de error dicen que el módulo <code>hosting</code> es privado. En otras palabras, tenemos las rutas correctas para el módulo <code>hosting</code> y la función <code>add_to_waitlist</code>, pero Rust no nos deja usarlas porque no se tiene acceso a las secciones privadas. En Rust, todos los elementos (funciones, métodos, structs, enums, módulos y constantes) son privados para los módulos <em>padres</em> de forma predeterminada. Si desea hacer privado un elemento como una función o un struct, colóquelo en un módulo.</p>
+<p>Los elementos de un módulo padre no pueden usar los elementos privados que están dentro de los módulos hijos, pero los elementos de los módulos hijos pueden usar los elementos de sus módulos padres. Esto se debe a que los módulos hijos encapsulan y ocultan sus detalles de implementación, pero los módulos hijos pueden ver el contexto en el que están definidos. Para continuar con nuestra metáfora, piense en las reglas de privacidad como si fueran la oficina administrativa de un restaurante: lo que sucede allí es privado para los clientes del restaurante, pero los gerentes de oficina pueden ver y hacer todo en el restaurante que operan.</p>
+<p>Rust eligió que el sistema de módulos funcionara de esta manera para que ocultar los detalles internos de implementación sea el valor predeterminado. De esa forma, sabrá qué partes del código interno puede cambiar sin romper el código externo. Sin embargo, Rust le brinda la opción de exponer partes internas del código de módulos hijos a los módulos padres externos mediante el uso de la palabra clave <code>pub</code> para hacer público un elemento.</p>
+<h3 id="exponiendo-rutas-con-la-palabra-clave-pub"><a class="header" href="#exponiendo-rutas-con-la-palabra-clave-pub">Exponiendo Rutas con la Palabra Clave <code>pub</code></a></h3>
+<p>Volvamos al error del Listado 7-4 que nos decía que el módulo <code>hosting</code> es privado. Queremos que la función <code>eat_at_restaurant</code> en el módulo padre tenga acceso a la función <code>add_to_waitlist</code> en el módulo hijo, por lo que marcamos el módulo <code>hosting</code> con la palabra clave <code>pub</code>, como se muestra en el Listado 7-5.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod front_of_house {
+    pub mod hosting {
+        fn add_to_waitlist() {}
+    }
+}
+
+pub fn eat_at_restaurant() {
+    // Absolute path
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // Relative path
+    front_of_house::hosting::add_to_waitlist();
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 7-5: Declarando el módulo <code>hosting</code> como <code>pub</code> para usarlo desde <code>eat_at_restaurant</code></span></p>
+<p>Desafortunadamente, el código del Listado 7-5 aún genera un error, como se muestra en el Listado 7-6.</p>
+<pre><code class="language-text">$ cargo build
+   Compiling restaurant v0.1.0 (file:///projects/restaurant)
+error[E0603]: function `add_to_waitlist` is private
+ --&gt; src/lib.rs:9:37
+  |
+9 |     crate::front_of_house::hosting::add_to_waitlist();
+  |                                     ^^^^^^^^^^^^^^^ private function
+  |
+note: the function `add_to_waitlist` is defined here
+ --&gt; src/lib.rs:3:9
+  |
+3 |         fn add_to_waitlist() {}
+  |         ^^^^^^^^^^^^^^^^^^^^
+
+error[E0603]: function `add_to_waitlist` is private
+  --&gt; src/lib.rs:12:30
+   |
+12 |     front_of_house::hosting::add_to_waitlist();
+   |                              ^^^^^^^^^^^^^^^ private function
+   |
+note: the function `add_to_waitlist` is defined here
+  --&gt; src/lib.rs:3:9
+   |
+3  |         fn add_to_waitlist() {}
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0603`.
+error: could not compile `restaurant` due to 2 previous errors
+</code></pre>
+<p><span class="caption">Listado 7-6: Errores del compilador al compilar el código del Listado 7-5</span></p>
+<p>¿Qué sucedió? Agregar la palabra clave <code>pub</code> delante de <code>mod hosting</code> hace que el módulo sea público. Con este cambio, si podemos acceder a <code>front_of_house</code>, podemos acceder a <code>hosting</code>. Pero los <em>contenidos</em> de <code>hosting</code> siguen siendo privados; hacer público el módulo no hace público su contenido. La palabra clave <code>pub</code> en un módulo solo permite que el código en sus módulos antepasados se refiera a él, no que acceda a su código interno. Debido a que los módulos son contenedores, no hay mucho que podamos hacer si solo hacemos público el módulo; necesitamos ir más allá y elegir hacer públicos uno o más de los elementos dentro del módulo también.</p>
+<p>Los errores en el Listado 7-6 dicen que la función <code>add_to_waitlist</code> es privada. Las reglas de privacidad se aplican a structs, enums, funciones y métodos, así como a módulos.</p>
+<p>También hagamos pública la función <code>add_to_waitlist</code> agregando la palabra clave <code>pub</code> antes de su definición, como en el Listado 7-7.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+pub fn eat_at_restaurant() {
+    // Absolute path
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // Relative path
+    front_of_house::hosting::add_to_waitlist();
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 7-7: Agregar la palabra clave <code>pub</code> a <code>mod hosting</code> y <code>fn add_to_waitlist</code> nos permite llamar a la función desde <code>eat_at_restaurant</code></span></p>
+<p>¡Ahora el código se compilará! Para ver por qué agregar la palabra clave <code>pub</code> nos permite usar estas rutas en <code>add_to_waitlist</code> con respecto a las reglas de privacidad, veamos las rutas absolutas y relativas.</p>
+<p>En la ruta absoluta, empezamos con <code>crate</code>, la raíz del árbol de módulos de nuestro crate. El módulo <code>front_of_house</code> se define en el crate raíz. Mientras que <code>front_of_house</code> no es público, debido a que la función <code>eat_at_restaurant</code> está definida en el mismo módulo que <code>front_of_house</code> (es decir, <code>eat_at_restaurant</code> y <code>front_of_house</code> son hermanos), podemos referirnos a <code>front_of_house</code> desde <code>eat_at_restaurant</code>. El siguiente es el módulo <code>hosting</code> marcado con <code>pub</code>. Podemos acceder al módulo padre de <code>hosting</code>, por lo que podemos acceder a <code>hosting</code>. Finalmente, la función <code>add_to_waitlist</code> está marcada con <code>pub</code> y podemos acceder a su módulo padre, ¡así que esta llamada de función funciona!</p>
+<p>En la ruta relativa, la lógica es la misma que la ruta absoluta excepto por el primer paso: en lugar de comenzar desde el crate raíz, la ruta comienza desde <code>front_of_house</code>. El módulo <code>front_of_house</code> se define dentro del mismo módulo que <code>eat_at_restaurant</code>, por lo que la ruta relativa a partir del módulo en el que se define <code>eat_at_restaurant</code> funciona. Luego, debido a que <code>hosting</code> y <code>add_to_waitlist</code> están marcados con <code>pub</code>, el resto de la ruta funciona, ¡y esta llamada de función es válida!</p>
+<p>Si planea compartir su crate librería para que otros proyectos puedan usar su código, su API pública es su contrato con los usuarios de su crate que determina cómo pueden interactuar con su código. Hay muchas consideraciones en torno a la gestión de cambios en su API pública para hacerla más simple a las personas que dependen de su crate. Estas consideraciones están fuera del alcance de este libro; si está interesado en este tema, consulte las <a href="https://rust-lang.github.io/api-guidelines/">Directrices de la API de Rust</a>.</p>
+<blockquote>
+<h4 id="prácticas-recomendadas-para-packages-con-un-binario-y-una-librería"><a class="header" href="#prácticas-recomendadas-para-packages-con-un-binario-y-una-librería">Prácticas Recomendadas para Packages con un Binario y una Librería</a></h4>
+<p>Mencionamos que un package puede contener tanto un crate raíz binario <em>src/main.rs</em> como un crate raíz librería <em>src/lib.rs</em>, y ambos crates tendrán el nombre del package de manera predeterminada. Por lo general, los packages con este patrón de contener tanto un crate librería como un crate binario tendrán sólo el suficiente código en el crate binario como para iniciar un ejecutable que llame al código con el crate librería. Esto permite que otros proyectos se beneficien de la mayor funcionalidad que proporciona el package, porque el código del crate librería se puede compartir.</p>
+<p>El árbol de módulos debe definirse en <em>src/lib.rs</em>. Luego, cualquier elemento público se puede usar en el crate binario iniciando las rutas con el nombre del package. El crate binario se convierte en un usuario del crate librería tal como un crate completamente externo usaría el crate librería: este solo puede usar la API pública. Esto le ayuda a diseñar una buena API; ¡Usted no solo es el autor, también es un cliente!</p>
+<p>En el <a href="ch12-00-an-io-project.html">Capítulo 12</a>, demostraremos esta práctica organizativa con un programa de línea de comandos que contendrá tanto un crate binario como un crate librería.</p>
+</blockquote>
+<h3 id="comenzando-rutas-relativas-con-super"><a class="header" href="#comenzando-rutas-relativas-con-super">Comenzando Rutas Relativas con <code>super</code></a></h3>
+<p>Podemos construir rutas relativas que comiencen en el módulo padre, en lugar del módulo actual o el crate raíz, usando <code>super</code> al comienzo de la ruta. Esto es como iniciar una ruta de sistema de archivos con la sintaxis &quot;<code>..</code>&quot;. El uso de <code>super</code> nos permite hacer referencia a un elemento que sabemos está en el módulo padre, lo que puede facilitar la reorganización del árbol de módulos cuando el módulo está estrechamente relacionado con el padre, pero el padre podría moverse a otra parte del árbol de módulos algún día.</p>
+<p>Considere el código del Listado 7-8 que modela la situación en la que un chef corrige un pedido incorrecto y se lo presenta personalmente al cliente. La función <code>fix_incorrect_order</code> definida en el módulo <code>back_of_house</code> llama a la función <code>deliver_order</code> definida en el módulo padre especificando la ruta a <code>deliver_order</code> comenzando con <code>super</code>:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn deliver_order() {}
+
+mod back_of_house {
+    fn fix_incorrect_order() {
+        cook_order();
+        super::deliver_order();
+    }
+
+    fn cook_order() {}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 7-8: llamando a una función usando una ruta relativa que comienza con <code>super</code></span></p>
+<p>La función <code>fix_incorrect_order</code> está en el módulo <code>back_of_house</code>, por lo que podemos usar <code>super</code> para ir al módulo padre de <code>back_of_house</code>, que en este caso es <code>crate</code>, la raíz. A partir de ahí, buscamos <code>deliver_order</code> y lo encontramos. ¡Éxito! Creemos que es probable que el módulo <code>back_of_house</code> y la función <code>deliver_order</code> mantengan la misma relación entre sí y se muevan juntos si decidimos reorganizar el árbol de módulos del crate. Por lo tanto, usamos <code>super</code> para tener menos lugares donde actualizar código en el futuro si este código se mueve a un módulo diferente.</p>
+<h3 id="haciendo-públicos-structs-y-enums"><a class="header" href="#haciendo-públicos-structs-y-enums">Haciendo Públicos Structs y Enums</a></h3>
+<p>También podemos usar <code>pub</code> para designar structs y enums como públicos, pero hay algunos detalles adicionales al uso de <code>pub</code> con structs y enums. Si usamos <code>pub</code> antes de una definición de struct, hacemos público el struct, pero los campos del struct seguirán siendo privados. Podemos hacer público o no cada campo según el caso. En el Listado 7-9, hemos definido un struct <code>back_of_house::Breakfast</code> público con un campo <code>toast</code> público pero un campo <code>seasonal_fruit</code> privado. Este es un modelo del caso en un restaurante donde el cliente puede elegir el tipo de pan que viene con una comida, pero el chef decide qué fruta acompaña la comida en función de lo que está en temporada y en stock. La fruta disponible cambia rápidamente, por lo que los clientes no pueden elegir la fruta o incluso ver qué fruta obtendrán.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod back_of_house {
+    pub struct Breakfast {
+        pub toast: String,
+        seasonal_fruit: String,
+    }
+
+    impl Breakfast {
+        pub fn summer(toast: &amp;str) -&gt; Breakfast {
+            Breakfast {
+                toast: String::from(toast),
+                seasonal_fruit: String::from(&quot;peaches&quot;),
+            }
+        }
+    }
+}
+
+pub fn eat_at_restaurant() {
+    // En verano, ordene un desayuno con tostada de centeno (Rye toast)
+    let mut meal = back_of_house::Breakfast::summer(&quot;Rye&quot;);
+    // Cambiemos de opinión sobre qué pan nos gustaría (wheat: trigo)
+    meal.toast = String::from(&quot;Wheat&quot;);
+    println!(&quot;I'd like {} toast please&quot;, meal.toast);
+
+    // La siguiente línea no se compilará si la descomentamos; no se nos permite 
+    // ver o modificar la fruta de temporada que viene con la comida 
+    // meal.seasonal_fruit = String::from(&quot;blueberries&quot;);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 7-9: Un struct con algunos campos públicos y algunos campos privados</span></p>
+<p>Debido a que el campo <code>toast</code> en el struct <code>back_of_house::Breakfast</code> es público, en <code>eat_at_restaurant</code> podemos escribir y leer en el campo <code>toast</code> usando la notación de puntos. Tenga en cuenta que no podemos usar el campo <code>seasonal_fruit</code> en <code>eat_at_restaurant</code> porque <code>seasonal_fruit</code> es privado. ¡Intente descomentar la línea que modifica el valor del campo <code>season_fruit</code> para ver qué error obtiene!</p>
+<p>Además, tenga en cuenta que debido a que <code>back_of_house::Breakfast</code> tiene un campo privado, el struct debe proporcionar una función asociada pública que construya una instancia de <code>Breakfast</code> (la llamamos <code>summer</code> aquí). Si <code>Breakfast</code> no tuviera esa función, no podríamos crear una instancia de <code>Breakfast</code> en <code>eat_at_restaurant</code> porque no podríamos establecer el valor del campo privado <code>seasonal_fruit</code> en <code>eat_at_restaurant</code>.</p>
+<p>Por el contrario, si hacemos público un enum, todas sus variantes son públicas. Solo necesitamos <code>pub</code> antes de la palabra clave <code>enum</code>, como se muestra en el Listado 7-10.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod back_of_house {
+    pub enum Appetizer {
+        Soup,
+        Salad,
+    }
+}
+
+pub fn eat_at_restaurant() {
+    let order1 = back_of_house::Appetizer::Soup;
+    let order2 = back_of_house::Appetizer::Salad;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listado 7-10: Designar un enum como público hace que todas sus variantes sean públicas</span></p>
+<p>Debido a que hicimos público el enum <code>Appetizer</code>, podemos usar las variantes <code>Soup</code> y <code>Salad</code> en <code>eat_at_restaurant</code>.</p>
+<p>Los enums no son muy útiles a menos que sus variantes sean públicas. Sería molesto tener que anotar todas las variantes de enum con <code>pub</code> en todos los casos, por lo que el valor predeterminado para las variantes de enum es <em>público</em>. Los structs suelen ser útiles sin que sus campos sean públicos, por lo que los campos de struct siguen la regla general de que todo sea privado de forma predeterminada, a menos que se anote con <code>pub</code>.</p>
+<p>Hay una situación más relacionada con <code>pub</code> que no hemos cubierto, y esa es nuestra última característica del module system: la palabra clave <code>use</code>. Primero cubriremos <code>use</code> por sí solo, y luego mostraremos cómo combinar <code>pub</code> y <code>use</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch07-02-defining-modules-to-control-scope-and-privacy.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch07-02-defining-modules-to-control-scope-and-privacy.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="ferris.js"></script>
+
+
+    </body>
+</html>
