@@ -79,7 +79,7 @@ Los mensajes de error dicen que el módulo `hosting` es privado. En otras palabr
 
 Los elementos de un módulo padre no pueden usar los elementos privados que están dentro de los módulos hijos, pero los elementos de los módulos hijos pueden usar los elementos de sus módulos padres. Esto se debe a que los módulos hijos encapsulan y ocultan sus detalles de implementación, pero los módulos hijos pueden ver el contexto en el que están definidos. Para continuar con nuestra metáfora, piense en las reglas de privacidad como si fueran la oficina administrativa de un restaurante: lo que sucede allí es privado para los clientes del restaurante, pero los gerentes de oficina pueden ver y hacer todo en el restaurante que operan.
 
-Rust eligió que el sistema de módulos funcionara de esta manera para que ocultar los detalles internos de implementación sea el valor predeterminado. De esa forma, sabrá qué partes del código interno puede cambiar sin romper el código externo. Sin embargo, Rust le brinda la opción de exponer partes internas del código de módulos hijos a los módulos padres externos mediante el uso de la palabra clave `pub` para hacer público un elemento.
+Rust eligió que el sistema de módulos funcionara de esta manera para que ocultar los detalles internos de implementación sea el valor predeterminado. De esa forma, sabrá qué partes del código interno puede cambiar sin romper el código externo. Sin embargo, Rust le brinda la opción de exponer partes internas del código de módulos hijos a los módulos ancestros externos mediante el uso de la palabra clave `pub` para hacer público un elemento.
 
 
 ### Exponiendo Rutas con la Palabra Clave `pub`

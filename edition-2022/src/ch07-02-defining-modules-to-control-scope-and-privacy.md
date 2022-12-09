@@ -22,7 +22,7 @@ Aquí proporcionamos una referencia rápida sobre cómo funcionan los módulos, 
 
 * **Rutas al código en los módulos:** una vez que un módulo es parte de su crate, puede hacer referencia al código de ese módulo desde cualquier otro lugar en ese mismo crate, siempre que las reglas de privacidad lo permitan, usando la ruta al código. Por ejemplo, un tipo de `Asparagus` en el módulo *garden vegetables* se encontraría en `crate::garden::vegetables::Asparagus`.
 
-* **Privado vs. público:** el código dentro de un módulo es privado desde sus módulos principales de forma predeterminada. Para hacer público un módulo, declárelo con `pub mod` en lugar de `mod`. Para hacer que los elementos dentro de un módulo público también sean públicos, use `pub` antes de sus declaraciones.
+* **Privado vs. público:** el código dentro de un módulo es privado desde sus módulos padres de forma predeterminada. Para hacer público un módulo, declárelo con `pub mod` en lugar de `mod`. Para hacer que los elementos dentro de un módulo público también sean públicos, use `pub` antes de sus declaraciones.
 
 * **La palabra clave `use`:** dentro de un scope, la palabra clave `use` crea accesos directos a elementos para reducir la repetición de rutas largas. En cualquier scope que pueda hacer referencia a `crate::garden::vegetables::Asparagus`, puede crear un acceso directo con `use crate::garden::vegetables::Asparagus;` y de ahí en adelante solo necesita escribir `Asparagus` para hacer uso de ese tipo en el scope.
 
